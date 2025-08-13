@@ -1,3 +1,5 @@
 *.py
-*.json
+ip.json
+test.json
+testip.json
 *.txt
