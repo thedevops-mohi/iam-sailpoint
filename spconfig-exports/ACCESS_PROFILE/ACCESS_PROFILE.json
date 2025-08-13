@@ -1,0 +1,1485 @@
+{
+    "version": 1,
+    "timestamp": "2025-08-13T01:56:43.064968Z",
+    "tenant": "igmfinancial-uat",
+    "description": "Exporting ACCESS_PROFILE",
+    "options": {
+        "excludeTypes": [],
+        "includeTypes": [
+            "ACCESS_PROFILE"
+        ],
+        "objectOptions": {}
+    },
+    "objects": [
+        {
+            "version": 1,
+            "self": {
+                "type": "ACCESS_PROFILE",
+                "id": "b9437d53325548eabfdcaa169d2e4f4c",
+                "name": "AA Owner Test"
+            },
+            "object": {
+                "id": "b9437d53325548eabfdcaa169d2e4f4c",
+                "name": "AA Owner Test",
+                "description": "Testing ownership transfer",
+                "created": "2025-04-10T05:11:14.653677Z",
+                "modified": "2025-07-27T09:20:51.102187Z",
+                "enabled": true,
+                "owner": {
+                    "type": "IDENTITY",
+                    "id": "b8557224c9f64300a811b7be3198be94",
+                    "name": "McCuaig, Nancy"
+                },
+                "source": {
+                    "id": "be421fd329474dc08a0b43ab73bedbcd",
+                    "type": "SOURCE",
+                    "name": "Active Directory"
+                },
+                "entitlements": [
+                    {
+                        "id": "0024f6ba40d14620b847d85b7dd7c075",
+                        "type": "ENTITLEMENT",
+                        "name": "IG-SWD-USR-PFOPS-TL-PROD"
+                    }
+                ],
+                "requestable": false,
+                "accessRequestConfig": {
+                    "commentsRequired": null,
+                    "denialCommentsRequired": null,
+                    "approvalSchemes": [],
+                    "reauthorizationRequired": false
+                },
+                "revocationRequestConfig": {
+                    "approvalSchemes": null
+                },
+                "segments": [],
+                "provisioningCriteria": null,
+                "additionalOwners": null,
+                "segmentRefs": []
+            }
+        },
+        {
+            "version": 1,
+            "self": {
+                "type": "ACCESS_PROFILE",
+                "id": "f454571cade148118f4aa46a02f28038",
+                "name": "AA Owner Test 2"
+            },
+            "object": {
+                "id": "f454571cade148118f4aa46a02f28038",
+                "name": "AA Owner Test 2",
+                "description": "Testing ownership transfer",
+                "created": "2025-04-10T05:12:06.481587Z",
+                "modified": "2025-07-27T09:11:19.815125Z",
+                "enabled": true,
+                "owner": {
+                    "type": "IDENTITY",
+                    "id": "b8557224c9f64300a811b7be3198be94",
+                    "name": "McCuaig, Nancy"
+                },
+                "source": {
+                    "id": "be421fd329474dc08a0b43ab73bedbcd",
+                    "type": "SOURCE",
+                    "name": "Active Directory"
+                },
+                "entitlements": [
+                    {
+                        "id": "0024f6ba40d14620b847d85b7dd7c075",
+                        "type": "ENTITLEMENT",
+                        "name": "IG-SWD-USR-PFOPS-TL-PROD"
+                    }
+                ],
+                "requestable": false,
+                "accessRequestConfig": {
+                    "commentsRequired": null,
+                    "denialCommentsRequired": null,
+                    "approvalSchemes": [],
+                    "reauthorizationRequired": false
+                },
+                "revocationRequestConfig": {
+                    "approvalSchemes": null
+                },
+                "segments": [],
+                "provisioningCriteria": null,
+                "additionalOwners": null,
+                "segmentRefs": []
+            }
+        },
+        {
+            "version": 1,
+            "self": {
+                "type": "ACCESS_PROFILE",
+                "id": "9e291cf53dd942749122a85f477b2c28",
+                "name": "AD - Employees and Contractors - All - Restricted"
+            },
+            "object": {
+                "id": "9e291cf53dd942749122a85f477b2c28",
+                "name": "AD - Employees and Contractors - All - Restricted",
+                "description": "IG and MI - Employees and Contractors -All - Restricted",
+                "created": "2024-03-15T14:40:59.51591Z",
+                "modified": "2024-03-28T13:02:01.638369Z",
+                "enabled": true,
+                "owner": {
+                    "type": "IDENTITY",
+                    "id": "f9b787794e4b49f49971a483ef020f45",
+                    "name": "SVC.SAILPOINT.ROLESOWNER1"
+                },
+                "source": {
+                    "id": "be421fd329474dc08a0b43ab73bedbcd",
+                    "type": "SOURCE",
+                    "name": "Active Directory"
+                },
+                "entitlements": [
+                    {
+                        "id": "9f02ed32129c4233b752e74a02e03f3c",
+                        "type": "ENTITLEMENT",
+                        "name": "IGM-Genetec-PROD-180S-C-Suite-1242"
+                    },
+                    {
+                        "id": "470abe78356c48489c149aaf1657cbc6",
+                        "type": "ENTITLEMENT",
+                        "name": "IGM-Genetec-PROD-All-Restricted"
+                    }
+                ],
+                "requestable": true,
+                "accessRequestConfig": {
+                    "commentsRequired": null,
+                    "denialCommentsRequired": null,
+                    "approvalSchemes": [],
+                    "reauthorizationRequired": false
+                },
+                "revocationRequestConfig": {
+                    "approvalSchemes": []
+                },
+                "segments": [],
+                "provisioningCriteria": null,
+                "additionalOwners": null,
+                "segmentRefs": []
+            }
+        },
+        {
+            "version": 1,
+            "self": {
+                "type": "ACCESS_PROFILE",
+                "id": "17b7b9de906d4f7ba9b00d2ebd480d4e",
+                "name": "AD - Employees and Contractors - HR"
+            },
+            "object": {
+                "id": "17b7b9de906d4f7ba9b00d2ebd480d4e",
+                "name": "AD - Employees and Contractors - HR",
+                "description": "IG and  MI - Employees and Contractors - HR",
+                "created": "2023-11-13T15:04:25.245193Z",
+                "modified": "2023-12-06T21:10:36.699005Z",
+                "enabled": true,
+                "owner": {
+                    "type": "IDENTITY",
+                    "id": "f9b787794e4b49f49971a483ef020f45",
+                    "name": "SVC.SAILPOINT.ROLESOWNER1"
+                },
+                "source": {
+                    "id": "be421fd329474dc08a0b43ab73bedbcd",
+                    "type": "SOURCE",
+                    "name": "Active Directory"
+                },
+                "entitlements": [
+                    {
+                        "id": "b62ba9901b6644fc980fbdbafb3f02eb",
+                        "type": "ENTITLEMENT",
+                        "name": "IGM-Genetec-PROD-HR-Restricted"
+                    },
+                    {
+                        "id": "9df507e3ca604d1f9741b552645eefd8",
+                        "type": "ENTITLEMENT",
+                        "name": "IGM_FMS-PROD-Campus-HR"
+                    }
+                ],
+                "requestable": true,
+                "accessRequestConfig": {
+                    "commentsRequired": null,
+                    "denialCommentsRequired": null,
+                    "approvalSchemes": null,
+                    "reauthorizationRequired": false
+                },
+                "revocationRequestConfig": {
+                    "approvalSchemes": null
+                },
+                "segments": [],
+                "provisioningCriteria": null,
+                "additionalOwners": null,
+                "segmentRefs": []
+            }
+        },
+        {
+            "version": 1,
+            "self": {
+                "type": "ACCESS_PROFILE",
+                "id": "6f34898ede9242128429203cedc6a7b3",
+                "name": "AD - IG Contractor - Base"
+            },
+            "object": {
+                "id": "6f34898ede9242128429203cedc6a7b3",
+                "name": "AD - IG Contractor - Base",
+                "description": "IG Contractor",
+                "created": "2023-04-01T08:41:57.207Z",
+                "modified": "2025-01-28T19:49:18.071451Z",
+                "enabled": true,
+                "owner": {
+                    "type": "IDENTITY",
+                    "id": "f9b787794e4b49f49971a483ef020f45",
+                    "name": "SVC.SAILPOINT.ROLESOWNER1"
+                },
+                "source": {
+                    "id": "be421fd329474dc08a0b43ab73bedbcd",
+                    "type": "SOURCE",
+                    "name": "Active Directory"
+                },
+                "entitlements": [
+                    {
+                        "id": "bcd53ff698884aa9b579023eafe21283",
+                        "type": "ENTITLEMENT",
+                        "name": "Advantage Plus Access"
+                    },
+                    {
+                        "id": "c57e4a41ddaf4196a1afd3be9af2efbd",
+                        "type": "ENTITLEMENT",
+                        "name": "IGM- S2CiValua -PRD-BASICUSER"
+                    },
+                    {
+                        "id": "25af6eac3d70411b8cbbc69eb1c98398",
+                        "type": "ENTITLEMENT",
+                        "name": "IGM-MMD-PRD-Provisioning"
+                    },
+                    {
+                        "id": "57a236412543437ea57c18f097e936b5",
+                        "type": "ENTITLEMENT",
+                        "name": "IGNGG_365License_E5"
+                    },
+                    {
+                        "id": "a03c9ab9b16d4b59b6604042a9dc7270",
+                        "type": "ENTITLEMENT",
+                        "name": "IGNGG_PSO_IGM"
+                    }
+                ],
+                "requestable": true,
+                "accessRequestConfig": {
+                    "commentsRequired": null,
+                    "denialCommentsRequired": null,
+                    "approvalSchemes": [],
+                    "reauthorizationRequired": false
+                },
+                "revocationRequestConfig": {
+                    "approvalSchemes": []
+                },
+                "segments": [],
+                "provisioningCriteria": null,
+                "additionalOwners": null,
+                "segmentRefs": []
+            }
+        },
+        {
+            "version": 1,
+            "self": {
+                "type": "ACCESS_PROFILE",
+                "id": "0721270a68104ec8a6b007c2d7aa51da",
+                "name": "AD - IG Employee - Base"
+            },
+            "object": {
+                "id": "0721270a68104ec8a6b007c2d7aa51da",
+                "name": "AD - IG Employee - Base",
+                "description": "IG Employee",
+                "created": "2023-04-01T08:41:56.372Z",
+                "modified": "2025-01-28T19:49:33.541254Z",
+                "enabled": true,
+                "owner": {
+                    "type": "IDENTITY",
+                    "id": "f9b787794e4b49f49971a483ef020f45",
+                    "name": "SVC.SAILPOINT.ROLESOWNER1"
+                },
+                "source": {
+                    "id": "be421fd329474dc08a0b43ab73bedbcd",
+                    "type": "SOURCE",
+                    "name": "Active Directory"
+                },
+                "entitlements": [
+                    {
+                        "id": "bcd53ff698884aa9b579023eafe21283",
+                        "type": "ENTITLEMENT",
+                        "name": "Advantage Plus Access"
+                    },
+                    {
+                        "id": "c57e4a41ddaf4196a1afd3be9af2efbd",
+                        "type": "ENTITLEMENT",
+                        "name": "IGM- S2CiValua -PRD-BASICUSER"
+                    },
+                    {
+                        "id": "206615a0ce3f47c3b136cc411945a8f9",
+                        "type": "ENTITLEMENT",
+                        "name": "IGM-Genetec-PROD-All-Base"
+                    },
+                    {
+                        "id": "25af6eac3d70411b8cbbc69eb1c98398",
+                        "type": "ENTITLEMENT",
+                        "name": "IGM-MMD-PRD-Provisioning"
+                    },
+                    {
+                        "id": "3d4da44436f843009c4568d70e910bd4",
+                        "type": "ENTITLEMENT",
+                        "name": "IGM-Sierra-PRD-Allow"
+                    },
+                    {
+                        "id": "57a236412543437ea57c18f097e936b5",
+                        "type": "ENTITLEMENT",
+                        "name": "IGNGG_365License_E5"
+                    },
+                    {
+                        "id": "a03c9ab9b16d4b59b6604042a9dc7270",
+                        "type": "ENTITLEMENT",
+                        "name": "IGNGG_PSO_IGM"
+                    }
+                ],
+                "requestable": true,
+                "accessRequestConfig": {
+                    "commentsRequired": null,
+                    "denialCommentsRequired": null,
+                    "approvalSchemes": [],
+                    "reauthorizationRequired": false
+                },
+                "revocationRequestConfig": {
+                    "approvalSchemes": []
+                },
+                "segments": [],
+                "provisioningCriteria": null,
+                "additionalOwners": null,
+                "segmentRefs": []
+            }
+        },
+        {
+            "version": 1,
+            "self": {
+                "type": "ACCESS_PROFILE",
+                "id": "8755cb60ea8c4d45b4d74e4214a6c67f",
+                "name": "AD - IGA - Advisor"
+            },
+            "object": {
+                "id": "8755cb60ea8c4d45b4d74e4214a6c67f",
+                "name": "AD - IGA - Advisor",
+                "description": "IGA Advisor that has title of consultant",
+                "created": "2023-04-01T08:41:51.487Z",
+                "modified": "2023-04-05T03:45:34.956Z",
+                "enabled": true,
+                "owner": {
+                    "type": "IDENTITY",
+                    "id": "f9b787794e4b49f49971a483ef020f45",
+                    "name": "SVC.SAILPOINT.ROLESOWNER1"
+                },
+                "source": {
+                    "id": "be421fd329474dc08a0b43ab73bedbcd",
+                    "type": "SOURCE",
+                    "name": "Active Directory"
+                },
+                "entitlements": [
+                    {
+                        "id": "b6c1a44ff65f45e283fdc0bfd570654f",
+                        "type": "ENTITLEMENT",
+                        "name": "DP_Advisor"
+                    },
+                    {
+                        "id": "84db7c5bdaee4970990a24d119f3f53b",
+                        "type": "ENTITLEMENT",
+                        "name": "IGNGG_PROD-LPP-SSO-CONSULTANT"
+                    }
+                ],
+                "requestable": true,
+                "accessRequestConfig": {
+                    "commentsRequired": false,
+                    "denialCommentsRequired": false,
+                    "approvalSchemes": [],
+                    "reauthorizationRequired": false
+                },
+                "revocationRequestConfig": {
+                    "approvalSchemes": []
+                },
+                "segments": [],
+                "provisioningCriteria": null,
+                "additionalOwners": null,
+                "segmentRefs": []
+            }
+        },
+        {
+            "version": 1,
+            "self": {
+                "type": "ACCESS_PROFILE",
+                "id": "ffd3189c2e0c4d608fb33d93762bc4bb",
+                "name": "AD - IGA - Assistant"
+            },
+            "object": {
+                "id": "ffd3189c2e0c4d608fb33d93762bc4bb",
+                "name": "AD - IGA - Assistant",
+                "description": "IG Advisor Assistant",
+                "created": "2023-04-01T08:41:54.637Z",
+                "modified": "2023-05-17T17:13:13.339Z",
+                "enabled": true,
+                "owner": {
+                    "type": "IDENTITY",
+                    "id": "f9b787794e4b49f49971a483ef020f45",
+                    "name": "SVC.SAILPOINT.ROLESOWNER1"
+                },
+                "source": {
+                    "id": "be421fd329474dc08a0b43ab73bedbcd",
+                    "type": "SOURCE",
+                    "name": "Active Directory"
+                },
+                "entitlements": [
+                    {
+                        "id": "0ac4e2dc5ebf408a8b0281d92c4c2e58",
+                        "type": "ENTITLEMENT",
+                        "name": "DP_Assistant"
+                    },
+                    {
+                        "id": "b80eae00b24444258ff4ac16a1c3729b",
+                        "type": "ENTITLEMENT",
+                        "name": "IGNGG-PROD-LPP-SSO-ASSISTANT"
+                    }
+                ],
+                "requestable": true,
+                "accessRequestConfig": {
+                    "commentsRequired": false,
+                    "denialCommentsRequired": false,
+                    "approvalSchemes": [],
+                    "reauthorizationRequired": false
+                },
+                "revocationRequestConfig": {
+                    "approvalSchemes": []
+                },
+                "segments": [],
+                "provisioningCriteria": null,
+                "additionalOwners": null,
+                "segmentRefs": []
+            }
+        },
+        {
+            "version": 1,
+            "self": {
+                "type": "ACCESS_PROFILE",
+                "id": "8fd19ac1325441069e958b36dcf0ca80",
+                "name": "AD - IGA - Associate"
+            },
+            "object": {
+                "id": "8fd19ac1325441069e958b36dcf0ca80",
+                "name": "AD - IGA - Associate",
+                "description": "IG Advisor Associate",
+                "created": "2023-04-01T08:41:55.457Z",
+                "modified": "2023-04-05T03:45:37.575Z",
+                "enabled": true,
+                "owner": {
+                    "type": "IDENTITY",
+                    "id": "f9b787794e4b49f49971a483ef020f45",
+                    "name": "SVC.SAILPOINT.ROLESOWNER1"
+                },
+                "source": {
+                    "id": "be421fd329474dc08a0b43ab73bedbcd",
+                    "type": "SOURCE",
+                    "name": "Active Directory"
+                },
+                "entitlements": [
+                    {
+                        "id": "e8723664a43f45e1852b2fabf8c5adca",
+                        "type": "ENTITLEMENT",
+                        "name": "Associate"
+                    },
+                    {
+                        "id": "114dc471857b4cc7994b440beb5e50b9",
+                        "type": "ENTITLEMENT",
+                        "name": "DP_Associate"
+                    },
+                    {
+                        "id": "393213e6616444789c8f6f46af09df84",
+                        "type": "ENTITLEMENT",
+                        "name": "IGNGG_PROD-LPP-SSO-ASSOCIATE"
+                    }
+                ],
+                "requestable": true,
+                "accessRequestConfig": {
+                    "commentsRequired": false,
+                    "denialCommentsRequired": false,
+                    "approvalSchemes": [],
+                    "reauthorizationRequired": false
+                },
+                "revocationRequestConfig": {
+                    "approvalSchemes": []
+                },
+                "segments": [],
+                "provisioningCriteria": null,
+                "additionalOwners": null,
+                "segmentRefs": []
+            }
+        },
+        {
+            "version": 1,
+            "self": {
+                "type": "ACCESS_PROFILE",
+                "id": "2fe608940b8143c39510d470d78069b1",
+                "name": "AD - IGA - Base"
+            },
+            "object": {
+                "id": "2fe608940b8143c39510d470d78069b1",
+                "name": "AD - IGA - Base",
+                "description": "Base entitlements for IG Advisors",
+                "created": "2023-04-01T08:41:47.147Z",
+                "modified": "2025-06-12T20:37:33.051057Z",
+                "enabled": true,
+                "owner": {
+                    "type": "IDENTITY",
+                    "id": "f9b787794e4b49f49971a483ef020f45",
+                    "name": "SVC.SAILPOINT.ROLESOWNER1"
+                },
+                "source": {
+                    "id": "be421fd329474dc08a0b43ab73bedbcd",
+                    "type": "SOURCE",
+                    "name": "Active Directory"
+                },
+                "entitlements": [
+                    {
+                        "id": "13f8ea285ee5417983e6c23d0055cb4a",
+                        "type": "ENTITLEMENT",
+                        "name": "IGAGG_365License_E5"
+                    },
+                    {
+                        "id": "34179ecc593d46d19fff35d4ef7df12c",
+                        "type": "ENTITLEMENT",
+                        "name": "IGAGG_PSO_IGM"
+                    },
+                    {
+                        "id": "ea94dd7018fc4a33b9fba016659fbc13",
+                        "type": "ENTITLEMENT",
+                        "name": "IGM-ClearEstate-PROD-SSO"
+                    },
+                    {
+                        "id": "3a0dcb82eeb63ab1873bdbebfe7e8ae9",
+                        "type": "ENTITLEMENT",
+                        "name": "IGM-DO-LKR-PROD"
+                    },
+                    {
+                        "id": "d1a0e471366f3527a4e4535aac678976",
+                        "type": "ENTITLEMENT",
+                        "name": "IGM-DO-LKR-UAT"
+                    },
+                    {
+                        "id": "206615a0ce3f47c3b136cc411945a8f9",
+                        "type": "ENTITLEMENT",
+                        "name": "IGM-Genetec-PROD-All-Base"
+                    },
+                    {
+                        "id": "157b377e446c4373b7ba8db63ec3773b",
+                        "type": "ENTITLEMENT",
+                        "name": "IGM-InterVal-PROD-SSO"
+                    },
+                    {
+                        "id": "816b54d96ef4457288d8cf2eb3edefcf",
+                        "type": "ENTITLEMENT",
+                        "name": "igho"
+                    }
+                ],
+                "requestable": true,
+                "accessRequestConfig": {
+                    "commentsRequired": false,
+                    "denialCommentsRequired": false,
+                    "approvalSchemes": [],
+                    "reauthorizationRequired": false
+                },
+                "revocationRequestConfig": {
+                    "approvalSchemes": []
+                },
+                "segments": [],
+                "provisioningCriteria": null,
+                "additionalOwners": null,
+                "segmentRefs": []
+            }
+        },
+        {
+            "version": 1,
+            "self": {
+                "type": "ACCESS_PROFILE",
+                "id": "b4844dff164f424699cd2f10e1d66221",
+                "name": "AD - IGA - Division Manager"
+            },
+            "object": {
+                "id": "b4844dff164f424699cd2f10e1d66221",
+                "name": "AD - IGA - Division Manager",
+                "description": "AD - IGA - Division Manager",
+                "created": "2023-04-01T08:41:52.605Z",
+                "modified": "2023-04-05T03:45:35.589Z",
+                "enabled": true,
+                "owner": {
+                    "type": "IDENTITY",
+                    "id": "f9b787794e4b49f49971a483ef020f45",
+                    "name": "SVC.SAILPOINT.ROLESOWNER1"
+                },
+                "source": {
+                    "id": "be421fd329474dc08a0b43ab73bedbcd",
+                    "type": "SOURCE",
+                    "name": "Active Directory"
+                },
+                "entitlements": [
+                    {
+                        "id": "b6c1a44ff65f45e283fdc0bfd570654f",
+                        "type": "ENTITLEMENT",
+                        "name": "DP_Advisor"
+                    },
+                    {
+                        "id": "bc7b96f5e0eb4f0094dabe5da6091c4a",
+                        "type": "ENTITLEMENT",
+                        "name": "IGAGG_FDR_ACCESS"
+                    }
+                ],
+                "requestable": true,
+                "accessRequestConfig": {
+                    "commentsRequired": false,
+                    "denialCommentsRequired": false,
+                    "approvalSchemes": [],
+                    "reauthorizationRequired": false
+                },
+                "revocationRequestConfig": {
+                    "approvalSchemes": []
+                },
+                "segments": [],
+                "provisioningCriteria": null,
+                "additionalOwners": null,
+                "segmentRefs": []
+            }
+        },
+        {
+            "version": 1,
+            "self": {
+                "type": "ACCESS_PROFILE",
+                "id": "f85558a4df1e466597176ce7f1b69245",
+                "name": "AD - IGA - Lite Base"
+            },
+            "object": {
+                "id": "f85558a4df1e466597176ce7f1b69245",
+                "name": "AD - IGA - Lite Base",
+                "description": "IG Advisor Lite Base",
+                "created": "2023-04-01T08:41:50.309Z",
+                "modified": "2023-07-06T19:25:02.695Z",
+                "enabled": true,
+                "owner": {
+                    "type": "IDENTITY",
+                    "id": "f9b787794e4b49f49971a483ef020f45",
+                    "name": "SVC.SAILPOINT.ROLESOWNER1"
+                },
+                "source": {
+                    "id": "be421fd329474dc08a0b43ab73bedbcd",
+                    "type": "SOURCE",
+                    "name": "Active Directory"
+                },
+                "entitlements": [
+                    {
+                        "id": "13f8ea285ee5417983e6c23d0055cb4a",
+                        "type": "ENTITLEMENT",
+                        "name": "IGAGG_365License_E5"
+                    },
+                    {
+                        "id": "34179ecc593d46d19fff35d4ef7df12c",
+                        "type": "ENTITLEMENT",
+                        "name": "IGAGG_PSO_IGM"
+                    },
+                    {
+                        "id": "9da5dd3e583343368fa5be5096f98f93",
+                        "type": "ENTITLEMENT",
+                        "name": "IGALite"
+                    },
+                    {
+                        "id": "206615a0ce3f47c3b136cc411945a8f9",
+                        "type": "ENTITLEMENT",
+                        "name": "IGM-Genetec-PROD-All-Base"
+                    }
+                ],
+                "requestable": true,
+                "accessRequestConfig": {
+                    "commentsRequired": false,
+                    "denialCommentsRequired": false,
+                    "approvalSchemes": [],
+                    "reauthorizationRequired": false
+                },
+                "revocationRequestConfig": {
+                    "approvalSchemes": []
+                },
+                "segments": [],
+                "provisioningCriteria": null,
+                "additionalOwners": null,
+                "segmentRefs": []
+            }
+        },
+        {
+            "version": 1,
+            "self": {
+                "type": "ACCESS_PROFILE",
+                "id": "9ecd1561d15b48168c5b74d870e04c20",
+                "name": "AD - IGA - Regional Vice President"
+            },
+            "object": {
+                "id": "9ecd1561d15b48168c5b74d870e04c20",
+                "name": "AD - IGA - Regional Vice President",
+                "description": "AD - IGA - Regional Vice President",
+                "created": "2023-04-01T08:41:53.519Z",
+                "modified": "2023-04-05T03:45:36.231Z",
+                "enabled": true,
+                "owner": {
+                    "type": "IDENTITY",
+                    "id": "f9b787794e4b49f49971a483ef020f45",
+                    "name": "SVC.SAILPOINT.ROLESOWNER1"
+                },
+                "source": {
+                    "id": "be421fd329474dc08a0b43ab73bedbcd",
+                    "type": "SOURCE",
+                    "name": "Active Directory"
+                },
+                "entitlements": [
+                    {
+                        "id": "b6c1a44ff65f45e283fdc0bfd570654f",
+                        "type": "ENTITLEMENT",
+                        "name": "DP_Advisor"
+                    },
+                    {
+                        "id": "bc7b96f5e0eb4f0094dabe5da6091c4a",
+                        "type": "ENTITLEMENT",
+                        "name": "IGAGG_FDR_ACCESS"
+                    },
+                    {
+                        "id": "5c1d6805ff7a44e2aec47b9fb0965d52",
+                        "type": "ENTITLEMENT",
+                        "name": "IGM-SPM-CC-RegionalVicePresident-PROD"
+                    }
+                ],
+                "requestable": true,
+                "accessRequestConfig": {
+                    "commentsRequired": false,
+                    "denialCommentsRequired": false,
+                    "approvalSchemes": [],
+                    "reauthorizationRequired": false
+                },
+                "revocationRequestConfig": {
+                    "approvalSchemes": []
+                },
+                "segments": [],
+                "provisioningCriteria": null,
+                "additionalOwners": null,
+                "segmentRefs": []
+            }
+        },
+        {
+            "version": 1,
+            "self": {
+                "type": "ACCESS_PROFILE",
+                "id": "7d0a433d042c4abaa8c52da9ead8e6cf",
+                "name": "AD - IGM Contractors - Except CGI"
+            },
+            "object": {
+                "id": "7d0a433d042c4abaa8c52da9ead8e6cf",
+                "name": "AD - IGM Contractors - Except CGI",
+                "description": "IGM Contractors - Except CGI",
+                "created": "2024-10-03T17:05:46.001057Z",
+                "modified": "2025-05-01T20:14:32.642558Z",
+                "enabled": true,
+                "owner": {
+                    "type": "IDENTITY",
+                    "id": "f9b787794e4b49f49971a483ef020f45",
+                    "name": "SVC.SAILPOINT.ROLESOWNER1"
+                },
+                "source": {
+                    "id": "be421fd329474dc08a0b43ab73bedbcd",
+                    "type": "SOURCE",
+                    "name": "Active Directory"
+                },
+                "entitlements": [
+                    {
+                        "id": "206615a0ce3f47c3b136cc411945a8f9",
+                        "type": "ENTITLEMENT",
+                        "name": "IGM-Genetec-PROD-All-Base"
+                    }
+                ],
+                "requestable": true,
+                "accessRequestConfig": {
+                    "commentsRequired": null,
+                    "denialCommentsRequired": null,
+                    "approvalSchemes": [],
+                    "reauthorizationRequired": false
+                },
+                "revocationRequestConfig": {
+                    "approvalSchemes": []
+                },
+                "segments": [],
+                "provisioningCriteria": null,
+                "additionalOwners": null,
+                "segmentRefs": []
+            }
+        },
+        {
+            "version": 1,
+            "self": {
+                "type": "ACCESS_PROFILE",
+                "id": "fea80559613e4e1f9aebf92b5c8172dc",
+                "name": "AD - IPC Contractor - Base"
+            },
+            "object": {
+                "id": "fea80559613e4e1f9aebf92b5c8172dc",
+                "name": "AD - IPC Contractor - Base",
+                "description": "IPC Contractor  -  Base",
+                "created": "2023-04-01T08:41:59.812Z",
+                "modified": "2024-08-16T15:08:04.634844Z",
+                "enabled": true,
+                "owner": {
+                    "type": "IDENTITY",
+                    "id": "f9b787794e4b49f49971a483ef020f45",
+                    "name": "SVC.SAILPOINT.ROLESOWNER1"
+                },
+                "source": {
+                    "id": "be421fd329474dc08a0b43ab73bedbcd",
+                    "type": "SOURCE",
+                    "name": "Active Directory"
+                },
+                "entitlements": [
+                    {
+                        "id": "3d4da44436f843009c4568d70e910bd4",
+                        "type": "ENTITLEMENT",
+                        "name": "IGM-Sierra-PRD-Allow"
+                    },
+                    {
+                        "id": "33d2fd4c5d174ac6a747a8f39d5242de",
+                        "type": "ENTITLEMENT",
+                        "name": "IGNGG_365License_IPCDivestiture"
+                    },
+                    {
+                        "id": "a03c9ab9b16d4b59b6604042a9dc7270",
+                        "type": "ENTITLEMENT",
+                        "name": "IGNGG_PSO_IGM"
+                    }
+                ],
+                "requestable": true,
+                "accessRequestConfig": {
+                    "commentsRequired": null,
+                    "denialCommentsRequired": null,
+                    "approvalSchemes": [],
+                    "reauthorizationRequired": false
+                },
+                "revocationRequestConfig": {
+                    "approvalSchemes": []
+                },
+                "segments": [],
+                "provisioningCriteria": null,
+                "additionalOwners": null,
+                "segmentRefs": []
+            }
+        },
+        {
+            "version": 1,
+            "self": {
+                "type": "ACCESS_PROFILE",
+                "id": "f018afe52bba4575b81f9d87c4285d62",
+                "name": "AD - IPC Employee - Base"
+            },
+            "object": {
+                "id": "f018afe52bba4575b81f9d87c4285d62",
+                "name": "AD - IPC Employee - Base",
+                "description": "IPC Employee  -  Base",
+                "created": "2023-04-01T08:42:00.763Z",
+                "modified": "2024-03-06T15:32:04.244674Z",
+                "enabled": true,
+                "owner": {
+                    "type": "IDENTITY",
+                    "id": "f9b787794e4b49f49971a483ef020f45",
+                    "name": "SVC.SAILPOINT.ROLESOWNER1"
+                },
+                "source": {
+                    "id": "be421fd329474dc08a0b43ab73bedbcd",
+                    "type": "SOURCE",
+                    "name": "Active Directory"
+                },
+                "entitlements": [
+                    {
+                        "id": "3d4da44436f843009c4568d70e910bd4",
+                        "type": "ENTITLEMENT",
+                        "name": "IGM-Sierra-PRD-Allow"
+                    },
+                    {
+                        "id": "57a236412543437ea57c18f097e936b5",
+                        "type": "ENTITLEMENT",
+                        "name": "IGNGG_365License_E5"
+                    },
+                    {
+                        "id": "a03c9ab9b16d4b59b6604042a9dc7270",
+                        "type": "ENTITLEMENT",
+                        "name": "IGNGG_PSO_IGM"
+                    }
+                ],
+                "requestable": true,
+                "accessRequestConfig": {
+                    "commentsRequired": null,
+                    "denialCommentsRequired": null,
+                    "approvalSchemes": [],
+                    "reauthorizationRequired": false
+                },
+                "revocationRequestConfig": {
+                    "approvalSchemes": []
+                },
+                "segments": [],
+                "provisioningCriteria": null,
+                "additionalOwners": null,
+                "segmentRefs": []
+            }
+        },
+        {
+            "version": 1,
+            "self": {
+                "type": "ACCESS_PROFILE",
+                "id": "e9b82c3e5b3547eda4f3be132f712c21",
+                "name": "AD - MI Contractor - Base"
+            },
+            "object": {
+                "id": "e9b82c3e5b3547eda4f3be132f712c21",
+                "name": "AD - MI Contractor - Base",
+                "description": "MI Contractor",
+                "created": "2023-04-01T08:41:58.964Z",
+                "modified": "2025-01-28T19:49:48.777936Z",
+                "enabled": true,
+                "owner": {
+                    "type": "IDENTITY",
+                    "id": "f9b787794e4b49f49971a483ef020f45",
+                    "name": "SVC.SAILPOINT.ROLESOWNER1"
+                },
+                "source": {
+                    "id": "be421fd329474dc08a0b43ab73bedbcd",
+                    "type": "SOURCE",
+                    "name": "Active Directory"
+                },
+                "entitlements": [
+                    {
+                        "id": "c57e4a41ddaf4196a1afd3be9af2efbd",
+                        "type": "ENTITLEMENT",
+                        "name": "IGM- S2CiValua -PRD-BASICUSER"
+                    },
+                    {
+                        "id": "25af6eac3d70411b8cbbc69eb1c98398",
+                        "type": "ENTITLEMENT",
+                        "name": "IGM-MMD-PRD-Provisioning"
+                    },
+                    {
+                        "id": "56f8f05bc75048c0b22ca3d08e2b8cd0",
+                        "type": "ENTITLEMENT",
+                        "name": "MFCGG_365License_E5"
+                    },
+                    {
+                        "id": "369d87b93158460ea9b8f7e939dda1a6",
+                        "type": "ENTITLEMENT",
+                        "name": "MFCGG_PSO_IGM"
+                    }
+                ],
+                "requestable": true,
+                "accessRequestConfig": {
+                    "commentsRequired": null,
+                    "denialCommentsRequired": null,
+                    "approvalSchemes": [],
+                    "reauthorizationRequired": false
+                },
+                "revocationRequestConfig": {
+                    "approvalSchemes": []
+                },
+                "segments": [],
+                "provisioningCriteria": null,
+                "additionalOwners": null,
+                "segmentRefs": []
+            }
+        },
+        {
+            "version": 1,
+            "self": {
+                "type": "ACCESS_PROFILE",
+                "id": "a1e4f1ac9e654741a17fbfab4d3d6742",
+                "name": "AD - MI Employee - Base"
+            },
+            "object": {
+                "id": "a1e4f1ac9e654741a17fbfab4d3d6742",
+                "name": "AD - MI Employee - Base",
+                "description": "MI Employee",
+                "created": "2023-04-01T08:41:58.107Z",
+                "modified": "2025-01-28T19:50:07.531119Z",
+                "enabled": true,
+                "owner": {
+                    "type": "IDENTITY",
+                    "id": "f9b787794e4b49f49971a483ef020f45",
+                    "name": "SVC.SAILPOINT.ROLESOWNER1"
+                },
+                "source": {
+                    "id": "be421fd329474dc08a0b43ab73bedbcd",
+                    "type": "SOURCE",
+                    "name": "Active Directory"
+                },
+                "entitlements": [
+                    {
+                        "id": "c57e4a41ddaf4196a1afd3be9af2efbd",
+                        "type": "ENTITLEMENT",
+                        "name": "IGM- S2CiValua -PRD-BASICUSER"
+                    },
+                    {
+                        "id": "206615a0ce3f47c3b136cc411945a8f9",
+                        "type": "ENTITLEMENT",
+                        "name": "IGM-Genetec-PROD-All-Base"
+                    },
+                    {
+                        "id": "25af6eac3d70411b8cbbc69eb1c98398",
+                        "type": "ENTITLEMENT",
+                        "name": "IGM-MMD-PRD-Provisioning"
+                    },
+                    {
+                        "id": "3d4da44436f843009c4568d70e910bd4",
+                        "type": "ENTITLEMENT",
+                        "name": "IGM-Sierra-PRD-Allow"
+                    },
+                    {
+                        "id": "56f8f05bc75048c0b22ca3d08e2b8cd0",
+                        "type": "ENTITLEMENT",
+                        "name": "MFCGG_365License_E5"
+                    },
+                    {
+                        "id": "369d87b93158460ea9b8f7e939dda1a6",
+                        "type": "ENTITLEMENT",
+                        "name": "MFCGG_PSO_IGM"
+                    },
+                    {
+                        "id": "ee10445a07a340ab9f826134ff118d84",
+                        "type": "ENTITLEMENT",
+                        "name": "MI-SoftPhone-Directory-PROD"
+                    }
+                ],
+                "requestable": true,
+                "accessRequestConfig": {
+                    "commentsRequired": null,
+                    "denialCommentsRequired": null,
+                    "approvalSchemes": [],
+                    "reauthorizationRequired": false
+                },
+                "revocationRequestConfig": {
+                    "approvalSchemes": []
+                },
+                "segments": [],
+                "provisioningCriteria": null,
+                "additionalOwners": null,
+                "segmentRefs": []
+            }
+        },
+        {
+            "version": 1,
+            "self": {
+                "type": "ACCESS_PROFILE",
+                "id": "b5b3d8f92cac479eb8eeab8b4ab02575",
+                "name": "Advisor AP"
+            },
+            "object": {
+                "id": "b5b3d8f92cac479eb8eeab8b4ab02575",
+                "name": "Advisor AP",
+                "description": null,
+                "created": "2023-02-09T18:24:38.839Z",
+                "modified": "2025-05-01T14:54:08.837818Z",
+                "enabled": false,
+                "owner": {
+                    "type": "IDENTITY",
+                    "id": "628f08e9d3754deb94463c6380d0f61d",
+                    "name": "SailPoint Services"
+                },
+                "source": {
+                    "id": "a357b618d9c34fc1a39213459f7f7d67",
+                    "type": "SOURCE",
+                    "name": "ServiceNow Dummy App"
+                },
+                "entitlements": [
+                    {
+                        "id": "f7dc9df2e2fc4a0ea0fceecd03e343c5",
+                        "type": "ENTITLEMENT",
+                        "name": "advisor_group"
+                    }
+                ],
+                "requestable": true,
+                "accessRequestConfig": {
+                    "commentsRequired": false,
+                    "denialCommentsRequired": false,
+                    "approvalSchemes": [],
+                    "reauthorizationRequired": false
+                },
+                "revocationRequestConfig": {
+                    "approvalSchemes": []
+                },
+                "segments": [],
+                "provisioningCriteria": null,
+                "additionalOwners": null,
+                "segmentRefs": []
+            }
+        },
+        {
+            "version": 1,
+            "self": {
+                "type": "ACCESS_PROFILE",
+                "id": "ee6b45556a2e4cbc904e7149e27b4561",
+                "name": "Advisor Portal - Advanced Financial Planning"
+            },
+            "object": {
+                "id": "ee6b45556a2e4cbc904e7149e27b4561",
+                "name": "Advisor Portal - Advanced Financial Planning",
+                "description": "Advisor Portal Access for Advanced Financial Planning team role \n(created as a test of Access Application functionality)",
+                "created": "2025-06-18T16:51:20.631653Z",
+                "modified": "2025-06-18T20:32:53.951056Z",
+                "enabled": true,
+                "owner": {
+                    "type": "IDENTITY",
+                    "id": "2c918083837fb2ce0183ada1cea76866",
+                    "name": "Warren Pedersen"
+                },
+                "source": {
+                    "id": "be421fd329474dc08a0b43ab73bedbcd",
+                    "type": "SOURCE",
+                    "name": "Active Directory"
+                },
+                "entitlements": [
+                    {
+                        "id": "d45ead6d56c64d2bab6834796740acce",
+                        "type": "ENTITLEMENT",
+                        "name": "DP_AdvancedFinancialPlanning"
+                    }
+                ],
+                "requestable": true,
+                "accessRequestConfig": {
+                    "commentsRequired": null,
+                    "denialCommentsRequired": null,
+                    "approvalSchemes": [],
+                    "reauthorizationRequired": false
+                },
+                "revocationRequestConfig": {
+                    "approvalSchemes": []
+                },
+                "segments": [],
+                "provisioningCriteria": null,
+                "additionalOwners": null,
+                "segmentRefs": []
+            }
+        },
+        {
+            "version": 1,
+            "self": {
+                "type": "ACCESS_PROFILE",
+                "id": "065ea16b4777408481d7ed52dd06beca",
+                "name": "Contractor AP"
+            },
+            "object": {
+                "id": "065ea16b4777408481d7ed52dd06beca",
+                "name": "Contractor AP",
+                "description": null,
+                "created": "2023-02-09T18:26:20.037Z",
+                "modified": "2025-05-21T17:47:58.551447Z",
+                "enabled": false,
+                "owner": {
+                    "type": "IDENTITY",
+                    "id": "628f08e9d3754deb94463c6380d0f61d",
+                    "name": "SailPoint Services"
+                },
+                "source": {
+                    "id": "a357b618d9c34fc1a39213459f7f7d67",
+                    "type": "SOURCE",
+                    "name": "ServiceNow Dummy App"
+                },
+                "entitlements": [
+                    {
+                        "id": "448d86a089b942858c92500e1591b689",
+                        "type": "ENTITLEMENT",
+                        "name": "contractor_group"
+                    }
+                ],
+                "requestable": true,
+                "accessRequestConfig": {
+                    "commentsRequired": false,
+                    "denialCommentsRequired": false,
+                    "approvalSchemes": [],
+                    "reauthorizationRequired": false
+                },
+                "revocationRequestConfig": {
+                    "approvalSchemes": []
+                },
+                "segments": [],
+                "provisioningCriteria": null,
+                "additionalOwners": null,
+                "segmentRefs": []
+            }
+        },
+        {
+            "version": 1,
+            "self": {
+                "type": "ACCESS_PROFILE",
+                "id": "f0e8344c6d714a3c9ecc8f344d1f12ad",
+                "name": "Employee AP"
+            },
+            "object": {
+                "id": "f0e8344c6d714a3c9ecc8f344d1f12ad",
+                "name": "Employee AP",
+                "description": null,
+                "created": "2023-02-09T18:25:18.755Z",
+                "modified": "2025-04-30T20:09:04.74389Z",
+                "enabled": false,
+                "owner": {
+                    "type": "IDENTITY",
+                    "id": "628f08e9d3754deb94463c6380d0f61d",
+                    "name": "SailPoint Services"
+                },
+                "source": {
+                    "id": "a357b618d9c34fc1a39213459f7f7d67",
+                    "type": "SOURCE",
+                    "name": "ServiceNow Dummy App"
+                },
+                "entitlements": [
+                    {
+                        "id": "0c9207ea83ba4e4cadd5c3b1e634ab31",
+                        "type": "ENTITLEMENT",
+                        "name": "employee_group"
+                    }
+                ],
+                "requestable": true,
+                "accessRequestConfig": {
+                    "commentsRequired": false,
+                    "denialCommentsRequired": false,
+                    "approvalSchemes": [],
+                    "reauthorizationRequired": false
+                },
+                "revocationRequestConfig": {
+                    "approvalSchemes": []
+                },
+                "segments": [],
+                "provisioningCriteria": null,
+                "additionalOwners": null,
+                "segmentRefs": []
+            }
+        },
+        {
+            "version": 1,
+            "self": {
+                "type": "ACCESS_PROFILE",
+                "id": "054f2036326549139ef3e2aae782a1d9",
+                "name": "SN Governance Dev – Employees, Contractors and Advisors"
+            },
+            "object": {
+                "id": "054f2036326549139ef3e2aae782a1d9",
+                "name": "SN Governance Dev – Employees, Contractors and Advisors",
+                "description": null,
+                "created": "2024-06-06T18:58:31.876001Z",
+                "modified": "2024-12-04T21:11:23.30169Z",
+                "enabled": true,
+                "owner": {
+                    "type": "IDENTITY",
+                    "id": "2c918083837fb2ce0183ada1cea76866",
+                    "name": "Warren Pedersen"
+                },
+                "source": {
+                    "id": "e952846e6a4c461fa8eccb93454e05b9",
+                    "type": "SOURCE",
+                    "name": "ServiceNowGovernance - Dev"
+                },
+                "entitlements": [
+                    {
+                        "id": "5f2f11ce2ddd44ad8aeea7bf5930f109",
+                        "type": "ENTITLEMENT",
+                        "name": "IGM-PROD-DYN-ServiceNow-Prov"
+                    },
+                    {
+                        "id": "ee3840d5034d4fa9bb328ab585a7844f",
+                        "type": "ENTITLEMENT",
+                        "name": "snc_internal"
+                    }
+                ],
+                "requestable": false,
+                "accessRequestConfig": {
+                    "commentsRequired": null,
+                    "denialCommentsRequired": null,
+                    "approvalSchemes": [],
+                    "reauthorizationRequired": false
+                },
+                "revocationRequestConfig": {
+                    "approvalSchemes": []
+                },
+                "segments": [],
+                "provisioningCriteria": null,
+                "additionalOwners": null,
+                "segmentRefs": []
+            }
+        },
+        {
+            "version": 1,
+            "self": {
+                "type": "ACCESS_PROFILE",
+                "id": "0948c60563fc4e898e04ccb0406c34d3",
+                "name": "SNOW API TEST  - NEW HIRE"
+            },
+            "object": {
+                "id": "0948c60563fc4e898e04ccb0406c34d3",
+                "name": "SNOW API TEST  - NEW HIRE",
+                "description": "This profile is used for new hire AD account creation for SNOW team to test",
+                "created": "2023-01-23T15:43:41.89198Z",
+                "modified": "2025-02-28T07:03:07.128417Z",
+                "enabled": true,
+                "owner": {
+                    "type": "IDENTITY",
+                    "id": "6419b99ce0a240448ab28841396d556d",
+                    "name": "Smith, Brandi"
+                },
+                "source": {
+                    "id": "be421fd329474dc08a0b43ab73bedbcd",
+                    "type": "SOURCE",
+                    "name": "Active Directory"
+                },
+                "entitlements": [
+                    {
+                        "id": "6daf39afbd46427d9da140dfad98d1b6",
+                        "type": "ENTITLEMENT",
+                        "name": "148  (Canada)"
+                    }
+                ],
+                "requestable": true,
+                "accessRequestConfig": {
+                    "commentsRequired": false,
+                    "denialCommentsRequired": false,
+                    "approvalSchemes": [],
+                    "reauthorizationRequired": false
+                },
+                "revocationRequestConfig": {
+                    "approvalSchemes": []
+                },
+                "segments": [],
+                "provisioningCriteria": null,
+                "additionalOwners": null,
+                "segmentRefs": []
+            }
+        },
+        {
+            "version": 1,
+            "self": {
+                "type": "ACCESS_PROFILE",
+                "id": "492a5fdbd962465e95c0b47fd04d427e",
+                "name": "Test for Buitin OU"
+            },
+            "object": {
+                "id": "492a5fdbd962465e95c0b47fd04d427e",
+                "name": "Test for Buitin OU",
+                "description": null,
+                "created": "2023-09-07T18:48:44.154071Z",
+                "modified": "2023-09-07T18:50:15.763631Z",
+                "enabled": false,
+                "owner": null,
+                "source": {
+                    "id": "e97723524569439faf8ef36afb9d347e",
+                    "type": "SOURCE",
+                    "name": "AD - Secondary Accounts"
+                },
+                "entitlements": [],
+                "requestable": false,
+                "accessRequestConfig": {
+                    "commentsRequired": false,
+                    "denialCommentsRequired": false,
+                    "approvalSchemes": [],
+                    "reauthorizationRequired": false
+                },
+                "revocationRequestConfig": {
+                    "approvalSchemes": []
+                },
+                "segments": [],
+                "provisioningCriteria": null,
+                "additionalOwners": null,
+                "segmentRefs": []
+            }
+        },
+        {
+            "version": 1,
+            "self": {
+                "type": "ACCESS_PROFILE",
+                "id": "d6abe381f3474084b967cfd64cccda9a",
+                "name": "Test for NH"
+            },
+            "object": {
+                "id": "d6abe381f3474084b967cfd64cccda9a",
+                "name": "Test for NH",
+                "description": null,
+                "created": "2024-03-25T14:47:16.109746Z",
+                "modified": "2024-03-25T16:36:24.779839Z",
+                "enabled": true,
+                "owner": null,
+                "source": {
+                    "id": "e2fd80b0ff9c47d6a648021957148e67",
+                    "type": "SOURCE",
+                    "name": "AD - Non-Person accounts"
+                },
+                "entitlements": [
+                    {
+                        "id": "44572b9d32a24e41901fa1a15e0ba938",
+                        "type": "ENTITLEMENT",
+                        "name": "BP_RuntimeResource_DEV"
+                    }
+                ],
+                "requestable": true,
+                "accessRequestConfig": {
+                    "commentsRequired": null,
+                    "denialCommentsRequired": null,
+                    "approvalSchemes": null,
+                    "reauthorizationRequired": false
+                },
+                "revocationRequestConfig": {
+                    "approvalSchemes": null
+                },
+                "segments": [],
+                "provisioningCriteria": null,
+                "additionalOwners": null,
+                "segmentRefs": []
+            }
+        },
+        {
+            "version": 1,
+            "self": {
+                "type": "ACCESS_PROFILE",
+                "id": "91f64300e9a244479791aa2d2b0f288c",
+                "name": "Testing - Yahaya"
+            },
+            "object": {
+                "id": "91f64300e9a244479791aa2d2b0f288c",
+                "name": "Testing - Yahaya",
+                "description": "modified again via sail api",
+                "created": "2025-07-02T05:02:08.581907Z",
+                "modified": "2025-07-02T05:02:08.581907Z",
+                "enabled": false,
+                "owner": {
+                    "type": "IDENTITY",
+                    "id": "35448d7ec431489490d2bc6daddc8594",
+                    "name": "Mohammed.Yahaya"
+                },
+                "source": {
+                    "id": "be421fd329474dc08a0b43ab73bedbcd",
+                    "type": "SOURCE",
+                    "name": "Active Directory"
+                },
+                "entitlements": [
+                    {
+                        "id": "e837c8cba70b4947a121919754463da3",
+                        "type": "ENTITLEMENT",
+                        "name": "IGNGG_BOBJ_IG_INS"
+                    }
+                ],
+                "requestable": false,
+                "accessRequestConfig": {
+                    "commentsRequired": null,
+                    "denialCommentsRequired": null,
+                    "approvalSchemes": [],
+                    "reauthorizationRequired": false
+                },
+                "revocationRequestConfig": {
+                    "approvalSchemes": null
+                },
+                "segments": [],
+                "provisioningCriteria": null,
+                "additionalOwners": null,
+                "segmentRefs": []
+            }
+        }
+    ]
+}
