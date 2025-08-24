@@ -1,5 +1,0 @@
-export SAIL_BASE_URL="https://igmfinancial-uat.api.identitynow.com"
-export SAIL_TENANT="https://igmfinancial-uat.identitynow.com"
-export SAIL_CLIENT_ID="54143f0ab6ba4dc0958c54c3cc4002d9"
-export SAIL_CLIENT_SECRET="ffb8004a10a0ae943fb00a47928d715ceecf7fc4a3578b047fc844d683c05894"
-
