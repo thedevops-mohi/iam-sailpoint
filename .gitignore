@@ -3,3 +3,13 @@ ip.json
 test.json
 testip.json
 *.txt
+.vscode/
+.DS_Store
+.idea/
+__pycache__/
+access_profile/
+Azure-Functions/
+sailpoint/
+python-example/
+
+*.sh

@@ -1,0 +1,113 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "7ae48e84-5c28-4a84-be8f-07a666a171d2",
+        "name": "DetermineUserType"
+    },
+    "object": {
+        "id": "7ae48e84-5c28-4a84-be8f-07a666a171d2",
+        "name": "DetermineUserType",
+        "type": "lookup",
+        "attributes": {
+            "input": {
+                "type": "static",
+                "attributes": {
+                    "hasSnowAccount": {
+                        "type": "conditional",
+                        "attributes": {
+                            "expression": "$hasSnowAccount eq null",
+                            "positiveCondition": "hasSnowApiAccountNo",
+                            "negativeCondition": "hasSnowApiAccountYes",
+                            "hasSnowAccount": {
+                                "type": "firstValid",
+                                "attributes": {
+                                    "values": [
+                                        {
+                                            "type": "accountAttribute",
+                                            "attributes": {
+                                                "sourceName": "ServiceNowAPI",
+                                                "attributeName": "id"
+                                            }
+                                        },
+                                        "null"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "snowAccountUserType": {
+                        "type": "firstValid",
+                        "attributes": {
+                            "values": [
+                                {
+                                    "type": "accountAttribute",
+                                    "attributes": {
+                                        "sourceName": "ServiceNowAPI",
+                                        "attributeName": "userType"
+                                    }
+                                },
+                                "null"
+                            ]
+                        }
+                    },
+                    "hasSapEccAccount": {
+                        "type": "conditional",
+                        "attributes": {
+                            "expression": "$hasSapEccAccount eq null",
+                            "positiveCondition": "hasSapEccAccountNo",
+                            "negativeCondition": "hasSapEccAccountYes",
+                            "hasSapEccAccount": {
+                                "type": "firstValid",
+                                "attributes": {
+                                    "values": [
+                                        {
+                                            "type": "accountAttribute",
+                                            "attributes": {
+                                                "sourceName": "Employees SAP ECC",
+                                                "attributeName": "PERNR"
+                                            }
+                                        },
+                                        "null"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "hasAdvisorAccount": {
+                        "type": "conditional",
+                        "attributes": {
+                            "expression": "$hasAdvisorAccount eq null",
+                            "positiveCondition": "hasAdvisorAccountNo",
+                            "negativeCondition": "hasAdvisorAccountYes",
+                            "hasAdvisorAccount": {
+                                "type": "firstValid",
+                                "attributes": {
+                                    "values": [
+                                        {
+                                            "type": "accountAttribute",
+                                            "attributes": {
+                                                "sourceName": "Advisors - SIS Feed",
+                                                "attributeName": "SIS-ID"
+                                            }
+                                        },
+                                        "null"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "value": "$hasSnowAccount,$snowAccountUserType,$hasSapEccAccount,$hasAdvisorAccount"
+                }
+            },
+            "table": {
+                "hasSnowApiAccountYes,Employee,hasSapEccAccountNo,hasAdvisorAccountNo": "Employee",
+                "hasSnowApiAccountYes,Employee,hasSapEccAccountYes,hasAdvisorAccountNo": "Employee",
+                "hasSnowApiAccountYes,Contractor,hasSapEccAccountNo,hasAdvisorAccountNo": "Contractor",
+                "hasSnowApiAccountNo,null,hasSapEccAccountNo,hasAdvisorAccountYes": "Advisor",
+                "default": "undefined"
+            }
+        },
+        "internal": false
+    }
+}

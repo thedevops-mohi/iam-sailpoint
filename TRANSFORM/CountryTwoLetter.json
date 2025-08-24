@@ -1,0 +1,76 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "7bf3fdc7-6913-4214-9572-426afc2e0c25",
+        "name": "CountryTwoLetter"
+    },
+    "object": {
+        "id": "7bf3fdc7-6913-4214-9572-426afc2e0c25",
+        "name": "CountryTwoLetter",
+        "type": "static",
+        "attributes": {
+            "userType": {
+                "type": "reference",
+                "attributes": {
+                    "id": "UserType"
+                }
+            },
+            "employeeCountry": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "Employees SAP ECC",
+                                "attributeName": "LAND1"
+                            }
+                        },
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "ServiceNowAPI",
+                                "attributeName": "country"
+                            }
+                        },
+                        {
+                            "type": "static",
+                            "attributes": {
+                                "value": "None"
+                            }
+                        }
+                    ]
+                }
+            },
+            "contractorCountry": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "ServiceNowAPI",
+                                "attributeName": "country"
+                            }
+                        },
+                        {
+                            "type": "static",
+                            "attributes": {
+                                "value": "None"
+                            }
+                        }
+                    ]
+                }
+            },
+            "advisorCountry": {
+                "type": "static",
+                "attributes": {
+                    "value": "CA"
+                }
+            },
+            "value": "#if($userType == 'Employee' && $employeeCountry != 'None')$employeeCountry#elseif($userType == 'Employee' && $employeeCountry == 'None')#elseif($userType == 'Contractor' && $contractorCountry != 'None')$contractorCountry#elseif($userType == 'Contractor' && $contractorCountry == 'None')#elseif($userType == 'Advisor')$advisorCountry#{else}#end"
+        },
+        "internal": false
+    }
+}
