@@ -1,0 +1,39 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "9c3e397b-5a02-417a-aac2-6d38f5c19b61",
+        "name": "LastSignInDate"
+    },
+    "object": {
+        "id": "9c3e397b-5a02-417a-aac2-6d38f5c19b61",
+        "name": "LastSignInDate",
+        "type": "static",
+        "attributes": {
+            "entraLastSignInDate": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "dateFormat",
+                            "attributes": {
+                                "input": {
+                                    "type": "accountAttribute",
+                                    "attributes": {
+                                        "sourceName": "Entra - IGM - SaaS",
+                                        "attributeName": "signInActivity.lastSuccessfulSignInDateTime"
+                                    }
+                                },
+                                "inputFormat": "yyyy-MM-dd'T'HH:mm:ss'Z'",
+                                "outputFormat": "yyyy-MM-dd"
+                            }
+                        },
+                        "None"
+                    ]
+                }
+            },
+            "value": "$entraLastSignInDate"
+        },
+        "internal": false
+    }
+}

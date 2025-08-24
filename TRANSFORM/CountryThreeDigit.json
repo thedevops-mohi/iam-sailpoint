@@ -1,0 +1,31 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "16864971-1fea-4068-8dd0-20a4b98b23da",
+        "name": "CountryThreeDigit"
+    },
+    "object": {
+        "id": "16864971-1fea-4068-8dd0-20a4b98b23da",
+        "name": "CountryThreeDigit",
+        "type": "lookup",
+        "attributes": {
+            "input": {
+                "attributes": {
+                    "id": "CountryTwoLetter"
+                },
+                "type": "reference"
+            },
+            "table": {
+                "CA": "124",
+                "CN": "156",
+                "HK": "344",
+                "IE": "372",
+                "US": "840",
+                "IN": "356",
+                "default": "0"
+            }
+        },
+        "internal": false
+    }
+}

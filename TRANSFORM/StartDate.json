@@ -1,0 +1,89 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "b69ccce9-b519-4df3-9bfa-f353f2dccec9",
+        "name": "StartDate"
+    },
+    "object": {
+        "id": "b69ccce9-b519-4df3-9bfa-f353f2dccec9",
+        "name": "StartDate",
+        "type": "static",
+        "attributes": {
+            "userType": {
+                "type": "reference",
+                "attributes": {
+                    "id": "UserType"
+                }
+            },
+            "employeeStartDate": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "dateFormat",
+                            "attributes": {
+                                "input": {
+                                    "type": "accountAttribute",
+                                    "attributes": {
+                                        "sourceName": "ServiceNowAPI",
+                                        "attributeName": "startDate"
+                                    }
+                                },
+                                "inputFormat": "yyyy-MM-dd'T'-HH:mm:ss:SSS-HH:mm",
+                                "outputFormat": "yyyy-MM-dd"
+                            }
+                        },
+                        "None"
+                    ]
+                }
+            },
+            "advisorStartDate": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "dateFormat",
+                            "attributes": {
+                                "input": {
+                                    "type": "accountAttribute",
+                                    "attributes": {
+                                        "sourceName": "Advisors - SIS Feed",
+                                        "attributeName": "START-DTE"
+                                    }
+                                },
+                                "inputFormat": "yyyyMMdd",
+                                "outputFormat": "yyyy-MM-dd"
+                            }
+                        },
+                        "None"
+                    ]
+                }
+            },
+            "contractorStartDate": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "dateFormat",
+                            "attributes": {
+                                "input": {
+                                    "type": "accountAttribute",
+                                    "attributes": {
+                                        "sourceName": "ServiceNowAPI",
+                                        "attributeName": "startDate"
+                                    }
+                                },
+                                "inputFormat": "yyyy-MM-dd'T'-HH:mm:ss:SSS-HH:mm",
+                                "outputFormat": "yyyy-MM-dd"
+                            }
+                        },
+                        "None"
+                    ]
+                }
+            },
+            "value": "#if($userType == 'Advisor')$advisorStartDate#elseif($userType == 'Employee')$employeeStartDate#elseif($userType == 'Contractor')$contractorStartDate#{else}error: unkown user type: $userType#end"
+        },
+        "internal": false
+    }
+}

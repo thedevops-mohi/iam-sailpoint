@@ -1,0 +1,83 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "ff80b5cc-6dcc-4cde-a480-1940b76e40fa",
+        "name": "LCSPrehireCheck"
+    },
+    "object": {
+        "id": "ff80b5cc-6dcc-4cde-a480-1940b76e40fa",
+        "name": "LCSPrehireCheck",
+        "type": "static",
+        "attributes": {
+            "isFutureStartDate": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "dateCompare",
+                            "attributes": {
+                                "firstDate": {
+                                    "type": "dateFormat",
+                                    "attributes": {
+                                        "input": {
+                                            "type": "reference",
+                                            "attributes": {
+                                                "id": "StartDate"
+                                            }
+                                        },
+                                        "inputFormat": "yyyy-MM-dd",
+                                        "outputFormat": "ISO8601"
+                                    }
+                                },
+                                "secondDate": "now",
+                                "operator": "gt",
+                                "positiveCondition": "true",
+                                "negativeCondition": "false"
+                            }
+                        },
+                        "false"
+                    ]
+                }
+            },
+            "isEndDateGteToday": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "dateCompare",
+                            "attributes": {
+                                "firstDate": {
+                                    "type": "dateFormat",
+                                    "attributes": {
+                                        "input": {
+                                            "type": "reference",
+                                            "attributes": {
+                                                "id": "EndDate"
+                                            }
+                                        },
+                                        "inputFormat": "yyyy-MM-dd",
+                                        "outputFormat": "ISO8601"
+                                    }
+                                },
+                                "secondDate": "now",
+                                "operator": "gte",
+                                "positiveCondition": "true",
+                                "negativeCondition": "false"
+                            }
+                        },
+                        "false"
+                    ]
+                }
+            },
+            "endDate": {
+                "type": "reference",
+                "attributes": {
+                    "id": "EndDate"
+                }
+            },
+            "value": "#if($isFutureStartDate == 'true' && $endDate == 'None')true#elseif($isFutureStartDate == 'true' && $isEndDateGteToday)true#{else}false#end"
+        },
+        "internal": false
+    }
+}
