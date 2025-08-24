@@ -1,0 +1,52 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "ACCESS_PROFILE",
+        "id": "ffd3189c2e0c4d608fb33d93762bc4bb",
+        "name": "AD - IGA - Assistant"
+    },
+    "object": {
+        "id": "ffd3189c2e0c4d608fb33d93762bc4bb",
+        "name": "AD - IGA - Assistant",
+        "description": "IG Advisor Assistant",
+        "created": "2023-04-01T08:41:54.637Z",
+        "modified": "2023-05-17T17:13:13.339Z",
+        "enabled": true,
+        "owner": {
+            "type": "IDENTITY",
+            "id": "f9b787794e4b49f49971a483ef020f45",
+            "name": "SVC.SAILPOINT.ROLESOWNER1"
+        },
+        "source": {
+            "id": "be421fd329474dc08a0b43ab73bedbcd",
+            "type": "SOURCE",
+            "name": "Active Directory"
+        },
+        "entitlements": [
+            {
+                "id": "0ac4e2dc5ebf408a8b0281d92c4c2e58",
+                "type": "ENTITLEMENT",
+                "name": "DP_Assistant"
+            },
+            {
+                "id": "b80eae00b24444258ff4ac16a1c3729b",
+                "type": "ENTITLEMENT",
+                "name": "IGNGG-PROD-LPP-SSO-ASSISTANT"
+            }
+        ],
+        "requestable": true,
+        "accessRequestConfig": {
+            "commentsRequired": false,
+            "denialCommentsRequired": false,
+            "approvalSchemes": [],
+            "reauthorizationRequired": false
+        },
+        "revocationRequestConfig": {
+            "approvalSchemes": []
+        },
+        "segments": [],
+        "provisioningCriteria": null,
+        "additionalOwners": null,
+        "segmentRefs": []
+    }
+}

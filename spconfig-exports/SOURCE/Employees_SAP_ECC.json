@@ -1,0 +1,498 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "SOURCE",
+        "id": "2c918084843dc5b801843de507d9042e",
+        "name": "Employees SAP ECC"
+    },
+    "object": {
+        "id": "2c918084843dc5b801843de507d9042e",
+        "name": "Employees SAP ECC",
+        "type": "DelimitedFile",
+        "connectorClass": "sailpoint.connector.delimitedfile.DelimitedFileConnector",
+        "connectorScriptName": "delimited-file-angularsc",
+        "description": "This source contains all Employee accounts",
+        "deleteThreshold": 10,
+        "provisionAsCsv": true,
+        "owner": {
+            "type": "IDENTITY",
+            "id": "2c918086837fb2ca0183c858c6597d06",
+            "name": "scott.walker"
+        },
+        "accountCorrelationRule": null,
+        "managerCorrelationRule": null,
+        "beforeProvisioningRule": null,
+        "features": [
+            "DIRECT_PERMISSIONS",
+            "DISCOVER_SCHEMA",
+            "NO_RANDOM_ACCESS"
+        ],
+        "schemas": [
+            {
+                "nativeObjectType": "User",
+                "identityAttribute": "PERNR",
+                "displayAttribute": "PERNR",
+                "hierarchyAttribute": null,
+                "includePermissions": false,
+                "features": [],
+                "configuration": {},
+                "attributes": [
+                    {
+                        "name": "PERNR",
+                        "type": "STRING",
+                        "schema": null,
+                        "description": null,
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "STAT1_T",
+                        "type": "STRING",
+                        "schema": null,
+                        "description": null,
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "VORNA",
+                        "type": "STRING",
+                        "schema": null,
+                        "description": null,
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "INITS",
+                        "type": "STRING",
+                        "schema": null,
+                        "description": null,
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "NACHN",
+                        "type": "STRING",
+                        "schema": null,
+                        "description": null,
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "USRID",
+                        "type": "STRING",
+                        "schema": null,
+                        "description": null,
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "EMAIL",
+                        "type": "STRING",
+                        "schema": null,
+                        "description": null,
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "BUKRS",
+                        "type": "STRING",
+                        "schema": null,
+                        "description": null,
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "PERSA",
+                        "type": "STRING",
+                        "schema": null,
+                        "description": null,
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "KOSTL",
+                        "type": "STRING",
+                        "schema": null,
+                        "description": null,
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "LTEXT",
+                        "type": "STRING",
+                        "schema": null,
+                        "description": null,
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "MC_STEXT",
+                        "type": "STRING",
+                        "schema": null,
+                        "description": null,
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "NAME2",
+                        "type": "STRING",
+                        "schema": null,
+                        "description": null,
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "STRAS",
+                        "type": "STRING",
+                        "schema": null,
+                        "description": null,
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "ORT01",
+                        "type": "STRING",
+                        "schema": null,
+                        "description": null,
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "STATE",
+                        "type": "STRING",
+                        "schema": null,
+                        "description": null,
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "PSTLZ",
+                        "type": "STRING",
+                        "schema": null,
+                        "description": null,
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "LAND1",
+                        "type": "STRING",
+                        "schema": null,
+                        "description": null,
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "TERM_DATE",
+                        "type": "STRING",
+                        "schema": null,
+                        "description": null,
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "FULLNAME",
+                        "type": "STRING",
+                        "schema": null,
+                        "description": null,
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "MANAGER",
+                        "type": "STRING",
+                        "schema": null,
+                        "description": null,
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "MBUKRS",
+                        "type": "STRING",
+                        "schema": null,
+                        "description": null,
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "USER_TYPE",
+                        "type": "STRING",
+                        "schema": null,
+                        "description": null,
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "ACD",
+                        "type": "STRING",
+                        "schema": null,
+                        "description": "Phantom column. Was originally Add Change Delete usage but deprecated.",
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    }
+                ],
+                "id": "2c918084843dc5b801843de507d9042f",
+                "name": "account",
+                "created": "2022-11-03T14:28:50.777Z",
+                "modified": "2023-03-09T22:00:31.363Z"
+            },
+            {
+                "nativeObjectType": "Group",
+                "identityAttribute": "id",
+                "displayAttribute": "displayName",
+                "hierarchyAttribute": null,
+                "includePermissions": false,
+                "features": [],
+                "configuration": {},
+                "attributes": [
+                    {
+                        "name": "id",
+                        "type": "STRING",
+                        "schema": null,
+                        "description": "Unique ID for Group",
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "name",
+                        "type": "STRING",
+                        "schema": null,
+                        "description": "The name of the account - typically groupname etc.",
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "displayName",
+                        "type": "STRING",
+                        "schema": null,
+                        "description": "The preferred display name for the account",
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "created",
+                        "type": "STRING",
+                        "schema": null,
+                        "description": "Date/Time when the group was created (utime)",
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "description",
+                        "type": "STRING",
+                        "schema": null,
+                        "description": "Multi-purpose field used to capture a description or comments",
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "modified",
+                        "type": "STRING",
+                        "schema": null,
+                        "description": "Date/Time when the group was modified (utime)",
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "entitlements",
+                        "type": "STRING",
+                        "schema": null,
+                        "description": "The access rights, entitlements etc. that the account has access to.",
+                        "isMulti": true,
+                        "isEntitlement": true,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "groups",
+                        "type": "STRING",
+                        "schema": null,
+                        "description": "The groups, roles etc. that reference to account group objects",
+                        "isMulti": true,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "permissions",
+                        "type": "STRING",
+                        "schema": null,
+                        "description": "The permissions associated with the account",
+                        "isMulti": true,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    }
+                ],
+                "id": "2c918084843dc5b801843de507d90430",
+                "name": "group",
+                "created": "2022-11-03T14:28:50.777Z",
+                "modified": null
+            }
+        ],
+        "connectorAttributes": {
+            "group.mergeRows": true,
+            "group.delimiter": ",",
+            "mergeRows": false,
+            "group.filetransport": "local",
+            "partitionMode": "disabled",
+            "checkDeletedDisabled": true,
+            "connectionType": "file",
+            "group.host": "local",
+            "group.indexColumn": "id",
+            "delimiter": ",",
+            "host": "local",
+            "commentCharacter": "T",
+            "group.mergeColumns": [
+                "entitlements",
+                "groups",
+                "permissions"
+            ],
+            "hasHeader": true,
+            "filterEmptyRecords": true,
+            "filetransport": "local",
+            "deleteThresholdPercentage": 10,
+            "group.filterEmptyRecords": true,
+            "group.hasHeader": true,
+            "group.partitionMode": "disabled",
+            "group.columnNames": [
+                "id",
+                "name",
+                "displayName",
+                "created",
+                "description",
+                "modified",
+                "entitlements",
+                "groups",
+                "permissions"
+            ],
+            "templateApplication": "DelimitedFile Template",
+            "healthy": true,
+            "cloudDisplayName": "Employees SAP ECC",
+            "connectorName": "Delimited File",
+            "numberOfLinesToSkip": "0",
+            "cloudOriginalApplicationType": "Delimited File",
+            "since": "2024-02-07T05:00:45.512Z",
+            "status": "SOURCE_STATE_HEALTHY"
+        },
+        "crossTenantConnectorAttributes": {},
+        "correlationConfigDetails": {
+            "attributeAssignments": [
+                {
+                    "complex": false,
+                    "property": "employeeId",
+                    "operation": "EQ",
+                    "value": "PERNR",
+                    "ignoreCase": true,
+                    "matchMode": null,
+                    "filterString": null,
+                    "sequence": 1
+                }
+            ],
+            "id": "2c918084843dc5b801843e10d70a0bb7",
+            "name": "Employees SAP ECC Account Correlation Config"
+        },
+        "managerCorrelationMapping": null,
+        "provisioningPolicies": [
+            {
+                "name": "Create Policy",
+                "description": "Create Policy",
+                "usageType": "CREATE",
+                "fields": [
+                    {
+                        "name": "id",
+                        "transform": null,
+                        "attributes": {},
+                        "isRequired": false,
+                        "type": null,
+                        "isMultiValued": false
+                    },
+                    {
+                        "name": "name",
+                        "transform": null,
+                        "attributes": {},
+                        "isRequired": false,
+                        "type": null,
+                        "isMultiValued": false
+                    },
+                    {
+                        "name": "givenName",
+                        "transform": null,
+                        "attributes": {},
+                        "isRequired": false,
+                        "type": null,
+                        "isMultiValued": false
+                    },
+                    {
+                        "name": "familyName",
+                        "transform": null,
+                        "attributes": {},
+                        "isRequired": false,
+                        "type": null,
+                        "isMultiValued": false
+                    },
+                    {
+                        "name": "e-mail",
+                        "transform": null,
+                        "attributes": {},
+                        "isRequired": false,
+                        "type": null,
+                        "isMultiValued": false
+                    },
+                    {
+                        "name": "location",
+                        "transform": null,
+                        "attributes": {},
+                        "isRequired": false,
+                        "type": null,
+                        "isMultiValued": false
+                    },
+                    {
+                        "name": "manager",
+                        "transform": null,
+                        "attributes": {},
+                        "isRequired": false,
+                        "type": null,
+                        "isMultiValued": false
+                    },
+                    {
+                        "name": "groups",
+                        "transform": null,
+                        "attributes": {},
+                        "isRequired": false,
+                        "type": null,
+                        "isMultiValued": false
+                    }
+                ]
+            }
+        ],
+        "managementWorkgroup": null,
+        "passwordPolicies": null
+    }
+}
