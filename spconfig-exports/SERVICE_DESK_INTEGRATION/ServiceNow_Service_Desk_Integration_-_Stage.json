@@ -1,0 +1,89 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "SERVICE_DESK_INTEGRATION",
+        "id": "26d60ce2c2fa45499f90c6372291a13e",
+        "name": "ServiceNow Service Desk Integration - Stage"
+    },
+    "object": {
+        "id": "26d60ce2c2fa45499f90c6372291a13e",
+        "name": "ServiceNow Service Desk Integration - Stage",
+        "description": "ServiceNow Service Desk Integration for Stage",
+        "type": "ServiceNow SDIM",
+        "clusterRef": {
+            "type": "CLUSTER",
+            "id": "2c918086846385f80184bf374a6b0773",
+            "name": "UAT Cluster"
+        },
+        "ownerRef": {
+            "type": "IDENTITY",
+            "id": "628f08e9d3754deb94463c6380d0f61d",
+            "name": "SailPoint Services"
+        },
+        "provisioningConfig": {
+            "universalManager": false,
+            "managedResourceRefs": [
+                {
+                    "type": "SOURCE",
+                    "id": "2c91808383c7d7f40183d2d503dc420f",
+                    "name": "Advisors - SIS Feed"
+                }
+            ],
+            "planInitializerScript": {
+                "source": null
+            },
+            "noProvisioningRequests": false,
+            "provisioningRequestExpiration": 0
+        },
+        "attributes": {
+            "provisioningTimeout": "180",
+            "clientId": "a701c54e012c6d10280c639e0ac62ca7",
+            "tokenUrl": "https://igmfinancialdev.service-now.com/oauth_token.do",
+            "ticketType": "serviceRequest",
+            "connectorClass": "openconnector.connector.servicedesk.ServiceDeskConnector",
+            "url": "https://igmfinancialdev.service-now.com",
+            "serviceRequest": {
+                "checkStatus": {
+                    "statusMap": {
+                        "closed_complete": "Committed",
+                        "closed_rejected": "Failed",
+                        "requested": "Queued",
+                        "in_process": "Queued",
+                        "closed_cancelled": "Failed",
+                        "closed_incomplete": "Failed",
+                        "closed_skipped": "Failed"
+                    },
+                    "resource": "/api/now/table/sc_request?number=$ticketId&sysparm_fields=request_state",
+                    "responseElement": "$.result[0].request_state",
+                    "statusMapClosureCode": null
+                },
+                "provision": {
+                    "request": {
+                        "short_description": "$!plan.arguments.eventType - $!plan.arguments.userType - $!plan.arguments.samaccountname",
+                        "assignment_group": "$!plan.arguments.assignment_group",
+                        "opened_by": "3ef2a6c51bc5e19001cf2f82b24bcb11",
+                        "req_description": "Service Request created by Service Desk Integration Module (SIM)",
+                        "description": "Received from: Sailpoint #if($request.operation == 'Create')$newline Event Type: $!plan.arguments.eventType$newline First Name: $!plan.arguments.firstName$newline Last Name: $!plan.arguments.lastName$newline User Type: $!plan.arguments.userType$newline Start Date: $!plan.arguments.startDate$newline Language: $!plan.arguments.language$newline Department: $!plan.arguments.userDepartment$newline Manager: $!plan.arguments.managerFullName$newline Title: $!plan.arguments.jobTitle#{elseif}($request.operation == 'Enable')$newline Event Type: $!plan.arguments.eventType$newline First Name: $!plan.arguments.firstName$newline Last Name: $!plan.arguments.lastName$newline User Type: $!plan.arguments.userType$newline Start Date: $!plan.arguments.startDate$newline Language: $!plan.arguments.language$newline Department: $!plan.arguments.userDepartment$newline Manager: $!plan.arguments.managerFullName$newline Title: $!plan.arguments.jobTitle#{elseif}($request.operation == 'Disable')$newline Event Type: $!plan.arguments.eventType$newline First Name: $!plan.arguments.firstName$newline Last Name: $!plan.arguments.lastName$newline User Type: $!plan.arguments.userType$newline End Date: $!plan.arguments.endDate$newline Language: $!plan.arguments.language#if($plan.arguments.userDepartment)$newline Department: $!plan.arguments.userDepartment#end#if($plan.arguments.managerFullName)$newline Manager: $!plan.arguments.managerFullName#end#if($plan.arguments.userCompany)$newline Company: $!plan.arguments.userCompany#end#if($plan.arguments.jobTitle)$newline Title: $!plan.arguments.jobTitle#end#{elseif}($request.operation == 'Modify')$newline Event Type: $!plan.arguments.eventType$newline First Name: $!plan.arguments.firstName$newline Last Name: $!plan.arguments.lastName$newline User Type: $!plan.arguments.userType$newline Start Date: $!plan.arguments.startDate$newline Language: $!plan.arguments.language$newline Department: $!plan.arguments.userDepartment$newline Manager: $!plan.arguments.managerFullName#if($plan.arguments.userCompany)$newline Company: $!plan.arguments.userCompany#end$newline Title: $!plan.arguments.jobTitle#end",
+                        "requested_for": "3ef2a6c51bc5e19001cf2f82b24bcb11"
+                    },
+                    "requestRootElement": "items",
+                    "resource": "/api/x_sap_sdim/sailpoint_cart_js_api/create_ticket",
+                    "responseElement": "$.result.request_number",
+                    "catalogItem": {
+                        "2c91808383c7d7f40183d2d503dc420f": "8053818edbffb300e90690b3db9619c4"
+                    }
+                }
+            },
+            "authenticationType": "OAuth2",
+            "grantType": "REFRESH_TOKEN",
+            "requesterSource": "14034f9c1fdf46d0978e73ba13ca7a7c",
+            "username": "SailPoint.Svc.Dev"
+        },
+        "beforeProvisioningRule": {
+            "type": "RULE",
+            "id": "52af80a945424cf0ba5c21f4b4a0d9c7",
+            "name": "SDIM Attributes"
+        },
+        "credentialProviderEnabled": false
+    }
+}
