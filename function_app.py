@@ -5,6 +5,7 @@ import time
 import base64
 import requests
 import json
+import pathspec
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from sailpoint.v3.api import (
     service_desk_integration_api,
@@ -22,7 +23,7 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(me
 
 app = func.FunctionApp()
 
-@app.timer_trigger(schedule="0 03 15 * * *", arg_name="myTimer", run_on_startup=False,
+@app.timer_trigger(schedule="0 33 15 * * *", arg_name="myTimer", run_on_startup=False,
                    use_monitor=False)
 def sailpoint_backup(myTimer: func.TimerRequest) -> None:
     if myTimer.past_due:
@@ -146,7 +147,7 @@ def sailpoint_backup(myTimer: func.TimerRequest) -> None:
                 future.result()
 
     # --- GitHub Commit & Push via requests ---
-    def commit_exports_only_requests():
+    def commit_exports_only_requests(exports_dir):
         github_token = os.getenv("GITHUB_TOKEN")
         if not github_token:
             raise RuntimeError("❌ GITHUB_TOKEN env variable not set")
@@ -164,9 +165,11 @@ def sailpoint_backup(myTimer: func.TimerRequest) -> None:
             resp = requests.get(url, headers=headers)
             sha = resp.json()["sha"] if resp.status_code == 200 else None
 
-            data = {"message": "Automated export of SailPoint configs",
-                    "content": content,
-                    "branch": "main"}
+            data = {
+                "message": "Automated export of SailPoint configs",
+                "content": content,
+                "branch": "main"
+            }
             if sha:
                 data["sha"] = sha
 
@@ -176,15 +179,24 @@ def sailpoint_backup(myTimer: func.TimerRequest) -> None:
             else:
                 logging.error(f"❌ Failed to upload '{repo_path}': {r.status_code} {r.text}")
 
-        # Walk exports directory and upload all files
-        for root, _, files in os.walk(os.path.join(BASE_DIR, EXPORTS_DIR)):
+        # Load .gitignore rules
+        gitignore_path = os.path.join(BASE_DIR, ".gitignore")
+        spec = pathspec.PathSpec.from_lines("gitwildmatch", open(gitignore_path))
+
+        # Walk exports directory and upload only files not ignored
+        for root, dirs, files in os.walk(exports_dir):
+            # Skip ignored dirs
+            dirs[:] = [d for d in dirs if not spec.match_file(os.path.relpath(os.path.join(root, d), exports_dir))]
             for file in files:
                 local_path = os.path.join(root, file)
-                relative_path = os.path.relpath(local_path, BASE_DIR)
-                upload_file(local_path, relative_path)
+                relative_path = os.path.relpath(local_path, exports_dir)
+                if spec.match_file(relative_path):
+                    continue
+                # Prepend folder name in repo so structure is preserved
+                repo_path = os.path.join(exports_dir, relative_path).replace("\\", "/")
+                upload_file(local_path, repo_path)
 
-    # Call commit function
-    commit_exports_only_requests()
+    commit_exports_only_requests(os.path.join(BASE_DIR, EXPORTS_DIR))
 
     elapsed_time = time.time() - start_time
     logging.info(f"Script completed in {elapsed_time:.2f} seconds ({elapsed_time/60:.2f} minutes)")
