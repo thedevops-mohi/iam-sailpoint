@@ -1,0 +1,52 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "ACCESS_PROFILE",
+        "id": "17b7b9de906d4f7ba9b00d2ebd480d4e",
+        "name": "AD - Employees and Contractors - HR"
+    },
+    "object": {
+        "id": "17b7b9de906d4f7ba9b00d2ebd480d4e",
+        "name": "AD - Employees and Contractors - HR",
+        "description": "IG and  MI - Employees and Contractors - HR",
+        "created": "2023-11-13T15:04:25.245193Z",
+        "modified": "2025-08-26T16:06:50.854271Z",
+        "enabled": true,
+        "owner": {
+            "type": "IDENTITY",
+            "id": "f9b787794e4b49f49971a483ef020f45",
+            "name": "SVC.SAILPOINT.ROLESOWNER1"
+        },
+        "source": {
+            "id": "be421fd329474dc08a0b43ab73bedbcd",
+            "type": "SOURCE",
+            "name": "Active Directory"
+        },
+        "entitlements": [
+            {
+                "id": "b62ba9901b6644fc980fbdbafb3f02eb",
+                "type": "ENTITLEMENT",
+                "name": "IGM-Genetec-PROD-HR-Restricted"
+            },
+            {
+                "id": "9df507e3ca604d1f9741b552645eefd8",
+                "type": "ENTITLEMENT",
+                "name": "IGM_FMS-PROD-Campus-HR"
+            }
+        ],
+        "requestable": true,
+        "accessRequestConfig": {
+            "commentsRequired": null,
+            "denialCommentsRequired": null,
+            "approvalSchemes": null,
+            "reauthorizationRequired": false
+        },
+        "revocationRequestConfig": {
+            "approvalSchemes": null
+        },
+        "segments": [],
+        "provisioningCriteria": null,
+        "additionalOwners": null,
+        "segmentRefs": []
+    }
+}
