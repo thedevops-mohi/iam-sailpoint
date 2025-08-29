@@ -1,0 +1,19 @@
+{
+    "name": "ServiceNow Dummy App BuildMap2-PR",
+    "description": "This rule sets the status on users based on SNAP response",
+    "type": "BuildMap",
+    "signature": {
+        "input": [],
+        "output": null
+    },
+    "source_code": {
+        "version": "2021-08-02 19:35:56",
+        "script": "\nimport sailpoint.connector.DelimitedFileConnector;\n\nMap map = DelimitedFileConnector.defaultBuildMap( cols, record );\nString accountStatus = (String) map.get( \"status\" );\nif ( accountStatus != null ) {\nif(accountStatus!=null && (accountStatus.equalsIgnoreCase(\"active\") || accountStatus.equalsIgnoreCase(\"prehire\"))){\nmap.put(\"IIQDisabled\", false);\n}\n  if(accountStatus!=null && (accountStatus.equalsIgnoreCase(\"terminated\") || accountStatus.equalsIgnoreCase(\"suspended\") || accountStatus.equalsIgnoreCase(\"deleted\"))){\nmap.put(\"IIQDisabled\", true);\n}\n}\nreturn map;"
+    },
+    "attributes": {
+        "sourceVersion": "2021-08-02 19:35:56"
+    },
+    "id": "072fc1a2fe5947a292c2d2f885262e42",
+    "created": "2023-12-05T17:21:05.475Z",
+    "modified": null
+}
