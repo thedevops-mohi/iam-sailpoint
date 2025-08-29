@@ -1,0 +1,102 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "WORKFLOW",
+        "id": "cf2c7a27-523b-4513-a4f6-75724b2cc7ba",
+        "name": "Notification Contractor Expiry"
+    },
+    "object": {
+        "id": "cf2c7a27-523b-4513-a4f6-75724b2cc7ba",
+        "name": "Notification Contractor Expiry",
+        "description": "Send email to manager prior to Contractor end date.\n\n28, 21, 14 and 7 days prior",
+        "created": "2023-01-21T22:07:59.013990379Z",
+        "modified": "2025-08-22T12:09:58.448550667Z",
+        "modifiedBy": {
+            "type": "IDENTITY",
+            "id": "8b3c97da521442999ef05af532ecf6f7",
+            "name": "rahul.majumder"
+        },
+        "definition": {
+            "start": "Compare Strings",
+            "steps": {
+                "Compare Strings": {
+                    "choiceList": [
+                        {
+                            "comparator": "StringEquals",
+                            "nextStep": "Get Identity",
+                            "variableA.$": "$.trigger.changes[?(@.attribute=='contractorEndDateNotificationTrigger')].newValue",
+                            "variableB": "Notify"
+                        }
+                    ],
+                    "defaultStep": "success",
+                    "description": "Check if 7 Days out",
+                    "type": "choice"
+                },
+                "Get Identity": {
+                    "actionId": "sp:get-identity",
+                    "attributes": {
+                        "id.$": "$.trigger.identity.id"
+                    },
+                    "description": "Get Contractor Identity Information",
+                    "nextStep": "Get Identity 1",
+                    "type": "action",
+                    "versionNumber": 2
+                },
+                "Get Identity 1": {
+                    "actionId": "sp:get-identity",
+                    "attributes": {
+                        "id.$": "$.getIdentity.managerRef.id"
+                    },
+                    "description": "Get Manager Identity Information for email address",
+                    "nextStep": "Send Email",
+                    "type": "action",
+                    "versionNumber": 2
+                },
+                "Send Email": {
+                    "actionId": "sp:send-email",
+                    "attributes": {
+                        "body": "Dear ${managerFirstName} ${managerLastName},<br>\n<br>\nThe account for <b>${contractorFirstName} ${contractorLastName}</b> is about to expire and will be disabled on ${endDate}.<br>\n<br>\nIf you do not wish to have this account disabled, follow the instructions in the link below to submit a SNAP request. <br>\n<br>\n<a href=\"https://igmfinancial.service-now.com/kb_view.do?sysparm_article=KB0015113\">IGM - SNAP: How Do I Extend a Contract End / Expiry Date</a><br>\n<br>\nThis is a system-generated email. Please do not respond to this email.\n<br>\n<br>\n\nBonjour ${managerFirstName} ${managerLastName},<br>\n<br>\nLe compte de ${contractorFirstName} ${contractorLastName} est sur le point d’expirer et sera désactivé le  ${endDate}. <br>\n<br>\nSi vous ne souhaitez pas que ce compte soit désactivé, activez le lien ci-dessous et suivez les instructions données pour présenter une demande SNAP.<br>\n<br>\n<a href=\"https://igmfinancial.service-now.com/kb_view.do?sys_kb_id=22cc65981b15799001cf2f82b24bcb3c\">Portail SNAP d'IGM: Comment repousser la date de fin ou d'expiration d'un contrat?</a><br>\n<br>\nCe courriel a été produit par le système. Veuillez ne pas y répondre.<br>",
+                        "context": {
+                            "contractorFirstName.$": "$.getIdentity.attributes.firstname",
+                            "contractorLastName.$": "$.getIdentity.attributes.lastname",
+                            "endDate.$": "$.getIdentity.attributes.endDate",
+                            "managerFirstName.$": "$.getIdentity1.attributes.firstname",
+                            "managerLastName.$": "$.getIdentity1.attributes.lastname"
+                        },
+                        "from": null,
+                        "recipientEmailList.$": "$.getIdentity1.attributes.email",
+                        "replyTo": "",
+                        "subject": "Reminder: Contingent Worker End Date Approaching / Approche de la date de fin d’un emploi occasionnel "
+                    },
+                    "description": "Send email to manager",
+                    "nextStep": "success",
+                    "type": "action",
+                    "versionNumber": 2
+                },
+                "success": {
+                    "description": null,
+                    "type": "success"
+                }
+            }
+        },
+        "enabled": false,
+        "creator": {
+            "type": "IDENTITY",
+            "id": "628f08e9d3754deb94463c6380d0f61d",
+            "name": "slpt.services"
+        },
+        "owner": {
+            "type": "IDENTITY",
+            "id": "628f08e9d3754deb94463c6380d0f61d",
+            "name": "slpt.services"
+        },
+        "trigger": {
+            "type": "EVENT",
+            "attributes": {
+                "attributeToFilter": "endDateNotificationTrigger",
+                "filter.$": "$.changes[?(@.attribute == \"endDateNotificationTrigger\")]",
+                "id": "idn:identity-attributes-changed"
+            }
+        }
+    }
+}
