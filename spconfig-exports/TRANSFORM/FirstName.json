@@ -1,0 +1,75 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "1aef9338-2e9c-4f90-8a1d-bc19431fbb2f",
+        "name": "FirstName"
+    },
+    "object": {
+        "id": "1aef9338-2e9c-4f90-8a1d-bc19431fbb2f",
+        "name": "FirstName",
+        "type": "static",
+        "attributes": {
+            "userType": {
+                "type": "reference",
+                "attributes": {
+                    "id": "UserType"
+                }
+            },
+            "employeeFirstName": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "Employees SAP ECC",
+                                "attributeName": "VORNA"
+                            }
+                        },
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "ServiceNowAPI",
+                                "attributeName": "firstName"
+                            }
+                        },
+                        "error: employee firstName not found"
+                    ]
+                }
+            },
+            "advisorFirstName": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "Advisors - SIS Feed",
+                                "attributeName": "FIRST-NAME"
+                            }
+                        },
+                        "error: advisor FIRST-NAME not found"
+                    ]
+                }
+            },
+            "contractorFirstName": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "ServiceNowAPI",
+                                "attributeName": "firstName"
+                            }
+                        },
+                        "error: contractor firstName not found"
+                    ]
+                }
+            },
+            "value": "#if($userType == 'Employee')$employeeFirstName#elseif($userType == 'Advisor')$advisorFirstName#elseif($userType == 'Contractor')$contractorFirstName#{else}error: unkown user type: $userType#end"
+        },
+        "internal": false
+    }
+}
