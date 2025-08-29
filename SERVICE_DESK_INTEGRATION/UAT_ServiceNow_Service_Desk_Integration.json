@@ -1,0 +1,90 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "SERVICE_DESK_INTEGRATION",
+        "id": "3848c9cd68f0489197423231aacec0c1",
+        "name": "UAT ServiceNow Service Desk Integration"
+    },
+    "object": {
+        "id": "3848c9cd68f0489197423231aacec0c1",
+        "name": "UAT ServiceNow Service Desk Integration",
+        "description": "ServiceNow Service Desk Integration for UAT",
+        "type": "ServiceNow SDIM",
+        "clusterRef": {
+            "type": "CLUSTER",
+            "id": "2c918086846385f80184bf374a6b0773",
+            "name": "UAT Cluster"
+        },
+        "ownerRef": {
+            "type": "IDENTITY",
+            "id": "628f08e9d3754deb94463c6380d0f61d",
+            "name": "SailPoint Services"
+        },
+        "provisioningConfig": {
+            "universalManager": false,
+            "managedResourceRefs": [
+                {
+                    "type": "SOURCE",
+                    "id": "a357b618d9c34fc1a39213459f7f7d67",
+                    "name": "ServiceNow Dummy App"
+                }
+            ],
+            "planInitializerScript": {
+                "source": null
+            },
+            "noProvisioningRequests": false,
+            "provisioningRequestExpiration": 0
+        },
+        "attributes": {
+            "provisioningTimeout": "180",
+            "clientId": "250a8e58cd952110094a0ad4520ba60f",
+            "tokenUrl": "https://igmfinancialtest.service-now.com/oauth_token.do",
+            "ticketType": "serviceRequest",
+            "connectorClass": "openconnector.connector.servicedesk.ServiceDeskConnector",
+            "url": "https://igmfinancialtest.service-now.com",
+            "serviceRequest": {
+                "checkStatus": {
+                    "statusMap": {
+                        "closed_complete": "Committed",
+                        "closed_rejected": "Failed",
+                        "requested": "Queued",
+                        "3": "Committed",
+                        "in_process": "Queued",
+                        "closed_cancelled": "Failed",
+                        "closed_incomplete": "Failed",
+                        "closed_skipped": "Failed"
+                    },
+                    "resource": "/api/now/table/sc_request?number=$ticketId&sysparm_fields=request_state",
+                    "responseElement": "$.result[0].request_state",
+                    "statusMapClosureCode": null
+                },
+                "provision": {
+                    "request": {
+                        "short_description": "$!plan.arguments.eventType - $!plan.arguments.userUserType - $!plan.arguments.userFirstName $!plan.arguments.userLastName",
+                        "assignment_group": "$!plan.arguments.assignment_group",
+                        "opened_by": "3ef2a6c51bc5e19001cf2f82b24bcb11",
+                        "req_description": "Service Request created by Service Desk Integration Module (SIM)",
+                        "description": "Received from: SailPoint#if($!plan.arguments.eventType == 'Joiner')$newline Event Type: $!plan.arguments.eventType$newline First Name: $!plan.arguments.userFirstName$newline Last Name: $!plan.arguments.userLastName$newline sAMAccountName: $!plan.arguments.samaccountname$newline User Type: $!plan.arguments.userUserType$newline Start Date: $!plan.arguments.userStartDate$newline Language: $!plan.arguments.userLanguage$newline Department: $!plan.arguments.userDepartment$newline Manager: $!plan.arguments.managerFullName$newline Title: $!plan.arguments.jobTitle$newline Province: $!plan.arguments.userProvince$newline userEmail: $!plan.arguments.userEmail$newline Subt-Ind: $!plan.arguments.usersubscriptionIndicator$newline Rep-Relationships: $!plan.arguments.userrepRelationships$newline Rgof-Name: $!plan.arguments.userrgofname$newline Rgof-No: $!plan.arguments.userrgofno$newline City: $!plan.arguments.userCity$newline Phone: $!plan.arguments.userworkPhone$newline Dealer-Num: $!plan.arguments.userdealernum$newline#{elseif}($!plan.arguments.eventType == 'Reactivate' || $!plan.arguments.eventType == 'Rehire')$newline Event Type: $!plan.arguments.eventType$newline First Name: $!plan.arguments.userFirstName$newline Last Name: $!plan.arguments.userLastName$newline sAMAccountName: $!plan.arguments.samaccountname$newline User Type: $!plan.arguments.userUserType$newline LOA End Date: $!plan.arguments.userLoaEndDate$newline Start Date: $!plan.arguments.userStartDate$newline Language: $!plan.arguments.userLanguage$newline Department: $!plan.arguments.userDepartment$newline Manager: $!plan.arguments.managerFullName$newline Title: $!plan.arguments.jobTitle$newline Province: $!plan.arguments.userProvince$newline userEmail: $!plan.arguments.userEmail$newline Subt-Ind: $!plan.arguments.usersubscriptionIndicator$newline Rep-Relationships: $!plan.arguments.userrepRelationships$newline Rgof-Name: $!plan.arguments.userrgofname$newline Rgof-No: $!plan.arguments.userrgofno$newline City: $!plan.arguments.userCity$newline Phone: $!plan.arguments.userworkPhone$newline Dealer-Num: $!plan.arguments.userdealernum$newline#{elseif}($!plan.arguments.eventType == 'Termination' || $!plan.arguments.eventType == 'Delete')$newline Event Type: $!plan.arguments.eventType$newline First Name: $!plan.arguments.userFirstName$newline Last Name: $!plan.arguments.userLastName$newline sAMAccountName: $!plan.arguments.samaccountname$newline userEmail: $!plan.arguments.userEmail$newline User Type: $!plan.arguments.userUserType$newline End Date: $!plan.arguments.userEndDate$newline Country: $!plan.arguments.userCountry$newline Province: $!plan.arguments.userProvince$newline City: $!plan.arguments.userCity$newline Language: $!plan.arguments.userLanguage #if($plan.arguments.userDepartment)$newline Department: $!plan.arguments.userDepartment#end#if($plan.arguments.managerFullName)$newline Manager: $!plan.arguments.managerFullName#end#if($plan.arguments.userCompany)$newline Company: $!plan.arguments.userCompany#end#if($plan.arguments.jobTitle)$newline Title: $!plan.arguments.jobTitle#end#{elseif}($!plan.arguments.eventType == 'Suspend')$newline Event Type: $!plan.arguments.eventType$newline First Name: $!plan.arguments.userFirstName$newline Last Name: $!plan.arguments.userLastName$newline sAMAccountName: $!plan.arguments.samaccountname$newline userEmail: $!plan.arguments.userEmail$newline User Type: $!plan.arguments.userUserType$newline End Date: $!plan.arguments.userEndDate$newline LOA Start Date: $!plan.arguments.userLoaStartDate$newline Country: $!plan.arguments.userCountry$newline Province: $!plan.arguments.userProvince$newline City: $!plan.arguments.userCity$newline Language: $!plan.arguments.userLanguage #if($plan.arguments.userDepartment)$newline Department: $!plan.arguments.userDepartment#end#if($plan.arguments.managerFullName)$newline Manager: $!plan.arguments.managerFullName#end#if($plan.arguments.userCompany)$newline Company: $!plan.arguments.userCompany#end#if($plan.arguments.jobTitle)$newline Title: $!plan.arguments.jobTitle#end#{elseif}($!plan.arguments.eventType == 'Mover')$newline Event Type: $!plan.arguments.eventType$newline First Name: $!plan.arguments.userFirstName$newline Last Name: $!plan.arguments.userLastName$newline User Type: $!plan.arguments.userUserType$newline Start Date: $!plan.arguments.userStartDate$newline Language: $!plan.arguments.userLanguage$newline Department: $!plan.arguments.userDepartment$newline Manager: $!plan.arguments.managerFullName#if($plan.arguments.userCompany)$newline Company: $!plan.arguments.userCompany#end$newline Title: $!plan.arguments.jobTitle#{else}$newline Event Type: $!plan.arguments.eventType$newline First Name: $!plan.arguments.userFirstName$newline Last Name: $!plan.arguments.userLastName$newline sAMAccountName: $!plan.arguments.samaccountname$newline User Type: $!plan.arguments.userUserType$newline Start Date: $!plan.arguments.userStartDate$newline Language: $!plan.arguments.userLanguage$newline Department: $!plan.arguments.userDepartment$newline Manager: $!plan.arguments.managerFullName$newline Title: $!plan.arguments.jobTitle$newline Province: $!plan.arguments.userProvince$newline userEmail: $!plan.arguments.userEmail$newline Subt-Ind: $!plan.arguments.usersubscriptionIndicator$newline Rep-Relationships: $!plan.arguments.userrepRelationships$newline Rgof-Name: $!plan.arguments.userrgofname$newline Rgof-No: $!plan.arguments.userrgofno$newline City: $!plan.arguments.userCity$newline Phone: $!plan.arguments.userworkPhone$newline Dealer-Num: $!plan.arguments.userdealernum$newline#end",
+                        "requested_for": "3ef2a6c51bc5e19001cf2f82b24bcb11"
+                    },
+                    "requestRootElement": "items",
+                    "resource": "/api/x_sap_sdim/sailpoint_cart_js_api/create_ticket",
+                    "responseElement": "$.result.request_number",
+                    "catalogItem": {
+                        "a357b618d9c34fc1a39213459f7f7d67": "8053818edbffb300e90690b3db9619c4"
+                    }
+                }
+            },
+            "authenticationType": "OAuth2",
+            "grantType": "REFRESH_TOKEN",
+            "requesterSource": "14034f9c1fdf46d0978e73ba13ca7a7c",
+            "spConnDebugLoggingEnabled": false
+        },
+        "beforeProvisioningRule": {
+            "type": "RULE",
+            "id": "52af80a945424cf0ba5c21f4b4a0d9c7",
+            "name": "SDIM Attributes"
+        },
+        "credentialProviderEnabled": false
+    }
+}
