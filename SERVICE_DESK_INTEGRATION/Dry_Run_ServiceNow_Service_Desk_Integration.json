@@ -1,0 +1,86 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "SERVICE_DESK_INTEGRATION",
+        "id": "4d5cf30c8dfb41b198d408e47addd67e",
+        "name": "Dry Run ServiceNow Service Desk Integration"
+    },
+    "object": {
+        "id": "4d5cf30c8dfb41b198d408e47addd67e",
+        "name": "Dry Run ServiceNow Service Desk Integration",
+        "description": "Dry Run ServiceNow Service Desk Integration",
+        "type": "ServiceNow SDIM",
+        "clusterRef": {
+            "type": "CLUSTER",
+            "id": "2c918086846385f80184bf374a6b0773",
+            "name": "UAT Cluster"
+        },
+        "ownerRef": {
+            "type": "IDENTITY",
+            "id": "2c918083837fb2ce0183ada1cea76866",
+            "name": "Warren Pedersen"
+        },
+        "provisioningConfig": {
+            "universalManager": false,
+            "managedResourceRefs": [
+                {
+                    "type": "SOURCE",
+                    "id": "2c91808383c7d7f40183d2d503dc420f",
+                    "name": "Advisors - SIS Feed"
+                }
+            ],
+            "planInitializerScript": {
+                "source": null
+            },
+            "noProvisioningRequests": false,
+            "provisioningRequestExpiration": 0
+        },
+        "attributes": {
+            "provisioningTimeout": "180",
+            "clientId": "58b6787e8529e110c33251bd434b6d2c",
+            "tokenUrl": "https://igmutil.service-now.com/oauth_token.do",
+            "serviceRequest": {
+                "checkStatus": {
+                    "statusMap": {
+                        "closed_complete": "Committed",
+                        "closed_rejected": "Failed",
+                        "requested": "Queued",
+                        "in_process": "Queued",
+                        "closed_cancelled": "Failed",
+                        "closed_incomplete": "Failed",
+                        "closed_skipped": "Failed"
+                    },
+                    "resource": "/api/now/table/sc_request?number=$ticketId&sysparm_fields=request_state",
+                    "responseElement": "$.result[0].request_state"
+                },
+                "provision": {
+                    "request": {
+                        "short_description": " $!plan.arguments.eventType - $!plan.arguments.userType - $!plan.arguments.samaccountname",
+                        "opened_by": "$!{plan.arguments.opened_by|'Default_ServiceNow_Account_Sys_ID'}",
+                        "req_description": "Service Request created by Service Desk Integration Module (SIM)",
+                        "description": "Received from: Sailpoint #if($request.operation == 'Create')$newline Event Type: $!plan.arguments.eventType$newline First Name: $!plan.arguments.firstName$newline Last Name: $!plan.arguments.lastName$newline User Type: $!plan.arguments.userType$newline Start Date: $!plan.arguments.startDate$newline Language: $!plan.arguments.language$newline Department: $!plan.arguments.userDepartment$newline Manager: $!plan.arguments.managerFullName$newline Title: $!plan.arguments.jobTitle#{elseif}($request.operation == 'Enable')$newline Event Type: $!plan.arguments.eventType$newline First Name: $!plan.arguments.firstName$newline Last Name: $!plan.arguments.lastName$newline User Type: $!plan.arguments.userType$newline Start Date: $!plan.arguments.startDate$newline Language: $!plan.arguments.language$newline Department: $!plan.arguments.userDepartment$newline Manager: $!plan.arguments.managerFullName$newline Title: $!plan.arguments.jobTitle#{elseif}($request.operation == 'Disable')$newline Event Type: $!plan.arguments.eventType$newline First Name: $!plan.arguments.firstName$newline Last Name: $!plan.arguments.lastName$newline User Type: $!plan.arguments.userType$newline End Date: $!plan.arguments.endDate$newline Language: $!plan.arguments.language#if($plan.arguments.userDepartment)$newline Department: $!plan.arguments.userDepartment#end#if($plan.arguments.managerFullName)$newline Manager: $!plan.arguments.managerFullName#end#if($plan.arguments.userCompany)$newline Company: $!plan.arguments.userCompany#end#if($plan.arguments.jobTitle)$newline Title: $!plan.arguments.jobTitle#end#{elseif}($request.operation == 'Modify')$newline Event Type: $!plan.arguments.eventType$newline First Name: $!plan.arguments.firstName$newline Last Name: $!plan.arguments.lastName$newline User Type: $!plan.arguments.userType$newline Start Date: $!plan.arguments.startDate$newline Language: $!plan.arguments.language$newline Department: $!plan.arguments.userDepartment$newline Manager: $!plan.arguments.managerFullName#if($plan.arguments.userCompany)$newline Company: $!plan.arguments.userCompany#end$newline Title: $!plan.arguments.jobTitle#end",
+                        "requested_for": "$!plan.arguments.requested_for"
+                    },
+                    "requestRootElement": "items",
+                    "resource": "/api/x_sap_sdim/sailpoint_cart_js_api/create_ticket",
+                    "responseElement": "$.result.request_number",
+                    "catalogItem": {
+                        "2c91808383c7d7f40183d2d503dc420f": "8053818edbffb300e90690b3db9619c4"
+                    }
+                }
+            },
+            "ticketType": "serviceRequest",
+            "authenticationType": "OAuth2",
+            "grantType": "REFRESH_TOKEN",
+            "connectorClass": "openconnector.connector.servicedesk.ServiceDeskConnector",
+            "requesterSource": "14034f9c1fdf46d0978e73ba13ca7a7c",
+            "url": "https://igmutil.service-now.com"
+        },
+        "beforeProvisioningRule": {
+            "type": "RULE",
+            "id": "6488b4326b454dd2867845de1110800e",
+            "name": "Sample Before Provisioning Rule for SDIM"
+        },
+        "credentialProviderEnabled": false
+    }
+}
