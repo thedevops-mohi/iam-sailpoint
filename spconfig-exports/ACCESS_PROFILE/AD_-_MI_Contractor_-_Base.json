@@ -1,0 +1,57 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "ACCESS_PROFILE",
+        "id": "e9b82c3e5b3547eda4f3be132f712c21",
+        "name": "AD - MI Contractor - Base"
+    },
+    "object": {
+        "id": "e9b82c3e5b3547eda4f3be132f712c21",
+        "name": "AD - MI Contractor - Base",
+        "description": "MI Contractor",
+        "created": "2023-04-01T08:41:58.964Z",
+        "modified": "2025-08-18T11:53:04.548798Z",
+        "enabled": true,
+        "owner": {
+            "type": "IDENTITY",
+            "id": "f9b787794e4b49f49971a483ef020f45",
+            "name": "SVC.SAILPOINT.ROLESOWNER1"
+        },
+        "source": {
+            "id": "be421fd329474dc08a0b43ab73bedbcd",
+            "type": "SOURCE",
+            "name": "Active Directory"
+        },
+        "entitlements": [
+            {
+                "id": "c57e4a41ddaf4196a1afd3be9af2efbd",
+                "type": "ENTITLEMENT",
+                "name": "IGM- S2CiValua -PRD-BASICUSER"
+            },
+            {
+                "id": "56f8f05bc75048c0b22ca3d08e2b8cd0",
+                "type": "ENTITLEMENT",
+                "name": "MFCGG_365License_E5"
+            },
+            {
+                "id": "369d87b93158460ea9b8f7e939dda1a6",
+                "type": "ENTITLEMENT",
+                "name": "MFCGG_PSO_IGM"
+            }
+        ],
+        "requestable": true,
+        "accessRequestConfig": {
+            "commentsRequired": null,
+            "denialCommentsRequired": null,
+            "approvalSchemes": [],
+            "reauthorizationRequired": false
+        },
+        "revocationRequestConfig": {
+            "approvalSchemes": []
+        },
+        "segments": [],
+        "provisioningCriteria": null,
+        "additionalOwners": null,
+        "segmentRefs": []
+    }
+}
