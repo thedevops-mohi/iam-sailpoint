@@ -1,0 +1,183 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "WORKFLOW",
+        "id": "face8d4d-1f84-44d2-9558-4c98db26b50f",
+        "name": "Non Human Account Delete Certification Workflow"
+    },
+    "object": {
+        "id": "face8d4d-1f84-44d2-9558-4c98db26b50f",
+        "name": "Non Human Account Delete Certification Workflow",
+        "description": "",
+        "created": "2025-06-23T10:37:08.774825072Z",
+        "modified": "2025-08-22T10:20:04.226917819Z",
+        "modifiedBy": {
+            "type": "IDENTITY",
+            "id": "8b3c97da521442999ef05af532ecf6f7",
+            "name": "rahul.majumder"
+        },
+        "definition": {
+            "start": "Compare Strings",
+            "steps": {
+                "Compare Strings": {
+                    "actionId": "sp:compare-strings",
+                    "choiceList": [
+                        {
+                            "comparator": "StringEquals",
+                            "nextStep": "Get Identity",
+                            "variableA.$": "$.trigger.action",
+                            "variableB": "Certification"
+                        }
+                    ],
+                    "defaultStep": "End Step - Failure",
+                    "displayName": "",
+                    "type": "choice"
+                },
+                "End Step - Failure": {
+                    "actionId": "sp:operator-failure",
+                    "description": "GET search API HTTP request failed",
+                    "displayName": "",
+                    "failureDetails": "need to figure out http request body most likely.",
+                    "failureName": "Search API call error",
+                    "type": "failure"
+                },
+                "End Step - Success": {
+                    "actionId": "sp:operator-success",
+                    "displayName": "",
+                    "type": "success"
+                },
+                "Get Identity": {
+                    "actionId": "sp:get-identity",
+                    "attributes": {
+                        "id.$": "$.trigger.recipient.id"
+                    },
+                    "description": "Get full details on the identity in question",
+                    "displayName": "",
+                    "nextStep": "HTTP Request",
+                    "type": "action",
+                    "versionNumber": 2
+                },
+                "HTTP Request": {
+                    "actionId": "sp:http",
+                    "attributes": {
+                        "authenticationType": "OAuth",
+                        "jsonRequestBody": {
+                            "indices": [
+                                "identities"
+                            ],
+                            "query": {
+                                "query": "id: {{$.getIdentity.id}}"
+                            }
+                        },
+                        "method": "post",
+                        "oAuthClientId": "5dd67b3494ff4922b07840c0ee4314e7",
+                        "oAuthClientSecret": "$.secrets.328342c4-f170-45bc-8642-a0f3028f18c4",
+                        "oAuthCredentialLocation": "oAuthInHeader",
+                        "oAuthScope": null,
+                        "oAuthTokenUrl": "https://igmfinancial-uat.api.identitynow.com/oauth/token",
+                        "requestContentType": "json",
+                        "url": "https://igmfinancial-uat.api.identitynow.com/v2024/search"
+                    },
+                    "catch": [
+                        {
+                            "next": "End Step - Failure"
+                        }
+                    ],
+                    "description": "Use the output of an identity search to get entitlements",
+                    "displayName": "Search Query",
+                    "nextStep": "Loop",
+                    "type": "action",
+                    "versionNumber": 2
+                },
+                "Loop": {
+                    "actionId": "sp:loop:iterator",
+                    "attributes": {
+                        "context.$": "$",
+                        "input.$": "$.hTTPRequest.body.*.accounts[?(@.source.name==\"ServiceNow Non-Human Accounts\")].id",
+                        "start": "Define Variable",
+                        "steps": {
+                            "Define Variable": {
+                                "actionId": "sp:define-variable",
+                                "attributes": {
+                                    "id": "sp:define-variable",
+                                    "variables": [
+                                        {
+                                            "description": "",
+                                            "name": "accountId",
+                                            "transforms": [],
+                                            "variableA.$": "$.loop.loopInput"
+                                        }
+                                    ]
+                                },
+                                "displayName": "",
+                                "nextStep": "HTTP Request 1",
+                                "type": "Mutation"
+                            },
+                            "End Step - Success 1": {
+                                "actionId": "sp:operator-success",
+                                "displayName": "",
+                                "type": "success"
+                            },
+                            "HTTP Request 1": {
+                                "actionId": "sp:http",
+                                "attributes": {
+                                    "authenticationType": "OAuth",
+                                    "jsonPatchRequestBody": [
+                                        {
+                                            "op": "add",
+                                            "path": "/attributes/lcs",
+                                            "value": "deleted"
+                                        }
+                                    ],
+                                    "jsonRequestBody": {
+                                        "op": "replace",
+                                        "path": "/attributes/lcs",
+                                        "value": "disabled"
+                                    },
+                                    "method": "patch",
+                                    "oAuthClientId": "5dd67b3494ff4922b07840c0ee4314e7",
+                                    "oAuthClientSecret": "$.secrets.e49f8e17-3d5b-4d74-8711-09451fe08ffd",
+                                    "oAuthCredentialLocation": "oAuthInHeader",
+                                    "oAuthTokenUrl": "https://igmfinancial-uat.api.identitynow.com/oauth/token",
+                                    "requestContentType": "json-patch+json",
+                                    "requestHeaders": {
+                                        "Accept": "application/json",
+                                        "Content-Type": "application/json-patch+json"
+                                    },
+                                    "url": "https://igmfinancial-uat.api.identitynow.com/v2025/accounts/{{$.defineVariable.accountId}}",
+                                    "urlParams": null
+                                },
+                                "displayName": "Updating lcs attribute of ServiceNow Nonhuman account",
+                                "nextStep": "End Step - Success 1",
+                                "type": "action",
+                                "versionNumber": 2
+                            }
+                        }
+                    },
+                    "displayName": "",
+                    "nextStep": "End Step - Success",
+                    "type": "action",
+                    "versionNumber": 1
+                }
+            }
+        },
+        "enabled": true,
+        "creator": {
+            "type": "IDENTITY",
+            "id": "8b3c97da521442999ef05af532ecf6f7",
+            "name": "rahul.majumder"
+        },
+        "owner": {
+            "type": "IDENTITY",
+            "id": "8b3c97da521442999ef05af532ecf6f7",
+            "name": "rahul.majumder"
+        },
+        "trigger": {
+            "type": "EVENT",
+            "attributes": {
+                "filter.$": "$.accountRequests[?(@.provisioningResult == 'committed' && @.provisioningTarget == 'AD - Non-Person accounts' && @.accountOperation == 'Modify' && 'extensionAttribute9' in @.attributeRequests[*].attributeName && 'revokeToDeleteAccount' in @.attributeRequests[*].attributeValue && 'Remove' in @.attributeRequests[*].operation)]",
+                "id": "idn:post-provisioning"
+            }
+        }
+    }
+}
