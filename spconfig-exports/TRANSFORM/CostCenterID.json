@@ -1,0 +1,60 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "5c36ebfb-78b7-4421-b5e4-98ec0cf3deaa",
+        "name": "CostCenterID"
+    },
+    "object": {
+        "id": "5c36ebfb-78b7-4421-b5e4-98ec0cf3deaa",
+        "name": "CostCenterID",
+        "type": "static",
+        "attributes": {
+            "userType": {
+                "type": "reference",
+                "attributes": {
+                    "id": "UserType"
+                }
+            },
+            "employeeCostCenterId": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "Employees SAP ECC",
+                                "attributeName": "KOSTL"
+                            }
+                        },
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "ServiceNowAPI",
+                                "attributeName": "costCenterId"
+                            }
+                        },
+                        "None"
+                    ]
+                }
+            },
+            "contractorCostCenterId": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "ServiceNowAPI",
+                                "attributeName": "costCenterId"
+                            }
+                        },
+                        "None"
+                    ]
+                }
+            },
+            "value": "#if($userType == 'Employee' && $employeeCostCenterId != 'None')$employeeCostCenterId#elseif($userType == 'Contractor' && $contractorCostCenterId != 'None')$contractorCostCenterId#{else}#end"
+        },
+        "internal": false
+    }
+}
