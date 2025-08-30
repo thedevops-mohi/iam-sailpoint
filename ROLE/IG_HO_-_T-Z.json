@@ -1,0 +1,208 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "ROLE",
+        "id": "c0402eb372c5426c892d809174b9c45a",
+        "name": "IG HO - T-Z"
+    },
+    "object": {
+        "id": "c0402eb372c5426c892d809174b9c45a",
+        "name": "IG HO - T-Z",
+        "created": "2023-04-05T03:51:22.841Z",
+        "modified": "2025-08-18T15:26:41.797435Z",
+        "description": "IGA HO - T-Z",
+        "owner": {
+            "type": "IDENTITY",
+            "id": "f9b787794e4b49f49971a483ef020f45",
+            "name": "SVC.SAILPOINT.ROLESOWNER1"
+        },
+        "entitlements": [
+            {
+                "sourceId": "be421fd3-2947-4dc0-8a0b-43ab73bedbcd",
+                "sourceName": "Active Directory",
+                "id": "9abfd6ba-cd54-405a-a058-3cae7585f0d7",
+                "type": "ENTITLEMENT",
+                "name": "IG HO (T-Z)"
+            }
+        ],
+        "accessProfiles": [],
+        "membership": {
+            "type": "STANDARD",
+            "criteria": {
+                "operation": "AND",
+                "key": null,
+                "values": null,
+                "stringValue": "",
+                "children": [
+                    {
+                        "operation": "OR",
+                        "key": null,
+                        "values": null,
+                        "stringValue": "",
+                        "children": [
+                            {
+                                "operation": "EQUALS",
+                                "key": {
+                                    "type": "IDENTITY",
+                                    "property": "attribute.cloudLifecycleState",
+                                    "sourceId": ""
+                                },
+                                "values": null,
+                                "stringValue": "Prehire",
+                                "children": []
+                            },
+                            {
+                                "operation": "EQUALS",
+                                "key": {
+                                    "type": "IDENTITY",
+                                    "property": "attribute.cloudLifecycleState",
+                                    "sourceId": ""
+                                },
+                                "values": null,
+                                "stringValue": "Active",
+                                "children": []
+                            },
+                            {
+                                "operation": "EQUALS",
+                                "key": {
+                                    "type": "IDENTITY",
+                                    "property": "attribute.cloudLifecycleState",
+                                    "sourceId": ""
+                                },
+                                "values": null,
+                                "stringValue": "Suspended",
+                                "children": []
+                            },
+                            {
+                                "operation": "EQUALS",
+                                "key": {
+                                    "type": "IDENTITY",
+                                    "property": "attribute.cloudLifecycleState",
+                                    "sourceId": ""
+                                },
+                                "values": null,
+                                "stringValue": "Terminated",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "operation": "OR",
+                        "key": null,
+                        "values": null,
+                        "stringValue": "",
+                        "children": [
+                            {
+                                "operation": "EQUALS",
+                                "key": {
+                                    "type": "IDENTITY",
+                                    "property": "attribute.lastNameBegins",
+                                    "sourceId": ""
+                                },
+                                "values": null,
+                                "stringValue": "T",
+                                "children": []
+                            },
+                            {
+                                "operation": "EQUALS",
+                                "key": {
+                                    "type": "IDENTITY",
+                                    "property": "attribute.lastNameBegins",
+                                    "sourceId": ""
+                                },
+                                "values": null,
+                                "stringValue": "U",
+                                "children": []
+                            },
+                            {
+                                "operation": "EQUALS",
+                                "key": {
+                                    "type": "IDENTITY",
+                                    "property": "attribute.lastNameBegins",
+                                    "sourceId": ""
+                                },
+                                "values": null,
+                                "stringValue": "V",
+                                "children": []
+                            },
+                            {
+                                "operation": "EQUALS",
+                                "key": {
+                                    "type": "IDENTITY",
+                                    "property": "attribute.lastNameBegins",
+                                    "sourceId": ""
+                                },
+                                "values": null,
+                                "stringValue": "W",
+                                "children": []
+                            },
+                            {
+                                "operation": "EQUALS",
+                                "key": {
+                                    "type": "IDENTITY",
+                                    "property": "attribute.lastNameBegins",
+                                    "sourceId": ""
+                                },
+                                "values": null,
+                                "stringValue": "X",
+                                "children": []
+                            },
+                            {
+                                "operation": "EQUALS",
+                                "key": {
+                                    "type": "IDENTITY",
+                                    "property": "attribute.lastNameBegins",
+                                    "sourceId": ""
+                                },
+                                "values": null,
+                                "stringValue": "Y",
+                                "children": []
+                            },
+                            {
+                                "operation": "EQUALS",
+                                "key": {
+                                    "type": "IDENTITY",
+                                    "property": "attribute.lastNameBegins",
+                                    "sourceId": ""
+                                },
+                                "values": null,
+                                "stringValue": "Z",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "operation": "CONTAINS",
+                        "key": {
+                            "type": "IDENTITY",
+                            "property": "attribute.street",
+                            "sourceId": ""
+                        },
+                        "values": null,
+                        "stringValue": "447 Portage Ave",
+                        "children": []
+                    }
+                ]
+            },
+            "identities": null
+        },
+        "legacyMembershipInfo": null,
+        "enabled": false,
+        "requestable": false,
+        "accessRequestConfig": {
+            "commentsRequired": false,
+            "denialCommentsRequired": false,
+            "approvalSchemes": [],
+            "reauthorizationRequired": false
+        },
+        "revocationRequestConfig": {
+            "approvalSchemes": []
+        },
+        "segments": [],
+        "dimensional": false,
+        "dimensionRefs": null,
+        "additionalOwners": null,
+        "segmentRefs": [],
+        "dimensions": []
+    }
+}
