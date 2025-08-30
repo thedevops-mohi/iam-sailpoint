@@ -1,0 +1,77 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "73820b8a-ec6e-40d4-ad7e-b1564bc10cd9",
+        "name": "CharacterCleanupWorking"
+    },
+    "object": {
+        "id": "73820b8a-ec6e-40d4-ad7e-b1564bc10cd9",
+        "name": "CharacterCleanupWorking",
+        "type": "static",
+        "attributes": {
+            "fn": {
+                "type": "replace",
+                "attributes": {
+                    "regex": "[^a-zA-Z0-9]",
+                    "replacement": "",
+                    "input": {
+                        "type": "decomposeDiacriticalMarks",
+                        "attributes": {
+                            "input": {
+                                "type": "replaceAll",
+                                "attributes": {
+                                    "table": {
+                                        "œ": "oe",
+                                        "Œ": "OE",
+                                        "æ": "ae",
+                                        "Æ": "AE"
+                                    },
+                                    "input": {
+                                        "type": "accountAttribute",
+                                        "attributes": {
+                                            "sourceName": "ServiceNowAPI",
+                                            "attributeName": "firstName"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "ln": {
+                "type": "replace",
+                "attributes": {
+                    "regex": "[^a-zA-Z0-9]",
+                    "replacement": "",
+                    "input": {
+                        "type": "decomposeDiacriticalMarks",
+                        "attributes": {
+                            "input": {
+                                "type": "replaceAll",
+                                "attributes": {
+                                    "table": {
+                                        "œ": "oe",
+                                        "Œ": "OE",
+                                        "æ": "ae",
+                                        "Æ": "AE"
+                                    },
+                                    "input": {
+                                        "type": "accountAttribute",
+                                        "attributes": {
+                                            "sourceName": "ServiceNowAPI",
+                                            "attributeName": "lastName"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "value": "$fn $ln"
+        },
+        "internal": false
+    }
+}
