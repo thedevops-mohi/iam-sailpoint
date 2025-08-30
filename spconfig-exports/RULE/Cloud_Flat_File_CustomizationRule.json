@@ -1,0 +1,42 @@
+{
+    "name": "Cloud Flat File CustomizationRule",
+    "description": null,
+    "type": "ResourceObjectCustomization",
+    "signature": {
+        "input": [
+            {
+                "name": "context",
+                "description": "\n\t\t\t\t\t\tA SailPointContext object used if its necessary\n\t\t\t\t\t\tto query objects from the database.\n\t\t\t\t\t",
+                "type": null
+            },
+            {
+                "name": "object",
+                "description": "\n\t\t\t\t\t\tThe ResourceObject built by the connector.\n\t\t\t\t\t",
+                "type": null
+            },
+            {
+                "name": "application",
+                "description": "\n\t\t\t\t\t\tApplication that references the connector\n\t\t\t\t\t",
+                "type": null
+            },
+            {
+                "name": "connector",
+                "description": "\n\t\t\t\t\t\tThe connector object\n\t\t\t\t\t",
+                "type": null
+            }
+        ],
+        "output": {
+            "name": "A ResourceObject",
+            "description": "\n\t\t\t\t\t\tThe updated resource object.\n\t\t\t\t\t",
+            "type": null
+        }
+    },
+    "source_code": {
+        "version": "1.0",
+        "script": "\n\t\t\t\n\t\t\t\timport sailpoint.thunderbolt.service.ConnectorService;\n\n\t\t\t\treturn ConnectorService.applyStandardFlatFileCustomizations(context, application, connector, object);\n\t\t\t\n\t\t"
+    },
+    "attributes": null,
+    "id": "2715f7d31cba48249929223756de082f",
+    "created": "2022-10-05T22:50:55.577Z",
+    "modified": "2024-11-20T00:14:48.629Z"
+}
