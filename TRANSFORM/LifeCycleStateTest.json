@@ -1,0 +1,48 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "2f8f5620-ad52-416f-aed8-afddd43b5b9f",
+        "name": "LifeCycleStateTest"
+    },
+    "object": {
+        "id": "2f8f5620-ad52-416f-aed8-afddd43b5b9f",
+        "name": "LifeCycleStateTest",
+        "type": "static",
+        "attributes": {
+            "requiresPeriodicRefresh": true,
+            "lcsActiveCheck": {
+                "type": "reference",
+                "attributes": {
+                    "id": "LCSActiveCheckNew"
+                }
+            },
+            "lcsDeleteCheck": {
+                "type": "reference",
+                "attributes": {
+                    "id": "LCSDeleteCheckNew"
+                }
+            },
+            "lcsLoaCheck": {
+                "type": "reference",
+                "attributes": {
+                    "id": "LCSLoaCheckNew"
+                }
+            },
+            "lcsPrehireCheck": {
+                "type": "reference",
+                "attributes": {
+                    "id": "LCSPrehireCheckNew"
+                }
+            },
+            "lcsTerminationCheck": {
+                "type": "reference",
+                "attributes": {
+                    "id": "LCSTerminatedCheckNew"
+                }
+            },
+            "value": "#if($lcsActiveCheck == 'true')active#elseif($lcsDeleteCheck == 'true')deleted#elseif($lcsLoaCheck == 'true')suspended#elseif($lcsPrehireCheck == 'true')prehire#elseif($lcsTerminationCheck == 'true' && $oldValue == 'deleted')deleted#elseif($lcsTerminationCheck == 'true' && $oldValue != 'deleted')terminated#{else}undefined#end"
+        },
+        "internal": false
+    }
+}
