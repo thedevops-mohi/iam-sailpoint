@@ -1,0 +1,74 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "WORKFLOW",
+        "id": "90ca50af-0502-4512-b7bb-7320f4e2340d",
+        "name": "Provisioning failure Modify Workflow notification "
+    },
+    "object": {
+        "id": "90ca50af-0502-4512-b7bb-7320f4e2340d",
+        "name": "Provisioning failure Modify Workflow notification ",
+        "description": "Provisioning failure Modify notification",
+        "created": "2025-07-02T08:23:13.904161534Z",
+        "modified": "2025-08-11T09:43:24.863116303Z",
+        "modifiedBy": {
+            "type": "IDENTITY",
+            "id": "8b3c97da521442999ef05af532ecf6f7",
+            "name": "rahul.majumder"
+        },
+        "definition": {
+            "start": "Get Identity",
+            "steps": {
+                "End Step - Success": {
+                    "actionId": "sp:operator-success",
+                    "displayName": "",
+                    "type": "success"
+                },
+                "Get Identity": {
+                    "actionId": "sp:get-identity",
+                    "attributes": {
+                        "id.$": "$.trigger.recipient.id"
+                    },
+                    "displayName": "",
+                    "nextStep": "Send Email",
+                    "type": "action",
+                    "versionNumber": 2
+                },
+                "Send Email": {
+                    "actionId": "sp:send-email",
+                    "attributes": {
+                        "body": "<p>IAM Ops,</p>\n<p>Please reference the details below regarding SailPoint Modify Account Provisioning failure.</p>\n<p>Event Type: MODIFY</p>\n<p>Short Description: SailPoint Modify Account Provisioning Failure:- {{$.getIdentity.attributes.userType}} - {{$.getIdentity.attributes.samaccountname}}</p>\n<p>Display Name: {{$.getIdentity.attributes.displayName}}<br>SAMAccounName: {{$.getIdentity.attributes.samaccountname}}<br>User Type: {{$.getIdentity.attributes.userType}}<br>Start Date: {{$.getIdentity.attributes.startDate}}<br>Language: {{$.getIdentity.attributes.language}}<br>Manager: {{$.getIdentity.managerRef.name}}<br>Company: {{$.getIdentity.attributes.company}}<br>Work Location: {{$.getIdentity.attributes.street}}, {{$.getIdentity.attributes.city}}, {{$.getIdentity.attributes.postalCode}}, {{$.getIdentity.attributes.country}}</p>\n<p><br>Error: {{$.trigger.errors}}</p>\n<p>SailPoint Event Details: {{$.trigger.accountRequests}}</p>\n<p><br>This is a system-generated email. Please do not respond to this email.</p>",
+                        "context": {},
+                        "from": null,
+                        "recipientEmailList": [
+                            "igmfinancialtest@service-now.com"
+                        ],
+                        "subject": "SailPoint Modify Account Provisioning Failure: {{$.getIdentity.attributes.displayName}}"
+                    },
+                    "displayName": "",
+                    "nextStep": "End Step - Success",
+                    "type": "action",
+                    "versionNumber": 2
+                }
+            }
+        },
+        "enabled": false,
+        "creator": {
+            "type": "IDENTITY",
+            "id": "8b3c97da521442999ef05af532ecf6f7",
+            "name": "rahul.majumder"
+        },
+        "owner": {
+            "type": "IDENTITY",
+            "id": "8b3c97da521442999ef05af532ecf6f7",
+            "name": "rahul.majumder"
+        },
+        "trigger": {
+            "type": "EVENT",
+            "attributes": {
+                "filter.$": "$.accountRequests[?(@.provisioningResult == \"failed\" && @.accountOperation == 'Modify' && @.provisioningTarget == 'ServiceNowGovernance - Dev')]",
+                "id": "idn:post-provisioning"
+            }
+        }
+    }
+}
