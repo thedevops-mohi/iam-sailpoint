@@ -1,0 +1,62 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "ACCESS_PROFILE",
+        "id": "9ecd1561d15b48168c5b74d870e04c20",
+        "name": "AD - IGA - Regional Vice President"
+    },
+    "object": {
+        "id": "9ecd1561d15b48168c5b74d870e04c20",
+        "name": "AD - IGA - Regional Vice President",
+        "description": "AD - IGA - Regional Vice President",
+        "created": "2023-04-01T08:41:53.519Z",
+        "modified": "2025-08-18T14:10:28.296172Z",
+        "enabled": true,
+        "owner": {
+            "type": "IDENTITY",
+            "id": "f9b787794e4b49f49971a483ef020f45",
+            "name": "SVC.SAILPOINT.ROLESOWNER1"
+        },
+        "source": {
+            "id": "be421fd329474dc08a0b43ab73bedbcd",
+            "type": "SOURCE",
+            "name": "Active Directory"
+        },
+        "entitlements": [
+            {
+                "id": "b6c1a44ff65f45e283fdc0bfd570654f",
+                "type": "ENTITLEMENT",
+                "name": "DP_Advisor"
+            },
+            {
+                "id": "bc7b96f5e0eb4f0094dabe5da6091c4a",
+                "type": "ENTITLEMENT",
+                "name": "IGAGG_FDR_ACCESS"
+            },
+            {
+                "id": "09be420134114139a4c7619a6aa1153e",
+                "type": "ENTITLEMENT",
+                "name": "IGM-SPM-CC-RegionalVicePresident-PROD"
+            },
+            {
+                "id": "5752f0ea0f704593ac684a4b730a4ede",
+                "type": "ENTITLEMENT",
+                "name": "IGNGG-PROD-LPP-SSO-REGIONDIRECTOR"
+            }
+        ],
+        "requestable": true,
+        "accessRequestConfig": {
+            "commentsRequired": false,
+            "denialCommentsRequired": false,
+            "approvalSchemes": [],
+            "reauthorizationRequired": false
+        },
+        "revocationRequestConfig": {
+            "approvalSchemes": []
+        },
+        "segments": [],
+        "provisioningCriteria": null,
+        "additionalOwners": null,
+        "segmentRefs": []
+    }
+}

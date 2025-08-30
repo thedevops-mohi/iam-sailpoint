@@ -1,0 +1,52 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "ACCESS_PROFILE",
+        "id": "8755cb60ea8c4d45b4d74e4214a6c67f",
+        "name": "AD - IGA - Advisor"
+    },
+    "object": {
+        "id": "8755cb60ea8c4d45b4d74e4214a6c67f",
+        "name": "AD - IGA - Advisor",
+        "description": "IGA Advisor that has title of consultant",
+        "created": "2023-04-01T08:41:51.487Z",
+        "modified": "2023-04-05T03:45:34.956Z",
+        "enabled": true,
+        "owner": {
+            "type": "IDENTITY",
+            "id": "f9b787794e4b49f49971a483ef020f45",
+            "name": "SVC.SAILPOINT.ROLESOWNER1"
+        },
+        "source": {
+            "id": "be421fd329474dc08a0b43ab73bedbcd",
+            "type": "SOURCE",
+            "name": "Active Directory"
+        },
+        "entitlements": [
+            {
+                "id": "b6c1a44ff65f45e283fdc0bfd570654f",
+                "type": "ENTITLEMENT",
+                "name": "DP_Advisor"
+            },
+            {
+                "id": "84db7c5bdaee4970990a24d119f3f53b",
+                "type": "ENTITLEMENT",
+                "name": "IGNGG_PROD-LPP-SSO-CONSULTANT"
+            }
+        ],
+        "requestable": true,
+        "accessRequestConfig": {
+            "commentsRequired": false,
+            "denialCommentsRequired": false,
+            "approvalSchemes": [],
+            "reauthorizationRequired": false
+        },
+        "revocationRequestConfig": {
+            "approvalSchemes": []
+        },
+        "segments": [],
+        "provisioningCriteria": null,
+        "additionalOwners": null,
+        "segmentRefs": []
+    }
+}

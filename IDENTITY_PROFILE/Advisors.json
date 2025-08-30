@@ -1,0 +1,974 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "IDENTITY_PROFILE",
+        "id": "3bd21dee0c1c42fbb8c212a09a6a07d0",
+        "name": "Advisors"
+    },
+    "object": {
+        "description": "Profile for Advisor type Identities",
+        "owner": {
+            "type": "IDENTITY",
+            "id": "2c918086837fb2ca0183c858c6597d06",
+            "name": "Scott Walker"
+        },
+        "priority": 30,
+        "authoritativeSource": {
+            "type": "SOURCE",
+            "id": "2c91808383c7d7f40183d2d503dc420f",
+            "name": "Advisors - SIS Feed"
+        },
+        "identityRefreshRequired": false,
+        "identityCount": 7388,
+        "identityAttributeConfig": {
+            "enabled": true,
+            "attributeTransforms": [
+                {
+                    "identityAttributeName": "uid",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "LAN-ID",
+                                    "id": "SailPointUserName",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "SailPointUserName"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "email",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "EMAIL",
+                                    "id": "WorkEmail",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "WorkEmail"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "lastname",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "LAST-NAME",
+                                    "id": "LastName",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "LastName"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "firstname",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "FIRST-NAME",
+                                    "id": "FirstName",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "FirstName"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "adAccountExpiry",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "TERM-DTE",
+                                    "id": "ADAccountExpiryNew",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "ADAccountExpiryNew"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "adCompany",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "COMPANY",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "ADCompany"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "adDepartmentNumber",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "RGOF-NO",
+                                    "id": "DepartmentNumber",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "DepartmentNumber"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "adDisabled",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "SIS-ID",
+                                    "id": "ADDisabled",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "ADDisabled"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "adDn",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "attributeName": "distinguishedName",
+                            "sourceName": "Active Directory",
+                            "sourceId": "be421fd329474dc08a0b43ab73bedbcd"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "advisorId",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "attributeName": "SIS-ID",
+                            "sourceName": "Advisors - SIS Feed",
+                            "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "city",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "CITY",
+                                    "id": "City",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "City"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "company",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "COMPANY",
+                                    "id": "Company",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "Company"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "contractorType",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "SIS-ID",
+                                    "id": "ContractorType",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "ContractorType"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "costCenterDescription",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "SIS-ID",
+                                    "id": "CostCenterDescription",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "CostCenterDescription"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "costCenterId",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "SIS-ID",
+                                    "id": "CostCenterID",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "CostCenterID"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "country",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "PROVINCE",
+                                    "id": "Country",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "Country"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "countryThreeDigit",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "SIS-ID",
+                                    "id": "CountryThreeDigit",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "CountryThreeDigit"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "countryTwoLetter",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "CITY",
+                                    "id": "CountryTwoLetter",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "CountryTwoLetter"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "dealernum",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "attributeName": "DEALER-NUM",
+                            "sourceName": "Advisors - SIS Feed",
+                            "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "department",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "DEPARTMENT",
+                                    "id": "Department",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "Department"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "displayName",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "SIS-ID",
+                                    "id": "DisplayName",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "DisplayName"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "displayTitle",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "CPTI-NAM",
+                                    "id": "DispTitle",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "DispTitle"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "emailDomain",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "SUBT-IND",
+                                    "id": "EmailDomain",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "EmailDomain"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "employeeId",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "SIS-ID",
+                                    "id": "EmployeeNumber",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "EmployeeNumber"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "employeeType",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "TITLE",
+                                    "id": "EmployeeType",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "EmployeeType"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "endDate",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "TERM-DTE",
+                                    "id": "EndDate",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "EndDate"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "endDateAcf2",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "EndDateACF2",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "attributeName": "TERM-DTE",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "endDateWithTime",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "TERM-DTE",
+                                    "id": "EndDateWithTime",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "EndDateWithTime"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "fullName",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "name",
+                                    "id": "FullName",
+                                    "sourceName": "ServiceNowAPI",
+                                    "type": "reference",
+                                    "sourceId": "14034f9c1fdf46d0978e73ba13ca7a7c"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "FullName"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "language",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "LANGUAGE",
+                                    "id": "Language",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "Language"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "lastNameBegins",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "LAST-NAME",
+                                    "id": "LastNameBegins",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "LastNameBegins"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "cloudLifecycleState",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "STATUS",
+                                    "id": "LifecycleStateNew",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "LifecycleStateNew"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "loaEndDate",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "SIS-ID",
+                                    "id": "LoaEndDate",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "LoaEndDate"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "loaStartDate",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "SIS-ID",
+                                    "id": "LoaStartDate",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "LoaStartDate"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "managerFullName",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "SIS-ID",
+                                    "id": "ManagerName",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "ManagerName"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "managerLanid",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "ManagerLanID",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "attributeName": "LANGUAGE",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "middleName",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "LAST-NAME",
+                                    "id": "Initials",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "Initials"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "officeName",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "PhysicalDeliveryOfficeName",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "attributeName": "RGOF-NAME",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "postalCode",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "PROVINCE",
+                                    "id": "PostalCode",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "PostalCode"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "provinceState",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "attributeName": "PROVINCE",
+                            "sourceName": "Advisors - SIS Feed",
+                            "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "repRelationships",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "attributeName": "REP-RELATIONSHIPS",
+                            "sourceName": "Advisors - SIS Feed",
+                            "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "rgofname",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "attributeName": "RGOF-NAME",
+                            "sourceName": "Advisors - SIS Feed",
+                            "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "rgofno",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "attributeName": "RGOF-NO",
+                            "sourceName": "Advisors - SIS Feed",
+                            "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "samaccountname",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "attributeName": "sAMAccountName",
+                            "sourceName": "Active Directory",
+                            "sourceId": "be421fd329474dc08a0b43ab73bedbcd"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "startDate",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "START-DTE",
+                                    "id": "StartDate",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "StartDate"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "startDateWithTime",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "START-DTE",
+                                    "id": "StartDateWithTime",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "StartDateWithTime"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "street",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "CITY",
+                                    "id": "Street",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "Street"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "subscriptionIndicator",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "attributeName": "SUBT-IND",
+                            "sourceName": "Advisors - SIS Feed",
+                            "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "title",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "TITLE",
+                                    "id": "Title",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "Title"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "upn",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "sourceName": "Active Directory",
+                            "attributeName": "userPrincipalName",
+                            "sourceId": "be421fd329474dc08a0b43ab73bedbcd"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "userType",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "STATUS",
+                                    "id": "UserType",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "UserType"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "workPhone",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "WorkPhoneNumber",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "attributeName": "PHONE",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "workingAttribute",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "attributeName": "SIS-ID",
+                            "sourceName": "Advisors - SIS Feed",
+                            "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "workingAttribute2",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "attributeName": "dispNameSuffix",
+                            "sourceName": "OperatorSuppliedValues",
+                            "sourceId": "966baaab1c2040399ddd2130f34aa16b"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "workingattribute3",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "input": {
+                                "attributes": {
+                                    "attributeName": "SIS-ID",
+                                    "id": "UserTypeTest2",
+                                    "sourceName": "Advisors - SIS Feed",
+                                    "type": "reference",
+                                    "sourceId": "2c91808383c7d7f40183d2d503dc420f"
+                                },
+                                "type": "accountAttribute"
+                            },
+                            "id": "UserTypeTest2"
+                        }
+                    }
+                }
+            ]
+        },
+        "identityExceptionReportReference": null,
+        "hasTimeBasedAttr": true,
+        "id": "3bd21dee0c1c42fbb8c212a09a6a07d0",
+        "name": "Advisors",
+        "created": "2022-10-14T15:55:27.565Z",
+        "modified": "2025-07-17T17:44:32.349Z"
+    }
+}

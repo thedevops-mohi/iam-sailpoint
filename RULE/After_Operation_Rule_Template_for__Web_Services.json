@@ -1,0 +1,47 @@
+{
+    "name": "After Operation Rule Template for  Web Services",
+    "description": "This rule is used by the  Web Services connector to update parsed resource object.\n    Create List of Objects  which will later converted to Resource object ",
+    "type": "WebServiceAfterOperationRule",
+    "signature": {
+        "input": [
+            {
+                "name": "application",
+                "description": "The application whose data file is being processed.",
+                "type": null
+            },
+            {
+                "name": "requestEndPoint",
+                "description": "The current request information contain header, body ,response object",
+                "type": null
+            },
+            {
+                "name": "processedResponseObject",
+                "description": "Response Object processed by the Web services connector",
+                "type": null
+            },
+            {
+                "name": "rawResponseObject",
+                "description": "Response Object returned from the end system",
+                "type": null
+            },
+            {
+                "name": "restClient",
+                "description": "REST Client Object",
+                "type": null
+            }
+        ],
+        "output": {
+            "name": "Update Account/Group List",
+            "description": "Update information Map contains parsed list of accounts",
+            "type": null
+        }
+    },
+    "source_code": {
+        "version": "1.0",
+        "script": ""
+    },
+    "attributes": null,
+    "id": "b1da6fd80fe940f4a872640d5b0de482",
+    "created": "2022-10-05T22:50:55.480Z",
+    "modified": "2024-11-20T00:14:48.532Z"
+}
