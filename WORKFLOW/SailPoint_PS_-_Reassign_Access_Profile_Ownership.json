@@ -1,0 +1,158 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "WORKFLOW",
+        "id": "141b761b-fac6-44d2-a16e-048863148aa1",
+        "name": "SailPoint PS - Reassign Access Profile Ownership"
+    },
+    "object": {
+        "id": "141b761b-fac6-44d2-a16e-048863148aa1",
+        "name": "SailPoint PS - Reassign Access Profile Ownership",
+        "description": "Child workflow (external trigger) for the parent leaver workflow that changes the ownership of access profiles from leaver to their manager.",
+        "created": "2025-04-07T22:59:30.676611661Z",
+        "modified": "2025-07-10T09:42:09.523278583Z",
+        "modifiedBy": {
+            "type": "IDENTITY",
+            "id": "8b3c97da521442999ef05af532ecf6f7",
+            "name": "rahul.majumder"
+        },
+        "definition": {
+            "start": "HTTP Request",
+            "steps": {
+                "Compare Numbers": {
+                    "actionId": "sp:compare-numbers",
+                    "choiceList": [
+                        {
+                            "comparator": "NumericGreaterThan",
+                            "nextStep": "Send Email",
+                            "variableA.$": "$.hTTPRequest.body.length()",
+                            "variableB": 0
+                        }
+                    ],
+                    "defaultStep": "End Step — Success 1",
+                    "displayName": "",
+                    "type": "choice"
+                },
+                "End Step — Success 1": {
+                    "actionId": "sp:operator-success",
+                    "description": "End of active path",
+                    "type": "success"
+                },
+                "HTTP Request": {
+                    "actionId": "sp:http",
+                    "attributes": {
+                        "authenticationType": "OAuth",
+                        "jsonRequestBody": {
+                            "indices": [
+                                "accessprofiles"
+                            ],
+                            "query": {
+                                "query": "owner.id:{{$.trigger.leaverId.id}}"
+                            }
+                        },
+                        "method": "post",
+                        "oAuthClientId": "b0f1b396f93a4ee9979d009ccd099c1f",
+                        "oAuthClientSecret": "$.secrets.4ca88132-fa54-4ae7-96d8-0d01b69dd1a8",
+                        "oAuthCredentialLocation": "oAuthInHeader",
+                        "oAuthTokenUrl": "https://igmfinancial-uat.api.identitynow.com/oauth/token",
+                        "requestContentType": "json",
+                        "requestHeaders": {
+                            "Content-Type": "application/json"
+                        },
+                        "url": "https://igmfinancial-uat.api.identitynow.com/v3/search?offset=0&limit=100",
+                        "urlParams": null
+                    },
+                    "description": "get list of access profiles owned by this identity",
+                    "displayName": "Get Access Profiles",
+                    "nextStep": "Loop",
+                    "type": "action",
+                    "versionNumber": 2
+                },
+                "Loop": {
+                    "actionId": "sp:loop:iterator",
+                    "attributes": {
+                        "context.$": "$.trigger",
+                        "input.$": "$.hTTPRequest.body",
+                        "start": "HTTP Request 1",
+                        "steps": {
+                            "End Step — Success": {
+                                "actionId": "sp:operator-success",
+                                "type": "success"
+                            },
+                            "HTTP Request 1": {
+                                "actionId": "sp:http",
+                                "attributes": {
+                                    "authenticationType": "OAuth",
+                                    "jsonPatchRequestBody": [
+                                        {
+                                            "op": "replace",
+                                            "path": "/owner",
+                                            "value": {
+                                                "id": "{{$.loop.context.managerRef.id}}",
+                                                "type": "IDENTITY"
+                                            }
+                                        }
+                                    ],
+                                    "method": "patch",
+                                    "oAuthClientId": "b0f1b396f93a4ee9979d009ccd099c1f",
+                                    "oAuthClientSecret": "$.secrets.bf111bc9-e5b6-4f7d-9533-d13bc455418e",
+                                    "oAuthCredentialLocation": "oAuthInHeader",
+                                    "oAuthTokenUrl": "https://igmfinancial-uat.api.identitynow.com/oauth/token",
+                                    "requestContentType": "json-patch+json",
+                                    "requestHeaders": {
+                                        "Content-Type": "application/json-patch+json"
+                                    },
+                                    "url": "https://igmfinancial-uat.api.identitynow.com/beta/access-profiles/{{$.loop.loopInput.id}}"
+                                },
+                                "description": "look up each entitlement and change owner",
+                                "displayName": "Change Owner to Manager",
+                                "nextStep": "End Step — Success",
+                                "type": "action",
+                                "versionNumber": 2
+                            }
+                        }
+                    },
+                    "nextStep": "Compare Numbers",
+                    "type": "action",
+                    "versionNumber": 1
+                },
+                "Send Email": {
+                    "actionId": "sp:send-email",
+                    "attributes": {
+                        "body": "<p>Dear {{$.trigger.managerRef.name}},</p>\n<p class=\"MsoNormal\">Due to the termination/suspension of {{$.trigger.leaverId.name}}, ownership of the following Access Profiles has been transferred to you:</p>\n<ul>#if($objsLen>1)#foreach ( $detail in ${objs} )\n<li>${detail.name}</li>\n#end #{else}\n\n<li>${objs.name}</li>\n#end\n</ul>\n<p class=\"MsoNormal\">You can access the details of these items at the following link:<br><a href=\"https://igmfinancial.service-now.com/snap?id=kb_article_view&amp;sysparm_article=KB0013953\">Corporate Employees - Access Items &ndash; Inventory with Owner and Approvers for Requests - Resource Centre</a></p>\n<p class=\"MsoNormal\">If you wish to transfer ownership to another individual, please follow the instructions provided in the link below to submit a SNAP request.<br><a href=\"https://igmfinancial.service-now.com/snap?id=sc_cat_item&amp;sys_id=a19553aadb27981095d0ddf5f49619ed&amp;sysparm_category=a8d60a5e1b115410afb584415b4bcb53\">Authorization Request - Resource Centre</a></p>\n<p class=\"MsoNormal\">This is a system-generated email. Please do not respond to this email.</p>",
+                        "context": {
+                            "objs.$": "$.hTTPRequest.body",
+                            "objsLen.$": "$.hTTPRequest.body.length()"
+                        },
+                        "recipientEmailList.$": "$.trigger.managerRef.email",
+                        "subject": "Transfer of Ownership Notification for Access Profile Objects"
+                    },
+                    "displayName": "",
+                    "nextStep": "End Step — Success 1",
+                    "type": "action",
+                    "versionNumber": 2
+                }
+            }
+        },
+        "enabled": false,
+        "creator": {
+            "type": "IDENTITY",
+            "id": "628f08e9d3754deb94463c6380d0f61d",
+            "name": "slpt.services"
+        },
+        "owner": {
+            "type": "IDENTITY",
+            "id": "628f08e9d3754deb94463c6380d0f61d",
+            "name": "slpt.services"
+        },
+        "trigger": {
+            "type": "EXTERNAL",
+            "attributes": {
+                "clientId": "8efb0db1-e6d1-4519-a36f-160b2284b5f7",
+                "description": "change ownership of sources for leaver",
+                "id": "idn:external-http",
+                "url": "/beta/workflows/execute/external/141b761b-fac6-44d2-a16e-048863148aa1"
+            }
+        }
+    }
+}
