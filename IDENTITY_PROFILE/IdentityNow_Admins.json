@@ -1,0 +1,130 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "IDENTITY_PROFILE",
+        "id": "557ba7e50a534d15937beab7002a2fed",
+        "name": "IdentityNow Admins"
+    },
+    "object": {
+        "description": null,
+        "owner": null,
+        "priority": 10,
+        "authoritativeSource": {
+            "type": "SOURCE",
+            "id": "2c918086838b1cd20183ad9b4ec173af",
+            "name": "IdentityNow Admins"
+        },
+        "identityRefreshRequired": false,
+        "identityCount": 45,
+        "identityAttributeConfig": {
+            "enabled": true,
+            "attributeTransforms": [
+                {
+                    "identityAttributeName": "uid",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "attributeName": "name",
+                            "sourceName": "IdentityNow Admins",
+                            "sourceId": "2c918086838b1cd20183ad9b4ec173af"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "email",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "attributeName": "email",
+                            "sourceName": "IdentityNow Admins",
+                            "sourceId": "2c918086838b1cd20183ad9b4ec173af"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "lastname",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "attributeName": "familyName",
+                            "sourceName": "IdentityNow Admins",
+                            "sourceId": "2c918086838b1cd20183ad9b4ec173af"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "firstname",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "attributeName": "givenName",
+                            "sourceName": "IdentityNow Admins",
+                            "sourceId": "2c918086838b1cd20183ad9b4ec173af"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "personalEmail",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "attributeName": "secondaryEmail",
+                            "sourceName": "IdentityNow Admins",
+                            "sourceId": "2c918086838b1cd20183ad9b4ec173af"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "phone",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "attributeName": "secondaryPhoneNumber",
+                            "sourceName": "IdentityNow Admins",
+                            "sourceId": "2c918086838b1cd20183ad9b4ec173af"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "displayName",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "attributeName": "displayName",
+                            "sourceName": "IdentityNow Admins",
+                            "sourceId": "2c918086838b1cd20183ad9b4ec173af"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "manager",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "attributeName": "manager",
+                            "sourceName": "IdentityNow Admins",
+                            "sourceId": "2c918086838b1cd20183ad9b4ec173af"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "workPhone",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "attributeName": "phoneNumber",
+                            "sourceName": "IdentityNow Admins",
+                            "sourceId": "2c918086838b1cd20183ad9b4ec173af"
+                        }
+                    }
+                }
+            ]
+        },
+        "identityExceptionReportReference": null,
+        "hasTimeBasedAttr": false,
+        "id": "557ba7e50a534d15937beab7002a2fed",
+        "name": "IdentityNow Admins",
+        "created": "2022-10-06T14:12:32.365Z",
+        "modified": "2025-05-22T23:29:12.416Z"
+    }
+}
