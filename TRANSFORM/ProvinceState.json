@@ -1,0 +1,60 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "fed99a1c-97ac-44e7-acda-4898e5acf8a2",
+        "name": "ProvinceState"
+    },
+    "object": {
+        "id": "fed99a1c-97ac-44e7-acda-4898e5acf8a2",
+        "name": "ProvinceState",
+        "type": "static",
+        "attributes": {
+            "userType": {
+                "type": "reference",
+                "attributes": {
+                    "id": "UserType"
+                }
+            },
+            "employeeProvState": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "Employees SAP ECC",
+                                "attributeName": "STATE"
+                            }
+                        },
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "ServiceNowAPI",
+                                "attributeName": "provState"
+                            }
+                        },
+                        "None"
+                    ]
+                }
+            },
+            "contractorProvState": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "ServiceNowAPI",
+                                "attributeName": "provState"
+                            }
+                        },
+                        "None"
+                    ]
+                }
+            },
+            "value": "#if($userType == 'Employee' && $employeeProvState != 'None')$employeeProvState#elseif($userType == 'Contractor' && $contractorProvState != 'None')$contractorProvState#end"
+        },
+        "internal": false
+    }
+}
