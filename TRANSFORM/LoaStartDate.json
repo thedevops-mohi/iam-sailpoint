@@ -1,0 +1,61 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "19b9be5f-3b52-4a33-a482-d4d25c44b22d",
+        "name": "LoaStartDate"
+    },
+    "object": {
+        "id": "19b9be5f-3b52-4a33-a482-d4d25c44b22d",
+        "name": "LoaStartDate",
+        "type": "static",
+        "attributes": {
+            "userType": {
+                "type": "reference",
+                "attributes": {
+                    "id": "UserType"
+                }
+            },
+            "employeeLoaStartDate": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "ServiceNowAPI",
+                                "attributeName": "loaStartDate"
+                            }
+                        },
+                        "None"
+                    ]
+                }
+            },
+            "advisorLoaStartDate": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        "None"
+                    ]
+                }
+            },
+            "contractorLoaStartDate": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "ServiceNowAPI",
+                                "attributeName": "loaStartDate"
+                            }
+                        },
+                        "None"
+                    ]
+                }
+            },
+            "value": "#if($userType == 'Advisor')$advisorLoaStartDate#elseif($userType == 'Employee')$employeeLoaStartDate#elseif($userType == 'Contractor')$contractorLoaStartDate#{else}error: unkown user type: $userType#end"
+        },
+        "internal": false
+    }
+}

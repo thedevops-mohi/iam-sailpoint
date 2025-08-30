@@ -1,0 +1,76 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "591c578c-3d89-446e-b7d4-f0f10250e078",
+        "name": "Street"
+    },
+    "object": {
+        "id": "591c578c-3d89-446e-b7d4-f0f10250e078",
+        "name": "Street",
+        "type": "static",
+        "attributes": {
+            "userType": {
+                "type": "reference",
+                "attributes": {
+                    "id": "UserType"
+                }
+            },
+            "employeeStreet": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "Employees SAP ECC",
+                                "attributeName": "STRAS"
+                            }
+                        },
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "ServiceNowAPI",
+                                "attributeName": "street"
+                            }
+                        },
+                        {
+                            "type": "static",
+                            "attributes": {
+                                "value": "None"
+                            }
+                        }
+                    ]
+                }
+            },
+            "contractorStreet": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "ServiceNowAPI",
+                                "attributeName": "street"
+                            }
+                        },
+                        {
+                            "type": "static",
+                            "attributes": {
+                                "value": "None"
+                            }
+                        }
+                    ]
+                }
+            },
+            "advisorStreet": {
+                "type": "static",
+                "attributes": {
+                    "value": ""
+                }
+            },
+            "value": "#if($userType == 'Employee' && $employeeStreet != 'None')$employeeStreet#elseif($userType == 'Employee' && $employeeStreet == 'None')#elseif($userType == 'Advisor')#elseif($userType == 'Contractor' && $contractorStreet != 'None')$contractorStreet#elseif($userType == 'Contractor' && $contractorStreet == 'None')#{else}#end"
+        },
+        "internal": false
+    }
+}
