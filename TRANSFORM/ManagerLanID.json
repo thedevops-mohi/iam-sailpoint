@@ -1,0 +1,34 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "2c173971-deca-460c-96ca-dc5984a291df",
+        "name": "ManagerLanID"
+    },
+    "object": {
+        "id": "2c173971-deca-460c-96ca-dc5984a291df",
+        "name": "ManagerLanID",
+        "type": "static",
+        "attributes": {
+            "value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "rule",
+                            "attributes": {
+                                "name": "Cloud Services Deployment Utility",
+                                "operation": "getReferenceIdentityAttribute",
+                                "uid": "manager",
+                                "attributeName": "samaccountname"
+                            }
+                        },
+                        ""
+                    ],
+                    "ignoreErrors": false
+                }
+            }
+        },
+        "internal": false
+    }
+}
