@@ -1,0 +1,144 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "WORKFLOW",
+        "id": "a5c451a2-9716-47dc-a372-fafedac2c5e9",
+        "name": "SailPoint PS - Reassign Governance Group Membership"
+    },
+    "object": {
+        "id": "a5c451a2-9716-47dc-a372-fafedac2c5e9",
+        "name": "SailPoint PS - Reassign Governance Group Membership",
+        "description": "Child workflow (external trigger) for the parent leaver workflow that searches all governance groups, then searches within the membership of those groups for the leaver identity and finally, changes the membership of those governance groups from the leaver to their manager. (Two child workflows from this part 1)",
+        "created": "2025-04-07T23:00:59.615917284Z",
+        "modified": "2025-07-10T14:35:48.208067651Z",
+        "modifiedBy": {
+            "type": "IDENTITY",
+            "id": "8b3c97da521442999ef05af532ecf6f7",
+            "name": "rahul.majumder"
+        },
+        "definition": {
+            "start": "Get governance groups",
+            "steps": {
+                "Compare Numbers": {
+                    "actionId": "sp:compare-numbers",
+                    "choiceList": [
+                        {
+                            "comparator": "NumericGreaterThan",
+                            "nextStep": "Send Email",
+                            "variableA.$": "$.getGovernanceGroups.body.length()",
+                            "variableB": 0
+                        }
+                    ],
+                    "defaultStep": "success 1",
+                    "displayName": "",
+                    "type": "choice"
+                },
+                "Get governance groups": {
+                    "actionId": "sp:http",
+                    "attributes": {
+                        "authenticationType": "OAuth",
+                        "method": "get",
+                        "oAuthClientId": "b0f1b396f93a4ee9979d009ccd099c1f",
+                        "oAuthClientSecret": "$.secrets.ae8c4526-3cbe-4344-adda-c7b017b4618c",
+                        "oAuthCredentialLocation": "oAuthInHeader",
+                        "oAuthTokenUrl": "https://igmfinancial-uat.api.identitynow.com/oauth/token",
+                        "requestContentType": "json",
+                        "requestHeaders": "",
+                        "url": "https://igmfinancial-uat.api.identitynow.com/beta/workgroups",
+                        "urlParams": {
+                            "filters": "memberships.identityId eq \"{{$.trigger.leaverId.id}}\""
+                        }
+                    },
+                    "description": "Get ... all workgroups",
+                    "nextStep": "Loop",
+                    "type": "action",
+                    "versionNumber": 2
+                },
+                "Loop": {
+                    "actionId": "sp:loop:iterator",
+                    "attributes": {
+                        "context.$": "$.trigger",
+                        "input.$": "$.getGovernanceGroups.body",
+                        "start": "HTTP Request",
+                        "steps": {
+                            "End Step — Success": {
+                                "actionId": "sp:operator-success",
+                                "type": "success"
+                            },
+                            "HTTP Request": {
+                                "actionId": "sp:http",
+                                "attributes": {
+                                    "authenticationType": "OAuth",
+                                    "jsonRequestBody": {
+                                        "add": [
+                                            "{{$.loop.context.managerRef.id}}"
+                                        ],
+                                        "remove": [
+                                            "{{$.loop.context.leaverId.id}}"
+                                        ]
+                                    },
+                                    "method": "post",
+                                    "oAuthClientId": "b0f1b396f93a4ee9979d009ccd099c1f",
+                                    "oAuthClientSecret": "$.secrets.dfdc444a-e2d1-472f-bcb3-50bdbb6861ba",
+                                    "oAuthCredentialLocation": "oAuthInHeader",
+                                    "oAuthTokenUrl": "https://igmfinancial-uat.api.identitynow.com/oauth/token",
+                                    "requestContentType": "json",
+                                    "requestHeaders": null,
+                                    "textRequestBody": "[{\"id\":\"{{$.loop.context.managerRef.id}}\",\"name\":\"{{$.loop.context.managerRef.name}}\",\"type\":\"IDENTITY\"}]",
+                                    "url": "https://igmfinancial-uat.api.identitynow.com/v2/workgroups/{{$.loop.loopInput.id}}/members"
+                                },
+                                "displayName": "Add a member",
+                                "nextStep": "End Step — Success",
+                                "type": "action",
+                                "versionNumber": 2
+                            }
+                        }
+                    },
+                    "nextStep": "Compare Numbers",
+                    "type": "action",
+                    "versionNumber": 1
+                },
+                "Send Email": {
+                    "actionId": "sp:send-email",
+                    "attributes": {
+                        "body": "<p>Dear {{$.trigger.managerRef.name}},</p>\n<p class=\"MsoNormal\">Due to the off-boarding of {{$.trigger.leaverId.name}}, you have been added to the following Governance Groups:</p>\n<ul>#if($objsLen>1)#foreach ( $detail in ${objs} )\n<li>${detail.name}</li>\n#end #{else}\n\n<li>${objs.name}</li>\n#end\n</ul>\n<p class=\"MsoNormal\">You can access the details of these items at the following link:&nbsp;<br><a href=\"https://igmfinancial.service-now.com/snap?id=kb_article_view&amp;sysparm_article=KB0013953\">Corporate Employees - Access Items &ndash; Inventory with Owner and Approvers for Requests - Resource Centre</a></p>\n<p class=\"MsoNormal\">If you wish to transfer membership to another individual, please follow the instructions provided in the link below to submit a SNAP request.<br><a href=\"https://igmfinancial.service-now.com/snap?id=sc_cat_item&amp;sys_id=a19553aadb27981095d0ddf5f49619ed&amp;sysparm_category=a8d60a5e1b115410afb584415b4bcb53\">Authorization Request - Resource Centre</a></p>\n<p class=\"MsoNormal\">This is a system-generated email. Please do not respond to this email.</p>",
+                        "context": {
+                            "objs.$": "$.getGovernanceGroups.body",
+                            "objsLen.$": "$.getGovernanceGroups.body.length()"
+                        },
+                        "from.$": "",
+                        "recipientEmailList.$": "$.trigger.managerRef.email",
+                        "subject": "Transfer of Membership Notification for Governance Group Objects"
+                    },
+                    "nextStep": "success 1",
+                    "type": "action",
+                    "versionNumber": 2
+                },
+                "success 1": {
+                    "actionId": "sp:operator-success",
+                    "type": "success"
+                }
+            }
+        },
+        "enabled": false,
+        "creator": {
+            "type": "IDENTITY",
+            "id": "628f08e9d3754deb94463c6380d0f61d",
+            "name": "slpt.services"
+        },
+        "owner": {
+            "type": "IDENTITY",
+            "id": "628f08e9d3754deb94463c6380d0f61d",
+            "name": "slpt.services"
+        },
+        "trigger": {
+            "type": "EXTERNAL",
+            "attributes": {
+                "clientId": "a4e1bbe0-d93c-47c6-84f0-007e30445c62",
+                "description": "step one of gathering gov groups to be searched for leaver as member",
+                "id": "idn:external-http",
+                "url": "/beta/workflows/execute/external/a5c451a2-9716-47dc-a372-fafedac2c5e9"
+            }
+        }
+    }
+}
