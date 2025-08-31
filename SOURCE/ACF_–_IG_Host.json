@@ -23,13 +23,13 @@
         "managerCorrelationRule": null,
         "beforeProvisioningRule": null,
         "features": [
-            "SEARCH",
-            "UNSTRUCTURED_TARGETS",
-            "SYNC_PROVISIONING",
-            "PROVISIONING",
-            "ENABLE",
             "PASSWORD",
-            "UNLOCK"
+            "ENABLE",
+            "SEARCH",
+            "PROVISIONING",
+            "UNLOCK",
+            "SYNC_PROVISIONING",
+            "UNSTRUCTURED_TARGETS"
         ],
         "schemas": [
             {
@@ -787,18 +787,18 @@
             "deleteThresholdPercentage": 10,
             "IBMcharacterSet": "IBM1047",
             "MscsName": "MVS2ACF2",
-            "cloudCacheUpdate": 1756450208277,
+            "cloudCacheUpdate": 1756622929948,
             "templateApplication": "ACF2",
             "encrypted": "keystorePassword,keyPassword",
             "smReadTimeout": "50",
             "port": "5054",
-            "healthy": true,
+            "healthy": false,
             "cloudDisplayName": "ACF – IG Host",
             "connectorName": "ACF2",
             "disableHotpathForUpdate": "true",
             "user": "CT24SE9",
-            "since": "2025-08-29T06:50:08.259Z",
-            "status": "SOURCE_STATE_HEALTHY"
+            "since": "2025-08-31T06:48:49.930Z",
+            "status": "SOURCE_STATE_FAILURE_SOURCE"
         },
         "crossTenantConnectorAttributes": {},
         "correlationConfigDetails": {
