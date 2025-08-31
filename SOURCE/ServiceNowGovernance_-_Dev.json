@@ -23,10 +23,10 @@
         "managerCorrelationRule": null,
         "beforeProvisioningRule": null,
         "features": [
+            "PASSWORD",
+            "ENABLE",
             "PROVISIONING",
             "APPLICATION_DISCOVERY",
-            "ENABLE",
-            "PASSWORD",
             "UNLOCK"
         ],
         "schemas": [

@@ -28,8 +28,8 @@
         },
         "features": [
             "DISCOVER_SCHEMA",
-            "DIRECT_PERMISSIONS",
-            "NO_RANDOM_ACCESS"
+            "NO_RANDOM_ACCESS",
+            "DIRECT_PERMISSIONS"
         ],
         "schemas": [
             {
