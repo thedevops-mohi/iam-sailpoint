@@ -25,11 +25,11 @@
         "features": [
             "SEARCH",
             "UNSTRUCTURED_TARGETS",
-            "SYNC_PROVISIONING",
-            "PROVISIONING",
-            "ENABLE",
             "PASSWORD",
-            "UNLOCK"
+            "ENABLE",
+            "UNLOCK",
+            "SYNC_PROVISIONING",
+            "PROVISIONING"
         ],
         "schemas": [
             {

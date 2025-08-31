@@ -23,9 +23,9 @@
         "managerCorrelationRule": null,
         "beforeProvisioningRule": null,
         "features": [
-            "AUTHENTICATE",
-            "PASSWORD",
             "APPLICATION_DISCOVERY",
+            "PASSWORD",
+            "AUTHENTICATE",
             "ENABLE",
             "PROVISIONING"
         ],
