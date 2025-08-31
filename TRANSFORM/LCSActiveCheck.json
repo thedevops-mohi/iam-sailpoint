@@ -1,0 +1,110 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "802b8738-5ab6-43dc-8746-68337ecafcd8",
+        "name": "LCSActiveCheck"
+    },
+    "object": {
+        "id": "802b8738-5ab6-43dc-8746-68337ecafcd8",
+        "name": "LCSActiveCheck",
+        "type": "static",
+        "attributes": {
+            "userType": {
+                "type": "reference",
+                "attributes": {
+                    "id": "UserType"
+                }
+            },
+            "endDate": {
+                "type": "reference",
+                "attributes": {
+                    "id": "EndDate"
+                }
+            },
+            "isStartDateLteToday": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "dateCompare",
+                            "attributes": {
+                                "firstDate": {
+                                    "type": "dateFormat",
+                                    "attributes": {
+                                        "input": {
+                                            "type": "reference",
+                                            "attributes": {
+                                                "id": "StartDate"
+                                            }
+                                        },
+                                        "inputFormat": "yyyy-MM-dd",
+                                        "outputFormat": "ISO8601"
+                                    }
+                                },
+                                "secondDate": "now",
+                                "operator": "lte",
+                                "positiveCondition": "true",
+                                "negativeCondition": "false"
+                            }
+                        },
+                        "false"
+                    ]
+                }
+            },
+            "isEndDateGtToday": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "dateCompare",
+                            "attributes": {
+                                "firstDate": {
+                                    "type": "dateFormat",
+                                    "attributes": {
+                                        "input": {
+                                            "type": "reference",
+                                            "attributes": {
+                                                "id": "EndDate"
+                                            }
+                                        },
+                                        "inputFormat": "yyyy-MM-dd",
+                                        "outputFormat": "ISO8601"
+                                    }
+                                },
+                                "secondDate": "now",
+                                "operator": "gt",
+                                "positiveCondition": "true",
+                                "negativeCondition": "false"
+                            }
+                        },
+                        "false"
+                    ]
+                }
+            },
+            "advisorStatus": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "Advisors - SIS Feed",
+                                "attributeName": "STATUS"
+                            }
+                        },
+                        "None"
+                    ]
+                }
+            },
+            "lcsLoaCheck": {
+                "type": "reference",
+                "attributes": {
+                    "id": "LCSLoaCheck"
+                }
+            },
+            "value": "#if(($userType == 'Employee' || $userType == 'Contractor') && $lcsLoaCheck == 'false' && $isStartDateLteToday == 'true' && ($endDate == 'None' || $isEndDateGtToday == 'true'))true#elseif($userType == 'Advisor' && $advisorStatus == 'Active')true#elseif($userType == 'Advisor' && $advisorStatus == 'Inactive')false#{else}false#end"
+        },
+        "internal": false
+    }
+}

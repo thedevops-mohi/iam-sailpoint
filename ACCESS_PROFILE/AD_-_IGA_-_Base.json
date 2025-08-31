@@ -1,0 +1,82 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "ACCESS_PROFILE",
+        "id": "2fe608940b8143c39510d470d78069b1",
+        "name": "AD - IGA - Base"
+    },
+    "object": {
+        "id": "2fe608940b8143c39510d470d78069b1",
+        "name": "AD - IGA - Base",
+        "description": "Base entitlements for IG Advisors",
+        "created": "2023-04-01T08:41:47.147Z",
+        "modified": "2025-06-12T20:37:33.051057Z",
+        "enabled": true,
+        "owner": {
+            "type": "IDENTITY",
+            "id": "f9b787794e4b49f49971a483ef020f45",
+            "name": "SVC.SAILPOINT.ROLESOWNER1"
+        },
+        "source": {
+            "id": "be421fd329474dc08a0b43ab73bedbcd",
+            "type": "SOURCE",
+            "name": "Active Directory"
+        },
+        "entitlements": [
+            {
+                "id": "13f8ea285ee5417983e6c23d0055cb4a",
+                "type": "ENTITLEMENT",
+                "name": "IGAGG_365License_E5"
+            },
+            {
+                "id": "34179ecc593d46d19fff35d4ef7df12c",
+                "type": "ENTITLEMENT",
+                "name": "IGAGG_PSO_IGM"
+            },
+            {
+                "id": "ea94dd7018fc4a33b9fba016659fbc13",
+                "type": "ENTITLEMENT",
+                "name": "IGM-ClearEstate-PROD-SSO"
+            },
+            {
+                "id": "3a0dcb82eeb63ab1873bdbebfe7e8ae9",
+                "type": "ENTITLEMENT",
+                "name": "IGM-DO-LKR-PROD"
+            },
+            {
+                "id": "d1a0e471366f3527a4e4535aac678976",
+                "type": "ENTITLEMENT",
+                "name": "IGM-DO-LKR-UAT"
+            },
+            {
+                "id": "206615a0ce3f47c3b136cc411945a8f9",
+                "type": "ENTITLEMENT",
+                "name": "IGM-Genetec-PROD-All-Base"
+            },
+            {
+                "id": "157b377e446c4373b7ba8db63ec3773b",
+                "type": "ENTITLEMENT",
+                "name": "IGM-InterVal-PROD-SSO"
+            },
+            {
+                "id": "816b54d96ef4457288d8cf2eb3edefcf",
+                "type": "ENTITLEMENT",
+                "name": "igho"
+            }
+        ],
+        "requestable": true,
+        "accessRequestConfig": {
+            "commentsRequired": false,
+            "denialCommentsRequired": false,
+            "approvalSchemes": [],
+            "reauthorizationRequired": false
+        },
+        "revocationRequestConfig": {
+            "approvalSchemes": []
+        },
+        "segments": [],
+        "provisioningCriteria": null,
+        "additionalOwners": null,
+        "segmentRefs": []
+    }
+}

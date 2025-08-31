@@ -1,0 +1,48 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "8d89c1ae-873d-463e-85e1-de3a6e5bc2e8",
+        "name": "LCSDebugNew"
+    },
+    "object": {
+        "id": "8d89c1ae-873d-463e-85e1-de3a6e5bc2e8",
+        "name": "LCSDebugNew",
+        "type": "static",
+        "attributes": {
+            "requiresPeriodicRefresh": true,
+            "lcsActiveCheck": {
+                "type": "reference",
+                "attributes": {
+                    "id": "LCSActiveCheckNew"
+                }
+            },
+            "lcsDeleteCheck": {
+                "type": "reference",
+                "attributes": {
+                    "id": "LCSDeleteCheckNew"
+                }
+            },
+            "lcsLoaCheck": {
+                "type": "reference",
+                "attributes": {
+                    "id": "LCSLoaCheckNew"
+                }
+            },
+            "lcsPrehireCheck": {
+                "type": "reference",
+                "attributes": {
+                    "id": "LCSPrehireCheckNew"
+                }
+            },
+            "lcsTerminationCheck": {
+                "type": "reference",
+                "attributes": {
+                    "id": "LCSTerminatedCheckNew"
+                }
+            },
+            "value": "lcsActiveCheckNew: $lcsActiveCheck | lcsDeleteCheckNew: $lcsDeleteCheck | lcsLoaCheckNew: $lcsLoaCheck | lcsPrehireCheckNew: $lcsPrehireCheck | lcsTerminationCheckNew: $lcsTerminationCheck"
+        },
+        "internal": false
+    }
+}

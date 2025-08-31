@@ -1,0 +1,52 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "ACCESS_PROFILE",
+        "id": "054f2036326549139ef3e2aae782a1d9",
+        "name": "SN Governance - Employees, Contractor & Advisors"
+    },
+    "object": {
+        "id": "054f2036326549139ef3e2aae782a1d9",
+        "name": "SN Governance - Employees, Contractor & Advisors",
+        "description": null,
+        "created": "2024-06-06T18:58:31.876001Z",
+        "modified": "2025-08-21T10:38:59.929909Z",
+        "enabled": true,
+        "owner": {
+            "type": "IDENTITY",
+            "id": "2c918083837fb2ce0183ada1cea76866",
+            "name": "Warren Pedersen"
+        },
+        "source": {
+            "id": "e952846e6a4c461fa8eccb93454e05b9",
+            "type": "SOURCE",
+            "name": "ServiceNowGovernance - Dev"
+        },
+        "entitlements": [
+            {
+                "id": "5f2f11ce2ddd44ad8aeea7bf5930f109",
+                "type": "ENTITLEMENT",
+                "name": "IGM-PROD-DYN-ServiceNow-Prov"
+            },
+            {
+                "id": "ee3840d5034d4fa9bb328ab585a7844f",
+                "type": "ENTITLEMENT",
+                "name": "snc_internal"
+            }
+        ],
+        "requestable": false,
+        "accessRequestConfig": {
+            "commentsRequired": null,
+            "denialCommentsRequired": null,
+            "approvalSchemes": [],
+            "reauthorizationRequired": false
+        },
+        "revocationRequestConfig": {
+            "approvalSchemes": []
+        },
+        "segments": [],
+        "provisioningCriteria": null,
+        "additionalOwners": null,
+        "segmentRefs": []
+    }
+}

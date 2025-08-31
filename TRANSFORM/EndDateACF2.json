@@ -1,0 +1,36 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "fb39d992-6bbc-4cb6-a8db-8227cc5182a8",
+        "name": "EndDateACF2"
+    },
+    "object": {
+        "id": "fb39d992-6bbc-4cb6-a8db-8227cc5182a8",
+        "name": "EndDateACF2",
+        "type": "static",
+        "attributes": {
+            "dateOnlyValue": {
+                "type": "dateFormat",
+                "attributes": {
+                    "input": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "EndDateWithTime"
+                        }
+                    },
+                    "inputFormat": "yyyy-MM-dd'T'-HH:mm:ss:SSS-HH:mm",
+                    "outputFormat": "yyyyMMdd"
+                }
+            },
+            "checkForNone": {
+                "type": "reference",
+                "attributes": {
+                    "id": "EndDateWithTime"
+                }
+            },
+            "value": "#if($checkForNone != 'None')$dateOnlyValue#{else}#end"
+        },
+        "internal": false
+    }
+}
