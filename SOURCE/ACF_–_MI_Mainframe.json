@@ -24,12 +24,12 @@
         "beforeProvisioningRule": null,
         "features": [
             "SEARCH",
-            "PASSWORD",
-            "PROVISIONING",
-            "UNLOCK",
-            "ENABLE",
             "UNSTRUCTURED_TARGETS",
-            "SYNC_PROVISIONING"
+            "SYNC_PROVISIONING",
+            "PROVISIONING",
+            "ENABLE",
+            "PASSWORD",
+            "UNLOCK"
         ],
         "schemas": [
             {
