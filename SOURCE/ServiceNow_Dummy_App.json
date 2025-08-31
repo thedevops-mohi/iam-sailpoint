@@ -27,9 +27,9 @@
             "name": "ServiceNow Dummy App BeforeProvisioning"
         },
         "features": [
-            "DISCOVER_SCHEMA",
+            "NO_RANDOM_ACCESS",
             "DIRECT_PERMISSIONS",
-            "NO_RANDOM_ACCESS"
+            "DISCOVER_SCHEMA"
         ],
         "schemas": [
             {
