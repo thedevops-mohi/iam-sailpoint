@@ -23,13 +23,13 @@
         "managerCorrelationRule": null,
         "beforeProvisioningRule": null,
         "features": [
-            "SYNC_PROVISIONING",
-            "ENABLE",
-            "UNSTRUCTURED_TARGETS",
             "PASSWORD",
+            "ENABLE",
             "SEARCH",
+            "PROVISIONING",
             "UNLOCK",
-            "PROVISIONING"
+            "SYNC_PROVISIONING",
+            "UNSTRUCTURED_TARGETS"
         ],
         "schemas": [
             {

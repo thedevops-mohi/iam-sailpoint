@@ -1,0 +1,39 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "ACCESS_PROFILE",
+        "id": "caeafaab7ad849e491c76996b2cd777f",
+        "name": "ANOTHER-TEST_FROM_AZURE_FUNCTIONS"
+    },
+    "object": {
+        "id": "caeafaab7ad849e491c76996b2cd777f",
+        "name": "ANOTHER-TEST_FROM_AZURE_FUNCTIONS",
+        "description": "Test a just",
+        "created": "2025-08-31T15:48:59.882639Z",
+        "modified": "2025-08-31T15:48:59.882639Z",
+        "enabled": false,
+        "owner": {
+            "type": "IDENTITY",
+            "id": "35448d7ec431489490d2bc6daddc8594",
+            "name": "Mohammed.Yahaya"
+        },
+        "source": {
+            "id": "24e9a717c46d4e478a7736f79d00a008",
+            "type": "SOURCE",
+            "name": "IdentityNow"
+        },
+        "entitlements": [],
+        "requestable": false,
+        "accessRequestConfig": {
+            "commentsRequired": null,
+            "denialCommentsRequired": null,
+            "approvalSchemes": [],
+            "reauthorizationRequired": false
+        },
+        "revocationRequestConfig": null,
+        "segments": [],
+        "provisioningCriteria": null,
+        "additionalOwners": null,
+        "segmentRefs": []
+    }
+}
