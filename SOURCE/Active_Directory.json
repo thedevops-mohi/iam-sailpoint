@@ -31,21 +31,21 @@
             "name": "Active Directory BeforeProvisioning"
         },
         "features": [
-            "GROUPS_HAVE_MEMBERS",
-            "CURRENT_PASSWORD",
-            "AUTHENTICATE",
-            "PREFER_UUID",
-            "UNLOCK",
+            "SYNC_PROVISIONING",
+            "ENABLE",
             "NO_GROUP_PERMISSIONS_PROVISIONING",
+            "PASSWORD",
+            "GROUP_PROVISIONING",
+            "AUTHENTICATE",
+            "UNSTRUCTURED_TARGETS",
+            "GROUPS_HAVE_MEMBERS",
+            "MANAGER_LOOKUP",
+            "PREFER_UUID",
             "SEARCH",
             "NO_PERMISSIONS_PROVISIONING",
-            "UNSTRUCTURED_TARGETS",
-            "GROUP_PROVISIONING",
-            "SYNC_PROVISIONING",
-            "PROVISIONING",
-            "MANAGER_LOOKUP",
-            "ENABLE",
-            "PASSWORD"
+            "UNLOCK",
+            "CURRENT_PASSWORD",
+            "PROVISIONING"
         ],
         "schemas": [
             {
@@ -906,7 +906,7 @@
                 "id": "c8c97062f4e84fd69d1b55f365818492",
                 "name": "account",
                 "created": "2022-11-29T18:47:18.898Z",
-                "modified": "2025-08-31T13:05:20.821Z"
+                "modified": "2025-08-31T19:06:34.918Z"
             },
             {
                 "nativeObjectType": "Group",
@@ -1053,7 +1053,7 @@
                 "id": "54ce00d8877f4e6b9acb51aa6282d562",
                 "name": "group",
                 "created": "2022-11-29T18:47:18.898Z",
-                "modified": "2025-08-31T13:05:20.821Z"
+                "modified": "2025-08-31T19:06:34.918Z"
             },
             {
                 "nativeObjectType": "sharedMailbox",
@@ -1185,7 +1185,7 @@
                 "id": "223ab91da77f45bda50889ff75cd8684",
                 "name": "sharedMailbox",
                 "created": "2022-11-29T18:47:18.898Z",
-                "modified": "2025-08-31T13:05:20.821Z"
+                "modified": "2025-08-31T19:06:34.918Z"
             }
         ],
         "connectorAttributes": {
@@ -1245,7 +1245,7 @@
             "rollbackCreatedAccountOnError": false,
             "useSSL": "false",
             "IQServiceHost": "AZCDEVSPIIQSVC.igmdev.net",
-            "cloudCacheUpdate": 1756645520821,
+            "cloudCacheUpdate": 1756667194917,
             "port": "389",
             "upgraderSkip": "true",
             "connectorName": "Active Directory",
