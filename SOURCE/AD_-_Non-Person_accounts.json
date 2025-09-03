@@ -31,21 +31,21 @@
             "name": "NH AD BeforeProvisioning"
         },
         "features": [
-            "ENABLE",
-            "PASSWORD",
-            "PROVISIONING",
-            "GROUP_PROVISIONING",
-            "NO_GROUP_PERMISSIONS_PROVISIONING",
-            "SEARCH",
-            "GROUPS_HAVE_MEMBERS",
-            "NO_PERMISSIONS_PROVISIONING",
             "UNLOCK",
-            "UNSTRUCTURED_TARGETS",
-            "CURRENT_PASSWORD",
-            "AUTHENTICATE",
-            "MANAGER_LOOKUP",
+            "PASSWORD",
+            "ENABLE",
+            "SEARCH",
             "SYNC_PROVISIONING",
-            "PREFER_UUID"
+            "CURRENT_PASSWORD",
+            "PROVISIONING",
+            "AUTHENTICATE",
+            "NO_GROUP_PERMISSIONS_PROVISIONING",
+            "MANAGER_LOOKUP",
+            "PREFER_UUID",
+            "UNSTRUCTURED_TARGETS",
+            "GROUP_PROVISIONING",
+            "GROUPS_HAVE_MEMBERS",
+            "NO_PERMISSIONS_PROVISIONING"
         ],
         "schemas": [
             {
