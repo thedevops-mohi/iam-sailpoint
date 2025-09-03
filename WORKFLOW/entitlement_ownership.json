@@ -10,7 +10,7 @@
         "name": "entitlement ownership",
         "description": "Child workflow (external trigger) for the parent leaver workflow that changes ownership of entitlements from the leaver to their manager.",
         "created": "2025-08-01T12:14:48.931861033Z",
-        "modified": "2025-08-28T10:21:43.101268875Z",
+        "modified": "2025-09-03T15:11:07.500422189Z",
         "modifiedBy": {
             "type": "IDENTITY",
             "id": "8854446c0c0c4b5bb87ca482a91b0ef3",
@@ -134,7 +134,7 @@
                 }
             }
         },
-        "enabled": true,
+        "enabled": false,
         "creator": {
             "type": "IDENTITY",
             "id": "8854446c0c0c4b5bb87ca482a91b0ef3",

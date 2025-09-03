@@ -10,7 +10,7 @@
         "name": "Copy of SailPoint PS - Leaver Identity Access Cleanup 2",
         "description": "Parent workflow for leaver scenario; calls a series of child workflows through HTTP requests; steps change ownership and membership in all objects to which the leaver is associated.",
         "created": "2025-08-01T09:59:06.210755467Z",
-        "modified": "2025-08-28T10:41:25.063799895Z",
+        "modified": "2025-09-03T15:11:19.573751825Z",
         "modifiedBy": {
             "type": "IDENTITY",
             "id": "8854446c0c0c4b5bb87ca482a91b0ef3",
@@ -181,7 +181,7 @@
                 }
             }
         },
-        "enabled": false,
+        "enabled": true,
         "creator": {
             "type": "IDENTITY",
             "id": "8854446c0c0c4b5bb87ca482a91b0ef3",

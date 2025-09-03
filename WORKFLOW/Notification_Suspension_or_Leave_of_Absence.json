@@ -10,11 +10,11 @@
         "name": "Notification Suspension or Leave of Absence",
         "description": "Lifecycle state changed to suspended",
         "created": "2025-08-01T13:17:08.0735519Z",
-        "modified": "2025-08-25T13:26:29.750816365Z",
+        "modified": "2025-09-03T15:11:13.384867178Z",
         "modifiedBy": {
             "type": "IDENTITY",
-            "id": "1883596e385748c7bec4833a76bacad4",
-            "name": "Khilan.Shah"
+            "id": "8854446c0c0c4b5bb87ca482a91b0ef3",
+            "name": "Rahul.Majumder"
         },
         "definition": {
             "start": "Compare Strings",
@@ -114,7 +114,7 @@
                 }
             }
         },
-        "enabled": true,
+        "enabled": false,
         "creator": {
             "type": "IDENTITY",
             "id": "1883596e385748c7bec4833a76bacad4",

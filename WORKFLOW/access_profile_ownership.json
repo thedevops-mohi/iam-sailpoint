@@ -10,7 +10,7 @@
         "name": "access profile ownership",
         "description": "Child workflow (external trigger) for the parent leaver workflow that changes the ownership of access profiles from leaver to their manager.",
         "created": "2025-08-01T12:13:10.513449711Z",
-        "modified": "2025-08-28T10:21:36.573233468Z",
+        "modified": "2025-09-03T15:11:10.290498326Z",
         "modifiedBy": {
             "type": "IDENTITY",
             "id": "8854446c0c0c4b5bb87ca482a91b0ef3",
@@ -134,7 +134,7 @@
                 }
             }
         },
-        "enabled": true,
+        "enabled": false,
         "creator": {
             "type": "IDENTITY",
             "id": "8854446c0c0c4b5bb87ca482a91b0ef3",
