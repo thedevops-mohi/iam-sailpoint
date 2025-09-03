@@ -31,21 +31,21 @@
             "name": "Active Directory BeforeProvisioning"
         },
         "features": [
-            "CURRENT_PASSWORD",
-            "MANAGER_LOOKUP",
-            "PREFER_UUID",
-            "PROVISIONING",
-            "UNLOCK",
-            "GROUP_PROVISIONING",
-            "SYNC_PROVISIONING",
             "NO_GROUP_PERMISSIONS_PROVISIONING",
-            "AUTHENTICATE",
-            "SEARCH",
-            "GROUPS_HAVE_MEMBERS",
+            "PREFER_UUID",
+            "GROUP_PROVISIONING",
             "NO_PERMISSIONS_PROVISIONING",
-            "PASSWORD",
+            "AUTHENTICATE",
             "UNSTRUCTURED_TARGETS",
-            "ENABLE"
+            "MANAGER_LOOKUP",
+            "UNLOCK",
+            "GROUPS_HAVE_MEMBERS",
+            "ENABLE",
+            "CURRENT_PASSWORD",
+            "SYNC_PROVISIONING",
+            "SEARCH",
+            "PROVISIONING",
+            "PASSWORD"
         ],
         "schemas": [
             {
@@ -1271,7 +1271,6 @@
             "recommendationStatus": "ERROR",
             "enforcePasswordPolicy": "true",
             "useHasMoreElements": "false",
-            "hasFullAggregationCompleted": true,
             "ADAppVersion": "V2",
             "manageRecycleBin": false,
             "ldapExtendedControls": [

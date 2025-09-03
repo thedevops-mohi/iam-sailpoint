@@ -25,9 +25,9 @@
         "features": [
             "ENABLE",
             "PASSWORD",
-            "APPLICATION_DISCOVERY",
+            "PROVISIONING",
             "UNLOCK",
-            "PROVISIONING"
+            "APPLICATION_DISCOVERY"
         ],
         "schemas": [
             {
