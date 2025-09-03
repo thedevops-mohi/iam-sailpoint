@@ -10,7 +10,7 @@
         "name": "governancegroup ownership",
         "description": "process a list of entitlements for a target source",
         "created": "2025-08-01T12:17:55.775592888Z",
-        "modified": "2025-09-03T16:14:43.288676667Z",
+        "modified": "2025-09-03T16:27:19.504861576Z",
         "modifiedBy": {
             "type": "IDENTITY",
             "id": "8854446c0c0c4b5bb87ca482a91b0ef3",
@@ -182,7 +182,7 @@
                 }
             }
         },
-        "enabled": true,
+        "enabled": false,
         "creator": {
             "type": "IDENTITY",
             "id": "8854446c0c0c4b5bb87ca482a91b0ef3",
