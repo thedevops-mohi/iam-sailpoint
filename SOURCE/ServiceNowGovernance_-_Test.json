@@ -24,9 +24,9 @@
         "beforeProvisioningRule": null,
         "features": [
             "ENABLE",
-            "UNLOCK",
-            "APPLICATION_DISCOVERY",
             "PASSWORD",
+            "APPLICATION_DISCOVERY",
+            "UNLOCK",
             "PROVISIONING"
         ],
         "schemas": [
