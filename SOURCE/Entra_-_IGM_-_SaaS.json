@@ -24,10 +24,10 @@
         "beforeProvisioningRule": null,
         "features": [
             "ENABLE",
+            "PASSWORD",
             "APPLICATION_DISCOVERY",
             "AUTHENTICATE",
-            "PROVISIONING",
-            "PASSWORD"
+            "PROVISIONING"
         ],
         "schemas": [
             {
