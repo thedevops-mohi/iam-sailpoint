@@ -19,7 +19,7 @@
             "name": "ServiceNow Non-Human Accounts"
         },
         "identityRefreshRequired": true,
-        "identityCount": 387,
+        "identityCount": 389,
         "identityAttributeConfig": {
             "enabled": true,
             "attributeTransforms": [
@@ -350,10 +350,7 @@
                 }
             ]
         },
-        "identityExceptionReportReference": {
-            "taskResultId": "0d834a39cb634b22ba9531d766826b36",
-            "reportName": "Non-Humans Identity Exceptions"
-        },
+        "identityExceptionReportReference": null,
         "hasTimeBasedAttr": false,
         "id": "af6d2f7be9624c6bb924eca7d96e762a",
         "name": "Non-Humans",

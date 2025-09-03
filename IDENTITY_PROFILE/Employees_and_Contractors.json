@@ -1001,10 +1001,7 @@
                 }
             ]
         },
-        "identityExceptionReportReference": {
-            "taskResultId": "b4099a70cf9149e89aa62d3cada3b1b6",
-            "reportName": "Employees and Contractors Identity Exceptions"
-        },
+        "identityExceptionReportReference": null,
         "hasTimeBasedAttr": true,
         "id": "edc0d1b4869e49519112e116f4c102d1",
         "name": "Employees and Contractors",
