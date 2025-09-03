@@ -28,8 +28,8 @@
         "beforeProvisioningRule": null,
         "features": [
             "DISCOVER_SCHEMA",
-            "NO_RANDOM_ACCESS",
-            "DIRECT_PERMISSIONS"
+            "DIRECT_PERMISSIONS",
+            "NO_RANDOM_ACCESS"
         ],
         "schemas": [
             {
