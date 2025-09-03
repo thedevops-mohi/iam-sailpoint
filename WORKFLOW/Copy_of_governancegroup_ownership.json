@@ -2,15 +2,15 @@
     "version": 1,
     "var_self": {
         "type": "WORKFLOW",
-        "id": "0eacb9cb-2aa9-46cf-9fd4-e9a47105aa75",
-        "name": "governancegroup ownership"
+        "id": "fd714168-bcc9-42f6-93f5-64c88f5c48db",
+        "name": "Copy of governancegroup ownership"
     },
     "object": {
-        "id": "0eacb9cb-2aa9-46cf-9fd4-e9a47105aa75",
-        "name": "governancegroup ownership",
+        "id": "fd714168-bcc9-42f6-93f5-64c88f5c48db",
+        "name": "Copy of governancegroup ownership",
         "description": "process a list of entitlements for a target source",
-        "created": "2025-08-01T12:17:55.775592888Z",
-        "modified": "2025-09-03T16:14:43.288676667Z",
+        "created": "2025-09-03T16:09:51.46806687Z",
+        "modified": "2025-09-03T16:11:21.856212961Z",
         "modifiedBy": {
             "type": "IDENTITY",
             "id": "8854446c0c0c4b5bb87ca482a91b0ef3",
@@ -35,7 +35,7 @@
                 "Get Identity": {
                     "actionId": "sp:get-identity",
                     "attributes": {
-                        "id.$": "$.trigger.leaverId.id"
+                        "id.$": "$.trigger.identity.id"
                     },
                     "description": "Get full details on the identity in question",
                     "displayName": "",
@@ -57,7 +57,6 @@
                         },
                         "method": "post",
                         "oAuthClientId": "e84f31b591e747538d9071ed05c46546",
-                        "oAuthClientSecret": "$.secrets.a6c5cdfa-df56-4b15-8b14-558a88ddfe40",
                         "oAuthCredentialLocation": "oAuthInHeader",
                         "oAuthScope": null,
                         "oAuthTokenUrl": "https://igmfinancial-dev.api.identitynow.com/oauth/token",
@@ -182,7 +181,7 @@
                 }
             }
         },
-        "enabled": true,
+        "enabled": false,
         "creator": {
             "type": "IDENTITY",
             "id": "8854446c0c0c4b5bb87ca482a91b0ef3",
@@ -194,11 +193,10 @@
             "name": "Rahul.Majumder"
         },
         "trigger": {
-            "type": "EXTERNAL",
+            "type": "EVENT",
             "attributes": {
-                "clientId": "9e339346-a0bd-4b87-b0e4-bcb37038200e",
-                "id": "idn:external-http",
-                "url": "https://igmfinancial-dev.api.identitynow.com/beta/workflows/execute/external/0eacb9cb-2aa9-46cf-9fd4-e9a47105aa75"
+                "filter.$": "$.changes[?(@.attribute=='cloudLifecycleState' && @.newValue=='terminated')]",
+                "id": "idn:identity-attributes-changed"
             }
         }
     }
