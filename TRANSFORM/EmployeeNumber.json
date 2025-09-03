@@ -1,0 +1,38 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "9b4c748d-96b0-4ee5-b272-ff6738497d17",
+        "name": "EmployeeNumber"
+    },
+    "object": {
+        "id": "9b4c748d-96b0-4ee5-b272-ff6738497d17",
+        "name": "EmployeeNumber",
+        "type": "static",
+        "attributes": {
+            "userType": {
+                "type": "reference",
+                "attributes": {
+                    "id": "UserType"
+                }
+            },
+            "employeeNumber": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "ServiceNowAPI",
+                                "attributeName": "employeeNumber"
+                            }
+                        },
+                        "None"
+                    ]
+                }
+            },
+            "value": "#if($userType == 'Employee')$employeeNumber#end"
+        },
+        "internal": false
+    }
+}

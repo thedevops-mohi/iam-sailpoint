@@ -1,0 +1,24 @@
+{
+    "name": "AD AfterCreate NonHuman",
+    "description": "This is an IQService afterScript - before starting a delete operation, this after script should be used as the starting point for initiating a separate PowerShell script residing on the client's IQService server. This script will invoke another script which will be used to send the joiner email notification for Non Human accounts.",
+    "type": "ConnectorAfterCreate",
+    "signature": {
+        "input": [],
+        "output": null
+    },
+    "source_code": {
+        "version": "1.0",
+        "script": "$logDate = Get-Date -UFormat \"%Y%m%d\"\r\n$scriptPath = \"F:\\SailPoint\\Scripts\\AD_After_Create_NH\\After_Create_Script.ps1\"\r\n$enableDebug = $true\r\n\r\n#====================-------Helper functions-------====================\r\nfunction logToFile([String] $info){\r\n    $(Get-Date -Format s) + \":  \" + $info | Out-File $logFile -Append\r\n}\r\n\r\n#====================-------Get the request object-------====================\r\nTry{\r\n    Add-type -path C:\\SailPoint\\IQService\\Utils.dll;\r\n    $sReader = New-Object System.IO.StringReader([System.String]$env:Request);\r\n    $xmlReader = [System.xml.XmlTextReader]([sailpoint.utils.xml.XmlUtil]::getReader($sReader));\r\n    $requestObject = New-Object Sailpoint.Utils.objects.AccountRequest($xmlReader);\r\n    $requestAsString = $env:Request\r\n\r\n    #XML object\r\n    $xmlRequest = [xml]$requestAsString\r\n    $Username = $xmlRequest.AccountRequest.AttributeRequest | Where-Object Name -eq 'sAMAccountName' | ForEach-Object { $_.value }\r\n    $logFile = \"F:\\SailPoint\\Scripts\\AD_After_Create_NH\\Logs\\After_Create_Rule_$logDate_$Username.log\"\r\n\r\n    LogToFile(\"Starting SailPoint After Create Rule\")\r\n\r\n    #Escape double quotes to pass as a single string\r\n    $requestAsString = $requestAsString -replace '\"','\\\"'\r\n\r\n    $Args = @\"\r\n-File $scriptPath -requestString \"$requestAsString\"\r\n\"@\r\n\r\n    if($enableDebug){\r\n        LogToFile(\"Start-Process arguments: $Args\")\r\n    }\r\n\r\n    #SailPoint times out after 60 seconds if the After Create Rule does not finish execution, therefore Invoke-Expression has been replaced by Start-Process\r\n    #Invoke the After Create script using start-process cmdlet. After invocation, this rule does not wait for the script invoked to finish execution\r\n    logToFile(\"Invoking $scriptPath\")\r\n    Start-Process powershell.exe -ArgumentList $Args\r\n\r\n    logToFile(\"$scriptPath invoked successfully\")\r\n\r\n}Catch{\r\n    if (-not $logToFile){\r\n        $logFile = \"F:\\SailPoint\\Scripts\\AD_After_Create_NH\\Logs\\ERROR_After_Create_Rule_$logDate.log\"\r\n    }\r\n    $ErrorMessage = $_.Exception.Message \r\n    $ErrorItem = $_.Exception.ItemName\r\n    LogToFile(\"Error: Item = $ErrorItem -> Message = $ErrorMessage\")\r\n}\r\n\r\n\r\nLogToFile(\"SailPoint completed execution\")"
+    },
+    "attributes": {
+        "ObjectOrientedScript": "true",
+        "extension": ".ps1",
+        "sourceVersion": "1.0",
+        "disabled": "false",
+        "program": "powershell.exe",
+        "timeout": "300"
+    },
+    "id": "4742f981b1e748c3b6fcb6ff83718785",
+    "created": "2025-07-15T17:19:40.528Z",
+    "modified": "2025-07-15T17:19:40.528Z"
+}

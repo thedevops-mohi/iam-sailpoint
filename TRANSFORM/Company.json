@@ -1,0 +1,108 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "d4b5bcde-e449-41c4-b2a8-f21305fe8004",
+        "name": "Company"
+    },
+    "object": {
+        "id": "d4b5bcde-e449-41c4-b2a8-f21305fe8004",
+        "name": "Company",
+        "type": "static",
+        "attributes": {
+            "userType": {
+                "type": "reference",
+                "attributes": {
+                    "id": "UserType"
+                }
+            },
+            "hasEmpSapEccAccount": {
+                "type": "static",
+                "attributes": {
+                    "empSapEccAccount": {
+                        "type": "firstValid",
+                        "attributes": {
+                            "values": [
+                                {
+                                    "type": "accountAttribute",
+                                    "attributes": {
+                                        "sourceName": "Employees SAP ECC",
+                                        "attributeName": "BUKRS"
+                                    }
+                                },
+                                {
+                                    "type": "static",
+                                    "attributes": {
+                                        "value": "None"
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "value": "#if($empSapEccAccount == 'None')false#{else}true#end"
+                }
+            },
+            "employeeSapEccCompany": {
+                "type": "static",
+                "attributes": {
+                    "employeeSourceCompany": {
+                        "type": "firstValid",
+                        "attributes": {
+                            "values": [
+                                {
+                                    "type": "accountAttribute",
+                                    "attributes": {
+                                        "sourceName": "Employees SAP ECC",
+                                        "attributeName": "BUKRS"
+                                    }
+                                },
+                                {
+                                    "type": "static",
+                                    "attributes": {
+                                        "value": "0"
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "value": "#set($Integer = 0)#if($employeeSourceCompany != '0')#set($company = $Integer.valueOf($employeeSourceCompany))#{else}#set($company = 0)#end#if($company >= 1000 && $company <= 1999)Investors Group#elseif($company >= 3000 && $company <= 3999)Investment Planning Counsel#elseif($company >= 4000 && $company <= 4999)Mackenzie Financial Corp.#end"
+                }
+            },
+            "employeeServiceNowApiCompany": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "ServiceNowAPI",
+                                "attributeName": "company"
+                            }
+                        },
+                        {
+                            "type": "static",
+                            "attributes": {
+                                "value": "None"
+                            }
+                        }
+                    ]
+                }
+            },
+            "advisorCompany": {
+                "type": "static",
+                "attributes": {
+                    "value": "Investors Group"
+                }
+            },
+            "contractorCompany": {
+                "type": "accountAttribute",
+                "attributes": {
+                    "sourceName": "ServiceNowAPI",
+                    "attributeName": "company"
+                }
+            },
+            "value": "#if($userType == 'Employee' && $hasEmpSapEccAccount == 'true')$employeeSapEccCompany#elseif($userType == 'Employee' && $hasEmpSapEccAccount == 'false')$employeeServiceNowApiCompany#elseif($userType == 'Contractor')$contractorCompany#elseif($userType == 'Advisor')$advisorCompany#end"
+        },
+        "internal": false
+    }
+}

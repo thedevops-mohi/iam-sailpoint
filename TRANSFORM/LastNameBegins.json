@@ -1,0 +1,25 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "0972f7c1-5790-4db7-94bb-39550f629958",
+        "name": "LastNameBegins"
+    },
+    "object": {
+        "id": "0972f7c1-5790-4db7-94bb-39550f629958",
+        "name": "LastNameBegins",
+        "type": "substring",
+        "attributes": {
+            "input": {
+                "type": "reference",
+                "attributes": {
+                    "id": "LastName"
+                }
+            },
+            "begin": -1,
+            "beginOffset": 1,
+            "end": 1
+        },
+        "internal": false
+    }
+}

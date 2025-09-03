@@ -1,0 +1,62 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "d324cfd3-2b2a-4fee-902c-aae21799446b",
+        "name": "NHOuTier"
+    },
+    "object": {
+        "id": "d324cfd3-2b2a-4fee-902c-aae21799446b",
+        "name": "NHOuTier",
+        "type": "static",
+        "attributes": {
+            "acctType": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "ServiceNow Non-Human Accounts",
+                                "attributeName": "acctType"
+                            }
+                        },
+                        "None"
+                    ]
+                }
+            },
+            "authSource": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "ServiceNow Non-Human Accounts",
+                                "attributeName": "authSource"
+                            }
+                        },
+                        "None"
+                    ]
+                }
+            },
+            "ouTier": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "ServiceNow Non-Human Accounts",
+                                "attributeName": "ouTier"
+                            }
+                        },
+                        "None"
+                    ]
+                }
+            },
+            "value": "#if($ouTier == '0' && $acctType == 'SVC')Tier 0 - High Security#elseif($ouTier == '1' && $acctType == 'SVC')Tier 1 - Medium Security#elseif($ouTier == '2' && $acctType == 'SVC')Tier 2 - Standard Security#elseif($acctType == 'BOT' || $acctType == 'TEST')Tier 2 - Standard Security#elseif(($acctType == 'PRA' || $acctType == 'PRF') && ($authSource =='E'))Tier 1 - Medium Security#elseif(($acctType == 'PRA' || $acctType == 'PRF') && ($authSource =='D'))Tier 0 - High Security#end"
+        },
+        "internal": false
+    }
+}

@@ -1,0 +1,72 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "ACCESS_PROFILE",
+        "id": "a54a5ad32ac54f6292c6f8af7d3730ad",
+        "name": "AD - MI Employee - Base"
+    },
+    "object": {
+        "id": "a54a5ad32ac54f6292c6f8af7d3730ad",
+        "name": "AD - MI Employee - Base",
+        "description": "MI Employee",
+        "created": "2023-04-14T08:37:28.111Z",
+        "modified": "2025-06-24T16:02:44.775928Z",
+        "enabled": true,
+        "owner": {
+            "type": "IDENTITY",
+            "id": "f5df644192e744eab79a35025c29a227",
+            "name": "Jyoti.Gupta"
+        },
+        "source": {
+            "id": "a4dc7c1f64fc44fe9e778339d4915993",
+            "type": "SOURCE",
+            "name": "Active Directory"
+        },
+        "entitlements": [
+            {
+                "id": "5a2b3ad3db4930e883b40b8e871fc1df",
+                "type": "ENTITLEMENT",
+                "name": "IGM- S2CiValua -PRD-BASICUSER"
+            },
+            {
+                "id": "3caf6722baa43149a43a70ed4531fd2a",
+                "type": "ENTITLEMENT",
+                "name": "IGM-Genetec-PROD-All-Base"
+            },
+            {
+                "id": "17a818f59e203bbd966d59eeca991f5b",
+                "type": "ENTITLEMENT",
+                "name": "IGM-Sierra-PRD-Allow"
+            },
+            {
+                "id": "a87f3b4e97573dd48478b7e7180668b5",
+                "type": "ENTITLEMENT",
+                "name": "MFCGG_365License_E5"
+            },
+            {
+                "id": "6e688c770a0c384ab81a0f3e453d4187",
+                "type": "ENTITLEMENT",
+                "name": "MFCGG_PSO_IGM"
+            },
+            {
+                "id": "eb6bec35c37930afa022ac87a6087dc0",
+                "type": "ENTITLEMENT",
+                "name": "MI-SoftPhone-Directory-PROD"
+            }
+        ],
+        "requestable": true,
+        "accessRequestConfig": {
+            "commentsRequired": false,
+            "denialCommentsRequired": false,
+            "approvalSchemes": [],
+            "reauthorizationRequired": false
+        },
+        "revocationRequestConfig": {
+            "approvalSchemes": []
+        },
+        "segments": [],
+        "provisioningCriteria": null,
+        "additionalOwners": null,
+        "segmentRefs": []
+    }
+}

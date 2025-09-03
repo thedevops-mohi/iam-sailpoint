@@ -1,0 +1,26 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "b68dc963-a07e-44f2-aa5d-8aee8c79b2b3",
+        "name": "NHAppName"
+    },
+    "object": {
+        "id": "b68dc963-a07e-44f2-aa5d-8aee8c79b2b3",
+        "name": "NHAppName",
+        "type": "firstValid",
+        "attributes": {
+            "values": [
+                {
+                    "type": "accountAttribute",
+                    "attributes": {
+                        "sourceName": "ServiceNow Non-Human Accounts",
+                        "attributeName": "appName"
+                    }
+                },
+                "Not Available"
+            ]
+        },
+        "internal": false
+    }
+}

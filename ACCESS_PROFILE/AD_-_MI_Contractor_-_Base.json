@@ -1,0 +1,57 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "ACCESS_PROFILE",
+        "id": "ce6340281abd4138950c41d0083108fe",
+        "name": "AD - MI Contractor - Base"
+    },
+    "object": {
+        "id": "ce6340281abd4138950c41d0083108fe",
+        "name": "AD - MI Contractor - Base",
+        "description": "MI Contractor",
+        "created": "2023-04-14T08:37:29.097Z",
+        "modified": "2025-06-24T16:02:42.820015Z",
+        "enabled": true,
+        "owner": {
+            "type": "IDENTITY",
+            "id": "f5df644192e744eab79a35025c29a227",
+            "name": "Jyoti.Gupta"
+        },
+        "source": {
+            "id": "a4dc7c1f64fc44fe9e778339d4915993",
+            "type": "SOURCE",
+            "name": "Active Directory"
+        },
+        "entitlements": [
+            {
+                "id": "5a2b3ad3db4930e883b40b8e871fc1df",
+                "type": "ENTITLEMENT",
+                "name": "IGM- S2CiValua -PRD-BASICUSER"
+            },
+            {
+                "id": "a87f3b4e97573dd48478b7e7180668b5",
+                "type": "ENTITLEMENT",
+                "name": "MFCGG_365License_E5"
+            },
+            {
+                "id": "6e688c770a0c384ab81a0f3e453d4187",
+                "type": "ENTITLEMENT",
+                "name": "MFCGG_PSO_IGM"
+            }
+        ],
+        "requestable": true,
+        "accessRequestConfig": {
+            "commentsRequired": false,
+            "denialCommentsRequired": false,
+            "approvalSchemes": [],
+            "reauthorizationRequired": false
+        },
+        "revocationRequestConfig": {
+            "approvalSchemes": []
+        },
+        "segments": [],
+        "provisioningCriteria": null,
+        "additionalOwners": null,
+        "segmentRefs": []
+    }
+}

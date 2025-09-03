@@ -1,0 +1,363 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "IDENTITY_PROFILE",
+        "id": "af6d2f7be9624c6bb924eca7d96e762a",
+        "name": "Non-Humans"
+    },
+    "object": {
+        "description": "Non-Human accounts management - SVC, BOT, Test, PRA and PRF",
+        "owner": {
+            "type": "IDENTITY",
+            "id": "f5df644192e744eab79a35025c29a227",
+            "name": "Jyoti Gupta"
+        },
+        "priority": 20,
+        "authoritativeSource": {
+            "type": "SOURCE",
+            "id": "72197f7d7db94cfc88bca4e9eb1c3c4b",
+            "name": "ServiceNow Non-Human Accounts"
+        },
+        "identityRefreshRequired": true,
+        "identityCount": 387,
+        "identityAttributeConfig": {
+            "enabled": true,
+            "attributeTransforms": [
+                {
+                    "identityAttributeName": "uid",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "sourceName": "ServiceNow Non-Human Accounts",
+                            "attributeName": "name",
+                            "sourceId": "72197f7d7db94cfc88bca4e9eb1c3c4b"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "email",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "NHWorkEmail",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "AD - Non-Person accounts",
+                                    "attributeName": "mail",
+                                    "sourceId": "9fe7ade93c304175a887524c46910c71"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "lastname",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "NHLastName",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "AD - Non-Person accounts",
+                                    "attributeName": "sn",
+                                    "sourceId": "9fe7ade93c304175a887524c46910c71"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "firstname",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "sourceName": "ServiceNow Non-Human Accounts",
+                            "attributeName": "name",
+                            "sourceId": "72197f7d7db94cfc88bca4e9eb1c3c4b"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "accessLevel",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "sourceName": "ServiceNow Non-Human Accounts",
+                            "attributeName": "accessLevel",
+                            "sourceId": "72197f7d7db94cfc88bca4e9eb1c3c4b"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "adDn",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "sourceName": "AD - Non-Person accounts",
+                            "attributeName": "distinguishedName",
+                            "sourceId": "9fe7ade93c304175a887524c46910c71"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "adManagerDn",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "ADManagerDN",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "ServiceNow Non-Human Accounts",
+                                    "attributeName": "owner",
+                                    "sourceId": "72197f7d7db94cfc88bca4e9eb1c3c4b"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "applicationEnvironment",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "NHAppEnvironment",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "ServiceNow Non-Human Accounts",
+                                    "attributeName": "environment",
+                                    "sourceId": "72197f7d7db94cfc88bca4e9eb1c3c4b"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "applicationName",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "NHAppName",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "ServiceNow Non-Human Accounts",
+                                    "attributeName": "appName",
+                                    "sourceId": "72197f7d7db94cfc88bca4e9eb1c3c4b"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "authenticationSource",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "NHAuthSource",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "ServiceNow Non-Human Accounts",
+                                    "attributeName": "authSource",
+                                    "sourceId": "72197f7d7db94cfc88bca4e9eb1c3c4b"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "displayName",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "sourceName": "ServiceNow Non-Human Accounts",
+                            "attributeName": "displayName",
+                            "sourceId": "72197f7d7db94cfc88bca4e9eb1c3c4b"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "emailDomain",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "NHEmailDomain",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "ServiceNow Non-Human Accounts",
+                                    "attributeName": "emailDomain",
+                                    "sourceId": "72197f7d7db94cfc88bca4e9eb1c3c4b"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "emailRequired",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "NHEmailRequired",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "ServiceNow Non-Human Accounts",
+                                    "attributeName": "emailFlag",
+                                    "sourceId": "72197f7d7db94cfc88bca4e9eb1c3c4b"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "fullDescription",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "sourceName": "ServiceNow Non-Human Accounts",
+                            "attributeName": "fullDesc",
+                            "sourceId": "72197f7d7db94cfc88bca4e9eb1c3c4b"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "hiddenInGal",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "NHHideFromGAL",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "ServiceNow Non-Human Accounts",
+                                    "attributeName": "hideFromGAL",
+                                    "sourceId": "72197f7d7db94cfc88bca4e9eb1c3c4b"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "cloudLifecycleState",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "NHLifecycleState",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "ServiceNow Non-Human Accounts",
+                                    "attributeName": "lcs",
+                                    "sourceId": "72197f7d7db94cfc88bca4e9eb1c3c4b"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "managerFullName",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "NHManagerName",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "ServiceNow Non-Human Accounts",
+                                    "attributeName": "owner",
+                                    "sourceId": "72197f7d7db94cfc88bca4e9eb1c3c4b"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "manager",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "sourceName": "ServiceNow Non-Human Accounts",
+                            "attributeName": "owner",
+                            "sourceId": "72197f7d7db94cfc88bca4e9eb1c3c4b"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "ouTier",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "NHOuTier",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "ServiceNow Non-Human Accounts",
+                                    "attributeName": "ouTier",
+                                    "sourceId": "72197f7d7db94cfc88bca4e9eb1c3c4b"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "samaccountname",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "sourceName": "ServiceNow Non-Human Accounts",
+                            "attributeName": "name",
+                            "sourceId": "72197f7d7db94cfc88bca4e9eb1c3c4b"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "targetConnectionType",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "sourceName": "ServiceNow Non-Human Accounts",
+                            "attributeName": "techPlatform",
+                            "sourceId": "72197f7d7db94cfc88bca4e9eb1c3c4b"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "upn",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "sourceName": "AD - Non-Person accounts",
+                            "attributeName": "userPrincipalName",
+                            "sourceId": "9fe7ade93c304175a887524c46910c71"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "userType",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "sourceName": "ServiceNow Non-Human Accounts",
+                            "attributeName": "acctType",
+                            "sourceId": "72197f7d7db94cfc88bca4e9eb1c3c4b"
+                        }
+                    }
+                }
+            ]
+        },
+        "identityExceptionReportReference": {
+            "taskResultId": "0d834a39cb634b22ba9531d766826b36",
+            "reportName": "Non-Humans Identity Exceptions"
+        },
+        "hasTimeBasedAttr": false,
+        "id": "af6d2f7be9624c6bb924eca7d96e762a",
+        "name": "Non-Humans",
+        "created": "2025-06-17T16:16:39.250Z",
+        "modified": "2025-08-12T15:07:04.844Z"
+    }
+}

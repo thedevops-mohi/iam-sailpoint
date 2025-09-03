@@ -1,0 +1,38 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "1ba280dd-8f04-49a4-9fd1-b22c4358dc19",
+        "name": "ContractorType"
+    },
+    "object": {
+        "id": "1ba280dd-8f04-49a4-9fd1-b22c4358dc19",
+        "name": "ContractorType",
+        "type": "static",
+        "attributes": {
+            "userType": {
+                "type": "reference",
+                "attributes": {
+                    "id": "UserType"
+                }
+            },
+            "externalCompany": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "ServiceNowAPI",
+                                "attributeName": "externalCompany"
+                            }
+                        },
+                        "None"
+                    ]
+                }
+            },
+            "value": "#if($userType == 'Contractor' && $externalCompany == 'HCMWorks')Contractor#elseif($userType == 'Contractor' && $externalCompany != 'HCMWorks' && $externalCompany != 'None')Consultant#elseif($userType == 'Contractor' && $externalCompany == 'None')External#else#end"
+        },
+        "internal": false
+    }
+}

@@ -1,0 +1,57 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "ACCESS_PROFILE",
+        "id": "0e83abbcf94a4bd6b25f61d26ee14c56",
+        "name": "AD - IGA - Division Manager"
+    },
+    "object": {
+        "id": "0e83abbcf94a4bd6b25f61d26ee14c56",
+        "name": "AD - IGA - Division Manager",
+        "description": "AD - IGA - Division Manager",
+        "created": "2023-04-14T08:37:21.771Z",
+        "modified": "2025-06-24T16:02:43.667927Z",
+        "enabled": true,
+        "owner": {
+            "type": "IDENTITY",
+            "id": "f5df644192e744eab79a35025c29a227",
+            "name": "Jyoti.Gupta"
+        },
+        "source": {
+            "id": "a4dc7c1f64fc44fe9e778339d4915993",
+            "type": "SOURCE",
+            "name": "Active Directory"
+        },
+        "entitlements": [
+            {
+                "id": "8a7ad528e3cd398ba580df1b2f30110c",
+                "type": "ENTITLEMENT",
+                "name": "DP_Advisor"
+            },
+            {
+                "id": "59e0dc1db25b3cf98d0777242f88ff72",
+                "type": "ENTITLEMENT",
+                "name": "IGAGG_FDR_ACCESS"
+            },
+            {
+                "id": "f84a8aeb388e38aa925ea27a75c20b76",
+                "type": "ENTITLEMENT",
+                "name": "IGNGG-PROD-LPP-SSO-DIVISIONDIRECTOR"
+            }
+        ],
+        "requestable": true,
+        "accessRequestConfig": {
+            "commentsRequired": false,
+            "denialCommentsRequired": false,
+            "approvalSchemes": [],
+            "reauthorizationRequired": false
+        },
+        "revocationRequestConfig": {
+            "approvalSchemes": []
+        },
+        "segments": [],
+        "provisioningCriteria": null,
+        "additionalOwners": null,
+        "segmentRefs": []
+    }
+}

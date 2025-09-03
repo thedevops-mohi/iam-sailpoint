@@ -1,0 +1,151 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "ROLE",
+        "id": "e7d112ed5717452f90184949cf36dfd7",
+        "name": "IGA - Lite Base"
+    },
+    "object": {
+        "id": "e7d112ed5717452f90184949cf36dfd7",
+        "name": "IGA - Lite Base",
+        "created": "2023-04-14T08:43:16.585Z",
+        "modified": "2025-07-16T11:35:31.101044Z",
+        "description": "IG Advisor Lite Base",
+        "owner": {
+            "type": "IDENTITY",
+            "id": "f5df644192e744eab79a35025c29a227",
+            "name": "Jyoti Gupta"
+        },
+        "entitlements": [],
+        "accessProfiles": [
+            {
+                "id": "7c5db5a08ada4a7fa2244ae1edde6a0c",
+                "type": "ACCESS_PROFILE",
+                "name": "AD - IGA - Lite Base"
+            }
+        ],
+        "membership": {
+            "type": "STANDARD",
+            "criteria": {
+                "operation": "AND",
+                "key": null,
+                "values": null,
+                "stringValue": "",
+                "children": [
+                    {
+                        "operation": "OR",
+                        "key": null,
+                        "values": null,
+                        "stringValue": "",
+                        "children": [
+                            {
+                                "operation": "EQUALS",
+                                "key": {
+                                    "type": "IDENTITY",
+                                    "property": "attribute.cloudLifecycleState",
+                                    "sourceId": ""
+                                },
+                                "values": null,
+                                "stringValue": "Prehire",
+                                "children": []
+                            },
+                            {
+                                "operation": "EQUALS",
+                                "key": {
+                                    "type": "IDENTITY",
+                                    "property": "attribute.cloudLifecycleState",
+                                    "sourceId": ""
+                                },
+                                "values": null,
+                                "stringValue": "Active",
+                                "children": []
+                            },
+                            {
+                                "operation": "EQUALS",
+                                "key": {
+                                    "type": "IDENTITY",
+                                    "property": "attribute.cloudLifecycleState",
+                                    "sourceId": ""
+                                },
+                                "values": null,
+                                "stringValue": "Suspended",
+                                "children": []
+                            },
+                            {
+                                "operation": "EQUALS",
+                                "key": {
+                                    "type": "IDENTITY",
+                                    "property": "attribute.cloudLifecycleState",
+                                    "sourceId": ""
+                                },
+                                "values": null,
+                                "stringValue": "Terminated",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "operation": "EQUALS",
+                        "key": {
+                            "type": "IDENTITY",
+                            "property": "attribute.userType",
+                            "sourceId": ""
+                        },
+                        "values": null,
+                        "stringValue": "Advisor",
+                        "children": []
+                    },
+                    {
+                        "operation": "OR",
+                        "key": null,
+                        "values": null,
+                        "stringValue": "",
+                        "children": [
+                            {
+                                "operation": "EQUALS",
+                                "key": {
+                                    "type": "IDENTITY",
+                                    "property": "attribute.subscriptionIndicator",
+                                    "sourceId": ""
+                                },
+                                "values": null,
+                                "stringValue": "2",
+                                "children": []
+                            },
+                            {
+                                "operation": "EQUALS",
+                                "key": {
+                                    "type": "IDENTITY",
+                                    "property": "attribute.subscriptionIndicator",
+                                    "sourceId": ""
+                                },
+                                "values": null,
+                                "stringValue": "4",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            "identities": null
+        },
+        "legacyMembershipInfo": null,
+        "enabled": true,
+        "requestable": false,
+        "accessRequestConfig": {
+            "commentsRequired": false,
+            "denialCommentsRequired": false,
+            "approvalSchemes": [],
+            "reauthorizationRequired": false
+        },
+        "revocationRequestConfig": {
+            "approvalSchemes": []
+        },
+        "segments": [],
+        "dimensional": false,
+        "dimensionRefs": null,
+        "additionalOwners": null,
+        "segmentRefs": [],
+        "dimensions": []
+    }
+}

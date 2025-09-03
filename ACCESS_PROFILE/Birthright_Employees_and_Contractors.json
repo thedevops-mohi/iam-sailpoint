@@ -1,0 +1,41 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "ACCESS_PROFILE",
+        "id": "0f0212329da944cf8d68cd5eed194849",
+        "name": "Birthright Employees and Contractors"
+    },
+    "object": {
+        "id": "0f0212329da944cf8d68cd5eed194849",
+        "name": "Birthright Employees and Contractors",
+        "description": "Birthright Employees and Contractors",
+        "created": "2023-04-05T14:09:27.93Z",
+        "modified": "2025-08-18T13:52:15.26748Z",
+        "enabled": false,
+        "owner": {
+            "type": "IDENTITY",
+            "id": "67bdaa99b6e94d25be4e38e34ccba2d7",
+            "name": "Gupta, Jyoti"
+        },
+        "source": {
+            "id": "a4dc7c1f64fc44fe9e778339d4915993",
+            "type": "SOURCE",
+            "name": "Active Directory"
+        },
+        "entitlements": [],
+        "requestable": true,
+        "accessRequestConfig": {
+            "commentsRequired": false,
+            "denialCommentsRequired": false,
+            "approvalSchemes": [],
+            "reauthorizationRequired": false
+        },
+        "revocationRequestConfig": {
+            "approvalSchemes": []
+        },
+        "segments": [],
+        "provisioningCriteria": null,
+        "additionalOwners": null,
+        "segmentRefs": []
+    }
+}

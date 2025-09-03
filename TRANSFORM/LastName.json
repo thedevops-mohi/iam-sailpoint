@@ -1,0 +1,75 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "046b0808-1ad9-4806-9cb4-c01d0dc43532",
+        "name": "LastName"
+    },
+    "object": {
+        "id": "046b0808-1ad9-4806-9cb4-c01d0dc43532",
+        "name": "LastName",
+        "type": "static",
+        "attributes": {
+            "userType": {
+                "type": "reference",
+                "attributes": {
+                    "id": "UserType"
+                }
+            },
+            "employeeLastName": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "Employees SAP ECC",
+                                "attributeName": "NACHN"
+                            }
+                        },
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "ServiceNowAPI",
+                                "attributeName": "lastName"
+                            }
+                        },
+                        "error: employee lastName not found"
+                    ]
+                }
+            },
+            "advisorLastName": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "Advisors - SIS Feed",
+                                "attributeName": "LAST-NAME"
+                            }
+                        },
+                        "error: advisor LAST-NAME not found"
+                    ]
+                }
+            },
+            "contractorLastName": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "ServiceNowAPI",
+                                "attributeName": "lastName"
+                            }
+                        },
+                        "error: contractor lastName not found"
+                    ]
+                }
+            },
+            "value": "#if($userType == 'Employee')$employeeLastName#elseif($userType == 'Advisor')$advisorLastName#elseif($userType == 'Contractor')$contractorLastName#{else}error: unkown user type: $userType#end"
+        },
+        "internal": false
+    }
+}

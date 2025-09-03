@@ -1,0 +1,47 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "ACCESS_PROFILE",
+        "id": "2def7b7a87c547318e2a31c24d866d25",
+        "name": "testing access profile1"
+    },
+    "object": {
+        "id": "2def7b7a87c547318e2a31c24d866d25",
+        "name": "testing access profile1",
+        "description": null,
+        "created": "2025-08-05T10:08:32.845552Z",
+        "modified": "2025-08-06T11:41:15.233033Z",
+        "enabled": false,
+        "owner": {
+            "type": "IDENTITY",
+            "id": "7f308ffae22a47689f39583187a0c4a6",
+            "name": "Whitlock, Lisa"
+        },
+        "source": {
+            "id": "a4dc7c1f64fc44fe9e778339d4915993",
+            "type": "SOURCE",
+            "name": "Active Directory"
+        },
+        "entitlements": [
+            {
+                "id": "001b538086943fae8a9eaf21d2588108",
+                "type": "ENTITLEMENT",
+                "name": "IGMB_CommPRO 2"
+            }
+        ],
+        "requestable": false,
+        "accessRequestConfig": {
+            "commentsRequired": null,
+            "denialCommentsRequired": null,
+            "approvalSchemes": [],
+            "reauthorizationRequired": false
+        },
+        "revocationRequestConfig": {
+            "approvalSchemes": null
+        },
+        "segments": [],
+        "provisioningCriteria": null,
+        "additionalOwners": null,
+        "segmentRefs": []
+    }
+}

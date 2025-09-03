@@ -1,0 +1,60 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "ca17f5ae-9240-4342-b550-5fc90318f028",
+        "name": "CostCenterDescription"
+    },
+    "object": {
+        "id": "ca17f5ae-9240-4342-b550-5fc90318f028",
+        "name": "CostCenterDescription",
+        "type": "static",
+        "attributes": {
+            "userType": {
+                "type": "reference",
+                "attributes": {
+                    "id": "UserType"
+                }
+            },
+            "employeeCostCenterDesc": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "Employees SAP ECC",
+                                "attributeName": "LTEXT"
+                            }
+                        },
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "ServiceNowAPI",
+                                "attributeName": "costCenterDesc"
+                            }
+                        },
+                        "None"
+                    ]
+                }
+            },
+            "contractorCostCenterDesc": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "ServiceNowAPI",
+                                "attributeName": "costCenterDesc"
+                            }
+                        },
+                        "None"
+                    ]
+                }
+            },
+            "value": "#if($userType == 'Employee' && $employeeCostCenterDesc != 'None')$employeeCostCenterDesc#elseif($userType == 'Contractor' && $contractorCostCenterDesc != 'None')$contractorCostCenterDesc#{else}#end"
+        },
+        "internal": false
+    }
+}

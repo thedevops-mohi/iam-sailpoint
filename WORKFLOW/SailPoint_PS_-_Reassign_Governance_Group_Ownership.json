@@ -1,0 +1,172 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "WORKFLOW",
+        "id": "c48e2cc0-1f06-4622-af34-d8796649139c",
+        "name": "SailPoint PS - Reassign Governance Group Ownership"
+    },
+    "object": {
+        "id": "c48e2cc0-1f06-4622-af34-d8796649139c",
+        "name": "SailPoint PS - Reassign Governance Group Ownership",
+        "description": "Child workflow (external trigger) for the parent leaver workflow that changes the ownership of governance groups from leaver to their manager.",
+        "created": "2025-08-21T14:25:10.035658897Z",
+        "modified": "2025-08-21T15:50:23.937312984Z",
+        "modifiedBy": {
+            "type": "IDENTITY",
+            "id": "8854446c0c0c4b5bb87ca482a91b0ef3",
+            "name": "Rahul.Majumder"
+        },
+        "definition": {
+            "start": "HTTP Request",
+            "steps": {
+                "HTTP Request": {
+                    "actionId": "sp:http",
+                    "attributes": {
+                        "authenticationType": "OAuth",
+                        "method": "get",
+                        "oAuthClientId": "e84f31b591e747538d9071ed05c46546",
+                        "oAuthClientSecret": "$.secrets.9554ee73-6067-420a-8dd0-a0fae87d7dc4",
+                        "oAuthCredentialLocation": "oAuthInHeader",
+                        "oAuthTokenUrl": "https://igmfinancial-dev.api.identitynow.com/oauth/token",
+                        "requestContentType": "json",
+                        "requestHeaders": "",
+                        "url": "https://igmfinancial-dev.api.identitynow.com/beta/workgroups?offset=0&limit=50",
+                        "urlParams": ""
+                    },
+                    "description": "Get ... all workgroups",
+                    "nextStep": "Loop",
+                    "type": "action",
+                    "versionNumber": 2
+                },
+                "Loop": {
+                    "actionId": "sp:loop:iterator",
+                    "attributes": {
+                        "context.$": "$.trigger",
+                        "input.$": "$.hTTPRequest.body",
+                        "start": "Define Variable",
+                        "steps": {
+                            "Compare Strings": {
+                                "actionId": "sp:compare-strings",
+                                "choiceList": [
+                                    {
+                                        "comparator": "StringEquals",
+                                        "nextStep": "HTTP Request 2",
+                                        "variableA.$": "$.defineVariable.first",
+                                        "variableB.$": "$.defineVariable1.second"
+                                    }
+                                ],
+                                "defaultStep": "success",
+                                "displayName": "",
+                                "type": "choice"
+                            },
+                            "Define Variable": {
+                                "actionId": "sp:define-variable",
+                                "attributes": {
+                                    "id": "sp:define-variable",
+                                    "variables": [
+                                        {
+                                            "description": "",
+                                            "name": "First",
+                                            "transforms": [],
+                                            "variableA.$": "$.loop.loopInput.owner.id"
+                                        }
+                                    ]
+                                },
+                                "displayName": "",
+                                "nextStep": "Define Variable 1",
+                                "type": "Mutation"
+                            },
+                            "Define Variable 1": {
+                                "actionId": "sp:define-variable",
+                                "attributes": {
+                                    "id": "sp:define-variable",
+                                    "variables": [
+                                        {
+                                            "description": "",
+                                            "name": "Second",
+                                            "transforms": [],
+                                            "variableA.$": "$.loop.context.leaverId.id"
+                                        }
+                                    ]
+                                },
+                                "displayName": "",
+                                "nextStep": "Compare Strings",
+                                "type": "Mutation"
+                            },
+                            "HTTP Request 2": {
+                                "actionId": "sp:http",
+                                "attributes": {
+                                    "authenticationType": "OAuth",
+                                    "jsonPatchRequestBody": null,
+                                    "jsonRequestBody": {
+                                        "owner": {
+                                            "id": "{{$.loop.context.managerRef.id}}"
+                                        }
+                                    },
+                                    "method": "patch",
+                                    "oAuthClientId": "e84f31b591e747538d9071ed05c46546",
+                                    "oAuthClientSecret": "$.secrets.c8eaeb8b-934b-4738-8d08-e98143d37bd3",
+                                    "oAuthCredentialLocation": "oAuthInHeader",
+                                    "oAuthTokenUrl": "https://igmfinancial-dev.api.identitynow.com/oauth/token",
+                                    "requestContentType": "json",
+                                    "requestHeaders": "Content-Type:application/json",
+                                    "textRequestBody": "",
+                                    "url": "https://igmfinancial-dev.api.identitynow.com/v2/workgroups/{{$.loop.loopInput.id}}"
+                                },
+                                "description": "Call governance group API to update(patch) governance group with IAM owner temporarily.",
+                                "nextStep": "Send Email",
+                                "type": "action",
+                                "versionNumber": 2
+                            },
+                            "Send Email": {
+                                "actionId": "sp:send-email",
+                                "attributes": {
+                                    "body": "<p>Dear {{$.loop.context.managerRef.name}},</p>\n<p>Due to the termination/suspension of {{$.loop.context.leaverId.name}}, ownership of the following Governance Group has been transferred to you:</p>\n<p>{{$.loop.loopInput.name}}</p>\n<p>You can access the details of this item at the following link:<br><a href=\"https://igmfinancial.service-now.com/snap?id=kb_article_view&amp;sysparm_article=KB0013953\">Corporate Employees - Access Items &ndash; Inventory with Owner and Approvers for Requests - Resource Centre</a></p>\n<p>If you wish to transfer ownership to another individual, please follow the instructions provided in the link below to submit a SNAP request.</p>\n<p><a href=\"https://igmfinancial.service-now.com/snap?id=sc_cat_item&amp;sys_id=a19553aadb27981095d0ddf5f49619ed&amp;sysparm_category=a8d60a5e1b115410afb584415b4bcb53\">Authorization Request - Resource Centre</a></p>\n<p>This is a system-generated email. Please do not respond to this email.</p>",
+                                    "context": {},
+                                    "recipientEmailList.$": "$.loop.context.managerRef.email",
+                                    "subject": "Transfer of Ownership Notification for Governance Group – {{$.loop.loopInput.name}}"
+                                },
+                                "displayName": "",
+                                "nextStep": "success",
+                                "type": "action",
+                                "versionNumber": 2
+                            },
+                            "success": {
+                                "actionId": "sp:operator-success",
+                                "type": "success"
+                            }
+                        }
+                    },
+                    "description": "loop through all gov groups with filter where owner is the leaver",
+                    "nextStep": "success 1",
+                    "type": "action",
+                    "versionNumber": 1
+                },
+                "success 1": {
+                    "actionId": "sp:operator-success",
+                    "type": "success"
+                }
+            }
+        },
+        "enabled": false,
+        "creator": {
+            "type": "IDENTITY",
+            "id": "8854446c0c0c4b5bb87ca482a91b0ef3",
+            "name": "Rahul.Majumder"
+        },
+        "owner": {
+            "type": "IDENTITY",
+            "id": "8854446c0c0c4b5bb87ca482a91b0ef3",
+            "name": "Rahul.Majumder"
+        },
+        "trigger": {
+            "type": "EXTERNAL",
+            "attributes": {
+                "clientId": "4e053bcd-5b3f-4b4d-b5ca-b5a142327f84",
+                "description": "Call to IDN to change ownership of governance groups owned by leaver.",
+                "id": "idn:external-http",
+                "url": "https://igmfinancial-dev.api.identitynow.com/beta/workflows/execute/external/c48e2cc0-1f06-4622-af34-d8796649139c"
+            }
+        }
+    }
+}

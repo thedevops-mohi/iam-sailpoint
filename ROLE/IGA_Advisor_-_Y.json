@@ -1,0 +1,175 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "ROLE",
+        "id": "239301f6f33f4612be56f9e4199ffc10",
+        "name": "IGA Advisor - Y"
+    },
+    "object": {
+        "id": "239301f6f33f4612be56f9e4199ffc10",
+        "name": "IGA Advisor - Y",
+        "created": "2023-04-14T08:43:27.769Z",
+        "modified": "2025-07-16T12:05:08.349651Z",
+        "description": "IGA Advisor - Y",
+        "owner": {
+            "type": "IDENTITY",
+            "id": "f5df644192e744eab79a35025c29a227",
+            "name": "Jyoti Gupta"
+        },
+        "entitlements": [
+            {
+                "sourceId": "a4dc7c1f-64fc-44fe-9e77-8339d4915993",
+                "sourceName": "Active Directory",
+                "id": "328cc70c-7c00-3adf-90ed-111d5489ed2c",
+                "type": "ENTITLEMENT",
+                "name": "ConsultantY"
+            }
+        ],
+        "accessProfiles": [],
+        "membership": {
+            "type": "STANDARD",
+            "criteria": {
+                "operation": "AND",
+                "key": null,
+                "values": null,
+                "stringValue": "",
+                "children": [
+                    {
+                        "operation": "OR",
+                        "key": null,
+                        "values": null,
+                        "stringValue": "",
+                        "children": [
+                            {
+                                "operation": "EQUALS",
+                                "key": {
+                                    "type": "IDENTITY",
+                                    "property": "attribute.cloudLifecycleState",
+                                    "sourceId": null
+                                },
+                                "values": null,
+                                "stringValue": "Prehire",
+                                "children": null
+                            },
+                            {
+                                "operation": "EQUALS",
+                                "key": {
+                                    "type": "IDENTITY",
+                                    "property": "attribute.cloudLifecycleState",
+                                    "sourceId": null
+                                },
+                                "values": null,
+                                "stringValue": "Active",
+                                "children": null
+                            },
+                            {
+                                "operation": "EQUALS",
+                                "key": {
+                                    "type": "IDENTITY",
+                                    "property": "attribute.cloudLifecycleState",
+                                    "sourceId": null
+                                },
+                                "values": null,
+                                "stringValue": "Suspended",
+                                "children": null
+                            },
+                            {
+                                "operation": "EQUALS",
+                                "key": {
+                                    "type": "IDENTITY",
+                                    "property": "attribute.cloudLifecycleState",
+                                    "sourceId": null
+                                },
+                                "values": null,
+                                "stringValue": "Terminated",
+                                "children": null
+                            }
+                        ]
+                    },
+                    {
+                        "operation": "EQUALS",
+                        "key": {
+                            "type": "IDENTITY",
+                            "property": "attribute.userType",
+                            "sourceId": null
+                        },
+                        "values": null,
+                        "stringValue": "Advisor",
+                        "children": null
+                    },
+                    {
+                        "operation": "OR",
+                        "key": null,
+                        "values": null,
+                        "stringValue": null,
+                        "children": [
+                            {
+                                "operation": "EQUALS",
+                                "key": {
+                                    "type": "IDENTITY",
+                                    "property": "attribute.title",
+                                    "sourceId": null
+                                },
+                                "values": null,
+                                "stringValue": "Consultant",
+                                "children": null
+                            },
+                            {
+                                "operation": "EQUALS",
+                                "key": {
+                                    "type": "IDENTITY",
+                                    "property": "attribute.title",
+                                    "sourceId": null
+                                },
+                                "values": null,
+                                "stringValue": "Division Director",
+                                "children": null
+                            },
+                            {
+                                "operation": "EQUALS",
+                                "key": {
+                                    "type": "IDENTITY",
+                                    "property": "attribute.title",
+                                    "sourceId": null
+                                },
+                                "values": null,
+                                "stringValue": "Regional Director",
+                                "children": null
+                            }
+                        ]
+                    },
+                    {
+                        "operation": "EQUALS",
+                        "key": {
+                            "type": "IDENTITY",
+                            "property": "attribute.lastNameBegins",
+                            "sourceId": null
+                        },
+                        "values": null,
+                        "stringValue": "Y",
+                        "children": null
+                    }
+                ]
+            },
+            "identities": null
+        },
+        "legacyMembershipInfo": null,
+        "enabled": true,
+        "requestable": false,
+        "accessRequestConfig": {
+            "commentsRequired": false,
+            "denialCommentsRequired": false,
+            "approvalSchemes": [],
+            "reauthorizationRequired": false
+        },
+        "revocationRequestConfig": {
+            "approvalSchemes": []
+        },
+        "segments": [],
+        "dimensional": false,
+        "dimensionRefs": null,
+        "additionalOwners": null,
+        "segmentRefs": [],
+        "dimensions": []
+    }
+}

@@ -1,0 +1,158 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "WORKFLOW",
+        "id": "1d9ebd27-a31a-4223-b3bb-f55dd3f93bca",
+        "name": "Corporate Users Inactive User Governance - Phase 1"
+    },
+    "object": {
+        "id": "1d9ebd27-a31a-4223-b3bb-f55dd3f93bca",
+        "name": "Corporate Users Inactive User Governance - Phase 1",
+        "description": "Send email to user's manager when user didnt login for more than 30 days.",
+        "created": "2025-08-01T13:16:19.414179021Z",
+        "modified": "2025-08-25T13:14:07.398872773Z",
+        "modifiedBy": {
+            "type": "IDENTITY",
+            "id": "1883596e385748c7bec4833a76bacad4",
+            "name": "Khilan.Shah"
+        },
+        "definition": {
+            "start": "HTTP Request",
+            "steps": {
+                "End Step - Success": {
+                    "actionId": "sp:operator-success",
+                    "displayName": "",
+                    "type": "success"
+                },
+                "HTTP Request": {
+                    "actionId": "sp:http",
+                    "attributes": {
+                        "authenticationType": "OAuth",
+                        "jsonRequestBody": {
+                            "indices": [
+                                "identities"
+                            ],
+                            "query": {
+                                "query": "(attributes.userType:\"employee\" OR attributes.userType:\"contractor\") AND (attributes.cloudLifecycleState:\"active\") AND (attributes.lastSignInDateType:[now-43d/d TO now-42d/d])"
+                            }
+                        },
+                        "method": "post",
+                        "oAuthClientId": "0a330447168744da986026dd588c9975",
+                        "oAuthClientSecret": "$.secrets.3f7c1be9-ce4c-439e-aaa5-18b3472ae4bb",
+                        "oAuthCredentialLocation": "oAuthInHeader",
+                        "oAuthTokenUrl": "https://igmfinancial-dev.api.identitynow.com/oauth/token",
+                        "requestContentType": "json",
+                        "requestHeaders": {
+                            "Content-Type": "application/json"
+                        },
+                        "url": "https://igmfinancial-dev.api.identitynow.com/v2025/search"
+                    },
+                    "description": "Get List of all identities who didnt login for last 30 days.",
+                    "displayName": "",
+                    "nextStep": "Loop",
+                    "type": "action",
+                    "versionNumber": 2
+                },
+                "Loop": {
+                    "actionId": "sp:loop:iterator",
+                    "attributes": {
+                        "input.$": "$.hTTPRequest.body",
+                        "start": "Get Identity 1",
+                        "steps": {
+                            "End Step - Success 1": {
+                                "actionId": "sp:operator-success",
+                                "displayName": "",
+                                "type": "success"
+                            },
+                            "Get Identity": {
+                                "actionId": "sp:get-identity",
+                                "attributes": {
+                                    "id.$": "$.loop.loopInput.manager.id"
+                                },
+                                "description": "",
+                                "displayName": "Get Manager",
+                                "nextStep": "Send Email",
+                                "type": "action",
+                                "versionNumber": 2
+                            },
+                            "Get Identity 1": {
+                                "actionId": "sp:get-identity",
+                                "attributes": {
+                                    "id.$": "$.loop.loopInput.id"
+                                },
+                                "displayName": "",
+                                "nextStep": "Verify Data Type",
+                                "type": "action",
+                                "versionNumber": 2
+                            },
+                            "Send Email": {
+                                "actionId": "sp:send-email",
+                                "attributes": {
+                                    "body": "<p class=\"MsoNormal\">Dear&nbsp;${managerFirstName} ${managerLastName},</p>\n<p class=\"MsoNormal\">You are receiving this notification because you are the manager of the following user, who has not logged in for the past 30 days:</p>\n<ul style=\"margin-top: 0cm;\" type=\"disc\">\n<li class=\"MsoNormal\" style=\"mso-list: l0 level1 lfo1; tab-stops: list 36.0pt;\">Name:&nbsp;${firstName} ${lastName}</li>\n<li class=\"MsoNormal\" style=\"mso-list: l0 level1 lfo1; tab-stops: list 36.0pt;\">Username:&nbsp;${sAMAccountName}</li>\n</ul>\n<p class=\"MsoNormal\">If the user is currently on leave or has left the organization, please submit an&nbsp;<a href=\"https://igmfinancial.service-now.com/snap?id=sc_cat_item&amp;sys_id=b069f5121be98e107254535f034bcbc9&amp;sysparm_category=240d741d1b10e010f2110f6cdc4bcbaa\">Offboarding Request</a> ticket via&nbsp;ServiceNow&nbsp;to initiate the suspension or offboarding process.</p>\n<p class=\"MsoNormal\">Important:&nbsp;If the user does not log in within the next 20 days, their account will be suspended, and all associated access will be disabled.</p>\n<p class=\"MsoNormal\">For any questions or further assistance, please refer to [KB Link] or contact the&nbsp;IAM Operations team&nbsp;at&nbsp;<a href=\"mailto:iamops@igmfinancial.com\" target=\"_blank\" rel=\"noopener\">iamops@igmfinancial.com</a>.</p>\n<p class=\"MsoNormal\">Best regards,<br>IAM Operations Team</p>\n<p class=\"MsoNormal\">Bonjour&nbsp;${managerFirstName} ${managerLastName},</p>\n<p class=\"MsoNormal\"><span lang=\"FR-CA\" style=\"mso-ansi-language: FR-CA;\">Vous recevez cet avis parce que votre subordonn&eacute; direct ci-dessous ne s&rsquo;est pas connect&eacute; &agrave; son compte depuis plus de 30&nbsp;jours&nbsp;:</span></p>\n<ul style=\"margin-top: 0cm;\" type=\"disc\">\n<li class=\"MsoNormal\" style=\"mso-list: l0 level1 lfo1; tab-stops: list 36.0pt;\"><span lang=\"FR-CA\" style=\"mso-ansi-language: FR-CA;\">Nom&nbsp;:&nbsp;${firstName} ${lastName}</span></li>\n<li class=\"MsoNormal\" style=\"mso-list: l0 level1 lfo1; tab-stops: list 36.0pt;\"><span lang=\"FR-CA\" style=\"mso-ansi-language: FR-CA;\">Nom d&rsquo;utilisateur&nbsp;: ${sAMAccountName}</span></li>\n</ul>\n<p class=\"MsoNormal\"><span lang=\"FR-CA\" style=\"mso-ansi-language: FR-CA;\">Si l&rsquo;utilisateur est actuellement en cong&eacute; ou a quitt&eacute; l&rsquo;entreprise, veuillez soumettre une </span><a href=\"https://igmfinancial.service-now.com/snap?id=sc_cat_item&amp;sys_id=b069f5121be98e107254535f034bcbc9&amp;sysparm_category=240d741d1b10e010f2110f6cdc4bcbaa\"><span lang=\"FR-CA\" style=\"mso-ansi-language: FR-CA;\">demande de retrait d&rsquo;utilisateur</span></a><span lang=\"FR-CA\" style=\"mso-ansi-language: FR-CA;\"> dans le portail ServiceNow afin de lancer le processus de retrait ou de suspension.</span></p>\n<p class=\"MsoNormal\"><span lang=\"FR-CA\" style=\"mso-ansi-language: FR-CA;\">Important&nbsp;: Si l&rsquo;utilisateur ne se connecte pas &agrave; son compte dans les 20&nbsp;prochains jours, son compte sera suspendu et tous les autres acc&egrave;s associ&eacute;s &agrave; son compte seront d&eacute;sactiv&eacute;s.</span></p>\n<p class=\"MsoNormal\"><span lang=\"FR-CA\" style=\"mso-ansi-language: FR-CA;\">Si vous avez des questions ou si vous avez besoin d&rsquo;aide, veuillez consulter l&rsquo;article [KB Link] ou &eacute;crire un courriel &agrave; l&rsquo;&eacute;quipe de gestion des acc&egrave;s et des identit&eacute;s &agrave; </span><a href=\"mailto:iamops@igmfinancial.com\" target=\"_blank\" rel=\"noopener\"><span lang=\"FR-CA\" style=\"mso-ansi-language: FR-CA;\">iamops@igmfinancial.com</span></a><span lang=\"FR-CA\" style=\"mso-ansi-language: FR-CA;\">.</span></p>\n<p class=\"MsoNormal\"><span lang=\"FR-CA\" style=\"mso-ansi-language: FR-CA;\">Cordialement,<br>&Eacute;quipe de gestion des acc&egrave;s et des identit&eacute;s</span></p>",
+                                    "context": {
+                                        "firstName.$": "$.getIdentity1.attributes.firstname",
+                                        "lastName.$": "$.getIdentity1.attributes.lastname",
+                                        "managerFirstName.$": "$.getIdentity.attributes.firstname",
+                                        "managerLastName.$": "$.getIdentity.attributes.lastname",
+                                        "sAMAccountName.$": "$.getIdentity1.attributes.samaccountname"
+                                    },
+                                    "recipientEmailList": [
+                                        "{{$.getIdentity.attributes.email}}",
+                                        "{{$.getIdentity1.attributes.email}}"
+                                    ],
+                                    "subject": "Inactive User Account Notification ${firstName} ${lastName} – Action Required/ Avis relatif aux comptes d’utilisateur inactifs ${firstName} ${lastName} – Mesure à prendre"
+                                },
+                                "description": "Send email to manager",
+                                "displayName": "",
+                                "nextStep": "End Step - Success 1",
+                                "type": "action",
+                                "versionNumber": 2
+                            },
+                            "Verify Data Type": {
+                                "actionId": "sp:compare-unary",
+                                "choiceList": [
+                                    {
+                                        "comparator": "IsPresent",
+                                        "nextStep": "Get Identity",
+                                        "variableA.$": "$.loop.loopInput.manager"
+                                    }
+                                ],
+                                "defaultStep": "End Step - Success 1",
+                                "description": "Make sure manager exists",
+                                "displayName": "Verify Manager Exists",
+                                "type": "choice"
+                            }
+                        }
+                    },
+                    "displayName": "",
+                    "nextStep": "End Step - Success",
+                    "type": "action",
+                    "versionNumber": 1
+                }
+            }
+        },
+        "enabled": false,
+        "creator": {
+            "type": "IDENTITY",
+            "id": "1883596e385748c7bec4833a76bacad4",
+            "name": "Khilan.Shah"
+        },
+        "owner": {
+            "type": "IDENTITY",
+            "id": "1883596e385748c7bec4833a76bacad4",
+            "name": "Khilan.Shah"
+        },
+        "trigger": {
+            "type": "SCHEDULED",
+            "attributes": {
+                "cronString": "0 19 * * *",
+                "dailyTimes": [
+                    "1970-01-01T01:00:00.000Z"
+                ],
+                "frequency": "daily",
+                "id": "idn:cron-schedule",
+                "timeZone": "America/Winnipeg"
+            }
+        }
+    }
+}

@@ -1,0 +1,145 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "IDENTITY_PROFILE",
+        "id": "aebefe5c7ad5456f86dc5640d9560171",
+        "name": "ISC Admins"
+    },
+    "object": {
+        "description": "Administrators of ISC",
+        "owner": {
+            "type": "IDENTITY",
+            "id": "31399c56b0a0417c91edede2f94a93b8",
+            "name": "SailPoint Services"
+        },
+        "priority": 10,
+        "authoritativeSource": {
+            "type": "SOURCE",
+            "id": "99ee88f2fe4c4414b736016d2bd0440f",
+            "name": "ISC Admins"
+        },
+        "identityRefreshRequired": false,
+        "identityCount": 11,
+        "identityAttributeConfig": {
+            "enabled": true,
+            "attributeTransforms": [
+                {
+                    "identityAttributeName": "uid",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "attributeName": "name",
+                            "sourceName": "ISC Admins",
+                            "sourceId": "99ee88f2fe4c4414b736016d2bd0440f"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "firstname",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "attributeName": "givenName",
+                            "sourceName": "ISC Admins",
+                            "sourceId": "99ee88f2fe4c4414b736016d2bd0440f"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "manager",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "attributeName": "manager",
+                            "sourceName": "ISC Admins",
+                            "sourceId": "99ee88f2fe4c4414b736016d2bd0440f"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "phone",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "attributeName": "secondaryPhoneNumber",
+                            "sourceName": "ISC Admins",
+                            "sourceId": "99ee88f2fe4c4414b736016d2bd0440f"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "displayName",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "attributeName": "displayName",
+                            "sourceName": "ISC Admins",
+                            "sourceId": "99ee88f2fe4c4414b736016d2bd0440f"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "identificationNumber",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "attributeName": "employeeNumber",
+                            "sourceName": "ISC Admins",
+                            "sourceId": "99ee88f2fe4c4414b736016d2bd0440f"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "workPhone",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "attributeName": "phoneNumber",
+                            "sourceName": "ISC Admins",
+                            "sourceId": "99ee88f2fe4c4414b736016d2bd0440f"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "email",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "attributeName": "email",
+                            "sourceName": "ISC Admins",
+                            "sourceId": "99ee88f2fe4c4414b736016d2bd0440f"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "lastname",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "attributeName": "familyName",
+                            "sourceName": "ISC Admins",
+                            "sourceId": "99ee88f2fe4c4414b736016d2bd0440f"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "personalEmail",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "attributeName": "secondaryEmail",
+                            "sourceName": "ISC Admins",
+                            "sourceId": "99ee88f2fe4c4414b736016d2bd0440f"
+                        }
+                    }
+                }
+            ]
+        },
+        "identityExceptionReportReference": null,
+        "hasTimeBasedAttr": false,
+        "id": "aebefe5c7ad5456f86dc5640d9560171",
+        "name": "ISC Admins",
+        "created": "2025-06-06T17:47:58.786Z",
+        "modified": "2025-06-06T17:48:02.131Z"
+    }
+}

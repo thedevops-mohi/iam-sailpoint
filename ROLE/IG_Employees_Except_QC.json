@@ -1,0 +1,104 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "ROLE",
+        "id": "e46272e6635144128b633b095ce9ab2c",
+        "name": "IG Employees Except QC"
+    },
+    "object": {
+        "id": "e46272e6635144128b633b095ce9ab2c",
+        "name": "IG Employees Except QC",
+        "created": "2023-11-10T14:05:12.044134Z",
+        "modified": "2025-07-14T11:20:04.37912Z",
+        "description": "HR email distribution list for all IG Employees (excluding contractors), except for those have province as QC.",
+        "owner": {
+            "type": "IDENTITY",
+            "id": "f5df644192e744eab79a35025c29a227",
+            "name": "Jyoti Gupta"
+        },
+        "entitlements": [
+            {
+                "sourceId": "a4dc7c1f-64fc-44fe-9e77-8339d4915993",
+                "sourceName": "Active Directory",
+                "id": "6817d698-a5f6-3fde-8ed2-41eca316a43a",
+                "type": "ENTITLEMENT",
+                "name": "IG Employees"
+            }
+        ],
+        "accessProfiles": [],
+        "membership": {
+            "type": "STANDARD",
+            "criteria": {
+                "operation": "AND",
+                "key": null,
+                "values": null,
+                "stringValue": null,
+                "children": [
+                    {
+                        "operation": "EQUALS",
+                        "key": {
+                            "type": "IDENTITY",
+                            "property": "attribute.company",
+                            "sourceId": null
+                        },
+                        "values": null,
+                        "stringValue": "Investors Group",
+                        "children": null
+                    },
+                    {
+                        "operation": "NOT_EQUALS",
+                        "key": {
+                            "type": "IDENTITY",
+                            "property": "attribute.provinceState",
+                            "sourceId": null
+                        },
+                        "values": null,
+                        "stringValue": "QC",
+                        "children": null
+                    },
+                    {
+                        "operation": "EQUALS",
+                        "key": {
+                            "type": "IDENTITY",
+                            "property": "attribute.userType",
+                            "sourceId": null
+                        },
+                        "values": null,
+                        "stringValue": "Employee",
+                        "children": null
+                    },
+                    {
+                        "operation": "EQUALS",
+                        "key": {
+                            "type": "IDENTITY",
+                            "property": "attribute.cloudLifecycleState",
+                            "sourceId": null
+                        },
+                        "values": null,
+                        "stringValue": "Active",
+                        "children": null
+                    }
+                ]
+            },
+            "identities": null
+        },
+        "legacyMembershipInfo": null,
+        "enabled": true,
+        "requestable": false,
+        "accessRequestConfig": {
+            "commentsRequired": null,
+            "denialCommentsRequired": null,
+            "approvalSchemes": [],
+            "reauthorizationRequired": false
+        },
+        "revocationRequestConfig": {
+            "approvalSchemes": []
+        },
+        "segments": [],
+        "dimensional": false,
+        "dimensionRefs": null,
+        "additionalOwners": null,
+        "segmentRefs": [],
+        "dimensions": []
+    }
+}

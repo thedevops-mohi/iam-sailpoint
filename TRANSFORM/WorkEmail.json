@@ -1,0 +1,26 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "1d2c6d1f-fc3b-4dd9-b39b-94406babd7a5",
+        "name": "WorkEmail"
+    },
+    "object": {
+        "id": "1d2c6d1f-fc3b-4dd9-b39b-94406babd7a5",
+        "name": "WorkEmail",
+        "type": "firstValid",
+        "attributes": {
+            "values": [
+                {
+                    "type": "accountAttribute",
+                    "attributes": {
+                        "sourceName": "Active Directory",
+                        "attributeName": "mail"
+                    }
+                },
+                "NONE"
+            ]
+        },
+        "internal": false
+    }
+}

@@ -1,0 +1,89 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "75ff5d43-ac0e-48a7-ab6d-812dda0a3e71",
+        "name": "ADCompany"
+    },
+    "object": {
+        "id": "75ff5d43-ac0e-48a7-ab6d-812dda0a3e71",
+        "name": "ADCompany",
+        "type": "static",
+        "attributes": {
+            "userType": {
+                "type": "reference",
+                "attributes": {
+                    "id": "UserType"
+                }
+            },
+            "company": {
+                "type": "reference",
+                "attributes": {
+                    "id": "Company"
+                }
+            },
+            "contractorExternalCompany": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "ServiceNowAPI",
+                                "attributeName": "externalCompany"
+                            }
+                        },
+                        "None"
+                    ]
+                }
+            },
+            "contractorCompany": {
+                "type": "concat",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "ServiceNowAPI",
+                                "attributeName": "company"
+                            }
+                        },
+                        " - Contractor"
+                    ]
+                }
+            },
+            "consultantCompany": {
+                "type": "concat",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "ServiceNowAPI",
+                                "attributeName": "company"
+                            }
+                        },
+                        " - Consultant"
+                    ]
+                }
+            },
+            "adCompanyException": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "OperatorSuppliedValues",
+                                "attributeName": "isADCompanyException"
+                            }
+                        },
+                        "false"
+                    ]
+                }
+            },
+            "value": "#if($userType == 'Contractor' && $contractorExternalCompany == 'HCMWorks' && ($adCompanyException == 'false' || $adCompanyException == 'FALSE'))$contractorCompany#elseif($userType == 'Contractor' && $contractorExternalCompany != 'HCMWorks' && ($adCompanyException == 'false' || $adCompanyException == 'FALSE'))$consultantCompany#{else}$company#end"
+        },
+        "internal": false
+    }
+}

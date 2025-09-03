@@ -1,0 +1,32 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "a1f037cf-37ae-44be-a304-27d4ad535bcf",
+        "name": "NHLifecycleState"
+    },
+    "object": {
+        "id": "a1f037cf-37ae-44be-a304-27d4ad535bcf",
+        "name": "NHLifecycleState",
+        "type": "static",
+        "attributes": {
+            "lifecycleState": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "ServiceNow Non-Human Accounts",
+                                "attributeName": "lcs"
+                            }
+                        },
+                        "None"
+                    ]
+                }
+            },
+            "value": "#if($lifecycleState == 'active' || $lifecycleState == 'Active'|| $lifecycleState == 'None')active#elseif($lifecycleState == 'disabled' || $lifecycleState == 'Disabled')disabled#elseif(($lifecycleState == 'deleted' || $lifecycleState == 'Deleted') && $oldValue == 'active')disabled#elseif(($lifecycleState == 'deleted' || $lifecycleState == 'Deleted') && $oldValue != 'active')deleted#end"
+        },
+        "internal": false
+    }
+}

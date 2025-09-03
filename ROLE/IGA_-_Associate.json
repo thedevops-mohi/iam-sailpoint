@@ -1,0 +1,132 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "ROLE",
+        "id": "779188b31aca47cf8110a3fa628b4389",
+        "name": "IGA - Associate"
+    },
+    "object": {
+        "id": "779188b31aca47cf8110a3fa628b4389",
+        "name": "IGA - Associate",
+        "created": "2023-04-14T08:43:18.061Z",
+        "modified": "2025-07-16T11:41:27.407541Z",
+        "description": "IGA - Associate",
+        "owner": {
+            "type": "IDENTITY",
+            "id": "f5df644192e744eab79a35025c29a227",
+            "name": "Jyoti Gupta"
+        },
+        "entitlements": [],
+        "accessProfiles": [
+            {
+                "id": "df6aae8aec734de0ae0297f30d979835",
+                "type": "ACCESS_PROFILE",
+                "name": "AD - IGA - Associate"
+            }
+        ],
+        "membership": {
+            "type": "STANDARD",
+            "criteria": {
+                "operation": "AND",
+                "key": null,
+                "values": null,
+                "stringValue": "",
+                "children": [
+                    {
+                        "operation": "OR",
+                        "key": null,
+                        "values": null,
+                        "stringValue": "",
+                        "children": [
+                            {
+                                "operation": "EQUALS",
+                                "key": {
+                                    "type": "IDENTITY",
+                                    "property": "attribute.cloudLifecycleState",
+                                    "sourceId": ""
+                                },
+                                "values": null,
+                                "stringValue": "Prehire",
+                                "children": []
+                            },
+                            {
+                                "operation": "EQUALS",
+                                "key": {
+                                    "type": "IDENTITY",
+                                    "property": "attribute.cloudLifecycleState",
+                                    "sourceId": ""
+                                },
+                                "values": null,
+                                "stringValue": "Active",
+                                "children": []
+                            },
+                            {
+                                "operation": "EQUALS",
+                                "key": {
+                                    "type": "IDENTITY",
+                                    "property": "attribute.cloudLifecycleState",
+                                    "sourceId": ""
+                                },
+                                "values": null,
+                                "stringValue": "Suspended",
+                                "children": []
+                            },
+                            {
+                                "operation": "EQUALS",
+                                "key": {
+                                    "type": "IDENTITY",
+                                    "property": "attribute.cloudLifecycleState",
+                                    "sourceId": ""
+                                },
+                                "values": null,
+                                "stringValue": "Terminated",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "operation": "EQUALS",
+                        "key": {
+                            "type": "IDENTITY",
+                            "property": "attribute.employeeType",
+                            "sourceId": ""
+                        },
+                        "values": null,
+                        "stringValue": "Advisor",
+                        "children": []
+                    },
+                    {
+                        "operation": "EQUALS",
+                        "key": {
+                            "type": "IDENTITY",
+                            "property": "attribute.title",
+                            "sourceId": ""
+                        },
+                        "values": null,
+                        "stringValue": "Associate",
+                        "children": []
+                    }
+                ]
+            },
+            "identities": null
+        },
+        "legacyMembershipInfo": null,
+        "enabled": true,
+        "requestable": false,
+        "accessRequestConfig": {
+            "commentsRequired": false,
+            "denialCommentsRequired": false,
+            "approvalSchemes": [],
+            "reauthorizationRequired": false
+        },
+        "revocationRequestConfig": {
+            "approvalSchemes": []
+        },
+        "segments": [],
+        "dimensional": false,
+        "dimensionRefs": null,
+        "additionalOwners": null,
+        "segmentRefs": [],
+        "dimensions": []
+    }
+}

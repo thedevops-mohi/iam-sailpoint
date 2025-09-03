@@ -1,0 +1,70 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "6bed1142-97eb-4062-b336-1e75b1b88b65",
+        "name": "City"
+    },
+    "object": {
+        "id": "6bed1142-97eb-4062-b336-1e75b1b88b65",
+        "name": "City",
+        "type": "static",
+        "attributes": {
+            "userType": {
+                "type": "reference",
+                "attributes": {
+                    "id": "UserType"
+                }
+            },
+            "employeeCity": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "Employees SAP ECC",
+                                "attributeName": "ORT01"
+                            }
+                        },
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "ServiceNowAPI",
+                                "attributeName": "city"
+                            }
+                        },
+                        {
+                            "type": "static",
+                            "attributes": {
+                                "value": "None"
+                            }
+                        }
+                    ]
+                }
+            },
+            "contractorCity": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "ServiceNowAPI",
+                                "attributeName": "city"
+                            }
+                        },
+                        {
+                            "type": "static",
+                            "attributes": {
+                                "value": "None"
+                            }
+                        }
+                    ]
+                }
+            },
+            "value": "#if($userType == 'Employee' && $employeeCity != 'None')$employeeCity#elseif($userType == 'Employee' && $employeeCity == 'None')#elseif($userType == 'Advisor')#elseif($userType == 'Contractor' && $contractorCity != 'None')$contractorCity#elseif($userType == 'Contractor' && $contractorCity == 'None')#end"
+        },
+        "internal": false
+    }
+}

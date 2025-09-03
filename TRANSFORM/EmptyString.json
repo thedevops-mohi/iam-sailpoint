@@ -1,0 +1,19 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "765061aa-9630-4605-9d4b-153fa842e221",
+        "name": "EmptyString"
+    },
+    "object": {
+        "id": "765061aa-9630-4605-9d4b-153fa842e221",
+        "name": "EmptyString",
+        "type": "firstValid",
+        "attributes": {
+            "values": [
+                ""
+            ]
+        },
+        "internal": false
+    }
+}

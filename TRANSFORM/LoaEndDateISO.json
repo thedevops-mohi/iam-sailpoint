@@ -1,0 +1,75 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "1340f676-a33f-4b1a-8fbe-3bfcef1bfb30",
+        "name": "LoaEndDateISO"
+    },
+    "object": {
+        "id": "1340f676-a33f-4b1a-8fbe-3bfcef1bfb30",
+        "name": "LoaEndDateISO",
+        "type": "static",
+        "attributes": {
+            "userType": {
+                "type": "reference",
+                "attributes": {
+                    "id": "UserType"
+                }
+            },
+            "employeeLoaEndDate": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "dateFormat",
+                            "attributes": {
+                                "input": {
+                                    "type": "accountAttribute",
+                                    "attributes": {
+                                        "sourceName": "ServiceNowAPI",
+                                        "attributeName": "loaEndDate"
+                                    }
+                                },
+                                "inputFormat": "yyyy-MM-dd'T'-HH:mm:ss:SSS-HH:mm",
+                                "outputFormat": "ISO8601"
+                            }
+                        },
+                        "None"
+                    ]
+                }
+            },
+            "advisorLoaEndDate": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        "None"
+                    ]
+                }
+            },
+            "contractorLoaEndDate": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "dateFormat",
+                            "attributes": {
+                                "input": {
+                                    "type": "accountAttribute",
+                                    "attributes": {
+                                        "sourceName": "ServiceNowAPI",
+                                        "attributeName": "loaEndDate"
+                                    }
+                                },
+                                "inputFormat": "yyyy-MM-dd'T'-HH:mm:ss:SSS-HH:mm",
+                                "outputFormat": "ISO8601"
+                            }
+                        },
+                        "None"
+                    ]
+                }
+            },
+            "value": "#if($userType == 'Advisor')$advisorLoaEndDate#elseif($userType == 'Employee')$employeeLoaEndDate#elseif($userType == 'Contractor')$contractorLoaEndDate#{else}error: unkown user type: $userType#end"
+        },
+        "internal": false
+    }
+}

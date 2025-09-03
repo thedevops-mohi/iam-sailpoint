@@ -1,0 +1,60 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "cd9e6018-7362-43f5-b83c-3e9877f6143d",
+        "name": "SNAPManagerName"
+    },
+    "object": {
+        "id": "cd9e6018-7362-43f5-b83c-3e9877f6143d",
+        "name": "SNAPManagerName",
+        "type": "static",
+        "attributes": {
+            "hasManager": {
+                "type": "conditional",
+                "attributes": {
+                    "expression": "$mgrLastName eq null",
+                    "positiveCondition": "false",
+                    "negativeCondition": "true",
+                    "mgrLastName": {
+                        "type": "firstValid",
+                        "attributes": {
+                            "values": [
+                                {
+                                    "type": "rule",
+                                    "attributes": {
+                                        "name": "Cloud Services Deployment Utility",
+                                        "operation": "getReferenceIdentityAttribute",
+                                        "uid": "manager",
+                                        "attributeName": "lastname"
+                                    }
+                                },
+                                "null"
+                            ]
+                        }
+                    }
+                }
+            },
+            "mgrLn": {
+                "type": "rule",
+                "attributes": {
+                    "name": "Cloud Services Deployment Utility",
+                    "operation": "getReferenceIdentityAttribute",
+                    "uid": "manager",
+                    "attributeName": "lastname"
+                }
+            },
+            "mgrFn": {
+                "type": "rule",
+                "attributes": {
+                    "name": "Cloud Services Deployment Utility",
+                    "operation": "getReferenceIdentityAttribute",
+                    "uid": "manager",
+                    "attributeName": "firstname"
+                }
+            },
+            "value": "#if($hasManager == 'true')$mgrFn $mgrLn#{else}error:undetermined SNAPManagerName transform#end"
+        },
+        "internal": false
+    }
+}
