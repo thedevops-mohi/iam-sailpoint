@@ -25,8 +25,8 @@
         "features": [
             "PASSWORD",
             "AUTHENTICATE",
-            "PROVISIONING",
             "APPLICATION_DISCOVERY",
+            "PROVISIONING",
             "ENABLE"
         ],
         "schemas": [
