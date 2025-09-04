@@ -23,8 +23,8 @@
         "managerCorrelationRule": null,
         "beforeProvisioningRule": null,
         "features": [
-            "PROVISIONING",
             "PASSWORD",
+            "PROVISIONING",
             "ENABLE"
         ],
         "schemas": [
