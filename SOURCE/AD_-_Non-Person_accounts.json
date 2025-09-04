@@ -32,20 +32,20 @@
         },
         "features": [
             "GROUP_PROVISIONING",
-            "MANAGER_LOOKUP",
+            "GROUPS_HAVE_MEMBERS",
             "PREFER_UUID",
-            "SYNC_PROVISIONING",
-            "UNLOCK",
-            "UNSTRUCTURED_TARGETS",
-            "AUTHENTICATE",
             "PASSWORD",
             "SEARCH",
-            "ENABLE",
             "CURRENT_PASSWORD",
+            "MANAGER_LOOKUP",
+            "UNSTRUCTURED_TARGETS",
+            "ENABLE",
             "PROVISIONING",
+            "UNLOCK",
+            "NO_PERMISSIONS_PROVISIONING",
             "NO_GROUP_PERMISSIONS_PROVISIONING",
-            "GROUPS_HAVE_MEMBERS",
-            "NO_PERMISSIONS_PROVISIONING"
+            "AUTHENTICATE",
+            "SYNC_PROVISIONING"
         ],
         "schemas": [
             {
