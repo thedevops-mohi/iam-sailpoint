@@ -19,7 +19,7 @@
             "name": "ServiceNowAPI"
         },
         "identityRefreshRequired": false,
-        "identityCount": 7996,
+        "identityCount": 7997,
         "identityAttributeConfig": {
             "enabled": true,
             "attributeTransforms": [
