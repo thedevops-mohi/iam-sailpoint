@@ -23,9 +23,9 @@
         "managerCorrelationRule": null,
         "beforeProvisioningRule": null,
         "features": [
-            "ENABLE",
             "PROVISIONING",
-            "PASSWORD"
+            "PASSWORD",
+            "ENABLE"
         ],
         "schemas": [
             {
@@ -241,7 +241,6 @@
             "spConnectorInstanceId": "f91b52d9-e18b-4f03-a296-24d00c01464e",
             "cloudCacheUpdate": 1756764705028,
             "templateApplication": "Identity Security Cloud Governance",
-            "hasFullAggregationCompleted": true,
             "healthy": true,
             "cloudDisplayName": "ISC Governance Source",
             "iscUrl": "https://igmfinancial-dev.api.identitynow.com",
