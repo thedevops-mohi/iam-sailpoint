@@ -10,7 +10,7 @@
         "name": "Provisioning failure Create Workflow notification ",
         "description": "Provisioning failure Create notification",
         "created": "2025-07-31T12:48:24.909879438Z",
-        "modified": "2025-08-12T14:59:25.859181712Z",
+        "modified": "2025-09-04T06:18:16.242267628Z",
         "modifiedBy": {
             "type": "IDENTITY",
             "id": "8854446c0c0c4b5bb87ca482a91b0ef3",
@@ -52,7 +52,7 @@
                 }
             }
         },
-        "enabled": false,
+        "enabled": true,
         "creator": {
             "type": "IDENTITY",
             "id": "8854446c0c0c4b5bb87ca482a91b0ef3",
