@@ -24,8 +24,8 @@
         "beforeProvisioningRule": null,
         "features": [
             "ENABLE",
-            "PASSWORD",
-            "PROVISIONING"
+            "PROVISIONING",
+            "PASSWORD"
         ],
         "schemas": [
             {
