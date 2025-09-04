@@ -23,9 +23,9 @@
         "managerCorrelationRule": null,
         "beforeProvisioningRule": null,
         "features": [
+            "DIRECT_PERMISSIONS",
             "DISCOVER_SCHEMA",
-            "NO_RANDOM_ACCESS",
-            "DIRECT_PERMISSIONS"
+            "NO_RANDOM_ACCESS"
         ],
         "schemas": [
             {
