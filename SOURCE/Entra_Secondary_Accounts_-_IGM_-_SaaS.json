@@ -24,8 +24,8 @@
         "beforeProvisioningRule": null,
         "features": [
             "PASSWORD",
-            "APPLICATION_DISCOVERY",
             "PROVISIONING",
+            "APPLICATION_DISCOVERY",
             "AUTHENTICATE",
             "ENABLE"
         ],
