@@ -26,8 +26,8 @@
             "AUTHENTICATE",
             "APPLICATION_DISCOVERY",
             "PROVISIONING",
-            "ENABLE",
-            "PASSWORD"
+            "PASSWORD",
+            "ENABLE"
         ],
         "schemas": [
             {
