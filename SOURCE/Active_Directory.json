@@ -31,21 +31,21 @@
             "name": "Active Directory BeforeProvisioning"
         },
         "features": [
-            "MANAGER_LOOKUP",
+            "NO_PERMISSIONS_PROVISIONING",
             "SEARCH",
-            "UNLOCK",
-            "PROVISIONING",
-            "GROUP_PROVISIONING",
+            "SYNC_PROVISIONING",
             "UNSTRUCTURED_TARGETS",
-            "AUTHENTICATE",
+            "UNLOCK",
+            "GROUPS_HAVE_MEMBERS",
             "NO_GROUP_PERMISSIONS_PROVISIONING",
             "ENABLE",
             "PREFER_UUID",
-            "GROUPS_HAVE_MEMBERS",
+            "GROUP_PROVISIONING",
             "PASSWORD",
             "CURRENT_PASSWORD",
-            "NO_PERMISSIONS_PROVISIONING",
-            "SYNC_PROVISIONING"
+            "AUTHENTICATE",
+            "MANAGER_LOOKUP",
+            "PROVISIONING"
         ],
         "schemas": [
             {
