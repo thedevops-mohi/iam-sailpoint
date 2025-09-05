@@ -27,9 +27,9 @@
         },
         "beforeProvisioningRule": null,
         "features": [
-            "DIRECT_PERMISSIONS",
+            "NO_RANDOM_ACCESS",
             "DISCOVER_SCHEMA",
-            "NO_RANDOM_ACCESS"
+            "DIRECT_PERMISSIONS"
         ],
         "schemas": [
             {
