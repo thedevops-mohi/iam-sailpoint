@@ -24,10 +24,10 @@
         "beforeProvisioningRule": null,
         "features": [
             "UNLOCK",
+            "PASSWORD",
             "PROVISIONING",
-            "ENABLE",
             "APPLICATION_DISCOVERY",
-            "PASSWORD"
+            "ENABLE"
         ],
         "schemas": [
             {
