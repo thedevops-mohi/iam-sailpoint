@@ -10,7 +10,7 @@
         "name": "SN Governance test – Employees, Contractors and Advisors",
         "description": null,
         "created": "2025-07-21T07:26:43.418592Z",
-        "modified": "2025-07-21T07:26:43.418592Z",
+        "modified": "2025-09-05T13:48:36.259376Z",
         "enabled": false,
         "owner": {
             "type": "IDENTITY",
@@ -20,7 +20,7 @@
         "source": {
             "id": "052f32887a6c4a3bb64e2e1eec4825e2",
             "type": "SOURCE",
-            "name": "ServiceNowGovernance - Test"
+            "name": "ServiceNowGovernance - DEV"
         },
         "entitlements": [],
         "requestable": false,
