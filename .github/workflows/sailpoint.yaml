@@ -14,7 +14,7 @@ jobs:
     steps:
       # 1. Checkout repo
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@master
         with:
           persist-credentials: false
           fetch-depth: 0
@@ -49,7 +49,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           author_name: "Automation Bot"
           author_email: "automation@mdeey.com"
-          message: "Automated SailPoint export commit"
+          message: "Automated SailPoint backup-${{ github.sha }}"
           branch: "main"
           directory: "."
 
