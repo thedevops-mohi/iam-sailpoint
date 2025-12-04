@@ -31,14 +31,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-    #   # 4. Run SailPoint export script
-    #   - name: Run SailPoint export script
-    #     env:
-    #       SAIL_BASE_URL: ${{ secrets.SAIL_BASE_URL }}
-    #       SAIL_CLIENT_ID: ${{ secrets.SAIL_CLIENT_ID }}
-    #       SAIL_CLIENT_SECRET: ${{ secrets.SAIL_CLIENT_SECRET }}
-    #     run: |
-    #       python sailpoint_03_11_2025_works_100.py
+      # 4. Run SailPoint export script
+      - name: Run SailPoint export script
+        env:
+          SAIL_BASE_URL: ${{ secrets.SAIL_BASE_URL }}
+          SAIL_CLIENT_ID: ${{ secrets.SAIL_CLIENT_ID }}
+          SAIL_CLIENT_SECRET: ${{ secrets.SAIL_CLIENT_SECRET }}
+        run: |
+          python sailpoint_03_11_2025_works_100.py
 
       # 5. Commit & Push changes using actions-js/push
       - name: Commit & Push changes
