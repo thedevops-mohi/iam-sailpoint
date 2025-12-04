@@ -1,0 +1,55 @@
+name: SailPoint Export
+
+on:
+  #schedule:
+  #  - cron: "0 2 * * *" # daily at 2 AM UTC
+  workflow_dispatch:
+
+permissions:
+      id-token: write
+      contents: read
+jobs:
+  export:
+    runs-on: self-hosted
+
+    steps:
+      # 1. Checkout repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      # 2. Setup Python
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.13'
+
+      # 3. Install dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # 4. Run SailPoint export script
+      - name: Run SailPoint export script
+        env:
+          SAIL_BASE_URL: ${{ secrets.SAIL_BASE_URL }}
+          SAIL_CLIENT_ID: ${{ secrets.SAIL_CLIENT_ID }}
+          SAIL_CLIENT_SECRET: ${{ secrets.SAIL_CLIENT_SECRET }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # optional for scripts using GitHub API
+        run: |
+          python sailpoint_03_11_2025_works_100.py
+
+      # 5. Commit & Push changes using actions-js/push
+      - name: Commit & Push changes
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          author_name: "Automation Bot"
+          author_email: "automation@mdeey.com"
+          message: "Automated SailPoint export commit"
+          branch: "main"
+          directory: "."
+
