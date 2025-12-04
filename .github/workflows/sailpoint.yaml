@@ -46,7 +46,7 @@ jobs:
       - name: Commit & Push changes
         uses: actions-js/push@master
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.MY_PAT }}
           author_name: "Automation Bot"
           author_email: "automation@mdeey.com"
           message: "Automated SailPoint export commit"
