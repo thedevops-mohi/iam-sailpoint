@@ -23,12 +23,12 @@
         "managerCorrelationRule": null,
         "beforeProvisioningRule": null,
         "features": [
-            "SEARCH",
-            "SYNC_PROVISIONING",
-            "PASSWORD",
-            "ENABLE",
             "MANAGER_LOOKUP",
-            "PROVISIONING"
+            "SYNC_PROVISIONING",
+            "ENABLE",
+            "SEARCH",
+            "PROVISIONING",
+            "PASSWORD"
         ],
         "schemas": [
             {

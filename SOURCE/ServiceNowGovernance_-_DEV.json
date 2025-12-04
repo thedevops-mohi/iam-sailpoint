@@ -23,13 +23,13 @@
         "managerCorrelationRule": null,
         "beforeProvisioningRule": null,
         "features": [
-            "ENABLE",
-            "DELETE",
-            "AI_AGENT_AGGREGATION",
-            "APPLICATION_DISCOVERY",
-            "PROVISIONING",
+            "UNLOCK",
             "PASSWORD",
-            "UNLOCK"
+            "AI_AGENT_AGGREGATION",
+            "ENABLE",
+            "PROVISIONING",
+            "APPLICATION_DISCOVERY",
+            "DELETE"
         ],
         "schemas": [
             {
