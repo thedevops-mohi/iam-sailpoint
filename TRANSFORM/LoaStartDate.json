@@ -1,0 +1,40 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "8afa701a-54b0-44a4-aee0-e01cd3eec2f0",
+        "name": "LoaStartDate"
+    },
+    "object": {
+        "id": "8afa701a-54b0-44a4-aee0-e01cd3eec2f0",
+        "name": "LoaStartDate",
+        "type": "static",
+        "attributes": {
+            "value": "#if($varLoaStartDate != 'null')$varLoaStartDate#{else}None#end",
+            "TransformDesrcription": {
+                "type": "static",
+                "value": "Updated 2025-06-18: Suspension/Leave of Absense Start Date. Currently the only scheduled suspension/loa controled in SailPoint is applied via ServiceNowApi. It is possible for a leave to be entered also in SuccessFactors but visibility to the start date would not be communicated to SailPoint."
+            },
+            "exceptionText": {
+                "type": "static",
+                "value": "tranform:LoaStartDate:error"
+            },
+            "varLoaStartDate": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "ServiceNowAPI",
+                                "attributeName": "loaStartDate"
+                            }
+                        },
+                        "None"
+                    ]
+                }
+            }
+        },
+        "internal": false
+    }
+}

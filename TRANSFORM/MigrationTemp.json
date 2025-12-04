@@ -1,0 +1,17 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "098855ae-fe19-4f6f-bfd6-306eabd6e35c",
+        "name": "MigrationTemp"
+    },
+    "object": {
+        "id": "098855ae-fe19-4f6f-bfd6-306eabd6e35c",
+        "name": "MigrationTemp",
+        "type": "static",
+        "attributes": {
+            "value": ""
+        },
+        "internal": false
+    }
+}

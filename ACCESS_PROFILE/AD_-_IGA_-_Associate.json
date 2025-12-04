@@ -1,0 +1,59 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "ACCESS_PROFILE",
+        "id": "df6aae8aec734de0ae0297f30d979835",
+        "name": "AD - IGA - Associate"
+    },
+    "object": {
+        "id": "df6aae8aec734de0ae0297f30d979835",
+        "name": "AD - IGA - Associate",
+        "description": "IG Advisor Associate",
+        "created": "2023-04-14T08:37:24.657Z",
+        "modified": "2025-12-03T15:17:57.315987Z",
+        "enabled": true,
+        "owner": {
+            "type": "IDENTITY",
+            "id": "f5df644192e744eab79a35025c29a227",
+            "name": "Jyoti Gupta"
+        },
+        "source": {
+            "id": "a4dc7c1f64fc44fe9e778339d4915993",
+            "type": "SOURCE",
+            "name": "Active Directory"
+        },
+        "entitlements": [
+            {
+                "id": "a8e5b00ce2293aa4be7c145e3a7c3355",
+                "type": "ENTITLEMENT",
+                "name": "Associate"
+            },
+            {
+                "id": "5ecd6d0639bc3360a08368fe3ce4359c",
+                "type": "ENTITLEMENT",
+                "name": "DP_Associate"
+            },
+            {
+                "id": "d714c5d6fece301abc564b876fdf31e1",
+                "type": "ENTITLEMENT",
+                "name": "IGNGG_PROD-LPP-SSO-ASSOCIATE"
+            }
+        ],
+        "requestable": false,
+        "accessRequestConfig": {
+            "commentsRequired": false,
+            "denialCommentsRequired": false,
+            "approvalSchemes": [],
+            "reauthorizationRequired": false,
+            "requireEndDate": false,
+            "maxPermittedAccessDuration": null
+        },
+        "revocationRequestConfig": {
+            "approvalSchemes": []
+        },
+        "segments": [],
+        "provisioningCriteria": null,
+        "additionalOwners": null,
+        "segmentRefs": []
+    }
+}

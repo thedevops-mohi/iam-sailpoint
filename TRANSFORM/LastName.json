@@ -1,0 +1,108 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "046b0808-1ad9-4806-9cb4-c01d0dc43532",
+        "name": "LastName"
+    },
+    "object": {
+        "id": "046b0808-1ad9-4806-9cb4-c01d0dc43532",
+        "name": "LastName",
+        "type": "static",
+        "attributes": {
+            "value": "#if($bestSource == 'use_SFAuth')$SFAuth_value#elseif($bestSource == 'use_SFNonAuth')$SFNonAuth_value#elseif($bestSource == 'use_SAPECC')$SAP_value#elseif($bestSource == 'use_SIS')$SIS_value#elseif($bestSource.compareToIgnoreCase('use_servicenow') == 0)$SNOW_value#{else}error:undetermined:transform:LastName#end",
+            "SAP_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "Employees SAP ECC",
+                                "attributeName": "NACHN"
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "SFAuth_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "SuccessFactors-Auth",
+                                "attributeName": "LastName",
+                                "accountSortAttribute": "StartDate_EmpInfo",
+                                "accountSortDescending": true,
+                                "accountReturnFirstLink": true
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "SFNonAuth_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "SuccessFactors - NonAuthoritative",
+                                "attributeName": "LastName",
+                                "accountSortAttribute": "StartDate_EmpInfo",
+                                "accountSortDescending": true,
+                                "accountReturnFirstLink": true
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "SIS_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "Advisors - SIS Feed",
+                                "attributeName": "LAST-NAME"
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "SNOW_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "ServiceNowAPI",
+                                "attributeName": "lastName"
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "TransformDesrcription": {
+                "type": "static",
+                "value": "This transform is for population of the Family Name."
+            },
+            "bestSource": {
+                "type": "reference",
+                "attributes": {
+                    "id": "BestSource"
+                }
+            }
+        },
+        "internal": false
+    }
+}

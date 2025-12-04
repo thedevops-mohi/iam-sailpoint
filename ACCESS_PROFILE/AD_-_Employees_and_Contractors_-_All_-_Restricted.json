@@ -1,0 +1,54 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "ACCESS_PROFILE",
+        "id": "cd8085cfdd584257a95db9d15eefadea",
+        "name": "AD - Employees and Contractors - All - Restricted"
+    },
+    "object": {
+        "id": "cd8085cfdd584257a95db9d15eefadea",
+        "name": "AD - Employees and Contractors - All - Restricted",
+        "description": "IG and MI - Employees and Contractors -All - Restricted",
+        "created": "2024-03-21T22:46:53.40643Z",
+        "modified": "2025-12-03T15:08:38.929742Z",
+        "enabled": true,
+        "owner": {
+            "type": "IDENTITY",
+            "id": "1b7fbaac325446ff9e49d1e5903c6d55",
+            "name": "Del Mundo, Alan"
+        },
+        "source": {
+            "id": "a4dc7c1f64fc44fe9e778339d4915993",
+            "type": "SOURCE",
+            "name": "Active Directory"
+        },
+        "entitlements": [
+            {
+                "id": "535695442a7b3a7889d61e053320f6ca",
+                "type": "ENTITLEMENT",
+                "name": "IGM-Genetec-PROD-180S-C-Suite-1242"
+            },
+            {
+                "id": "ece5cdf4efd13a9c99fe5006dc63242c",
+                "type": "ENTITLEMENT",
+                "name": "IGM-Genetec-PROD-All-Restricted"
+            }
+        ],
+        "requestable": false,
+        "accessRequestConfig": {
+            "commentsRequired": null,
+            "denialCommentsRequired": null,
+            "approvalSchemes": [],
+            "reauthorizationRequired": false,
+            "requireEndDate": false,
+            "maxPermittedAccessDuration": null
+        },
+        "revocationRequestConfig": {
+            "approvalSchemes": []
+        },
+        "segments": [],
+        "provisioningCriteria": null,
+        "additionalOwners": null,
+        "segmentRefs": []
+    }
+}

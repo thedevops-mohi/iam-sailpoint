@@ -1,0 +1,39 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "16d04a75-b48c-4853-9be4-71355485983b",
+        "name": "DepartmentNumber"
+    },
+    "object": {
+        "id": "16d04a75-b48c-4853-9be4-71355485983b",
+        "name": "DepartmentNumber",
+        "type": "static",
+        "attributes": {
+            "value": "$DefaultDepartmentIDValue",
+            "DefaultDepartmentIDValue": {
+                "type": "reference",
+                "attributes": {
+                    "id": "CostCenterID"
+                }
+            },
+            "TransformDesrcription": {
+                "type": "static",
+                "attributes": {
+                    "Comment": "NOTE this matches or is very similar to the CostCenterID transform.",
+                    "comment_20250618": "Updated 2025-06-18",
+                    "comment_20250724": "Scott Walker - add 'Consultant' as role value for override with advisorid",
+                    "comment_20250829": "Scott Walker - current usage matches CostCenterID transform. Department number does NOT have special handling for advisors (unlike Department)",
+                    "value": "Department Number value - shown in GAL via AD."
+                }
+            },
+            "exceptionText": {
+                "type": "static",
+                "attributes": {
+                    "value": "transform:DepartmentNumber:unhandled_case"
+                }
+            }
+        },
+        "internal": false
+    }
+}

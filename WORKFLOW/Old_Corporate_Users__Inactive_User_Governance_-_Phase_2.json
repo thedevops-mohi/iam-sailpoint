@@ -1,0 +1,290 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "WORKFLOW",
+        "id": "6f9f9d7a-b21c-4d8a-962b-1b9dc59873d1",
+        "name": "Old Corporate Users  Inactive User Governance - Phase 2"
+    },
+    "object": {
+        "id": "6f9f9d7a-b21c-4d8a-962b-1b9dc59873d1",
+        "name": "Old Corporate Users  Inactive User Governance - Phase 2",
+        "description": "Send email to user's manager when user didnt login for more than 45 days and change LCS to suspended",
+        "created": "2025-08-01T13:17:17.472009218Z",
+        "modified": "2025-08-01T13:42:47.080870343Z",
+        "modifiedBy": {
+            "type": "IDENTITY",
+            "id": "1883596e385748c7bec4833a76bacad4",
+            "name": "Khilan.Shah"
+        },
+        "definition": {
+            "start": "HTTP Request",
+            "steps": {
+                "End Step - Success": {
+                    "actionId": "sp:operator-success",
+                    "displayName": "",
+                    "type": "success"
+                },
+                "HTTP Request": {
+                    "actionId": "sp:http",
+                    "attributes": {
+                        "authenticationType": "OAuth",
+                        "jsonRequestBody": {
+                            "indices": [
+                                "identities"
+                            ],
+                            "query": {
+                                "query": "(attributes.userType:\"employee\" OR attributes.userType:\"contractor\") AND (attributes.cloudLifecycleState:\"active\") AND (attributes.lastSignInDateType:[* TO now-50d])"
+                            }
+                        },
+                        "method": "post",
+                        "oAuthClientId": "0a330447168744da986026dd588c9975",
+                        "oAuthClientSecret": "$.secrets.6a7bc5de-fca6-4dc4-97ef-35abb18c0410",
+                        "oAuthCredentialLocation": "oAuthInHeader",
+                        "oAuthTokenUrl": "https://igmfinancial-dev.api.identitynow.com/oauth/token",
+                        "requestContentType": "json",
+                        "requestHeaders": {
+                            "Content-Type": "application/json"
+                        },
+                        "url": "https://igmfinancial-dev.api.identitynow.com/v2025/search"
+                    },
+                    "description": "Get the list of identities whose last sign in date more than 45 days ago.",
+                    "displayName": "",
+                    "nextStep": "Loop",
+                    "type": "action",
+                    "versionNumber": 2
+                },
+                "Loop": {
+                    "actionId": "sp:loop:iterator",
+                    "attributes": {
+                        "input.$": "$.hTTPRequest.body",
+                        "start": "Get Identity 1",
+                        "steps": {
+                            "Compare Strings": {
+                                "actionId": "sp:compare-strings",
+                                "choiceList": [
+                                    {
+                                        "comparator": "StringContains",
+                                        "nextStep": "Get Accounts",
+                                        "variableA.$": "$.getIdentity1.attributes.loaEndDate",
+                                        "variableB": "None"
+                                    }
+                                ],
+                                "defaultStep": "Compare Timestamps",
+                                "description": "Verify if LOA End date set for identity.",
+                                "displayName": "",
+                                "type": "choice"
+                            },
+                            "Compare Timestamps": {
+                                "actionId": "sp:compare-timestamps",
+                                "choiceList": [
+                                    {
+                                        "comparator": "TimestampLessThanXDay",
+                                        "nextStep": "HTTP Request 1",
+                                        "variableA.$": "$.getIdentity1.attributes.loaEndDateType",
+                                        "variableB": "7"
+                                    }
+                                ],
+                                "defaultStep": "End Step - Success 1",
+                                "description": "Check if LOA end date is in past for more than 7 days.",
+                                "displayName": "Check LOA End Date",
+                                "type": "choice"
+                            },
+                            "Define Variable": {
+                                "actionId": "sp:define-variable",
+                                "attributes": {
+                                    "id": "sp:define-variable",
+                                    "variables": [
+                                        {
+                                            "description": "",
+                                            "name": "date",
+                                            "transforms": [],
+                                            "variableA.$": "$.getIdentity1.attributes.loaEndDateType"
+                                        },
+                                        {
+                                            "description": "",
+                                            "name": "currentdate",
+                                            "transforms": [
+                                                {
+                                                    "id": "sp:transform:substring:string",
+                                                    "input": {
+                                                        "length": 10,
+                                                        "start": 0
+                                                    }
+                                                },
+                                                {
+                                                    "id": "sp:transform:concatenate:string",
+                                                    "input": {
+                                                        "variableB": "T-01:00:00:000-00:00"
+                                                    }
+                                                }
+                                            ],
+                                            "variableA.$": "$.now()"
+                                        }
+                                    ]
+                                },
+                                "displayName": "",
+                                "nextStep": "Compare Strings",
+                                "type": "Mutation"
+                            },
+                            "Define Variable 1": {
+                                "actionId": "sp:define-variable",
+                                "attributes": {
+                                    "id": "sp:define-variable",
+                                    "variables": [
+                                        {
+                                            "description": "",
+                                            "name": "accountid",
+                                            "transforms": [],
+                                            "variableA.$": "$.getAccounts.accounts[?(@.sourceName==\"ServiceNowAPI\")].id"
+                                        }
+                                    ]
+                                },
+                                "displayName": "Define Variable 1",
+                                "nextStep": "HTTP Request 1",
+                                "type": "Mutation"
+                            },
+                            "End Step - Success 1": {
+                                "actionId": "sp:operator-success",
+                                "displayName": "",
+                                "type": "success"
+                            },
+                            "Get Accounts": {
+                                "actionId": "sp:get-accounts",
+                                "attributes": {
+                                    "filterCriteria": "name",
+                                    "getAccountsBy": "specificIdentity",
+                                    "identity.$": "$.getIdentity1.id",
+                                    "operator": "eq",
+                                    "value": "ServiceNowAPI"
+                                },
+                                "description": "Get list of Accounts for identity",
+                                "displayName": "",
+                                "nextStep": "Define Variable 1",
+                                "type": "action",
+                                "versionNumber": 1
+                            },
+                            "Get Identity": {
+                                "actionId": "sp:get-identity",
+                                "attributes": {
+                                    "id.$": "$.loop.loopInput.manager.id"
+                                },
+                                "description": "Get Manager information",
+                                "displayName": "Get Manager",
+                                "nextStep": "Send Email",
+                                "type": "action",
+                                "versionNumber": 2
+                            },
+                            "Get Identity 1": {
+                                "actionId": "sp:get-identity",
+                                "attributes": {
+                                    "id.$": "$.loop.loopInput.id"
+                                },
+                                "description": "Get information about each identity.",
+                                "displayName": "",
+                                "nextStep": "Define Variable",
+                                "type": "action",
+                                "versionNumber": 2
+                            },
+                            "HTTP Request 1": {
+                                "actionId": "sp:http",
+                                "attributes": {
+                                    "authenticationType": "OAuth",
+                                    "jsonPatchRequestBody": [
+                                        {
+                                            "op": "add",
+                                            "path": "/attributes/loaStartDate",
+                                            "value": "{{$.defineVariable.currentdate}}"
+                                        }
+                                    ],
+                                    "jsonRequestBody": "[{\"op\":\"add\",\"path\":\"/attributes/loaStartDate\",\"value\":{{$.defineVariable.CurrentDate}}}]",
+                                    "method": "patch",
+                                    "oAuthClientId": "0a330447168744da986026dd588c9975",
+                                    "oAuthClientSecret": "$.secrets.51515579-94b9-4c72-9bda-3f4ffb62277d",
+                                    "oAuthCredentialLocation": "oAuthInHeader",
+                                    "oAuthTokenUrl": "https://igmfinancial-dev.api.identitynow.com/oauth/token",
+                                    "requestContentType": "json-patch+json",
+                                    "requestHeaders": {
+                                        "Content-Type": "application/json"
+                                    },
+                                    "url": "https://igmfinancial-dev.api.identitynow.com/v2025/accounts/{{$.defineVariable1.accountid}}"
+                                },
+                                "description": "Set LOA start date as today for identity",
+                                "displayName": "HTTP Request 1",
+                                "nextStep": "Verify Data Type",
+                                "type": "action",
+                                "versionNumber": 2
+                            },
+                            "Send Email": {
+                                "actionId": "sp:send-email",
+                                "attributes": {
+                                    "body": "<p class=\"MsoNormal\">Dear&nbsp;${managerFirstName}<strong> </strong>${managerLastName},</p>\n<p class=\"MsoNormal\"><span style=\"font-size: 11.0pt; line-height: 107%; font-family: 'Aptos',sans-serif; mso-ascii-theme-font: minor-latin; mso-fareast-font-family: Aptos; mso-fareast-theme-font: minor-latin; mso-hansi-theme-font: minor-latin; mso-bidi-font-family: 'Times New Roman'; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-CA; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;\">The following user has not logged in for the past 45 days:</span></p>\n<p>Name<strong>:</strong>&nbsp;${firstName} ${lastName}</p>\n<p>Username<strong>:</strong>&nbsp;${sAMAccountName}</p>\n<p class=\"MsoNormal\">As a result, the user&rsquo;s account has been&nbsp;suspended<strong>,</strong>&nbsp;and all access has been&nbsp;disabled. The user&rsquo;s email address has also been&nbsp;restricted.</p>\n<p class=\"MsoNormal\">If reactivation of the account is required, please submit a&nbsp;ServiceNow ticket&nbsp;using the&nbsp;<a href=\"https://igmfinancial.service-now.com/snap?id=sc_cat_item&amp;sys_id=2aae9af7db6975d0520eae3b13961903&amp;sysparm_category=240d741d1b10e010f2110f6cdc4bcbaa\">Onboarding Request - Resource Centre</a>&nbsp;form and select the&nbsp;\"Return from temporary leave\"&nbsp;option.</p>\n<p class=\"MsoNormal\">For any further questions, please contact the&nbsp;IAM Operations team&nbsp;at&nbsp;<a href=\"mailto:iamops@igmfinancial.com\" target=\"_blank\" rel=\"noopener\">iamops@igmfinancial.com</a>.</p>\n<p class=\"MsoNormal\">Best regards,<br>IAM Operations Team</p>",
+                                    "context": {
+                                        "firstName.$": "$.getIdentity1.attributes.firstname",
+                                        "lastName.$": "$.getIdentity1.attributes.lastname",
+                                        "managerFirstName.$": "$.getIdentity.attributes.firstname",
+                                        "managerLastName.$": "$.getIdentity.attributes.lastname",
+                                        "sAMAccountName.$": "$.getIdentity1.attributes.samaccountname"
+                                    },
+                                    "recipientEmailList.$": "$.getIdentity.attributes.email",
+                                    "subject": "User Account ${firstName} ${lastName} Suspended Due to Inactivity"
+                                },
+                                "description": "Send email to manager.",
+                                "displayName": "",
+                                "nextStep": "End Step - Success 1",
+                                "type": "action",
+                                "versionNumber": 2
+                            },
+                            "Verify Data Type": {
+                                "actionId": "sp:compare-unary",
+                                "choiceList": [
+                                    {
+                                        "comparator": "IsPresent",
+                                        "nextStep": "Get Identity",
+                                        "variableA.$": "$.loop.loopInput.manager"
+                                    }
+                                ],
+                                "defaultStep": "End Step - Success 1",
+                                "description": "Make sure manager exists",
+                                "displayName": "Verify Manager Exists",
+                                "type": "choice"
+                            }
+                        }
+                    },
+                    "displayName": "",
+                    "nextStep": "End Step - Success",
+                    "type": "action",
+                    "versionNumber": 1
+                }
+            }
+        },
+        "enabled": false,
+        "creator": {
+            "type": "IDENTITY",
+            "id": "1883596e385748c7bec4833a76bacad4",
+            "name": "Khilan.Shah"
+        },
+        "owner": {
+            "type": "IDENTITY",
+            "id": "1883596e385748c7bec4833a76bacad4",
+            "name": "Khilan.Shah"
+        },
+        "trigger": {
+            "type": "SCHEDULED",
+            "attributes": {
+                "cronString": "0 9,10,11,12,13,14,15 * * *",
+                "dailyTimes": [
+                    "1969-12-31T15:00:00.000Z",
+                    "1969-12-31T16:00:00.000Z",
+                    "1969-12-31T17:00:00.000Z",
+                    "1969-12-31T18:00:00.000Z",
+                    "1969-12-31T19:00:00.000Z",
+                    "1969-12-31T20:00:00.000Z",
+                    "1969-12-31T21:00:00.000Z"
+                ],
+                "frequency": "daily",
+                "id": "idn:cron-schedule",
+                "timeZone": "America/Winnipeg"
+            }
+        }
+    }
+}

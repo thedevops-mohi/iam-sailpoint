@@ -1,0 +1,26 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "41e9a5c7-2f31-4b88-8869-51369603f8a7",
+        "name": "oldValue Department"
+    },
+    "object": {
+        "id": "41e9a5c7-2f31-4b88-8869-51369603f8a7",
+        "name": "oldValue Department",
+        "type": "firstValid",
+        "attributes": {
+            "values": [
+                "$oldValue",
+                {
+                    "attributes": {
+                        "sourceName": "Advisors - SIS Feed",
+                        "attributeName": "DEPARTMENT"
+                    },
+                    "type": "accountAttribute"
+                }
+            ]
+        },
+        "internal": false
+    }
+}

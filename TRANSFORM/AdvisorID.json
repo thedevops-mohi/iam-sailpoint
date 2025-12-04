@@ -1,0 +1,99 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "832dfd5c-e18e-4e90-b6b1-5817073a9854",
+        "name": "AdvisorID"
+    },
+    "object": {
+        "id": "832dfd5c-e18e-4e90-b6b1-5817073a9854",
+        "name": "AdvisorID",
+        "type": "static",
+        "attributes": {
+            "TransformDesrcription": {
+                "type": "static",
+                "attributes": {
+                    "comment_20250910": "Scott Walker - Due to value bleed on the <AdvisorID> (SFAPI) reference from other jobs when the target job value is blank we need to switch to an OData Reference <EmpEmployment.customString33>",
+                    "value": "Used to populate Advisor ID identity attribute."
+                }
+            },
+            "exceptionText": {
+                "type": "static",
+                "attributes": {
+                    "value": "error:undetermined:transform:AdvisorID"
+                }
+            },
+            "bestSource": {
+                "type": "reference",
+                "attributes": {
+                    "id": "BestSource"
+                }
+            },
+            "SFAuth_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "SuccessFactors-Auth",
+                                "attributeName": "EmpEmployment.customString33",
+                                "accountSortAttribute": "StartDate_EmpInfo",
+                                "accountSortDescending": true,
+                                "accountReturnFirstLink": true
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "SFNonAuth_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "SuccessFactors - NonAuthoritative",
+                                "attributeName": "EmpEmployment.customString33",
+                                "accountSortAttribute": "StartDate_EmpInfo",
+                                "accountSortDescending": true,
+                                "accountReturnFirstLink": true
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "SAP_value": {
+                "type": "static",
+                "attributes": {
+                    "value": "null"
+                }
+            },
+            "SIS_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "Advisors - SIS Feed",
+                                "attributeName": "SIS-ID"
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "SNOW_value": {
+                "type": "static",
+                "attributes": {
+                    "value": "null"
+                }
+            },
+            "value": "#if($bestSource == 'use_SFAuth')#set($finalValue = $SFAuth_value)#elseif($bestSource == 'use_SFNonAuth')#set($finalValue = $SFNonAuth_value)#elseif($bestSource == 'use_SAPECC')#set($finalValue = $SAP_value)#elseif($bestSource == 'use_SIS')#set($finalValue = $SIS_value)#elseif($bestSource.compareToIgnoreCase('use_servicenow') == 0)#set($finalValue = $SNOW_value)#{else}#set($finalValue = $exceptionText)#end#if($finalValue != 'null')$finalValue#end"
+        },
+        "internal": false
+    }
+}

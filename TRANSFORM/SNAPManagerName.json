@@ -1,0 +1,76 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "cd9e6018-7362-43f5-b83c-3e9877f6143d",
+        "name": "SNAPManagerName"
+    },
+    "object": {
+        "id": "cd9e6018-7362-43f5-b83c-3e9877f6143d",
+        "name": "SNAPManagerName",
+        "type": "static",
+        "attributes": {
+            "hasManager": {
+                "type": "conditional",
+                "attributes": {
+                    "expression": "$mgrLastName eq null",
+                    "positiveCondition": "false",
+                    "negativeCondition": "true",
+                    "mgrLastName": {
+                        "type": "firstValid",
+                        "attributes": {
+                            "values": [
+                                {
+                                    "type": "rule",
+                                    "attributes": {
+                                        "name": "Cloud Services Deployment Utility",
+                                        "operation": "getReferenceIdentityAttribute",
+                                        "uid": "manager",
+                                        "attributeName": "lastname"
+                                    }
+                                },
+                                "null"
+                            ]
+                        }
+                    }
+                }
+            },
+            "mgrLn": {
+                "type": "rule",
+                "attributes": {
+                    "name": "Cloud Services Deployment Utility",
+                    "operation": "getReferenceIdentityAttribute",
+                    "uid": "manager",
+                    "attributeName": "lastname"
+                }
+            },
+            "mgrFn": {
+                "type": "rule",
+                "attributes": {
+                    "name": "Cloud Services Deployment Utility",
+                    "operation": "getReferenceIdentityAttribute",
+                    "uid": "manager",
+                    "attributeName": "firstname"
+                }
+            },
+            "value": "#if($hasManager == 'true')$mgrFn $mgrLn#{else}#end",
+            "TransformDesrcription": {
+                "type": "static",
+                "attributes": {
+                    "comment_20250924": "Scott Walker - TWF Modificiations. This trasnform will be used for all human/person identity profiles to allow for all fringe conversion sceanrios. Historically we didn't use it for 'Advisors' profiles which had no managers. While we should always have a value for active identies post TWF we should allow for missing managers as a non-error case so the text for a missing manager is changed to just be empty.",
+                    "value": "Obtain manager name for SNAP account provisioning. Comments started 2025-09-24"
+                }
+            },
+            "value_variations": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        "null",
+                        "#if($hasManager == 'true')$mgrFn $mgrLn#{else}error:undetermined SNAPManagerName transform#end"
+                    ]
+                }
+            }
+        },
+        "internal": false
+    }
+}

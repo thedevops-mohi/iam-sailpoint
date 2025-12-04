@@ -1,0 +1,238 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "WORKFLOW",
+        "id": "169ea16e-9a42-4cc0-a027-54508b1ec73d",
+        "name": "Mover – UserType Change IAM Ops Notification"
+    },
+    "object": {
+        "id": "169ea16e-9a42-4cc0-a027-54508b1ec73d",
+        "name": "Mover – UserType Change IAM Ops Notification",
+        "description": "This is a workflow to send email to ‘igmfinancialtest@service-now.com’ for automatic SNAP ticket generation.",
+        "created": "2025-11-18T23:08:29.419867893Z",
+        "modified": "2025-11-27T17:48:41.09803266Z",
+        "modifiedBy": {
+            "type": "IDENTITY",
+            "id": "f5df644192e744eab79a35025c29a227",
+            "name": "Jyoti.Gupta"
+        },
+        "definition": {
+            "start": "Define Variable",
+            "steps": {
+                "Compare Strings": {
+                    "actionId": "sp:compare-strings",
+                    "choiceList": [
+                        {
+                            "comparator": "StringContains",
+                            "nextStep": "Get Identity",
+                            "variableA.$": "$.defineVariable.userTypeEmployee",
+                            "variableB.$": "$.trigger.changes[?(@.attribute=='userType')].newValue"
+                        }
+                    ],
+                    "defaultStep": "success",
+                    "displayName": "",
+                    "type": "choice"
+                },
+                "Compare Strings 1": {
+                    "actionId": "sp:compare-strings",
+                    "choiceList": [
+                        {
+                            "comparator": "StringContains",
+                            "nextStep": "Compare Strings",
+                            "variableA.$": "$.defineVariable.userTypeAdvisor",
+                            "variableB.$": "$.trigger.changes[?(@.attribute=='userType')].oldValue"
+                        }
+                    ],
+                    "defaultStep": "Compare Strings 2",
+                    "description": "",
+                    "type": "choice"
+                },
+                "Compare Strings 2": {
+                    "actionId": "sp:compare-strings",
+                    "choiceList": [
+                        {
+                            "comparator": "StringContains",
+                            "nextStep": "Compare Strings 3",
+                            "variableA.$": "$.defineVariable.userTypeEmployee",
+                            "variableB.$": "$.trigger.changes[?(@.attribute=='userType')].oldValue"
+                        }
+                    ],
+                    "defaultStep": "success",
+                    "displayName": "",
+                    "type": "choice"
+                },
+                "Compare Strings 3": {
+                    "actionId": "sp:compare-strings",
+                    "choiceList": [
+                        {
+                            "comparator": "StringContains",
+                            "nextStep": "Get Identity",
+                            "variableA.$": "$.defineVariable.userTypeAdvisor",
+                            "variableB.$": "$.trigger.changes[?(@.attribute=='userType')].newValue"
+                        }
+                    ],
+                    "defaultStep": "success",
+                    "displayName": "",
+                    "type": "choice"
+                },
+                "Compare Strings 4": {
+                    "actionId": "sp:compare-strings",
+                    "choiceList": [
+                        {
+                            "comparator": "StringMatches",
+                            "nextStep": "Compare Strings 5",
+                            "variableA.$": "$.trigger.changes[?(@.attribute=='userType')].newValue",
+                            "variableB": "Dual Role"
+                        }
+                    ],
+                    "defaultStep": "Compare Strings 1",
+                    "description": "If New userType value is Dual Role",
+                    "displayName": "",
+                    "type": "choice"
+                },
+                "Compare Strings 5": {
+                    "actionId": "sp:compare-strings",
+                    "choiceList": [
+                        {
+                            "comparator": "StringContains",
+                            "nextStep": "Get Identity",
+                            "variableA.$": "$.defineVariable.userTypeDualNew",
+                            "variableB.$": "$.trigger.changes[?(@.attribute=='userType')].oldValue"
+                        }
+                    ],
+                    "defaultStep": "Compare Strings 1",
+                    "displayName": "",
+                    "type": "choice"
+                },
+                "Compare Strings 6": {
+                    "actionId": "sp:compare-strings",
+                    "choiceList": [
+                        {
+                            "comparator": "StringMatches",
+                            "nextStep": "Compare Strings 7",
+                            "variableA.$": "$.trigger.changes[?(@.attribute=='userType')].oldValue",
+                            "variableB": "Dual Role"
+                        }
+                    ],
+                    "defaultStep": "Compare Strings 4",
+                    "description": "If Old userType value is Dual Role",
+                    "displayName": "",
+                    "type": "choice"
+                },
+                "Compare Strings 7": {
+                    "actionId": "sp:compare-strings",
+                    "choiceList": [
+                        {
+                            "comparator": "StringContains",
+                            "nextStep": "Get Identity",
+                            "variableA.$": "$.defineVariable.userTypeDualOld",
+                            "variableB.$": "$.trigger.changes[?(@.attribute=='userType')].newValue"
+                        }
+                    ],
+                    "defaultStep": "success",
+                    "displayName": "",
+                    "type": "choice"
+                },
+                "Define Variable": {
+                    "actionId": "sp:define-variable",
+                    "attributes": {
+                        "id": "sp:define-variable",
+                        "variables": [
+                            {
+                                "description": "",
+                                "name": "userTypeAdvisor",
+                                "transforms": [],
+                                "variableA": "Advisor,Hybrid"
+                            },
+                            {
+                                "description": "",
+                                "name": "UserTypeEmployee",
+                                "transforms": [],
+                                "variableA": "Employee,Contractor"
+                            },
+                            {
+                                "description": "",
+                                "name": "UserTypeDualOld",
+                                "transforms": [],
+                                "variableA": "Employee,Contractor,Hybrid,Advisor"
+                            },
+                            {
+                                "description": "",
+                                "name": "UserTypeDualNew",
+                                "transforms": [],
+                                "variableA": "Advisor,Hybrid"
+                            }
+                        ]
+                    },
+                    "displayName": "",
+                    "nextStep": "Compare Strings 6",
+                    "type": "Mutation"
+                },
+                "Get Identity": {
+                    "actionId": "sp:get-identity",
+                    "attributes": {
+                        "id.$": "$.trigger.identity.id"
+                    },
+                    "displayName": "",
+                    "nextStep": "Send Email 1",
+                    "type": "action",
+                    "versionNumber": 2
+                },
+                "Send Email 1": {
+                    "actionId": "sp:send-email",
+                    "attributes": {
+                        "body": "<p>IAM Ops,</p>\n<p>Changes have been made to an Advisor identity. Please reference the details below to provision and deprovision appropriate access for this event.</p>\n<p>Event Type: UserType Change<br>Short Description: UserType Change - ${firstName} ${lastName} - ${sAMAccountName}<br>Start Date: ${startDate}<br>Language: ${language}<br>Manager: ${manager}<br>Company: ${company}<br>Work Location: ${street}, ${city}, ${country}</p>\n<p>Advisory Role: $advisoryRole</p>\n<p>Title: $displayTitle</p>\n<p><br>Changes (If dollar sign and curly brackets appears, there was no change to the attribute) :</p>\n<p>UserType Old Value: ${OldUserType}<br>UserType New Value: ${NewUserType}</p>\n<p><br>This is a system-generated email. Please do not respond to this email.</p>",
+                        "context": {
+                            "NewUserType.$": "$.trigger.changes[?(@.attribute=='userType')].newValue",
+                            "OldUserType.$": "$.trigger.changes[?(@.attribute=='userType')].oldValue",
+                            "advisoryRole.$": "$.getIdentity.attributes.advisoryRole",
+                            "city.$": "$.getIdentity.attributes.city",
+                            "company.$": "$.getIdentity.attributes.company",
+                            "country.$": "$.getIdentity.attributes.country",
+                            "displayTitle.$": "$.getIdentity.attributes.displayTitle",
+                            "firstName.$": "$.getIdentity.attributes.firstname",
+                            "language.$": "$.getIdentity.attributes.language",
+                            "lastName.$": "$.getIdentity.attributes.lastname",
+                            "manager.$": "$.getIdentity.managerRef.name",
+                            "sAMAccountName.$": "$.getIdentity.attributes.samaccountname",
+                            "startDate.$": "$.getIdentity.attributes.startDate",
+                            "street.$": "$.getIdentity.attributes.street"
+                        },
+                        "from": "",
+                        "recipientEmailList": [],
+                        "replyTo": null,
+                        "subject": "Mover - UserType - ${firstName} ${lastName}"
+                    },
+                    "description": "Advisor mover event notification for IAM Ops team",
+                    "nextStep": "success",
+                    "type": "action",
+                    "versionNumber": 2
+                },
+                "success": {
+                    "actionId": "sp:operator-success",
+                    "description": null,
+                    "type": "success"
+                }
+            }
+        },
+        "enabled": false,
+        "creator": {
+            "type": "IDENTITY",
+            "id": "f5df644192e744eab79a35025c29a227",
+            "name": "Jyoti.Gupta"
+        },
+        "owner": {
+            "type": "IDENTITY",
+            "id": "f5df644192e744eab79a35025c29a227",
+            "name": "Jyoti.Gupta"
+        },
+        "trigger": {
+            "type": "EVENT",
+            "attributes": {
+                "description": "UserType change detection",
+                "filter.$": "$.changes[?(@.attribute == \"userType\")]",
+                "id": "idn:identity-attributes-changed"
+            }
+        }
+    }
+}

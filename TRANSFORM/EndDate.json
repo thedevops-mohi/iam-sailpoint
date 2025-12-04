@@ -1,0 +1,53 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "e39a172a-73da-4f13-ade9-d770cd046ff9",
+        "name": "EndDate"
+    },
+    "object": {
+        "id": "e39a172a-73da-4f13-ade9-d770cd046ff9",
+        "name": "EndDate",
+        "type": "static",
+        "attributes": {
+            "dateOnlyValue": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "dateFormat",
+                            "attributes": {
+                                "input": {
+                                    "type": "reference",
+                                    "attributes": {
+                                        "id": "EndDateWithTime"
+                                    }
+                                },
+                                "inputFormat": "yyyy-MM-dd'T'-HH:mm:ss:SSS-HH:mm",
+                                "outputFormat": "yyyy-MM-dd"
+                            }
+                        },
+                        {
+                            "type": "reference",
+                            "attributes": {
+                                "id": "EndDateWithTime"
+                            }
+                        },
+                        "transform:EndDate:bad output from EndDateWithTime"
+                    ]
+                }
+            },
+            "value": "#if($dateOnlyValue != 'None')$dateOnlyValue#{else}None#end",
+            "TransformDesrcription": {
+                "type": "static",
+                "attributes": {
+                    "Description": "This transform is for population of the End Date. Just a format change as we use the EndDateWithTime transform output.",
+                    "comment_2025-06-24": "The check for a 'none' value and explicit output of 'none' is redundant as it stands but useful if we have other placeholder values to check later.",
+                    "update_2025-06-24": "Scott Walker - Add comments. Add error handling to avoid processing failure if enddatewithtime has an unhandled case.",
+                    "value": ""
+                }
+            }
+        },
+        "internal": false
+    }
+}

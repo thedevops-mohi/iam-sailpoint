@@ -1,0 +1,44 @@
+{
+    "name": "CustomAuthBeforeOperationRule",
+    "description": "This rule is used by the  Web Services connector before performing any operation like testconnection, aggregation, etc.",
+    "type": "WebServiceBeforeOperationRule",
+    "signature": {
+        "input": [
+            {
+                "name": "application",
+                "description": "The application whose data file is being processed.",
+                "type": null
+            },
+            {
+                "name": "requestEndPoint",
+                "description": "The current request information contain header, body, context url, method type, response attribute map,\n          successful response code\n        ",
+                "type": null
+            },
+            {
+                "name": "oldResponseMap",
+                "description": "earlier response object ",
+                "type": null
+            },
+            {
+                "name": "restClient",
+                "description": "REST Client Object",
+                "type": null
+            }
+        ],
+        "output": {
+            "name": "EndPoint",
+            "description": "Updated EndPoint Object",
+            "type": null
+        }
+    },
+    "source_code": {
+        "version": "1.0",
+        "script": "import java.util.HashMap;\nimport java.util.Map;\nimport java.util.List;\nimport java.util.ArrayList;\nimport connector.common.JsonUtil;\nimport sailpoint.connector.webservices.WebServicesClient;\nimport sailpoint.connector.webservices.EndPoint;\nimport org.json.JSONObject; // For parsing JSON response\n\ntry {\n    log.error(\"Kiteworks: Entering Custom Auth\");\n\n    // --- 1. Define Authentication Parameters from Application Configuration ---\n    // These should be stored as attributes in your SailPoint Application definition.\n    String clientId = (String) application.getAttributeValue(\"client_id\");\n    String clientSecret = (String) application.getAttributeValue(\"client_secret\");\n    String refreshToken = (String) application.getAttributeValue(\"custom_refreshtoken\"); // The stored refresh token\n    String accessToken = (String) application.getAttributeValue(\"custom_accesstoken\");\n\n    log.error(\"Kiteworks: Request Body - refresh token is \" + refreshToken);\n    // Define the URL for the token generation endpoint\n    String tokenUrl = \"https://secureshare.igmservices.com/oauth/token\"; // Replace with your actual token URL\n\n    log.error(\"Kiteworks: Token URL\");\n\n    // --- 2. Make an API Call to Exchange the Refresh Token for an Access Token ---\n    WebServicesClient client = new WebServicesClient();\n    Map args = new HashMap();\n    args.put(WebServicesClient.ARG_URL, tokenUrl);\n    client.configure(args);\n\n    log.error(\"Kiteworks: Header defining\");\n    // Configure headers for the token request (e.g., Content-Type, Authorization Basic if needed)\n    Map header = new HashMap();\n    header.put(\"Content-Type\", \"application/json\");\n\n    // Construct the request body (typically form-urlencoded for refresh tokens)\n    \n    Map payload = new HashMap();\n    payload.put(\"grant_type\",\"refresh_token\");\n    payload.put(\"client_id\", clientId);\n    payload.put(\"client_secret\", clientSecret);\n    payload.put(\"refresh_token\", refreshToken);\n\n    // Define allowed success statuses (e.g., 200, 201)\n    List allowedStatuses = new ArrayList();\n    allowedStatuses.add(\"2**\");\n\n    log.error(\"Kiteworks: Before execute Post\");\n    // Execute the POST request\n    String response = client.executePost(tokenUrl, payload, header, allowedStatuses);\n\n    log.error(\"Kiteworks: Token refresh response: \" + response);\n\n    // --- 3. Parse the Response and Extract the New Access Token ---\n    JSONObject jsonResponse = new JSONObject(response);\n    String newAccessToken = jsonResponse.getString(\"access_token\");\n    String newRefreshToken = jsonResponse.getString(\"refresh_token\");\n\n    log.error(\"Kiteworks: access_token \" + newAccessToken + \", refresh token \" + newRefreshToken);\n\n    // Optional: If the API returns a *new* refresh token (rotating tokens), save it back\n    // This typically requires using an After Operation rule or a custom object in IIQ.\n    // If using IDN, the built-in Oauth 2.0 mechanism handles saving updated refresh tokens automatically if configured.\n\n    // --- 4. Update the Current Operation's Request Header with the New Token ---\n    // This prepares the main operation (aggregation, create, update) to use the new token.\n    Map requestHeaders = requestEndPoint.getHeader();\n    // The standard way is \"Authorization: Bearer <token>\"\n    requestHeaders.put(\"Authorization\", \"Bearer \" + newAccessToken);\n    Map transientValues = (Map) application.getAttributeValue(\"transientValues\");\n    if (transientValues == null) {\n        transientValues = new HashMap();\n    }\n    // Passing values to AfterOperation Rule\n    transientValues.put(\"custom_refreshtoken\", newRefreshToken);\n    application.setAttribute(\"transientValues\", transientValues);\n\n    log.error(\"Kiteworks: After transientValues\");\n    // Update the requestEndPoint object\n    requestEndPoint.setHeader(requestHeaders);\n    \n} catch (Exception e) {\n    log.error(\"Kiteworks: Error in WebServicesBeforeOperationRule during token refresh: \" + e.getMessage());\n    throw e; // Re-throw the exception to stop the operation if auth fails\n}\n\nreturn requestEndPoint; // Return the modified endpoint for the main operation\n"
+    },
+    "attributes": {
+        "sourceVersion": "1.0"
+    },
+    "id": "4074ef10c72e4c32a5884b8416d03265",
+    "created": "2025-12-01T20:11:07.048Z",
+    "modified": "2025-12-03T23:31:07.704Z"
+}

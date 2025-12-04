@@ -1,0 +1,54 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "ACCESS_PROFILE",
+        "id": "876cd75f954340ed89e13a9cd3126388",
+        "name": "AD - Employees and Contractors - HR"
+    },
+    "object": {
+        "id": "876cd75f954340ed89e13a9cd3126388",
+        "name": "AD - Employees and Contractors - HR",
+        "description": "IG and  MI - Employees and Contractors - HR",
+        "created": "2023-11-23T23:40:26.06102Z",
+        "modified": "2025-12-03T15:09:03.814808Z",
+        "enabled": true,
+        "owner": {
+            "type": "IDENTITY",
+            "id": "1b7fbaac325446ff9e49d1e5903c6d55",
+            "name": "Del Mundo, Alan"
+        },
+        "source": {
+            "id": "a4dc7c1f64fc44fe9e778339d4915993",
+            "type": "SOURCE",
+            "name": "Active Directory"
+        },
+        "entitlements": [
+            {
+                "id": "7d2e4147c45132248cd24ea30adea1a7",
+                "type": "ENTITLEMENT",
+                "name": "IGM-Genetec-PROD-HR-Restricted"
+            },
+            {
+                "id": "75b0812cbb5134c9b0d9e6177290c9bc",
+                "type": "ENTITLEMENT",
+                "name": "IGM_FMS-PROD-Campus-HR"
+            }
+        ],
+        "requestable": false,
+        "accessRequestConfig": {
+            "commentsRequired": null,
+            "denialCommentsRequired": null,
+            "approvalSchemes": [],
+            "reauthorizationRequired": false,
+            "requireEndDate": false,
+            "maxPermittedAccessDuration": null
+        },
+        "revocationRequestConfig": {
+            "approvalSchemes": []
+        },
+        "segments": [],
+        "provisioningCriteria": null,
+        "additionalOwners": null,
+        "segmentRefs": []
+    }
+}
