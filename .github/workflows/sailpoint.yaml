@@ -5,12 +5,11 @@ on:
   #  - cron: "0 2 * * *" # daily at 2 AM UTC
   workflow_dispatch:
 
-permissions:
-      id-token: write
-      contents: write
 jobs:
   export:
     runs-on: self-hosted
+    permissions:
+        contents: write # 
 
     steps:
       # 1. Checkout repo
@@ -45,6 +44,7 @@ jobs:
       # 5. Commit & Push changes using actions-js/push
       - name: Commit & Push changes
         uses: actions-js/push@master
+        
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           author_name: "Automation Bot"
