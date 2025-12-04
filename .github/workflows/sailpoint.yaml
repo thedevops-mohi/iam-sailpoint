@@ -52,4 +52,6 @@ jobs:
           message: "Automated SailPoint backup-${{ github.sha }}"
           branch: "main"
           directory: "."
+          rebase: true
+
 
