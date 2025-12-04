@@ -1,0 +1,98 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "389208fa-0cf0-4201-84c0-3462ea82a394",
+        "name": "LCSTerminatedCheckNew"
+    },
+    "object": {
+        "id": "389208fa-0cf0-4201-84c0-3462ea82a394",
+        "name": "LCSTerminatedCheckNew",
+        "type": "static",
+        "attributes": {
+            "userType": {
+                "type": "reference",
+                "attributes": {
+                    "id": "UserType"
+                }
+            },
+            "empStat1_T": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "Employees SAP ECC",
+                                "attributeName": "STAT1_T"
+                            }
+                        },
+                        "None"
+                    ]
+                }
+            },
+            "isEndDateWithinPlus21Days": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "dateCompare",
+                            "attributes": {
+                                "firstDate": {
+                                    "type": "dateMath",
+                                    "attributes": {
+                                        "expression": "-21d/d",
+                                        "roundUp": true,
+                                        "input": {
+                                            "type": "dateFormat",
+                                            "attributes": {
+                                                "input": {
+                                                    "type": "reference",
+                                                    "attributes": {
+                                                        "id": "EndDateWithTime"
+                                                    }
+                                                },
+                                                "inputFormat": "yyyy-MM-dd'T'-HH:mm:ss:SSS-HH:mm",
+                                                "outputFormat": "ISO8601"
+                                            }
+                                        }
+                                    }
+                                },
+                                "secondDate": "now",
+                                "operator": "lte",
+                                "positiveCondition": "true",
+                                "negativeCondition": "false"
+                            }
+                        },
+                        "false"
+                    ]
+                }
+            },
+            "advisorStatus": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "Advisors - SIS Feed",
+                                "attributeName": "STATUS"
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "value": "#if($userType == 'Employee' && $isEndDateWithinPlus21Days == 'true' && ($empStat1_T == 'T' || $empStat1_T == 'None'))true#elseif($userType == 'Contractor' && $isEndDateWithinPlus21Days == 'true')true#elseif($userType == 'Advisor' && $advisorStatus == 'Inactive')true#elseif($userType == 'Advisor' && $advisorStatus == 'Active')false#{else}false#end",
+            "TransformDesrcription": {
+                "type": "static",
+                "value": "Used in LCS determination.#2025-06-19: small update to partially handle error cases where new advisors lack a SIS record."
+            },
+            "exceptionText": {
+                "type": "static",
+                "value": "transform:LCSTerminatedCheckNew:unhandled"
+            }
+        },
+        "internal": false
+    }
+}

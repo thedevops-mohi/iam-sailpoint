@@ -1,0 +1,53 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "6f13433e-98e6-4c5e-a395-f88667ec3614",
+        "name": "Email_DualRole"
+    },
+    "object": {
+        "id": "6f13433e-98e6-4c5e-a395-f88667ec3614",
+        "name": "Email_DualRole",
+        "type": "static",
+        "attributes": {
+            "TransformDesrcription": {
+                "type": "static",
+                "attributes": {
+                    "comment_20250728": "Initial Version. Later this can come from the Dual Role AD account. Initially we take from SF itself for existing users.",
+                    "value": "Populate the Identity dual role email address. This is only applicable to Dual Role users and will contain the Field OU Dual/second AD account value. This will need to change after initial TWF/SIS migration but for the intial load we need to capture values from SF feeds."
+                }
+            },
+            "exceptionText": {
+                "type": "static",
+                "attributes": {
+                    "value": "transform:sAMAccountName_DualRole: unhandled case"
+                }
+            },
+            "varDualEmail": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "AD - Dual Role Secondary Accounts",
+                                "attributeName": "userPrincipalName"
+                            }
+                        },
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "SuccessFactors - NonAuthoritative",
+                                "attributeName": "SecondaryEmailAddress"
+                            }
+                        },
+                        "$oldValue",
+                        "null"
+                    ]
+                }
+            },
+            "value": "#if($varDualEmail != 'null')$varDualEmail#{else}#end"
+        },
+        "internal": false
+    }
+}

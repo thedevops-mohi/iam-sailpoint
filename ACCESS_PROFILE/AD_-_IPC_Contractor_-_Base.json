@@ -1,0 +1,54 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "ACCESS_PROFILE",
+        "id": "53d4c30a46d641eab7d0cfd2a7f8d766",
+        "name": "AD - IPC Contractor - Base"
+    },
+    "object": {
+        "id": "53d4c30a46d641eab7d0cfd2a7f8d766",
+        "name": "AD - IPC Contractor - Base",
+        "description": "IPC Contractor  -  Base",
+        "created": "2023-04-14T08:37:30.092Z",
+        "modified": "2025-12-03T15:29:51.819136Z",
+        "enabled": true,
+        "owner": {
+            "type": "IDENTITY",
+            "id": "f5df644192e744eab79a35025c29a227",
+            "name": "Jyoti Gupta"
+        },
+        "source": {
+            "id": "a4dc7c1f64fc44fe9e778339d4915993",
+            "type": "SOURCE",
+            "name": "Active Directory"
+        },
+        "entitlements": [
+            {
+                "id": "17a818f59e203bbd966d59eeca991f5b",
+                "type": "ENTITLEMENT",
+                "name": "IGM-Sierra-PRD-Allow"
+            },
+            {
+                "id": "af6fe386befa3836a1d7e0784fccef53",
+                "type": "ENTITLEMENT",
+                "name": "IGNGG_PSO_IGM"
+            }
+        ],
+        "requestable": false,
+        "accessRequestConfig": {
+            "commentsRequired": false,
+            "denialCommentsRequired": false,
+            "approvalSchemes": [],
+            "reauthorizationRequired": false,
+            "requireEndDate": false,
+            "maxPermittedAccessDuration": null
+        },
+        "revocationRequestConfig": {
+            "approvalSchemes": []
+        },
+        "segments": [],
+        "provisioningCriteria": null,
+        "additionalOwners": null,
+        "segmentRefs": []
+    }
+}

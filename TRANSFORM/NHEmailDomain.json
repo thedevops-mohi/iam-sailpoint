@@ -1,0 +1,26 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "46194689-f25d-4c9a-bfb9-0937480ce4f0",
+        "name": "NHEmailDomain"
+    },
+    "object": {
+        "id": "46194689-f25d-4c9a-bfb9-0937480ce4f0",
+        "name": "NHEmailDomain",
+        "type": "firstValid",
+        "attributes": {
+            "values": [
+                {
+                    "type": "accountAttribute",
+                    "attributes": {
+                        "sourceName": "ServiceNow Non-Human Accounts",
+                        "attributeName": "emailDomain"
+                    }
+                },
+                "igmdev.net"
+            ]
+        },
+        "internal": false
+    }
+}

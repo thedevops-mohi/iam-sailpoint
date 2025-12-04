@@ -1,0 +1,81 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "207285a6-90bc-41e5-a011-3906de4d0f06",
+        "name": "FullName"
+    },
+    "object": {
+        "id": "207285a6-90bc-41e5-a011-3906de4d0f06",
+        "name": "FullName",
+        "type": "static",
+        "attributes": {
+            "fullName": {
+                "type": "static",
+                "attributes": {
+                    "firstName": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "FirstName"
+                        }
+                    },
+                    "lastName": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "LastName"
+                        }
+                    },
+                    "value": "$firstName $lastName"
+                }
+            },
+            "value": "#if($bestSource == 'use_SFAuth' && $SFAuth_value.length() > 20)$SFAuth_value.substring(0,20)#elseif($bestSource == 'use_SFAuth' && $SFAuth_value.length() <= 20)$SFAuth_value#elseif($bestSource == 'use_SFNonAuth' && $SFNonAuth_value.length() > 20)$SFNonAuth_value.substring(0,20)#elseif($bestSource == 'use_SFNonAuth' && $SFNonAuth_value.length() <= 20)$SFNonAuth_value#elseif(($bestSource == 'use_SAPECC' || $bestSource == 'use_SIS' || $bestSource.compareToIgnoreCase('use_servicenow') == 0) && $fullName.length() > 20)$fullName.substring(0,20)#elseif(($bestSource == 'use_SAPECC' || $bestSource == 'use_SIS' || $bestSource.compareToIgnoreCase('use_servicenow') == 0) && $fullName.length() <= 20)$fullName#{else}error:undetermined FullName transform#end",
+            "SFAuth_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "SuccessFactors-Auth",
+                                "attributeName": "FormalName",
+                                "accountSortAttribute": "StartDate_EmpInfo",
+                                "accountSortDescending": true,
+                                "accountReturnFirstLink": true
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "SFNonAuth_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "SuccessFactors - NonAuthoritative",
+                                "attributeName": "FormalName",
+                                "accountSortAttribute": "StartDate_EmpInfo",
+                                "accountSortDescending": true,
+                                "accountReturnFirstLink": true
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "TransformDesrcription": {
+                "type": "static",
+                "value": "This transform is for population of the Full Name."
+            },
+            "bestSource": {
+                "type": "reference",
+                "attributes": {
+                    "id": "BestSource"
+                }
+            }
+        },
+        "internal": false
+    }
+}

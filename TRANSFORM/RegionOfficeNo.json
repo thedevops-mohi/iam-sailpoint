@@ -1,0 +1,98 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "7d609045-9f0a-440b-841c-b108066a88ca",
+        "name": "RegionOfficeNo"
+    },
+    "object": {
+        "id": "7d609045-9f0a-440b-841c-b108066a88ca",
+        "name": "RegionOfficeNo",
+        "type": "static",
+        "attributes": {
+            "TransformDesrcription": {
+                "type": "static",
+                "attributes": {
+                    "value": "Populate Region Office Number. This will also drive the Region office Name transform/attribute"
+                }
+            },
+            "bestSource": {
+                "type": "reference",
+                "attributes": {
+                    "id": "BestSource"
+                }
+            },
+            "exceptionText": {
+                "type": "static",
+                "attributes": {
+                    "value": "transform:RegionOfficeNo:unhandled_case"
+                }
+            },
+            "SFAuth_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "SuccessFactors-Auth",
+                                "attributeName": "EmpJob.customString64",
+                                "accountSortAttribute": "StartDate_EmpInfo",
+                                "accountSortDescending": true,
+                                "accountReturnFirstLink": true
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "SFNonAuth_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "SuccessFactors - NonAuthoritative",
+                                "attributeName": "EmpJob.customString64",
+                                "accountSortAttribute": "StartDate_EmpInfo",
+                                "accountSortDescending": true,
+                                "accountReturnFirstLink": true
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "SIS_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "Advisors - SIS Feed",
+                                "attributeName": "RGOF-NO"
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "SAP_value": {
+                "type": "static",
+                "attributes": {
+                    "value": "null"
+                }
+            },
+            "SNOW_value": {
+                "type": "static",
+                "attributes": {
+                    "value": "null"
+                }
+            },
+            "value": "#if($bestSource == 'use_SFAuth')#set($finalValue = $SFAuth_value.replaceAll('^0+', ''))#elseif($bestSource == 'use_SFNonAuth')#set($finalValue = $SFNonAuth_value.replaceAll('^0+', ''))#elseif($bestSource == 'use_SAPECC')#set($finalValue = $SAP_value)#elseif($bestSource == 'use_SIS')#set($finalValue = $SIS_value)#elseif($bestSource.compareToIgnoreCase('use_servicenow') == 0)#set($finalValue = $SNOW_value)#{else}#set($finalValue = $exceptionText)#end#if($finalValue != 'null')$finalValue#end"
+        },
+        "internal": false
+    }
+}

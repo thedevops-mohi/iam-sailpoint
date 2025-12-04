@@ -1,0 +1,53 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "c237d2ed-7b64-4c0c-a310-fc6d8ba47410",
+        "name": "PhysicalDeliveryOfficeName"
+    },
+    "object": {
+        "id": "c237d2ed-7b64-4c0c-a310-fc6d8ba47410",
+        "name": "PhysicalDeliveryOfficeName",
+        "type": "static",
+        "attributes": {
+            "rgofName": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "attributes": {
+                                "attributeName": "RGOF-NAME",
+                                "sourceName": "Advisors - SIS Feed"
+                            },
+                            "type": "accountAttribute"
+                        },
+                        "None"
+                    ]
+                }
+            },
+            "rgofNo": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "attributes": {
+                                "attributeName": "RGOF-NO",
+                                "sourceName": "Advisors - SIS Feed"
+                            },
+                            "type": "accountAttribute"
+                        },
+                        "None"
+                    ]
+                }
+            },
+            "userType": {
+                "attributes": {
+                    "id": "UserType"
+                },
+                "type": "reference"
+            },
+            "value": "#if($userType == 'Advisor')RO$rgofNo - $rgofName#{else}#end"
+        },
+        "internal": false
+    }
+}

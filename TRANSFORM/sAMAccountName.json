@@ -1,0 +1,26 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "b7645403-18b0-41fd-beea-0cfa82ad33ff",
+        "name": "sAMAccountName"
+    },
+    "object": {
+        "id": "b7645403-18b0-41fd-beea-0cfa82ad33ff",
+        "name": "sAMAccountName",
+        "type": "firstValid",
+        "attributes": {
+            "values": [
+                {
+                    "type": "accountAttribute",
+                    "attributes": {
+                        "sourceName": "Active Directory",
+                        "attributeName": "sAMAccountName"
+                    }
+                },
+                "$oldValue"
+            ]
+        },
+        "internal": false
+    }
+}

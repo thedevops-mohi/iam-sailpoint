@@ -1,0 +1,235 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "97212d36-4e28-47a6-b374-41598b62fc28",
+        "name": "RegionOfficeName"
+    },
+    "object": {
+        "id": "97212d36-4e28-47a6-b374-41598b62fc28",
+        "name": "RegionOfficeName",
+        "type": "static",
+        "attributes": {
+            "TransformDesrcription": {
+                "type": "static",
+                "attributes": {
+                    "Comment_20251024": "Scott Walker - Initial version.",
+                    "value": "Populate Region Office NAME. We don't have a direct SF attribute so we need to use a lookup table to obtain the english region office Name values provided by SF admin."
+                }
+            },
+            "bestSource": {
+                "type": "reference",
+                "attributes": {
+                    "id": "BestSource"
+                }
+            },
+            "exceptionText": {
+                "type": "static",
+                "attributes": {
+                    "value": "transform:RegionOfficeNo:unhandled_case"
+                }
+            },
+            "SFAuth_value": {
+                "type": "lookup",
+                "attributes": {
+                    "input": {
+                        "type": "firstValid",
+                        "attributes": {
+                            "values": [
+                                {
+                                    "type": "accountAttribute",
+                                    "attributes": {
+                                        "sourceName": "SuccessFactors-Auth",
+                                        "attributeName": "EmpJob.customString64",
+                                        "accountSortAttribute": "StartDate_EmpInfo",
+                                        "accountSortDescending": true,
+                                        "accountReturnFirstLink": true
+                                    }
+                                },
+                                "null"
+                            ]
+                        }
+                    },
+                    "table": {
+                        "1": "Edmonton Metro",
+                        "3": "Greater Vancouver",
+                        "4": "Bc Interior",
+                        "15": "Peterborough And The Kawarthas",
+                        "16": "Halifax",
+                        "17": "Thunder Bay Northwest",
+                        "19": "Gvi And Bc North",
+                        "21": "Sherbrooke",
+                        "22": "Kw-Cambridge",
+                        "27": "Ottawa South-East",
+                        "30": "Fairview Markham",
+                        "32": "Greater Vancouver East",
+                        "33": "Toronto Central",
+                        "34": "Windsor Tri-County",
+                        "35": "Greater Niagara",
+                        "36": "Kingston Quinte Isles",
+                        "37": "Oakville",
+                        "40": "Newbrunswick/nouveau-Brunswick",
+                        "44": "Ontario Northeast",
+                        "45": "Montreal Rive-Sud",
+                        "47": "Toronto West",
+                        "48": "Newfoundland & Labrador",
+                        "49": "Head Office",
+                        "52": "Toronto Downtown",
+                        "53": "Winnipeg Southwest",
+                        "61": "Saskatchewan North",
+                        "63": "Calgary Downtown And Foothills",
+                        "64": "Mauricie",
+                        "65": "Victoria Metro",
+                        "67": "Saguenay",
+                        "68": "Pei & North Nova",
+                        "73": "Oshawa/whitby",
+                        "74": "Laval Mont-Royal",
+                        "75": "Montreal West Island",
+                        "76": "Boisbriand",
+                        "80": "Quebec Ste-Foy",
+                        "83": "Toronto-Rouge Valley",
+                        "85": "Brampton",
+                        "86": "Guelph-Halton Hills",
+                        "89": "Mississauga",
+                        "90": "Greater Calgary",
+                        "98": "Quebec Lebourgneuf",
+                        "106": "Ontario North Central",
+                        "111": "Terrebonne-Lachenaie",
+                        "116": "Winnipeg North Central",
+                        "124": "Hamilton",
+                        "130": "London-Sarnia",
+                        "153": "Quebec Rive-Sud",
+                        "166": "Edmonton Gateway",
+                        "176": "Montreal-Outaouais",
+                        "310": "IGSI",
+                        "564": "Saskatchewan South",
+                        "603": "Brantford Ancaster",
+                        "696": "Ottawa West-Kanata",
+                        "700": "National Corporate",
+                        "701": "National - Quebec",
+                        "799": "Insurance Marketing Managers",
+                        "897": "PIV - Test Region Office",
+                        "971": "IG Wealth Connect",
+                        "null": "null",
+                        "default": "TBD_TransformUpdateNeeded"
+                    }
+                }
+            },
+            "SFNonAuth_value": {
+                "type": "lookup",
+                "attributes": {
+                    "input": {
+                        "type": "firstValid",
+                        "attributes": {
+                            "values": [
+                                {
+                                    "type": "accountAttribute",
+                                    "attributes": {
+                                        "sourceName": "SuccessFactors - NonAuthoritative",
+                                        "attributeName": "EmpJob.customString64",
+                                        "accountSortAttribute": "StartDate_EmpInfo",
+                                        "accountSortDescending": true,
+                                        "accountReturnFirstLink": true
+                                    }
+                                },
+                                "null"
+                            ]
+                        }
+                    },
+                    "table": {
+                        "1": "Edmonton Metro",
+                        "3": "Greater Vancouver",
+                        "4": "Bc Interior",
+                        "15": "Peterborough And The Kawarthas",
+                        "16": "Halifax",
+                        "17": "Thunder Bay Northwest",
+                        "19": "Gvi And Bc North",
+                        "21": "Sherbrooke",
+                        "22": "Kw-Cambridge",
+                        "27": "Ottawa South-East",
+                        "30": "Fairview Markham",
+                        "32": "Greater Vancouver East",
+                        "33": "Toronto Central",
+                        "34": "Windsor Tri-County",
+                        "35": "Greater Niagara",
+                        "36": "Kingston Quinte Isles",
+                        "37": "Oakville",
+                        "40": "Newbrunswick/nouveau-Brunswick",
+                        "44": "Ontario Northeast",
+                        "45": "Montreal Rive-Sud",
+                        "47": "Toronto West",
+                        "48": "Newfoundland & Labrador",
+                        "49": "Head Office",
+                        "52": "Toronto Downtown",
+                        "53": "Winnipeg Southwest",
+                        "61": "Saskatchewan North",
+                        "63": "Calgary Downtown And Foothills",
+                        "64": "Mauricie",
+                        "65": "Victoria Metro",
+                        "67": "Saguenay",
+                        "68": "Pei & North Nova",
+                        "73": "Oshawa/whitby",
+                        "74": "Laval Mont-Royal",
+                        "75": "Montreal West Island",
+                        "76": "Boisbriand",
+                        "80": "Quebec Ste-Foy",
+                        "83": "Toronto-Rouge Valley",
+                        "85": "Brampton",
+                        "86": "Guelph-Halton Hills",
+                        "89": "Mississauga",
+                        "90": "Greater Calgary",
+                        "98": "Quebec Lebourgneuf",
+                        "106": "Ontario North Central",
+                        "111": "Terrebonne-Lachenaie",
+                        "116": "Winnipeg North Central",
+                        "124": "Hamilton",
+                        "130": "London-Sarnia",
+                        "153": "Quebec Rive-Sud",
+                        "166": "Edmonton Gateway",
+                        "176": "Montreal-Outaouais",
+                        "310": "IGSI",
+                        "564": "Saskatchewan South",
+                        "603": "Brantford Ancaster",
+                        "696": "Ottawa West-Kanata",
+                        "700": "National Corporate",
+                        "701": "National - Quebec",
+                        "799": "Insurance Marketing Managers",
+                        "897": "PIV - Test Region Office",
+                        "971": "IG Wealth Connect",
+                        "null": "null",
+                        "default": "TBD_TransformUpdateNeeded"
+                    }
+                }
+            },
+            "SIS_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "Advisors - SIS Feed",
+                                "attributeName": "RGOF-NAME"
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "SAP_value": {
+                "type": "static",
+                "attributes": {
+                    "value": "null"
+                }
+            },
+            "SNOW_value": {
+                "type": "static",
+                "attributes": {
+                    "value": "null"
+                }
+            },
+            "value": "#if($bestSource == 'use_SFAuth')#set($finalValue = $SFAuth_value)#elseif($bestSource == 'use_SFNonAuth')#set($finalValue = $SFNonAuth_value)#elseif($bestSource == 'use_SAPECC')#set($finalValue = $SAP_value)#elseif($bestSource == 'use_SIS')#set($finalValue = $SIS_value)#elseif($bestSource == 'use_ServiceNow')#set($finalValue = $SNOW_value)#{else}#set($finalValue = $exceptionText)#end#if($finalValue != 'null')$finalValue#end"
+        },
+        "internal": false
+    }
+}

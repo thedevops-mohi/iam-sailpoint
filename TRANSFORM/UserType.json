@@ -1,0 +1,204 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "ab54ae28-ef5a-4ba2-b152-d237956744f3",
+        "name": "UserType"
+    },
+    "object": {
+        "id": "ab54ae28-ef5a-4ba2-b152-d237956744f3",
+        "name": "UserType",
+        "type": "static",
+        "attributes": {
+            "value": "#if($bestSource == 'use_SFAuth')$SFAuth_value#elseif($bestSource == 'use_SFNonAuth')$SFNonAuth_value#elseif($bestSource == 'use_SAPECC')Employee#elseif($bestSource == 'use_SIS')Advisor#elseif($bestSource.compareToIgnoreCase('use_servicenow') == 0)$SNOW_value#{else}error:transform:UserType:undetermined#end",
+            "SFAuth_value": {
+                "type": "static",
+                "attributes": {
+                    "SFAuth_UserType": {
+                        "type": "firstValid",
+                        "attributes": {
+                            "values": [
+                                {
+                                    "type": "accountAttribute",
+                                    "attributes": {
+                                        "sourceName": "SuccessFactors-Auth",
+                                        "attributeName": "EmpJob.customString59",
+                                        "accountSortAttribute": "StartDate_EmpInfo",
+                                        "accountSortDescending": true,
+                                        "accountReturnFirstLink": true
+                                    }
+                                },
+                                "null"
+                            ]
+                        }
+                    },
+                    "value_variations": {
+                        "type": "firstValid",
+                        "attributes": {
+                            "values": [
+                                "null",
+                                "We use a firstValid element with a leading null to avoid issues if the alternate value code cannot be evaluated cleanly ouside of the actual <value> section.",
+                                "pre_20250904_value: #if($SFAuth_UserType == 'null')$SFAuth_InferredUserType#elseif($SFAuth_UserType == 'Field')Advisor#elseif($SFAuth_UserType == 'Assistant')Advisor#{else}$SFAuth_UserType#end",
+                                "20250904: "
+                            ]
+                        }
+                    },
+                    "value": "#if($SFAuth_UserType == 'null')SFAUTH_EMPTYUSER#elseif($SFAuth_UserType == 'Field')Advisor#elseif($SFAuth_UserType == 'Assistant')Advisor#{else}$SFAuth_UserType#end"
+                }
+            },
+            "SFNonAuth_value": {
+                "type": "static",
+                "attributes": {
+                    "SFNonAuth_UserType": {
+                        "type": "firstValid",
+                        "attributes": {
+                            "values": [
+                                {
+                                    "type": "accountAttribute",
+                                    "attributes": {
+                                        "sourceName": "SuccessFactors - NonAuthoritative",
+                                        "attributeName": "EmpJob.customString59",
+                                        "accountSortAttribute": "StartDate_EmpInfo",
+                                        "accountSortDescending": true,
+                                        "accountReturnFirstLink": true
+                                    }
+                                },
+                                "null"
+                            ]
+                        }
+                    },
+                    "value_variations": {
+                        "type": "firstValid",
+                        "attributes": {
+                            "values": [
+                                "null",
+                                "We use a firstValid element witha leading null to avoid issues if the alternate value code cannot be evaluated cleanly ouside of the actual <value> section.",
+                                "pre_20250904_value: #if($SFNonAuth_UserType == 'null')$SFNonAuth_InferredUserType#elseif($SFNonAuth_UserType == 'Corporate')Employee#{else}$SFNonAuth_UserType#end",
+                                "failing: #set($validValues = ['Employee', 'Hybrid', 'Dual Role'])#if($SFNonAuth_UserType == 'null')#set($outValue = $SFNonAuth_InferredUserType)#elseif($SFNonAuth_UserType == 'Corporate')#set($outValue = 'Employee')#{else}#set($outValue = $SFNonAuth_UserType)#end#if($validValues.contains($outValue))$outValue#{else}$outValue: $exceptionText#end",
+                                "20250904: #set($validValues = ['Employee','Hybrid','Dual Role'])#if($SFNonAuth_UserType == 'null')#set($outValue = $SFNonAuth_InferredUserType)#elseif($SFNonAuth_UserType == 'Corporate')#set($outValue = 'Employee')#{else}#set($outValue = $SFNonAuth_UserType)#end#if($validValues.contains($outValue))$outValue#{else}UnhandledValue:$outValue in SFNonAuth_value section#end",
+                                "20251007: #set($validValues = ['Employee','Hybrid','Dual Role'])#if($SFNonAuth_UserType == 'null')#set($outValue = $SFNonAuth_InferredUserType)#elseif($SFNonAuth_UserType == 'Corporate')#set($outValue = 'Employee')#{else}#set($outValue = $SFNonAuth_UserType)#end#if($validValues.contains($outValue))$outValue#{else} $outValue: Unhandled in SFNonAuth_value section#end",
+                                "20251007new: #set($validValues = ['Employee','Hybrid','Dual Role'])#if($SFNonAuth_UserType == 'null')#set($outValue = 'Employee')#elseif($SFNonAuth_UserType == 'Corporate')#set($outValue = 'Employee')#{else}#set($outValue = $SFNonAuth_UserType)#end#if($validValues.contains($outValue))$outValue#{else} $outValue: Unhandled in SFNonAuth_value section#end"
+                            ]
+                        }
+                    },
+                    "value": "#set($validValues = ['Employee','Hybrid','Dual Role'])#if($SFNonAuth_UserType == 'null')#set($outValue = 'Employee')#elseif($SFNonAuth_UserType == 'Corporate')#set($outValue = 'Employee')#{else}#set($outValue = $SFNonAuth_UserType)#end#if($validValues.contains($outValue))$outValue#{else} $outValue: Unhandled in SFNonAuth_value section#end"
+                }
+            },
+            "SNOW_value": {
+                "type": "static",
+                "attributes": {
+                    "hasSnowApiAccount": {
+                        "type": "conditional",
+                        "attributes": {
+                            "expression": "$hasSnowApiAccount eq null",
+                            "positiveCondition": "false",
+                            "negativeCondition": "true",
+                            "hasSnowApiAccount": {
+                                "type": "firstValid",
+                                "attributes": {
+                                    "values": [
+                                        {
+                                            "type": "accountAttribute",
+                                            "attributes": {
+                                                "sourceName": "ServiceNowAPI",
+                                                "attributeName": "id"
+                                            }
+                                        },
+                                        "null"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "snowAPIuserType": {
+                        "type": "firstValid",
+                        "attributes": {
+                            "values": [
+                                {
+                                    "type": "accountAttribute",
+                                    "attributes": {
+                                        "sourceName": "ServiceNowAPI",
+                                        "attributeName": "userType"
+                                    }
+                                },
+                                "NoSNAPIUserType"
+                            ]
+                        }
+                    },
+                    "snowAPIafterConvUserType": {
+                        "type": "firstValid",
+                        "attributes": {
+                            "values": [
+                                {
+                                    "type": "accountAttribute",
+                                    "attributes": {
+                                        "sourceName": "ServiceNowAPI",
+                                        "attributeName": "afterConversionUserType"
+                                    }
+                                },
+                                "NOafterConversionUserType"
+                            ]
+                        }
+                    },
+                    "snowAPIConvDateReached": {
+                        "type": "firstValid",
+                        "attributes": {
+                            "values": [
+                                {
+                                    "type": "dateCompare",
+                                    "attributes": {
+                                        "firstDate": {
+                                            "type": "dateFormat",
+                                            "attributes": {
+                                                "input": {
+                                                    "type": "accountAttribute",
+                                                    "attributes": {
+                                                        "sourceName": "ServiceNowAPI",
+                                                        "attributeName": "conversionDate"
+                                                    }
+                                                },
+                                                "inputFormat": "yyyy-MM-dd'T'-HH:mm:ss:SSS-HH:mm",
+                                                "outputFormat": "ISO8601"
+                                            }
+                                        },
+                                        "secondDate": "now",
+                                        "operator": "lte",
+                                        "positiveCondition": "true",
+                                        "negativeCondition": "false"
+                                    }
+                                },
+                                "false"
+                            ]
+                        }
+                    },
+                    "value": "#if($hasSnowApiAccount == 'true' && $snowAPIConvDateReached == 'false')$snowAPIuserType#elseif($hasSnowApiAccount == 'true' && $snowAPIConvDateReached == 'true')$snowAPIafterConvUserType#{else}NoSnowAPIUserType#end"
+                }
+            },
+            "TransformDesrcription": {
+                "type": "static",
+                "attributes": {
+                    "change_TWF": "Add new HR sources. ",
+                    "Comment_202507??": "Varous versions to derive Usertype based on Job Classification code as specified by TWF requirements.",
+                    "Comment_20250827": "Scott Walker - New requirement is to handle a 'Corporate' value from SuccessFactors - NonAuthoritative ",
+                    "comment_20250909": "Scott Walker - switch from using the SFAPI populated attribute (UserType) to the OData reference (EmpJob.customString59) to avoid issue with value bleeding between job records when the value on the target job is empty (i.e. standard employee)",
+                    "Comment_20251007": "Scott Walker - REMOVE Job Code based usertype determination. After the attribute is explicitly added in SF then this can be less flexible and counterproductive. Backup on this date can be used to revert if needed.",
+                    "value": "User Type transform - updated 2025-04-08. Populate the <userType> identity attribute. "
+                }
+            },
+            "bestSource": {
+                "type": "reference",
+                "attributes": {
+                    "id": "BestSource"
+                }
+            },
+            "exceptionText": {
+                "type": "static",
+                "attributes": {
+                    "value": "transform:UserType:unhandled_case"
+                }
+            },
+            "requiresPeriodicRefresh": true
+        },
+        "internal": false
+    }
+}

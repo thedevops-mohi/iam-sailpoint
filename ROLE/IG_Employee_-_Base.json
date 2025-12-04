@@ -1,0 +1,147 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "ROLE",
+        "id": "24e8da2baf80483cb57f760f85168377",
+        "name": "IG Employee - Base"
+    },
+    "object": {
+        "id": "24e8da2baf80483cb57f760f85168377",
+        "name": "IG Employee - Base",
+        "created": "2023-04-14T08:43:18.338Z",
+        "modified": "2025-12-01T02:51:26.158038Z",
+        "description": "IG Employee",
+        "owner": {
+            "type": "IDENTITY",
+            "id": "1b7fbaac325446ff9e49d1e5903c6d55",
+            "name": "Del Mundo, Alan"
+        },
+        "entitlements": [],
+        "accessProfiles": [
+            {
+                "id": "c917a0852ae14f0eb59667e9e29d5b86",
+                "type": "ACCESS_PROFILE",
+                "name": "AD - IG Employee - Base"
+            }
+        ],
+        "membership": {
+            "type": "STANDARD",
+            "criteria": {
+                "operation": "AND",
+                "key": null,
+                "values": null,
+                "stringValue": "",
+                "children": [
+                    {
+                        "operation": "OR",
+                        "key": null,
+                        "values": null,
+                        "stringValue": "",
+                        "children": [
+                            {
+                                "operation": "EQUALS",
+                                "key": {
+                                    "type": "IDENTITY",
+                                    "property": "attribute.cloudLifecycleState",
+                                    "sourceId": null
+                                },
+                                "values": [
+                                    "Prehire"
+                                ],
+                                "stringValue": null,
+                                "children": null
+                            },
+                            {
+                                "operation": "EQUALS",
+                                "key": {
+                                    "type": "IDENTITY",
+                                    "property": "attribute.cloudLifecycleState",
+                                    "sourceId": null
+                                },
+                                "values": [
+                                    "Active"
+                                ],
+                                "stringValue": null,
+                                "children": null
+                            },
+                            {
+                                "operation": "EQUALS",
+                                "key": {
+                                    "type": "IDENTITY",
+                                    "property": "attribute.cloudLifecycleState",
+                                    "sourceId": null
+                                },
+                                "values": [
+                                    "Suspended"
+                                ],
+                                "stringValue": null,
+                                "children": null
+                            },
+                            {
+                                "operation": "EQUALS",
+                                "key": {
+                                    "type": "IDENTITY",
+                                    "property": "attribute.cloudLifecycleState",
+                                    "sourceId": null
+                                },
+                                "values": [
+                                    "Terminated"
+                                ],
+                                "stringValue": null,
+                                "children": null
+                            }
+                        ]
+                    },
+                    {
+                        "operation": "EQUALS",
+                        "key": {
+                            "type": "IDENTITY",
+                            "property": "attribute.userType",
+                            "sourceId": null
+                        },
+                        "values": [
+                            "Employee",
+                            "Dual Role"
+                        ],
+                        "stringValue": null,
+                        "children": null
+                    },
+                    {
+                        "operation": "EQUALS",
+                        "key": {
+                            "type": "IDENTITY",
+                            "property": "attribute.company",
+                            "sourceId": null
+                        },
+                        "values": [
+                            "Investors Group"
+                        ],
+                        "stringValue": null,
+                        "children": null
+                    }
+                ]
+            },
+            "identities": null
+        },
+        "legacyMembershipInfo": null,
+        "enabled": true,
+        "requestable": false,
+        "accessRequestConfig": {
+            "commentsRequired": false,
+            "denialCommentsRequired": false,
+            "approvalSchemes": [],
+            "reauthorizationRequired": false,
+            "requireEndDate": false,
+            "maxPermittedAccessDuration": null
+        },
+        "revocationRequestConfig": {
+            "approvalSchemes": []
+        },
+        "segments": [],
+        "dimensional": false,
+        "dimensionRefs": null,
+        "additionalOwners": null,
+        "segmentRefs": [],
+        "dimensions": []
+    }
+}

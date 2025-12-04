@@ -1,0 +1,163 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "0c6abbc4-9c60-4846-8f82-0835348b1a13",
+        "name": "EmployeeID"
+    },
+    "object": {
+        "id": "0c6abbc4-9c60-4846-8f82-0835348b1a13",
+        "name": "EmployeeID",
+        "type": "static",
+        "attributes": {
+            "TransformDesrcription": {
+                "type": "static",
+                "attributes": {
+                    "change_TWF": "Add new HR sources and migration xref source to provide PersonIDExternal/EmployeeID ",
+                    "Comment_20250502": "NOTE !!!!! Temporarily we are removing the oldValue fall-through to avoid duplicate personids between mock loads",
+                    "Comment_20250815": "REVISING structure significantly to use all sources, and allow for retention of current/oldValue if there is no other valid value.",
+                    "Comment_20250819": "Need to add back in the migration xref source as a potential valid source if no others are available, regardless of bestsource/sourceoftruth. Initially this may be needed for any user type other than contractor - and even then it might be applicable if they were previously an employee.",
+                    "value": "Populate the <employeeId> or <employeeNumber> attribute. For most cases the <personIdExternal> (PIE) attribute will matche the EmployeeNumber, however when there are major job changes in SF then a new EmployeeNumber must/will be assigned, but the PersonIdExternal tends to remain unchanged as the value for the first (no longer active) Job identifier."
+                }
+            },
+            "exceptionText": {
+                "type": "static",
+                "attributes": {
+                    "value": "transform:EmployeeID:unhandled_case"
+                }
+            },
+            "bestSource": {
+                "type": "reference",
+                "attributes": {
+                    "id": "BestSource"
+                }
+            },
+            "SFAuth_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "SuccessFactors-Auth",
+                                "attributeName": "Userid",
+                                "accountSortAttribute": "StartDate_EmpInfo",
+                                "accountSortDescending": true,
+                                "accountReturnFirstLink": true
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "SFNonAuth_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "SuccessFactors - NonAuthoritative",
+                                "attributeName": "Userid",
+                                "accountSortAttribute": "StartDate_EmpInfo",
+                                "accountSortDescending": true,
+                                "accountReturnFirstLink": true
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "SAP_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "Employees SAP ECC",
+                                "attributeName": "PERNR"
+                            }
+                        },
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "ServiceNowAPI",
+                                "attributeName": "employeeNumber"
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "SIS_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        "null"
+                    ]
+                }
+            },
+            "SNOW_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "ServiceNowAPI",
+                                "attributeName": "employeeNumber"
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "twf_migration_xref_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "unconn_PersonID_xref",
+                                "attributeName": "personIDExternal"
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "keep_current_value_postMigration": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        "$oldValue",
+                        "null"
+                    ]
+                }
+            },
+            "keep_current_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        "null"
+                    ]
+                }
+            },
+            "value_variations": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        "null",
+                        "#if($bestSource == 'use_SFAuth' && $SFAuth_value != 'null')#set($finalValue = $SFAuth_value)#elseif($bestSource == 'use_SFNonAuth' && $SFNonAuth_value != 'null')#set($finalValue = $SFNonAuth_value)#elseif($bestSource == 'use_SAPECC' && $SAP_value != 'null')#set($finalValue = $SAP_value)#elseif($bestSource == 'use_SIS' && $SIS_value != 'null')#set($finalValue = $SIS_value)#elseif($bestSource == 'use_ServiceNow' && $SNOW_value != 'null')#set($finalValue = $SNOW_value)#elseif($keep_current_value != 'null')#set($finalValue = $keep_current_value)#{else}#set($finalValue = $exceptionText)#end#if($finalValue != 'null')$finalValue#end",
+                        "#if($bestSource == 'use_SFAuth' && $SFAuth_value != 'null')#set($finalValue = $SFAuth_value)#elseif($bestSource == 'use_SFNonAuth' && $SFNonAuth_value != 'null')#set($finalValue = $SFNonAuth_value)#elseif($bestSource == 'use_SAPECC' && $SAP_value != 'null')#set($finalValue = $SAP_value)#elseif($bestSource == 'use_SIS' && $SIS_value != 'null')#set($finalValue = $SIS_value)#elseif($bestSource == 'use_ServiceNow' && $SNOW_value != 'null')#set($finalValue = $SNOW_value)#elseif($keep_current_value != 'null')#set($finalValue = $keep_current_value)#{else}#set($finalValue = $keep_current_value)#end#if($finalValue != 'null')$finalValue#end",
+                        "#if($bestSource == 'use_SFAuth' && $SFAuth_value != 'null')#set($finalValue = $SFAuth_value)#elseif($bestSource == 'use_SFNonAuth' && $SFNonAuth_value != 'null')#set($finalValue = $SFNonAuth_value)#elseif($bestSource == 'use_SAPECC' && $SAP_value != 'null')#set($finalValue = $SAP_value)#elseif($bestSource == 'use_SIS' && $SIS_value != 'null')#set($finalValue = $SIS_value)#elseif($bestSource == 'use_ServiceNow' && $SNOW_value != 'null')#set($finalValue = $SNOW_value)#elseif($twf_migration_xref_value != 'null')#set($finalValue = $twf_migration_xref_value)#elseif($keep_current_value != 'null')#set($finalValue = $keep_current_value)#{else}#set($finalValue = $keep_current_value)#end#if($finalValue != 'null')$finalValue#end"
+                    ]
+                }
+            },
+            "value": "#if($bestSource == 'use_SFAuth' && $SFAuth_value != 'null')#set($finalValue = $SFAuth_value)#elseif($bestSource == 'use_SFNonAuth' && $SFNonAuth_value != 'null')#set($finalValue = $SFNonAuth_value)#elseif($bestSource == 'use_SAPECC' && $SAP_value != 'null')#set($finalValue = $SAP_value)#elseif($bestSource == 'use_SIS' && $SIS_value != 'null')#set($finalValue = $SIS_value)#elseif($bestSource == 'use_ServiceNow' && $SNOW_value != 'null')#set($finalValue = $SNOW_value)#elseif($twf_migration_xref_value != 'null')#set($finalValue = $twf_migration_xref_value)#elseif($keep_current_value != 'null')#set($finalValue = $keep_current_value)#{else}#set($finalValue = $keep_current_value)#end#if($finalValue != 'null')$finalValue#end"
+        },
+        "internal": false
+    }
+}

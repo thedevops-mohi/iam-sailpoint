@@ -1,0 +1,309 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "f4356c5b-f40c-483e-a6a2-df021e02514f",
+        "name": "AdvisoryRole"
+    },
+    "object": {
+        "id": "f4356c5b-f40c-483e-a6a2-df021e02514f",
+        "name": "AdvisoryRole",
+        "type": "static",
+        "attributes": {
+            "TransformDesrcription": {
+                "type": "static",
+                "attributes": {
+                    "Comment_20250624": "Scott Walker - Initial version. This replaces the former title identity attribute usage which captured the role from SIS feed only.",
+                    "value": "Determine the type of advisory role this person has which impacts their assigned access."
+                }
+            },
+            "exceptionText": {
+                "type": "static",
+                "attributes": {
+                    "value": "transform:AdvisoryRole: UnhandledCase"
+                }
+            },
+            "bestSource": {
+                "type": "reference",
+                "attributes": {
+                    "id": "BestSource"
+                }
+            },
+            "SFAuth_value": {
+                "type": "static",
+                "attributes": {
+                    "SF_UserType": {
+                        "type": "firstValid",
+                        "attributes": {
+                            "values": [
+                                {
+                                    "type": "accountAttribute",
+                                    "attributes": {
+                                        "sourceName": "SuccessFactors-Auth",
+                                        "attributeName": "EmpJob.customString59",
+                                        "accountSortAttribute": "StartDate_EmpInfo",
+                                        "accountSortDescending": true,
+                                        "accountReturnFirstLink": true
+                                    }
+                                },
+                                "null"
+                            ]
+                        }
+                    },
+                    "SF_Role_lookup": {
+                        "type": "lookup",
+                        "attributes": {
+                            "input": {
+                                "type": "firstValid",
+                                "attributes": {
+                                    "values": [
+                                        {
+                                            "type": "accountAttribute",
+                                            "attributes": {
+                                                "sourceName": "SuccessFactors-Auth",
+                                                "attributeName": "EmpJob.jobCode",
+                                                "accountSortAttribute": "StartDate_EmpInfo",
+                                                "accountSortDescending": true,
+                                                "accountReturnFirstLink": true
+                                            }
+                                        },
+                                        "null"
+                                    ]
+                                }
+                            },
+                            "table": {
+                                "10000122": "Assistant",
+                                "10000138": "Consultant",
+                                "10000169": "Consultant",
+                                "10000175": "Consultant",
+                                "10000197": "Assistant",
+                                "10000206": "Assistant",
+                                "10000217": "Assistant",
+                                "10000233": "Assistant",
+                                "10000244": "Assistant",
+                                "10000245": "Assistant",
+                                "10000253": "Assistant",
+                                "10000256": "Assistant",
+                                "10000257": "Assistant",
+                                "10000258": "Assistant",
+                                "10000530": "Consultant",
+                                "10000531": "Consultant",
+                                "10000532": "Consultant",
+                                "10000533": "Consultant",
+                                "10000539": "Consultant",
+                                "10000638": "Assistant",
+                                "10000671": "Consultant",
+                                "10000746": "Associate",
+                                "10000750": "Assistant",
+                                "10000751": "Associate",
+                                "10000752": "Assistant",
+                                "10000753": "Associate",
+                                "10000769": "Consultant",
+                                "10000776": "Consultant",
+                                "10000780": "Consultant",
+                                "10000789": "Assistant",
+                                "10000823": "Assistant",
+                                "10000830": "Assistant",
+                                "10000844": "Consultant",
+                                "10000861": "Consultant",
+                                "10000866": "Assistant",
+                                "10000870": "Assistant",
+                                "10000873": "Assistant",
+                                "10000881": "Assistant",
+                                "10001271": "Assistant",
+                                "10001302": "Consultant",
+                                "10001479": "Assistant",
+                                "10001514": "Assistant",
+                                "10001522": "Regional Director",
+                                "10001525": "Consultant",
+                                "10001526": "Consultant",
+                                "10001541": "Assistant",
+                                "10001550": "Assistant",
+                                "10001555": "Regional Director",
+                                "10001600": "Consultant",
+                                "10001605": "Division Director",
+                                "10001609": "Consultant",
+                                "10001668": "Consultant",
+                                "10001681": "Division Director",
+                                "10001693": "Consultant",
+                                "10001743": "Assistant",
+                                "15001661": "Consultant",
+                                "15001662": "Associate",
+                                "15001663": "Assistant",
+                                "15001664": "Division Director",
+                                "15001665": "Associate",
+                                "15001666": "Associate",
+                                "15001670": "Associate",
+                                "null": "null",
+                                "default": "null"
+                            }
+                        }
+                    },
+                    "value_variations": {
+                        "type": "firstValid",
+                        "attributes": {
+                            "values": [
+                                "null",
+                                "We use a firstValid element with a leading null to avoid issues if the alternate value code cannot be evaluated cleanly ouside of the actual <value> section.",
+                                "#set($varWorkingRole = $SF_Role_lookup)#if($SF_Role_lookup == 'Assistant')#if($SF_UserType != 'null')#set($varWorkingRole = 'Assistant')#{else}#set($varWorkingRole = 'null')#end#end#if($varWorkingRole == 'null')#{else}$varWorkingRole#end"
+                            ]
+                        }
+                    },
+                    "value": "#if($SF_UserType != 'null')#set($varWorkingRole = $SF_Role_lookup)#{else}#set($varWorkingRole = 'null')#end#if($varWorkingRole == 'null')#{else}$varWorkingRole#end"
+                }
+            },
+            "SFNonAuth_value": {
+                "type": "static",
+                "attributes": {
+                    "SF_UserType": {
+                        "type": "firstValid",
+                        "attributes": {
+                            "values": [
+                                {
+                                    "type": "accountAttribute",
+                                    "attributes": {
+                                        "sourceName": "SuccessFactors - NonAuthoritative",
+                                        "attributeName": "EmpJob.customString59",
+                                        "accountSortAttribute": "StartDate_EmpInfo",
+                                        "accountSortDescending": true,
+                                        "accountReturnFirstLink": true
+                                    }
+                                },
+                                "null"
+                            ]
+                        }
+                    },
+                    "SF_Role_lookup": {
+                        "type": "lookup",
+                        "attributes": {
+                            "input": {
+                                "type": "firstValid",
+                                "attributes": {
+                                    "values": [
+                                        {
+                                            "type": "accountAttribute",
+                                            "attributes": {
+                                                "sourceName": "SuccessFactors - NonAuthoritative",
+                                                "attributeName": "EmpJob.jobCode",
+                                                "accountSortAttribute": "StartDate_EmpInfo",
+                                                "accountSortDescending": true,
+                                                "accountReturnFirstLink": true
+                                            }
+                                        },
+                                        "null"
+                                    ]
+                                }
+                            },
+                            "table": {
+                                "10000122": "Assistant",
+                                "10000138": "Consultant",
+                                "10000169": "Consultant",
+                                "10000175": "Consultant",
+                                "10000197": "Assistant",
+                                "10000206": "Assistant",
+                                "10000217": "Assistant",
+                                "10000233": "Assistant",
+                                "10000244": "Assistant",
+                                "10000245": "Assistant",
+                                "10000253": "Assistant",
+                                "10000256": "Assistant",
+                                "10000257": "Assistant",
+                                "10000258": "Assistant",
+                                "10000530": "Consultant",
+                                "10000531": "Consultant",
+                                "10000532": "Consultant",
+                                "10000533": "Consultant",
+                                "10000539": "Consultant",
+                                "10000638": "Assistant",
+                                "10000671": "Consultant",
+                                "10000746": "Associate",
+                                "10000750": "Assistant",
+                                "10000751": "Associate",
+                                "10000752": "Assistant",
+                                "10000753": "Associate",
+                                "10000769": "Consultant",
+                                "10000776": "Consultant",
+                                "10000780": "Consultant",
+                                "10000789": "Assistant",
+                                "10000823": "Assistant",
+                                "10000830": "Assistant",
+                                "10000844": "Consultant",
+                                "10000861": "Consultant",
+                                "10000866": "Assistant",
+                                "10000870": "Assistant",
+                                "10000873": "Assistant",
+                                "10000881": "Assistant",
+                                "10001271": "Assistant",
+                                "10001302": "Consultant",
+                                "10001479": "Assistant",
+                                "10001514": "Assistant",
+                                "10001522": "Regional Director",
+                                "10001525": "Consultant",
+                                "10001526": "Consultant",
+                                "10001541": "Assistant",
+                                "10001550": "Assistant",
+                                "10001555": "Regional Director",
+                                "10001600": "Consultant",
+                                "10001605": "Division Director",
+                                "10001609": "Consultant",
+                                "10001668": "Consultant",
+                                "10001681": "Division Director",
+                                "10001693": "Consultant",
+                                "10001743": "Assistant",
+                                "15001661": "Consultant",
+                                "15001662": "Associate",
+                                "15001663": "Assistant",
+                                "15001664": "Division Director",
+                                "15001665": "Associate",
+                                "15001666": "Associate",
+                                "15001670": "Associate",
+                                "null": "null",
+                                "default": "null"
+                            }
+                        }
+                    },
+                    "value_variations": {
+                        "type": "firstValid",
+                        "attributes": {
+                            "values": [
+                                "null",
+                                "We use a firstValid element with a leading null to avoid issues if the alternate value code cannot be evaluated cleanly ouside of the actual <value> section.",
+                                "#set($varWorkingRole = $SF_Role_lookup)#if($SF_Role_lookup == 'Assistant')#if($SF_UserType != 'null')#set($varWorkingRole = 'Assistant')#{else}#set($varWorkingRole = 'null')#end#end#if($varWorkingRole == 'null')#{else}$varWorkingRole#end"
+                            ]
+                        }
+                    },
+                    "value": "#if($SF_UserType != 'null')#set($varWorkingRole = $SF_Role_lookup)#{else}#set($varWorkingRole = 'null')#end#if($varWorkingRole == 'null')#{else}$varWorkingRole#end"
+                }
+            },
+            "SAP_value": {
+                "type": "static",
+                "attributes": {
+                    "value": "null"
+                }
+            },
+            "SIS_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "Advisors - SIS Feed",
+                                "attributeName": "TITLE"
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "SNOW_value": {
+                "type": "static",
+                "attributes": {
+                    "value": "null"
+                }
+            },
+            "value": "#if($bestSource == 'use_SFAuth')#set($finalValue = $SFAuth_value)#elseif($bestSource == 'use_SFNonAuth')#set($finalValue = $SFNonAuth_value)#elseif($bestSource == 'use_SAPECC')#set($finalValue = $SAP_value)#elseif($bestSource == 'use_SIS')#set($finalValue = $SIS_value)#elseif($bestSource.compareToIgnoreCase('use_servicenow') == 0)#set($finalValue = $SNOW_value)#{else}#set($finalValue = $exceptionText)#end#if($finalValue != 'null')$finalValue#end"
+        },
+        "internal": false
+    }
+}

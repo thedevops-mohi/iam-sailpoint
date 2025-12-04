@@ -1,0 +1,84 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "ACCESS_PROFILE",
+        "id": "01639dc4a792447783e7a29c9fa44203",
+        "name": "AD - IGA - Base"
+    },
+    "object": {
+        "id": "01639dc4a792447783e7a29c9fa44203",
+        "name": "AD - IGA - Base",
+        "description": "Base entitlements for IG Advisors",
+        "created": "2023-04-14T08:37:15.8Z",
+        "modified": "2025-12-03T15:28:59.840543Z",
+        "enabled": true,
+        "owner": {
+            "type": "IDENTITY",
+            "id": "f5df644192e744eab79a35025c29a227",
+            "name": "Jyoti Gupta"
+        },
+        "source": {
+            "id": "a4dc7c1f64fc44fe9e778339d4915993",
+            "type": "SOURCE",
+            "name": "Active Directory"
+        },
+        "entitlements": [
+            {
+                "id": "824b1251679f3b41874161779d66dc93",
+                "type": "ENTITLEMENT",
+                "name": "IGAGG_365License_E5"
+            },
+            {
+                "id": "6c816608bded3ec7924e870ce71dd662",
+                "type": "ENTITLEMENT",
+                "name": "IGAGG_PSO_IGM"
+            },
+            {
+                "id": "eb0b70207b4d38f6a7f1435654527faa",
+                "type": "ENTITLEMENT",
+                "name": "IGM-ClearEstate-PROD-SSO"
+            },
+            {
+                "id": "ca108ce2908a335380fc401cc21ec3ff",
+                "type": "ENTITLEMENT",
+                "name": "IGM-DO-LKR-PROD"
+            },
+            {
+                "id": "ea31836220653319bdda111343275c84",
+                "type": "ENTITLEMENT",
+                "name": "IGM-DO-LKR-UAT"
+            },
+            {
+                "id": "3caf6722baa43149a43a70ed4531fd2a",
+                "type": "ENTITLEMENT",
+                "name": "IGM-Genetec-PROD-All-Base"
+            },
+            {
+                "id": "2c7a831219a33dddb2bb348d0d6ecd03",
+                "type": "ENTITLEMENT",
+                "name": "IGM-InterVal-PROD-SSO"
+            },
+            {
+                "id": "f6e2d32b1b7f3b019f5293dad06d1f4d",
+                "type": "ENTITLEMENT",
+                "name": "igho"
+            }
+        ],
+        "requestable": false,
+        "accessRequestConfig": {
+            "commentsRequired": false,
+            "denialCommentsRequired": false,
+            "approvalSchemes": [],
+            "reauthorizationRequired": false,
+            "requireEndDate": false,
+            "maxPermittedAccessDuration": null
+        },
+        "revocationRequestConfig": {
+            "approvalSchemes": []
+        },
+        "segments": [],
+        "provisioningCriteria": null,
+        "additionalOwners": null,
+        "segmentRefs": []
+    }
+}

@@ -1,0 +1,153 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "WORKFLOW",
+        "id": "fdbb854c-839e-4da7-b08d-715754d1fed6",
+        "name": "Group Membership"
+    },
+    "object": {
+        "id": "fdbb854c-839e-4da7-b08d-715754d1fed6",
+        "name": "Group Membership",
+        "description": "",
+        "created": "2025-08-01T12:08:01.797835438Z",
+        "modified": "2025-09-03T15:11:00.693876147Z",
+        "modifiedBy": {
+            "type": "IDENTITY",
+            "id": "8854446c0c0c4b5bb87ca482a91b0ef3",
+            "name": "Rahul.Majumder"
+        },
+        "definition": {
+            "start": "Wait",
+            "steps": {
+                "End Step - Success 1": {
+                    "actionId": "sp:operator-success",
+                    "displayName": "",
+                    "type": "success"
+                },
+                "Get Identity": {
+                    "actionId": "sp:get-identity",
+                    "attributes": {
+                        "id.$": "$.trigger.identity.id"
+                    },
+                    "displayName": "",
+                    "nextStep": "HTTP Request",
+                    "type": "action",
+                    "versionNumber": 2
+                },
+                "HTTP Request": {
+                    "actionId": "sp:http",
+                    "attributes": {
+                        "authenticationType": "OAuth",
+                        "method": "get",
+                        "oAuthClientId": "e84f31b591e747538d9071ed05c46546",
+                        "oAuthClientSecret": "$.secrets.9483a41f-e124-44cf-b55b-53735ffd528f",
+                        "oAuthCredentialLocation": "oAuthInHeader",
+                        "oAuthTokenUrl": "https://igmfinancial-dev.api.identitynow.com/oauth/token",
+                        "requestContentType": "json",
+                        "url": "https://igmfinancial-dev.api.identitynow.com/beta/workgroups",
+                        "urlParams": {
+                            "filters": "memberships.identityId eq \"{{$.trigger.identity.id}}\""
+                        }
+                    },
+                    "displayName": "",
+                    "nextStep": "Loop",
+                    "type": "action",
+                    "versionNumber": 2
+                },
+                "Loop": {
+                    "actionId": "sp:loop:iterator",
+                    "attributes": {
+                        "context.$": "$.trigger",
+                        "input.$": "$.hTTPRequest.body",
+                        "start": "HTTP Request 1",
+                        "steps": {
+                            "End Step - Success": {
+                                "actionId": "sp:operator-success",
+                                "displayName": "",
+                                "type": "success"
+                            },
+                            "Get Identity 1": {
+                                "actionId": "sp:get-identity",
+                                "attributes": {
+                                    "id.$": "$.loop.context.identity.id"
+                                },
+                                "displayName": "",
+                                "nextStep": "Send Email",
+                                "type": "action",
+                                "versionNumber": 2
+                            },
+                            "HTTP Request 1": {
+                                "actionId": "sp:http",
+                                "attributes": {
+                                    "authenticationType": "OAuth",
+                                    "jsonRequestBody": {
+                                        "remove": [
+                                            "{{$.loop.context.identity.id}}"
+                                        ]
+                                    },
+                                    "method": "post",
+                                    "oAuthClientId": "e84f31b591e747538d9071ed05c46546",
+                                    "oAuthClientSecret": "$.secrets.03fc0773-9f9e-4711-8442-a4485e5347f5",
+                                    "oAuthCredentialLocation": "oAuthInHeader",
+                                    "oAuthTokenUrl": "https://igmfinancial-dev.api.identitynow.com/oauth/token",
+                                    "requestContentType": "json",
+                                    "url": "https://igmfinancial-dev.api.identitynow.com/v2/workgroups/{{$.loop.loopInput.id}}/members"
+                                },
+                                "displayName": "",
+                                "nextStep": "Get Identity 1",
+                                "type": "action",
+                                "versionNumber": 2
+                            },
+                            "Send Email": {
+                                "actionId": "sp:send-email",
+                                "attributes": {
+                                    "body": "<p>Dear {{$.loop.loopInput.owner.displayName}},</p>\n<p>You are receiving this notification because you are the owner of the following Governance Group:&nbsp;</p>\n<p>Governance Group Name:</p>\n<p>{{$.loop.loopInput.name}}&nbsp;</p>\n<p>Governance Group Description:</p>\n<p>{{$.loop.loopInput.description}}</p>\n<p>Please be advised that the following member of this Governance Group has been terminated and therefore removed as a member of the Governance Group:&nbsp;</p>\n<p>{{$.getIdentity1.attributes.displayName}}</p>\n<p>&nbsp;</p>\n<p>You can access the details of this Governance Group at the following link: &nbsp;</p>\n<p><a href=\"https://igmfinancial.service-now.com/snap?id=kb_article_view&amp;sysparm_article=KB0013953\">Corporate Employees - Access Items &ndash; Inventory with Owner and Approvers for Requests - Resource Centre</a></p>\n<p><br>As the owner of this Governance Group, you are responsible for overseeing the group&rsquo;s membership. &nbsp;If you wish to modify the membership of this Governance Group, please follow the instructions provided in the link below to submit a SNAP request.&nbsp;</p>\n<p><a href=\"https://igmfinancial.service-now.com/snap?id=sc_cat_item&amp;sys_id=a19553aadb27981095d0ddf5f49619ed&amp;sysparm_category=a8d60a5e1b115410afb584415b4bcb53\">Authorization Request - Resource Centre</a></p>\n<p><br>This is a system-generated email. Please do not respond to this email.</p>\n<div class=\"OutlineElement Ltr SCXW171484470 BCX8\">\n<p class=\"Paragraph SCXW171484470 BCX8\" lang=\"EN-US\" xml:lang=\"EN-US\"><span class=\"TextRun SCXW171484470 BCX8\" lang=\"FR-CA\" xml:lang=\"FR-CA\" data-contrast=\"auto\"><span class=\"NormalTextRun SCXW171484470 BCX8\">Bonjour {{$.loop.loopInput.owner.displayName}}</span><span class=\"NormalTextRun SCXW171484470 BCX8\">,</span></span><span class=\"EOP SCXW171484470 BCX8\" data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:0,&quot;335551620&quot;:0,&quot;335559685&quot;:720,&quot;335559737&quot;:0,&quot;335559738&quot;:240,&quot;335559739&quot;:240,&quot;335559740&quot;:276}\">&nbsp;</span></p>\n</div>\n<div class=\"OutlineElement Ltr SCXW171484470 BCX8\">\n<p class=\"Paragraph SCXW171484470 BCX8\" lang=\"EN-US\" xml:lang=\"EN-US\"><span class=\"NormalTextRun SCXW171484470 BCX8\">Vous recevez cet avis parce que vous &ecirc;tes propri&eacute;taire du groupe de gouvernance suivant&nbsp;:&nbsp;</span><span class=\"EOP SCXW171484470 BCX8\" data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:0,&quot;335551620&quot;:0,&quot;335559685&quot;:720,&quot;335559737&quot;:0,&quot;335559738&quot;:240,&quot;335559739&quot;:240,&quot;335559740&quot;:276}\">&nbsp;</span></p>\n</div>\n<div class=\"OutlineElement Ltr SCXW171484470 BCX8\">\n<p class=\"Paragraph SCXW171484470 BCX8\" lang=\"EN-US\" xml:lang=\"EN-US\"><span class=\"TextRun SCXW171484470 BCX8\" lang=\"FR-CA\" xml:lang=\"FR-CA\" data-contrast=\"auto\"><span class=\"NormalTextRun SCXW171484470 BCX8\">Nom du groupe de gouvernance : {{$.loop.loopInput.name}}&nbsp;</span></span><span class=\"NormalTextRun SCXW171484470 BCX8\">&nbsp;</span><span class=\"EOP SCXW171484470 BCX8\" data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:0,&quot;335551620&quot;:0,&quot;335559685&quot;:720,&quot;335559737&quot;:0,&quot;335559738&quot;:240,&quot;335559739&quot;:240,&quot;335559740&quot;:276}\">&nbsp;</span></p>\n</div>\n<div class=\"OutlineElement Ltr SCXW171484470 BCX8\">\n<p class=\"Paragraph SCXW171484470 BCX8\" lang=\"EN-US\" xml:lang=\"EN-US\"><span class=\"TextRun SCXW171484470 BCX8\" lang=\"FR-CA\" xml:lang=\"FR-CA\" data-contrast=\"auto\"><span class=\"NormalTextRun SCXW171484470 BCX8\">Description du groupe de gouvernance : {{$.loop.loopInput.description}}</span><span class=\"NormalTextRun SCXW171484470 BCX8\">&nbsp;</span></span><span class=\"EOP SCXW171484470 BCX8\" data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:0,&quot;335551620&quot;:0,&quot;335559685&quot;:720,&quot;335559737&quot;:0,&quot;335559738&quot;:240,&quot;335559739&quot;:240,&quot;335559740&quot;:276}\">&nbsp;</span></p>\n</div>\n<div class=\"OutlineElement Ltr SCXW171484470 BCX8\">\n<p class=\"Paragraph SCXW171484470 BCX8\" lang=\"EN-US\" xml:lang=\"EN-US\"><span class=\"NormalTextRun SCXW171484470 BCX8\">Veuillez noter qu&rsquo;en raison de la r&eacute;siliation du contrat de la personne nomm&eacute;e ci-dessous, son nom a &eacute;t&eacute; retir&eacute; de la liste des membres du groupe de gouvernance.&nbsp;</span><span class=\"EOP SCXW171484470 BCX8\" data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:0,&quot;335551620&quot;:0,&quot;335559685&quot;:720,&quot;335559737&quot;:0,&quot;335559738&quot;:240,&quot;335559739&quot;:240,&quot;335559740&quot;:276}\">&nbsp;</span></p>\n</div>\n<div class=\"OutlineElement Ltr SCXW171484470 BCX8\">\n<p class=\"Paragraph SCXW171484470 BCX8\" lang=\"EN-US\" xml:lang=\"EN-US\"><span class=\"EOP SCXW171484470 BCX8\" data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:0,&quot;335551620&quot;:0,&quot;335559685&quot;:720,&quot;335559737&quot;:0,&quot;335559738&quot;:240,&quot;335559739&quot;:240,&quot;335559740&quot;:276}\">{{$.getIdentity1.attributes.displayName}} </span><span class=\"NormalTextRun SCXW171484470 BCX8\">&nbsp;</span><span class=\"EOP SCXW171484470 BCX8\" data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:0,&quot;335551620&quot;:0,&quot;335559738&quot;:240,&quot;335559739&quot;:240,&quot;335559740&quot;:276}\">&nbsp;</span></p>\n</div>\n<div class=\"OutlineElement Ltr SCXW171484470 BCX8\">\n<p class=\"Paragraph SCXW171484470 BCX8\" lang=\"EN-US\" xml:lang=\"EN-US\"><span class=\"NormalTextRun SCXW171484470 BCX8\">Pour consulter les renseignements propres &agrave; ce groupe de gouvernance, cliquez sur le lien suivant&nbsp;:&nbsp;&nbsp;</span><span class=\"LineBreakBlob BlobObject DragDrop SCXW171484470 BCX8\"><span class=\"SCXW171484470 BCX8\">&nbsp;</span><br class=\"SCXW171484470 BCX8\"></span><span class=\"NormalTextRun SCXW171484470 BCX8\"> &nbsp;</span><span class=\"EOP SCXW171484470 BCX8\" data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:0,&quot;335551620&quot;:0,&quot;335559685&quot;:720,&quot;335559737&quot;:0,&quot;335559738&quot;:240,&quot;335559739&quot;:240,&quot;335559740&quot;:276}\">&nbsp;</span></p>\n</div>\n<div class=\"OutlineElement Ltr SCXW171484470 BCX8\">\n<p class=\"Paragraph SCXW171484470 BCX8\" lang=\"EN-US\" xml:lang=\"EN-US\"><a class=\"Hyperlink SCXW171484470 BCX8\" href=\"https://igmfinancial.service-now.com/snap?id=kb_article_view&amp;sysparm_article=KB0013953\" target=\"_blank\" rel=\"noreferrer noopener\"><span class=\"NormalTextRun SCXW171484470 BCX8\" data-ccp-charstyle=\"Hyperlink\">Page SNAP sur la propri&eacute;t&eacute; dans SailPoint</span></a><span class=\"EOP SCXW171484470 BCX8\" data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:0,&quot;335551620&quot;:0,&quot;335559685&quot;:720,&quot;335559737&quot;:0,&quot;335559738&quot;:240,&quot;335559739&quot;:240,&quot;335559740&quot;:276}\">&nbsp;</span></p>\n</div>\n<div class=\"OutlineElement Ltr SCXW171484470 BCX8\">\n<p class=\"Paragraph SCXW171484470 BCX8\" lang=\"EN-US\" xml:lang=\"EN-US\"><span class=\"NormalTextRun SCXW171484470 BCX8\">&Agrave; titre de propri&eacute;taire de ce groupe de gouvernance, vous avez la responsabilit&eacute; de maintenir &agrave; jour la liste des membres du groupe. Si vous souhaitez apporter des modifications concernant l&rsquo;adh&eacute;sion &agrave; un groupe de gouvernance, veuillez soumettre une demande SNAP en suivant les instructions accessibles par le lien ci-dessous.&nbsp;</span><span class=\"EOP SCXW171484470 BCX8\" data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:0,&quot;335551620&quot;:0,&quot;335559685&quot;:720,&quot;335559737&quot;:0,&quot;335559738&quot;:240,&quot;335559739&quot;:240,&quot;335559740&quot;:276}\">&nbsp;</span></p>\n</div>\n<div class=\"OutlineElement Ltr SCXW171484470 BCX8\">\n<p class=\"Paragraph SCXW171484470 BCX8\" lang=\"EN-US\" xml:lang=\"EN-US\"><a class=\"Hyperlink SCXW171484470 BCX8\" href=\"https://igmfinancial.service-now.com/snap?id=sc_cat_item&amp;sys_id=a19553aadb27981095d0ddf5f49619ed&amp;sysparm_category=a8d60a5e1b115410afb584415b4bcb53\" target=\"_blank\" rel=\"noreferrer noopener\"><span class=\"NormalTextRun SCXW171484470 BCX8\" data-ccp-charstyle=\"Hyperlink\">Demande d&rsquo;autorisation &ndash; Centre de ressources</span></a><span class=\"EOP SCXW171484470 BCX8\" data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:0,&quot;335551620&quot;:0,&quot;335559685&quot;:720,&quot;335559737&quot;:0,&quot;335559738&quot;:240,&quot;335559739&quot;:240,&quot;335559740&quot;:276}\">&nbsp;</span></p>\n</div>\n<div class=\"OutlineElement Ltr SCXW171484470 BCX8\">\n<p class=\"Paragraph SCXW171484470 BCX8\" lang=\"EN-US\" xml:lang=\"EN-US\"><span class=\"NormalTextRun SCXW171484470 BCX8\">&nbsp;</span><span class=\"NormalTextRun SCXW171484470 BCX8\">Ce courriel a &eacute;t&eacute; produit par le syst&egrave;me. Veuillez ne pas y r&eacute;pondre.</span><span class=\"EOP SCXW171484470 BCX8\" data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:0,&quot;335551620&quot;:0,&quot;335559685&quot;:720,&quot;335559737&quot;:0,&quot;335559738&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:276}\">&nbsp;</span></p>\n</div>\n<div class=\"OutlineElement Ltr SCXW171484470 BCX8\">\n<p class=\"Paragraph SCXW171484470 BCX8\" lang=\"EN-US\" xml:lang=\"EN-US\"><span class=\"EOP SCXW171484470 BCX8\" data-ccp-props=\"{&quot;335559685&quot;:720,&quot;335559739&quot;:0}\">&nbsp;</span></p>\n</div>",
+                                    "context": {},
+                                    "recipientEmailList.$": "$.loop.loopInput.owner.emailAddress",
+                                    "subject": "Removal of Membership Notification for Governance Group/Avis de retrait d’adhésion à un groupe de gouvernance  - {{$.loop.loopInput.name}}"
+                                },
+                                "displayName": "",
+                                "nextStep": "End Step - Success",
+                                "type": "action",
+                                "versionNumber": 2
+                            }
+                        }
+                    },
+                    "displayName": "",
+                    "nextStep": "End Step - Success 1",
+                    "type": "action",
+                    "versionNumber": 1
+                },
+                "Wait": {
+                    "actionId": "sp:sleep",
+                    "attributes": {
+                        "duration": "2m",
+                        "type": "waitFor"
+                    },
+                    "displayName": "",
+                    "nextStep": "Get Identity",
+                    "type": "action",
+                    "versionNumber": 1
+                }
+            }
+        },
+        "enabled": false,
+        "creator": {
+            "type": "IDENTITY",
+            "id": "8854446c0c0c4b5bb87ca482a91b0ef3",
+            "name": "Rahul.Majumder"
+        },
+        "owner": {
+            "type": "IDENTITY",
+            "id": "8854446c0c0c4b5bb87ca482a91b0ef3",
+            "name": "Rahul.Majumder"
+        },
+        "trigger": {
+            "type": "EVENT",
+            "attributes": {
+                "filter.$": "$.changes[?(@.attribute=='cloudLifecycleState' && @.newValue=='terminated')]",
+                "id": "idn:identity-attributes-changed"
+            }
+        }
+    }
+}

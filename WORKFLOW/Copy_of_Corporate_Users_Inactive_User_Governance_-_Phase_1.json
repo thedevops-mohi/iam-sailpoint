@@ -1,0 +1,161 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "WORKFLOW",
+        "id": "c91d5af4-b634-465e-88e8-5a6406f321a2",
+        "name": "Copy of Corporate Users Inactive User Governance - Phase 1"
+    },
+    "object": {
+        "id": "c91d5af4-b634-465e-88e8-5a6406f321a2",
+        "name": "Copy of Corporate Users Inactive User Governance - Phase 1",
+        "description": "Send email to user's manager when user didnt login for more than 30 days.",
+        "created": "2025-08-01T13:16:39.992693327Z",
+        "modified": "2025-08-01T13:47:22.247958346Z",
+        "modifiedBy": {
+            "type": "IDENTITY",
+            "id": "1883596e385748c7bec4833a76bacad4",
+            "name": "Khilan.Shah"
+        },
+        "definition": {
+            "start": "HTTP Request",
+            "steps": {
+                "End Step - Success": {
+                    "actionId": "sp:operator-success",
+                    "displayName": "",
+                    "type": "success"
+                },
+                "HTTP Request": {
+                    "actionId": "sp:http",
+                    "attributes": {
+                        "authenticationType": "OAuth",
+                        "jsonRequestBody": {
+                            "indices": [
+                                "identities"
+                            ],
+                            "query": {
+                                "query": "(attributes.userType:\"employee\" OR attributes.userType:\"contractor\") AND (attributes.cloudLifecycleState:\"active\") AND (attributes.lastSignInDateType:[now-65d TO now-30d])"
+                            }
+                        },
+                        "method": "post",
+                        "oAuthClientId": "0a330447168744da986026dd588c9975",
+                        "oAuthClientSecret": "$.secrets.4efc43e3-3995-48ec-b19a-8b1bd7b860e4",
+                        "oAuthCredentialLocation": "oAuthInHeader",
+                        "oAuthTokenUrl": "https://igmfinancial-dev.api.identitynow.com/oauth/token",
+                        "requestContentType": "json",
+                        "requestHeaders": {
+                            "Content-Type": "application/json"
+                        },
+                        "url": "https://igmfinancial-dev.api.identitynow.com/v2025/search"
+                    },
+                    "description": "Get List of all identities who didnt login for last 30 days.",
+                    "displayName": "",
+                    "nextStep": "Loop",
+                    "type": "action",
+                    "versionNumber": 2
+                },
+                "Loop": {
+                    "actionId": "sp:loop:iterator",
+                    "attributes": {
+                        "input.$": "$.hTTPRequest.body",
+                        "start": "Get Identity 1",
+                        "steps": {
+                            "End Step - Success 1": {
+                                "actionId": "sp:operator-success",
+                                "displayName": "",
+                                "type": "success"
+                            },
+                            "Get Identity": {
+                                "actionId": "sp:get-identity",
+                                "attributes": {
+                                    "id.$": "$.loop.loopInput.manager.id"
+                                },
+                                "description": "",
+                                "displayName": "Get Manager",
+                                "nextStep": "Send Email",
+                                "type": "action",
+                                "versionNumber": 2
+                            },
+                            "Get Identity 1": {
+                                "actionId": "sp:get-identity",
+                                "attributes": {
+                                    "id.$": "$.loop.loopInput.id"
+                                },
+                                "displayName": "",
+                                "nextStep": "Verify Data Type",
+                                "type": "action",
+                                "versionNumber": 2
+                            },
+                            "Send Email": {
+                                "actionId": "sp:send-email",
+                                "attributes": {
+                                    "body": "<p class=\"MsoNormal\">Dear&nbsp;${managerFirstName}<strong> </strong>${managerLastName},</p>\n<p class=\"MsoNormal\">The following user has not logged in for the past 30 days:</p>\n<p>Name<strong>:</strong>&nbsp;${firstName} ${lastName}</p>\n<p>Username<strong>:</strong>&nbsp;${sAMAccountName}</p>\n<p class=\"MsoNormal\">If the user is currently on leave or has left the organization, please submit an&nbsp;<a href=\"https://igmfinancial.service-now.com/snap?id=sc_cat_item&amp;sys_id=b069f5121be98e107254535f034bcbc9&amp;sysparm_category=240d741d1b10e010f2110f6cdc4bcbaa\">Offboarding Request - Resource Centre</a> ticket via&nbsp;ServiceNow&nbsp;to initiate the suspension or offboarding process.</p>\n<p class=\"MsoNormal\">Important<strong>:</strong>&nbsp;If the user does not log in within the next 15 days, their account will be suspended, and all associated access will be disabled.</p>\n<p class=\"MsoNormal\">For any questions or further assistance, please contact the&nbsp;IAM Operations team&nbsp;at&nbsp;<a href=\"mailto:iamops@igmfinancial.com\" target=\"_blank\" rel=\"noopener\">iamops@igmfinancial.com</a>.</p>\n<p class=\"MsoNormal\">Best regards,<br>IAM Operations Team</p>",
+                                    "context": {
+                                        "firstName.$": "$.getIdentity1.attributes.firstname",
+                                        "lastName.$": "$.getIdentity1.attributes.lastname",
+                                        "managerFirstName.$": "$.getIdentity.attributes.firstname",
+                                        "managerLastName.$": "$.getIdentity.attributes.lastname",
+                                        "sAMAccountName.$": "$.getIdentity1.attributes.samaccountname"
+                                    },
+                                    "recipientEmailList.$": "$.getIdentity.attributes.email",
+                                    "subject": "Inactive User Account ${firstName} ${lastName} – Action Required"
+                                },
+                                "description": "Send email to manager",
+                                "displayName": "",
+                                "nextStep": "End Step - Success 1",
+                                "type": "action",
+                                "versionNumber": 2
+                            },
+                            "Verify Data Type": {
+                                "actionId": "sp:compare-unary",
+                                "choiceList": [
+                                    {
+                                        "comparator": "IsPresent",
+                                        "nextStep": "Get Identity",
+                                        "variableA.$": "$.loop.loopInput.manager"
+                                    }
+                                ],
+                                "defaultStep": "End Step - Success 1",
+                                "description": "Make sure manager exists",
+                                "displayName": "Verify Manager Exists",
+                                "type": "choice"
+                            }
+                        }
+                    },
+                    "displayName": "",
+                    "nextStep": "End Step - Success",
+                    "type": "action",
+                    "versionNumber": 1
+                }
+            }
+        },
+        "enabled": false,
+        "creator": {
+            "type": "IDENTITY",
+            "id": "1883596e385748c7bec4833a76bacad4",
+            "name": "Khilan.Shah"
+        },
+        "owner": {
+            "type": "IDENTITY",
+            "id": "1883596e385748c7bec4833a76bacad4",
+            "name": "Khilan.Shah"
+        },
+        "trigger": {
+            "type": "SCHEDULED",
+            "attributes": {
+                "cronString": "0 9,10,11,12,13,14,15 * * *",
+                "dailyTimes": [
+                    "1969-12-31T15:00:00.000Z",
+                    "1969-12-31T16:00:00.000Z",
+                    "1969-12-31T17:00:00.000Z",
+                    "1969-12-31T18:00:00.000Z",
+                    "1969-12-31T19:00:00.000Z",
+                    "1969-12-31T20:00:00.000Z",
+                    "1969-12-31T21:00:00.000Z"
+                ],
+                "frequency": "daily",
+                "id": "idn:cron-schedule",
+                "timeZone": "America/Winnipeg"
+            }
+        }
+    }
+}

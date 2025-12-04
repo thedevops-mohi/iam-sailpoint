@@ -1,0 +1,106 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "b1f07848-8b62-4595-84d6-94039ed538d8",
+        "name": "JobCode"
+    },
+    "object": {
+        "id": "b1f07848-8b62-4595-84d6-94039ed538d8",
+        "name": "JobCode",
+        "type": "static",
+        "attributes": {
+            "TransformDesrcription": {
+                "type": "static",
+                "value": "Job Classification Code value from SF - New as of 2025-04-18"
+            },
+            "bestSource": {
+                "type": "reference",
+                "attributes": {
+                    "id": "BestSource"
+                }
+            },
+            "exceptionText": {
+                "type": "static",
+                "attributes": {
+                    "value": "error:transform:JobCode:UnhandledCase"
+                }
+            },
+            "SFAuth_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "SuccessFactors-Auth",
+                                "attributeName": "EmpJob.jobCode",
+                                "accountSortAttribute": "StartDate_EmpInfo",
+                                "accountSortDescending": true,
+                                "accountReturnFirstLink": true
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "SFNonAuth_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "SuccessFactors - NonAuthoritative",
+                                "attributeName": "EmpJob.jobCode",
+                                "accountSortAttribute": "StartDate_EmpInfo",
+                                "accountSortDescending": true,
+                                "accountReturnFirstLink": true
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "SAP_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        "null",
+                        "There is no SAPECC  <Job Classification> attribute."
+                    ]
+                }
+            },
+            "SIS_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        "null",
+                        "There is no Advisors - SIS Feed <Job Classification> attribute."
+                    ]
+                }
+            },
+            "SNOW_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        "null",
+                        "There is no ServiceNowAPI <Job Classification> attribute."
+                    ]
+                }
+            },
+            "value_variations": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        "null",
+                        "We use a firstValid element with a leading null to avoid issues if the alternate value code cannot be evaluated cleanly ouside of the actual <value> section.",
+                        "pre_20251102_value: #if($bestSource == 'use_SFAuth')$SFAuth_value#elseif($bestSource == 'use_SFNonAuth')$SFNonAuth_value#elseif($bestSource == 'use_SAPECC')$SNOW_value#elseif($bestSource == 'use_SIS')$SIS_value#elseif($bestSource.compareToIgnoreCase('use_servicenow') == 0)$SNOW_value#{else}error:transform:JobCode#end"
+                    ]
+                }
+            },
+            "value": "#if($bestSource == 'use_SFAuth')#set($finalValue = $SFAuth_value)#elseif($bestSource == 'use_SFNonAuth')#set($finalValue = $SFNonAuth_value)#elseif($bestSource == 'use_SAPECC')#set($finalValue = $SAP_value)#elseif($bestSource == 'use_SIS')#set($finalValue = $SIS_value)#elseif($bestSource.compareToIgnoreCase('use_servicenow') == 0)#set($finalValue = $SNOW_value)#{else}#set($finalValue = $exceptionText)#end#if($finalValue != 'null')$finalValue#end"
+        },
+        "internal": false
+    }
+}
