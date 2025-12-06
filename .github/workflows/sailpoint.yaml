@@ -30,15 +30,40 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+      
+      - name: Retrieve Secret
+        id: secretdata
+        uses: hashicorp/vault-action@v2.5.0
+        with:
+             method: approle
+             roleId: "fb338b2b-81f1-3577-4242-0f836b59465d"
+             secretId: "40d14341-b74e-0eb7-08b1-d83946f45493"
+             url: "https://vault.mdeey.cloud:8200"    
+             #namespace: "${{ secrets.VAULT_NAMESPACE }}"     
+             #caCertificate: ${{ secrets.VAULT_CACERT }}
+             #tlsSkipVerify: true
+             secrets: |
+                 mdeey/data/app/test sail_base_url | sail_base_url ;
+                 mdeey/data/app/test sail_client_id | sail_client_id ;
+                 mdeey/data/app/test sail_client_secret | sail_client_secret
 
-      # 4. Run SailPoint export script
-      - name: Run SailPoint export script
+      - name: Print Secret
+        id: token
         env:
-          SAIL_BASE_URL: ${{ secrets.SAIL_BASE_URL }}
-          SAIL_CLIENT_ID: ${{ secrets.SAIL_CLIENT_ID }}
-          SAIL_CLIENT_SECRET: ${{ secrets.SAIL_CLIENT_SECRET }}
+           SAIL_BASE_URL: ${{ steps.secretdata.outputs.sail_base_url }}
+           SAIL_CLIENT_ID: ${{ steps.secretdata.outputs.sail_client_id }}
+           SAIL_CLIENT_SECRET: ${{ steps.secretdata.outputs.sail_client_secret }}
         run: |
-          python sailpoint_03_11_2025_works_100.py
+            python sailpoint_03_11_2025_works_100.py
+
+      # # 4. Run SailPoint export script
+      # - name: Run SailPoint export script
+      #   env:
+      #     SAIL_BASE_URL: ${{ secrets.SAIL_BASE_URL }}
+      #     SAIL_CLIENT_ID: ${{ secrets.SAIL_CLIENT_ID }}
+      #     SAIL_CLIENT_SECRET: ${{ secrets.SAIL_CLIENT_SECRET }}
+      #   run: |
+      #     python sailpoint_03_11_2025_works_100.py
 
       # 5. Commit & Push changes using actions-js/push
       - name: Commit & Push changes
