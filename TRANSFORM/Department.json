@@ -1,0 +1,83 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "39016cbf-e523-476e-98c2-e464c9cc142a",
+        "name": "Department"
+    },
+    "object": {
+        "id": "39016cbf-e523-476e-98c2-e464c9cc142a",
+        "name": "Department",
+        "type": "static",
+        "attributes": {
+            "value": "#if($varAdvisoryRole == 'Consultant' || $varAdvisoryRole == 'Advisor' || $varAdvisoryRole == 'Associate' || $varAdvisoryRole == 'Regional Director' || $varAdvisoryRole == 'Division Director')$AdvisorIdOverrideValue#elseif($varAdvisoryRole == 'Assistant')$AssistantOverrideValue#{else}$DefaultDepartmentValue#end",
+            "AdvisorIdOverrideValue": {
+                "type": "reference",
+                "attributes": {
+                    "id": "AdvisorID"
+                }
+            },
+            "AssistantOverrideValue": {
+                "type": "concat",
+                "attributes": {
+                    "values": [
+                        "RO ",
+                        {
+                            "type": "reference",
+                            "attributes": {
+                                "id": "RegionOfficeNo"
+                            }
+                        },
+                        " - ",
+                        {
+                            "type": "reference",
+                            "attributes": {
+                                "id": "RegionOfficeName"
+                            }
+                        }
+                    ]
+                }
+            },
+            "DefaultDepartmentValue": {
+                "type": "concat",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "reference",
+                            "attributes": {
+                                "id": "CostCenterID"
+                            }
+                        },
+                        " - ",
+                        {
+                            "type": "reference",
+                            "attributes": {
+                                "id": "CostCenterDescription"
+                            }
+                        }
+                    ]
+                }
+            },
+            "TransformDesrcription": {
+                "type": "static",
+                "attributes": {
+                    "comment_20250724": "Scott Walker - add 'Consultant' as role value for override with advisorid",
+                    "value": "Department value - shown in GAL via AD - derive depending on user type and title. Updated 2025-0618"
+                }
+            },
+            "exceptionText": {
+                "type": "static",
+                "attributes": {
+                    "value": "transform:Department:unhandled_case"
+                }
+            },
+            "varAdvisoryRole": {
+                "type": "reference",
+                "attributes": {
+                    "id": "AdvisoryRole"
+                }
+            }
+        },
+        "internal": false
+    }
+}

@@ -1,0 +1,288 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "WORKFLOW",
+        "id": "c42cbda3-3a16-4f1e-a608-cd81735d7846",
+        "name": "SF_Get_Extra_Attr"
+    },
+    "object": {
+        "id": "c42cbda3-3a16-4f1e-a608-cd81735d7846",
+        "name": "SF_Get_Extra_Attr",
+        "description": "When an advisor identity is made active then obtain credential contact info, etc...",
+        "created": "2025-11-18T23:08:29.044918338Z",
+        "modified": "2025-12-03T18:07:45.508632219Z",
+        "modifiedBy": {
+            "type": "IDENTITY",
+            "id": "1883596e385748c7bec4833a76bacad4",
+            "name": "Khilan.Shah"
+        },
+        "definition": {
+            "start": "Get Identity",
+            "steps": {
+                "Compare Strings": {
+                    "actionId": "sp:compare-strings",
+                    "choiceList": [
+                        {
+                            "comparator": "StringContains",
+                            "nextStep": "HTTP Request",
+                            "variableA.$": "$.defineVariable.fieldMemberUserTypes",
+                            "variableB.$": "$.getIdentity.attributes.userType"
+                        }
+                    ],
+                    "defaultStep": "Compare Strings 1",
+                    "description": "Check that this is an Identity with a User Type which is suitable to obtain additional Field Member related information.",
+                    "displayName": "",
+                    "type": "choice"
+                },
+                "Compare Strings 1": {
+                    "actionId": "sp:compare-strings",
+                    "choiceList": [
+                        {
+                            "comparator": "StringEquals",
+                            "nextStep": "Send Email 1",
+                            "variableA.$": "$.defineVariable.performDebugActions",
+                            "variableB": "TRUE"
+                        }
+                    ],
+                    "defaultStep": "End Step - Success 1",
+                    "description": "Debug flag check",
+                    "displayName": "Compare Strings: performDebug",
+                    "type": "choice"
+                },
+                "Compare Strings 2": {
+                    "actionId": "sp:compare-strings",
+                    "choiceList": [
+                        {
+                            "comparator": "StringEquals",
+                            "nextStep": "Send Email 2",
+                            "variableA.$": "$.defineVariable.performDebugActions",
+                            "variableB": "TRUE"
+                        }
+                    ],
+                    "defaultStep": "HTTP Request 1",
+                    "description": "Debug flag check",
+                    "displayName": "Compare Strings: performDebug",
+                    "type": "choice"
+                },
+                "Define Variable": {
+                    "actionId": "sp:define-variable",
+                    "attributes": {
+                        "id": "sp:define-variable",
+                        "variables": [
+                            {
+                                "description": "This delimited list specifies which User Types require additional attributes to be retrieved from SuccessFactors - via a custom API call.",
+                                "name": "fieldMemberUserTypes",
+                                "transforms": [],
+                                "variableA": "advisor|Advisor|hybrid|Hybrid|dualrole|DualRole|dual role|Dual Role"
+                            },
+                            {
+                                "description": "This specifies who would get Debug/Testing emails",
+                                "name": "debugEmailAddress",
+                                "transforms": [],
+                                "variableA": "igmsailpointuat2notifications@igmfinancial.com"
+                            },
+                            {
+                                "description": "If set to TRUE then this will activate various email notifications in the workflow for debugging purposes.",
+                                "name": "performDebugActions",
+                                "transforms": [],
+                                "variableA": "TRUE"
+                            }
+                        ]
+                    },
+                    "displayName": "",
+                    "nextStep": "Compare Strings",
+                    "type": "Mutation"
+                },
+                "End Step - Failure": {
+                    "actionId": "sp:operator-failure",
+                    "description": "The call of the custom API for credential recipients failed.",
+                    "displayName": "",
+                    "failureDetails": "The call of the custom API for credential recipients failed.",
+                    "failureName": "Failure - SF custom API Call",
+                    "type": "failure"
+                },
+                "End Step - Failure 1": {
+                    "actionId": "sp:operator-failure",
+                    "description": "This occurs if the create/update account API call failed",
+                    "displayName": "",
+                    "failureDetails": "This occurs if the create/update account API call failed",
+                    "failureName": "Failed to store data in SF_Extra_Attr",
+                    "type": "failure"
+                },
+                "End Step - Success": {
+                    "actionId": "sp:operator-success",
+                    "displayName": "",
+                    "type": "success"
+                },
+                "End Step - Success 1": {
+                    "actionId": "sp:operator-success",
+                    "displayName": "",
+                    "type": "success"
+                },
+                "Get Identity": {
+                    "actionId": "sp:get-identity",
+                    "attributes": {
+                        "id.$": "$.trigger.identity.id"
+                    },
+                    "description": "Yes this is somewhat redundant to get the identity again, but [a] it helps ensure that the most up to date values are retrieved, and [b] it makes unit testing easier as only the identity.id needs to be valid in the test input.",
+                    "displayName": "",
+                    "nextStep": "Define Variable",
+                    "type": "action",
+                    "versionNumber": 2
+                },
+                "HTTP Request": {
+                    "actionId": "sp:http",
+                    "attributes": {
+                        "authenticationType": "OAuth",
+                        "method": "get",
+                        "oAuthClientId": "4851a613-0a01-303d-b61b-4a6dca9ace92",
+                        "oAuthClientSecret": "$.secrets.0a12f9ca-c58c-41f8-8ba9-23db7fb155c6",
+                        "oAuthCredentialLocation": "oAuthInHeader",
+                        "oAuthTokenUrl": "https://oauthasservices-k98c32eeb.ca1.hana.ondemand.com/oauth2/api/v1/token?grant_type=client_credentials&token_format=jwt",
+                        "requestContentType": "text",
+                        "requestHeaders": {
+                            "PersonIDExternal": "{{$.getIdentity.attributes.personIdExternal}}"
+                        },
+                        "textRequestBody.$": "",
+                        "url": "https://e350028-iflmap.hcisbt.ca1.hana.ondemand.com/http/GetSailpointData",
+                        "urlParams": null
+                    },
+                    "catch": [
+                        {
+                            "next": "Send Email"
+                        }
+                    ],
+                    "description": "Get RO Manager email address from Success Factors for targeted user.",
+                    "displayName": "",
+                    "nextStep": "Compare Strings 2",
+                    "type": "action",
+                    "versionNumber": 2
+                },
+                "HTTP Request 1": {
+                    "actionId": "sp:http",
+                    "attributes": {
+                        "authenticationType": "OAuth",
+                        "jsonRequestBody": {
+                            "attributes": {
+                                "emailAreaSVP": "{{$.hTTPRequest.body.attributes.emailAreaSVP}}",
+                                "emailDOManager": "{{$.hTTPRequest.body.attributes.emailDOManager}}",
+                                "emailROManager": "{{$.hTTPRequest.body.attributes.emailROManager}}",
+                                "emailRVP": "{{$.hTTPRequest.body.attributes.emailRVP}}",
+                                "formalName": "{{$.hTTPRequest.body.attributes.formalName}}",
+                                "personId": "{{$.hTTPRequest.body.attributes.personId}}",
+                                "personIdExternal": "{{$.hTTPRequest.body.attributes.personIdExternal}}",
+                                "repRelationships": "{{$.hTTPRequest.body.attributes.repRelationships}}",
+                                "sourceId": "00205247a40d49dfaeeeb4d2c5f762e1"
+                            }
+                        },
+                        "method": "post",
+                        "oAuthClientId": "1a45f2e4f3dc4bfdbf5ada6e88434559",
+                        "oAuthClientSecret": "$.secrets.2e3b1907-ea23-4fe0-91f4-d055cb0c1637",
+                        "oAuthCredentialLocation": "oAuthInHeader",
+                        "oAuthScope": null,
+                        "oAuthTokenUrl": "https://igmfinancial-dev.api.identitynow.com/oauth/token",
+                        "requestContentType": "json",
+                        "url": "https://igmfinancial-dev.api.identitynow.com/v2024/accounts"
+                    },
+                    "catch": [
+                        {
+                            "next": "Send Email 3"
+                        }
+                    ],
+                    "description": "Here we store the info retrieved from Success Factors for the person in question into a separate delimited file source for use in mapping.",
+                    "displayName": "HTTP Request: Create Account SF_Extra_Attr",
+                    "nextStep": "End Step - Success",
+                    "type": "action",
+                    "versionNumber": 2
+                },
+                "Send Email": {
+                    "actionId": "sp:send-email",
+                    "attributes": {
+                        "body": "<p>&lt;/p&gt;The attempt to retrieve supplementary data from Success Factors via this workflow failed at the HTTP &lt;&gt; step. &lt;/p&gt;</p>\n<p>Please examine the workflow for potential issues. &lt;/p&gt;&lt;/p&gt;&lt;/p&gt;</p>\n<p><strong>Identity Info</strong> &lt;/p&gt;</p>\n<p>id: {{$.trigger.identity.id}}</p>\n<p>UserType: {{$.getIdentity.attributes.userType}}</p>\n<p>personIdExternal: {{$.getIdentity.attributes.personIdExternal}}&nbsp;</p>\n<p>name: {{$.getIdentity.name}}</p>\n<p>LifeCycleState:&nbsp;{{$.getIdentity.attributes.cloudLifecycleState}}</p>\n<p>&nbsp;</p>\n<p>{{$.getIdentity.attributes.cloudLifecycleState}}</p>",
+                        "context": {},
+                        "from": "",
+                        "recipientEmailList": [
+                            "scott.walker@igmfinancial.com",
+                            "igmsailpointuat2notifications@igmfinancial.com"
+                        ],
+                        "replyTo": "",
+                        "subject": "Workflow Failure: SF_Get_Extra_Attr  - {{$.getIdentity.name}}"
+                    },
+                    "description": "Notify Platform SailPoint team of workflow failure.",
+                    "displayName": "Send Email: SF API Failure",
+                    "nextStep": "End Step - Failure",
+                    "type": "action",
+                    "versionNumber": 2
+                },
+                "Send Email 1": {
+                    "actionId": "sp:send-email",
+                    "attributes": {
+                        "body": "<p><strong>Identity Info</strong> &lt;/p&gt;</p>\n<p>id: {{$.trigger.identity.id}}&lt;/p&gt;</p>\n<p>Identity Name: {{$.getIdentity.name}} &lt;/p&gt;</p>\n<p>sAMaccountName:&nbsp; {{$.getIdentity.attributes.samaccountname}} &lt;/p&gt;</p>\n<p>User Type: {{$.getIdentity.attributes.cloudLifecycleState}} &lt;/p&gt;</p>\n<p>User Type: {{$.getIdentity.attributes.userType}} &lt;/p&gt;&lt;/p&gt;</p>\n<p>.. did not trigger Success Factors \"Field Member Extra Attributes\" HTTP data retrieval. If this is unexpected please examine the workflow.</p>",
+                        "context": {},
+                        "from.$": "",
+                        "recipientEmailList.$": "$.defineVariable.debugEmailAddress",
+                        "subject": "Workflow: Debug: SF_Get_ExtraAttr - UserType Filter"
+                    },
+                    "description": "Debug notification",
+                    "displayName": "Send Email: UnitTest UsertypeCompare",
+                    "nextStep": "End Step - Success 1",
+                    "type": "action",
+                    "versionNumber": 2
+                },
+                "Send Email 2": {
+                    "actionId": "sp:send-email",
+                    "attributes": {
+                        "body": "<p>&lt;/p&gt; Data retrieval from Success Factors Successful...&lt;/p&gt;<br>&lt;/p&gt;</p>\n<p><strong>Identity Info</strong> &lt;/p&gt;</p>\n<p>type: {{$.trigger.identity.type}}&nbsp;</p>\n<p>id: {{$.getIdentity.id}} &lt;/p&gt;</p>\n<p>name: {{$.getIdentity.name}} &lt;/p&gt;</p>\n<p>userType: {{$.getIdentity.attributes.userType}}</p>\n<p>title: {{$.getIdentity.attributes.title}}</p>\n<div>\n<div>personID: {{$.getIdentity.attributes.personid}}</div>\n<div>&nbsp;</div>\n<div>personIDExternal: {{$.getIdentity.attributes.personIdExternal}}</div>\n</div>\n<p>&lt;/p&gt;&lt;/p&gt;</p>\n<p><strong>API Response... </strong>&lt;/p&gt;</p>\n<p>PersonID: {{$.hTTPRequest.body.attributes.personId}}&lt;/p&gt;</p>\n<p>PersonIDExternal: {{$.hTTPRequest.body.attributes.personIdExternal}}&lt;/p&gt;</p>\n<p>RegionOfficer_EMAIL: {{$.hTTPRequest.body.attributes.emailROManager}}&lt;/p&gt;</p>\n<p>DivisionManagerEmail: {{$.hTTPRequest.body.attributes.emailDOManager}}&lt;/p&gt;</p>\n<p>RVP_EMAIL: {{$.hTTPRequest.body.attributes.emailRVP}}&lt;/p&gt;</p>\n<p>SVP_EMAIL: {{$.hTTPRequest.body.attributes.emailAreaSVP}}&lt;/p&gt;</p>\n<p>RepRelationship: {{$.hTTPRequest.body.attributes.repRelationships}} &lt;/p&gt;</p>\n<p>--------------------------------------------</p>\n<p>Interface.sourceId: {{$.hTTPRequest.body.attributes.sourceId}} &lt;/p&gt;</p>\n<p>Interface.responseTime: {{$.hTTPRequest.responseTime}} &lt;/p&gt;</p>\n<p>Interface.statusCode: {{$.hTTPRequest.statusCode}} &lt;/p&gt;</p>",
+                        "context": {},
+                        "recipientEmailList": [
+                            "scott.walker@igmfinancial.com",
+                            "khilan.shah@igmfinancial.com"
+                        ],
+                        "subject": "Workflow: Unit Test: HTTP Success  - {{$.getIdentity.name}}"
+                    },
+                    "description": "UnitTest: Show HTTP Retults",
+                    "displayName": "Send Email: Unit Test",
+                    "nextStep": "HTTP Request 1",
+                    "type": "action",
+                    "versionNumber": 2
+                },
+                "Send Email 3": {
+                    "actionId": "sp:send-email",
+                    "attributes": {
+                        "body": "<p><strong>HTTP Request: Create Account SF_Extra_Attr</strong></p>\n<p>&lt;/p&gt;The attempt to store supplementaroy data from Success Factors into the \"SF_Extra_Attr\" source via this workflow failed.&lt;/p&gt;</p>\n<p>Please examine the workflow for potential issues. &lt;/p&gt;&lt;/p&gt;&lt;/p&gt;</p>\n<p><strong>Identity Info</strong> &lt;/p&gt;</p>\n<p>id: {{$.trigger.identity.id}} &lt;/p&gt;</p>\n<p>name: {{$.getIdentity.identity.name}} &lt;/p&gt;</p>\n<p>type: {{$.getIdentity.identity.type}} &lt;/p&gt;</p>\n<p>PersonID: {{$.getIdentity.attributes.personid}} &lt;/p&gt;</p>\n<p>PersonIDExternal: {{$.getIdentity.attributes.personIdExternal}} &lt;/p&gt;</p>\n<p><strong>Extra / Supplementary Info....</strong></p>\n<p>emailAreaSVP: {{$.hTTPRequest.body.Records.Record.SVP_EMAIL}} &lt;/p&gt;<br>emailDOManager: {{$.hTTPRequest.body.Records.Record.DivisionManager_EMAIL}} &lt;/p&gt;<br>emailROManager: {{$.hTTPRequest.body.Records.Record.RegionOfficer_EMAIL}}&lt;/p&gt;<br>emailRVP: {{$.hTTPRequest.body.Records.Record.RVP_EMAIL}} &lt;/p&gt;<br>formalName: {{$.getIdentity.attributes.fullName}} &lt;/p&gt;<br>personId: {{$.getIdentity.attributes.personId}}&lt;/p&gt;<br>personIdExternal: {{$.hTTPRequest.body.Records.Record.PersonIDExternal}} &lt;/p&gt;<br>repRelationships: TBD &lt;/p&gt;</p>",
+                        "context": {},
+                        "from": "",
+                        "recipientEmailList": [
+                            "scott.walker@igmfinancial.com",
+                            "igmsailpointuat2notifications@igmfinancial.com"
+                        ],
+                        "replyTo": "",
+                        "subject": "Workflow Failure: SF_Get_Extra_Attr"
+                    },
+                    "description": "Notify Platform SailPoint team of workflow failure.",
+                    "displayName": "",
+                    "nextStep": "End Step - Failure 1",
+                    "type": "action",
+                    "versionNumber": 2
+                }
+            }
+        },
+        "enabled": false,
+        "creator": {
+            "type": "IDENTITY",
+            "id": "bb106e2c3434410882007367ab5017d7",
+            "name": "Scott.Walker"
+        },
+        "owner": {
+            "type": "IDENTITY",
+            "id": "bb106e2c3434410882007367ab5017d7",
+            "name": "Scott.Walker"
+        },
+        "trigger": {
+            "type": "EVENT",
+            "attributes": {
+                "id": "idn:identity-created"
+            }
+        }
+    }
+}

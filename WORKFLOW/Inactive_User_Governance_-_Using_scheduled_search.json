@@ -1,0 +1,77 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "WORKFLOW",
+        "id": "b2b28efa-b764-473c-bb55-b9ea596173ee",
+        "name": "Inactive User Governance - Using scheduled search"
+    },
+    "object": {
+        "id": "b2b28efa-b764-473c-bb55-b9ea596173ee",
+        "name": "Inactive User Governance - Using scheduled search",
+        "description": "Send email to user's manager when user didnt login for 45 days.",
+        "created": "2025-08-01T13:17:57.835392495Z",
+        "modified": "2025-08-01T13:17:57.835392495Z",
+        "modifiedBy": {
+            "type": "IDENTITY",
+            "id": "1883596e385748c7bec4833a76bacad4",
+            "name": "Khilan.Shah"
+        },
+        "definition": {
+            "start": "Loop",
+            "steps": {
+                "End Step - Success": {
+                    "actionId": "sp:operator-success",
+                    "displayName": "",
+                    "type": "success"
+                },
+                "Loop": {
+                    "actionId": "sp:loop:iterator",
+                    "attributes": {
+                        "context.$": "$.trigger.searchResults.Identity.preview[*].ID",
+                        "input.$": "$.trigger.searchResults.Identity",
+                        "start": "Get Identity",
+                        "steps": {
+                            "End Step - Success 1": {
+                                "actionId": "sp:operator-success",
+                                "displayName": "",
+                                "type": "success"
+                            },
+                            "Get Identity": {
+                                "actionId": "sp:get-identity",
+                                "attributes": {
+                                    "id.$": "$.loop.loopInput.ID"
+                                },
+                                "displayName": "",
+                                "nextStep": "End Step - Success 1",
+                                "type": "action",
+                                "versionNumber": 2
+                            }
+                        }
+                    },
+                    "displayName": "",
+                    "nextStep": "End Step - Success",
+                    "type": "action",
+                    "versionNumber": 1
+                }
+            }
+        },
+        "enabled": false,
+        "creator": {
+            "type": "IDENTITY",
+            "id": "1883596e385748c7bec4833a76bacad4",
+            "name": "Khilan.Shah"
+        },
+        "owner": {
+            "type": "IDENTITY",
+            "id": "1883596e385748c7bec4833a76bacad4",
+            "name": "Khilan.Shah"
+        },
+        "trigger": {
+            "type": "EVENT",
+            "attributes": {
+                "filter.$": "$.[?(@.searchName=='LastSignInDate -Stage 1')]",
+                "id": "idn:saved-search-complete"
+            }
+        }
+    }
+}

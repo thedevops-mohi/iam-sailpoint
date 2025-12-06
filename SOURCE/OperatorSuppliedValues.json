@@ -1,0 +1,324 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "SOURCE",
+        "id": "dc6b65c3579b404bb2aa22795680e3dd",
+        "name": "OperatorSuppliedValues"
+    },
+    "object": {
+        "id": "dc6b65c3579b404bb2aa22795680e3dd",
+        "name": "OperatorSuppliedValues",
+        "type": "DelimitedFile",
+        "connectorClass": "sailpoint.connector.delimitedfile.DelimitedFileConnector",
+        "connectorScriptName": "delimited-file-angularsc",
+        "description": "A source manually maintained by IAM operators via csv files - to supply additional attribute info for any identity - adding to or potentially of overriding values from outside sources.",
+        "deleteThreshold": 10,
+        "provisionAsCsv": true,
+        "owner": {
+            "type": "IDENTITY",
+            "id": "f5df644192e744eab79a35025c29a227",
+            "name": "Jyoti.Gupta"
+        },
+        "accountCorrelationRule": null,
+        "managerCorrelationRule": null,
+        "beforeProvisioningRule": null,
+        "features": [
+            "DIRECT_PERMISSIONS",
+            "NO_RANDOM_ACCESS",
+            "DISCOVER_SCHEMA"
+        ],
+        "schemas": [
+            {
+                "nativeObjectType": "User",
+                "identityAttribute": "idnUid",
+                "displayAttribute": "idnUid",
+                "hierarchyAttribute": null,
+                "includePermissions": false,
+                "features": [],
+                "configuration": {},
+                "attributes": [
+                    {
+                        "name": "idnUid",
+                        "nativeName": null,
+                        "type": "STRING",
+                        "schema": null,
+                        "description": "Key to target Identity. Unique ID for the account. IDN = IdentityNow",
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "dispNameSuffix",
+                        "nativeName": null,
+                        "type": "STRING",
+                        "schema": null,
+                        "description": "When populated this value is APPENDED to the \"Display Name\" identity attribute (which is used for Active Directory 'displayName' population).",
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "isADCompanyException",
+                        "nativeName": null,
+                        "type": "BOOLEAN",
+                        "schema": null,
+                        "description": "'true' for an exception case, where AD Company needs to not to have suffix, 'false' for anyone else",
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    }
+                ],
+                "id": "72ff227d8b1d4cd7919b7e2df26f87a9",
+                "name": "account",
+                "created": "2025-06-18T19:37:18.483Z",
+                "modified": "2025-06-19T16:18:29.936Z"
+            },
+            {
+                "nativeObjectType": "Group",
+                "identityAttribute": "id",
+                "displayAttribute": "displayName",
+                "hierarchyAttribute": null,
+                "includePermissions": false,
+                "features": [],
+                "configuration": {},
+                "attributes": [
+                    {
+                        "name": "id",
+                        "nativeName": null,
+                        "type": "STRING",
+                        "schema": null,
+                        "description": "Unique ID for Group",
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "name",
+                        "nativeName": null,
+                        "type": "STRING",
+                        "schema": null,
+                        "description": "The name of the account - typically groupname etc.",
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "displayName",
+                        "nativeName": null,
+                        "type": "STRING",
+                        "schema": null,
+                        "description": "The preferred display name for the account",
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "created",
+                        "nativeName": null,
+                        "type": "STRING",
+                        "schema": null,
+                        "description": "Date/Time when the group was created (utime)",
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "description",
+                        "nativeName": null,
+                        "type": "STRING",
+                        "schema": null,
+                        "description": "Multi-purpose field used to capture a description or comments",
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "modified",
+                        "nativeName": null,
+                        "type": "STRING",
+                        "schema": null,
+                        "description": "Date/Time when the group was modified (utime)",
+                        "isMulti": false,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "entitlements",
+                        "nativeName": null,
+                        "type": "STRING",
+                        "schema": null,
+                        "description": "The access rights, entitlements etc. that the account has access to.",
+                        "isMulti": true,
+                        "isEntitlement": true,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "groups",
+                        "nativeName": null,
+                        "type": "STRING",
+                        "schema": null,
+                        "description": "The groups, roles etc. that reference to account group objects",
+                        "isMulti": true,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    },
+                    {
+                        "name": "permissions",
+                        "nativeName": null,
+                        "type": "STRING",
+                        "schema": null,
+                        "description": "The permissions associated with the account",
+                        "isMulti": true,
+                        "isEntitlement": false,
+                        "isGroup": false
+                    }
+                ],
+                "id": "90ef66b67e4f4c779a71d10dff6c5d60",
+                "name": "group",
+                "created": "2025-06-18T19:37:18.483Z",
+                "modified": "2025-06-18T19:37:18.483Z"
+            }
+        ],
+        "connectorAttributes": {
+            "group.mergeRows": true,
+            "group.delimiter": ",",
+            "mergeRows": false,
+            "group.filetransport": "local",
+            "partitionMode": "disabled",
+            "checkDeletedDisabled": true,
+            "connectionType": "file",
+            "group.host": "local",
+            "group.indexColumn": "id",
+            "delimiter": ",",
+            "host": "local",
+            "commentCharacter": "#",
+            "group.mergeColumns": [
+                "entitlements",
+                "groups",
+                "permissions"
+            ],
+            "hasHeader": true,
+            "filterEmptyRecords": true,
+            "filetransport": "local",
+            "deleteThresholdPercentage": 10,
+            "group.filterEmptyRecords": true,
+            "group.hasHeader": true,
+            "group.partitionMode": "disabled",
+            "labels": [
+                "standard"
+            ],
+            "group.columnNames": [
+                "id",
+                "name",
+                "displayName",
+                "created",
+                "description",
+                "modified",
+                "entitlements",
+                "groups",
+                "permissions"
+            ],
+            "templateApplication": "DelimitedFile Template",
+            "indexColumn": "idnUid",
+            "healthy": true,
+            "cloudDisplayName": "OperatorSuppliedValues",
+            "connectorName": "Delimited File",
+            "cloudOriginalApplicationType": "Delimited File",
+            "since": "2025-06-19T16:17:59.216Z",
+            "status": "SOURCE_STATE_HEALTHY"
+        },
+        "crossTenantConnectorAttributes": {},
+        "correlationConfigDetails": {
+            "attributeAssignments": [
+                {
+                    "complex": false,
+                    "property": "samaccountname",
+                    "operation": "EQ",
+                    "value": "idnUid",
+                    "ignoreCase": false,
+                    "matchMode": null,
+                    "filterString": null,
+                    "sequence": 1
+                }
+            ],
+            "id": "a11e831d525743b180e6058b917c26a4",
+            "name": "OperatorSuppliedValues Account Correlation Config"
+        },
+        "managerCorrelationMapping": null,
+        "provisioningPolicies": [
+            {
+                "name": "Create Policy",
+                "description": "Create Policy",
+                "usageType": "CREATE",
+                "fields": [
+                    {
+                        "name": "id",
+                        "transform": null,
+                        "attributes": {},
+                        "isRequired": false,
+                        "type": null,
+                        "isMultiValued": false
+                    },
+                    {
+                        "name": "name",
+                        "transform": null,
+                        "attributes": {},
+                        "isRequired": false,
+                        "type": null,
+                        "isMultiValued": false
+                    },
+                    {
+                        "name": "givenName",
+                        "transform": null,
+                        "attributes": {},
+                        "isRequired": false,
+                        "type": null,
+                        "isMultiValued": false
+                    },
+                    {
+                        "name": "familyName",
+                        "transform": null,
+                        "attributes": {},
+                        "isRequired": false,
+                        "type": null,
+                        "isMultiValued": false
+                    },
+                    {
+                        "name": "e-mail",
+                        "transform": null,
+                        "attributes": {},
+                        "isRequired": false,
+                        "type": null,
+                        "isMultiValued": false
+                    },
+                    {
+                        "name": "location",
+                        "transform": null,
+                        "attributes": {},
+                        "isRequired": false,
+                        "type": null,
+                        "isMultiValued": false
+                    },
+                    {
+                        "name": "manager",
+                        "transform": null,
+                        "attributes": {},
+                        "isRequired": false,
+                        "type": null,
+                        "isMultiValued": false
+                    },
+                    {
+                        "name": "groups",
+                        "transform": null,
+                        "attributes": {},
+                        "isRequired": false,
+                        "type": null,
+                        "isMultiValued": false
+                    }
+                ]
+            }
+        ],
+        "managementWorkgroup": null,
+        "passwordPolicies": null
+    }
+}

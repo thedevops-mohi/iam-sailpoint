@@ -1,0 +1,360 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "050aeabd-6c2e-4fcd-b9a8-72f03e5f5033",
+        "name": "LifecycleStateTWF"
+    },
+    "object": {
+        "id": "050aeabd-6c2e-4fcd-b9a8-72f03e5f5033",
+        "name": "LifecycleStateTWF",
+        "type": "static",
+        "attributes": {
+            "requiresPeriodicRefresh": true,
+            "TransformDesrcription": {
+                "type": "static",
+                "attributes": {
+                    "value": "Populate Life Cycle State value. #2025-06-18: Updated for new sources and override approach."
+                }
+            },
+            "exceptionText": {
+                "type": "static",
+                "attributes": {
+                    "value": "transform:LifecycleStateTWF:UnhandledCase"
+                }
+            },
+            "bestSource": {
+                "type": "reference",
+                "attributes": {
+                    "id": "BestSource"
+                }
+            },
+            "varPrehireOverride_futureStartDate": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "dateCompare",
+                            "attributes": {
+                                "firstDate": {
+                                    "type": "dateFormat",
+                                    "attributes": {
+                                        "input": {
+                                            "type": "reference",
+                                            "attributes": {
+                                                "id": "StartDateWithTime"
+                                            }
+                                        },
+                                        "inputFormat": "yyyy-MM-dd'T'-HH:mm:ss:SSS-HH:mm",
+                                        "outputFormat": "ISO8601"
+                                    }
+                                },
+                                "secondDate": "now",
+                                "operator": "gt",
+                                "positiveCondition": "true",
+                                "negativeCondition": "false"
+                            }
+                        },
+                        "false"
+                    ]
+                }
+            },
+            "var_LOA_Override": {
+                "type": "reference",
+                "attributes": {
+                    "id": "LCSLoaCheckNew"
+                }
+            },
+            "var_AfterEndDatePlus21Days": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "dateCompare",
+                            "attributes": {
+                                "firstDate": {
+                                    "type": "dateMath",
+                                    "attributes": {
+                                        "expression": "+21d",
+                                        "roundUp": false,
+                                        "input": {
+                                            "type": "dateFormat",
+                                            "attributes": {
+                                                "input": {
+                                                    "type": "reference",
+                                                    "attributes": {
+                                                        "id": "EndDateWithTime"
+                                                    }
+                                                },
+                                                "inputFormat": "yyyy-MM-dd'T'-HH:mm:ss:SSS-HH:mm",
+                                                "outputFormat": "ISO8601"
+                                            }
+                                        }
+                                    }
+                                },
+                                "secondDate": "now",
+                                "operator": "lte",
+                                "positiveCondition": "true",
+                                "negativeCondition": "false"
+                            }
+                        },
+                        "false"
+                    ]
+                }
+            },
+            "SFAuth_value": {
+                "type": "static",
+                "attributes": {
+                    "SFAuth_status_map": {
+                        "type": "lookup",
+                        "attributes": {
+                            "input": {
+                                "type": "firstValid",
+                                "attributes": {
+                                    "values": [
+                                        {
+                                            "type": "accountAttribute",
+                                            "attributes": {
+                                                "sourceName": "SuccessFactors-Auth",
+                                                "attributeName": "EmployeeStatus"
+                                            }
+                                        },
+                                        "null"
+                                    ]
+                                }
+                            },
+                            "table": {
+                                "Active": "active",
+                                "Suspended": "suspended",
+                                "Paid Leave": "active",
+                                "Unpaid Leave": "active",
+                                "Dormant": "suspended",
+                                "Furlough": "suspended",
+                                "Terminated": "terminated",
+                                "Retired": "terminated",
+                                "Reported No Show": "terminated",
+                                "Discarded": "terminated",
+                                "null": "null",
+                                "default": "UnhandledValue"
+                            }
+                        }
+                    },
+                    "value": "$SFAuth_status_map"
+                }
+            },
+            "SFNonAuth_value": {
+                "type": "static",
+                "attributes": {
+                    "SFNonAuth_status_map": {
+                        "type": "lookup",
+                        "attributes": {
+                            "input": {
+                                "type": "firstValid",
+                                "attributes": {
+                                    "values": [
+                                        {
+                                            "type": "accountAttribute",
+                                            "attributes": {
+                                                "sourceName": "SuccessFactors - NonAuthoritative",
+                                                "attributeName": "EmployeeStatus"
+                                            }
+                                        },
+                                        "null"
+                                    ]
+                                }
+                            },
+                            "table": {
+                                "Active": "active",
+                                "Suspended": "suspended",
+                                "Paid Leave": "active",
+                                "Unpaid Leave": "active",
+                                "Dormant": "suspended",
+                                "Furlough": "suspended",
+                                "Terminated": "terminated",
+                                "Retired": "terminated",
+                                "Reported No Show": "terminated",
+                                "Discarded": "terminated",
+                                "null": "null",
+                                "default": "UnhandledValue"
+                            }
+                        }
+                    },
+                    "value": "$SFNonAuth_status_map"
+                }
+            },
+            "SAP_value": {
+                "type": "static",
+                "attributes": {
+                    "SIS_Status": {
+                        "type": "lookup",
+                        "attributes": {
+                            "input": {
+                                "type": "firstValid",
+                                "attributes": {
+                                    "values": [
+                                        {
+                                            "type": "accountAttribute",
+                                            "attributes": {
+                                                "sourceName": "Employees SAP ECC",
+                                                "attributeName": "STAT1_T"
+                                            }
+                                        },
+                                        "null"
+                                    ]
+                                }
+                            },
+                            "table": {
+                                "A": "active",
+                                "T": "terminated",
+                                "null": "null",
+                                "default": "active"
+                            }
+                        }
+                    },
+                    "value": "$SIS_Status"
+                }
+            },
+            "SIS_value": {
+                "type": "static",
+                "attributes": {
+                    "varNotTerminated": {
+                        "type": "firstValid",
+                        "attributes": {
+                            "values": [
+                                {
+                                    "type": "dateCompare",
+                                    "attributes": {
+                                        "firstDate": {
+                                            "type": "dateMath",
+                                            "attributes": {
+                                                "expression": "-21d/d",
+                                                "roundUp": true,
+                                                "input": {
+                                                    "type": "dateFormat",
+                                                    "attributes": {
+                                                        "input": {
+                                                            "type": "reference",
+                                                            "attributes": {
+                                                                "id": "EndDateWithTime"
+                                                            }
+                                                        },
+                                                        "inputFormat": "yyyy-MM-dd'T'-HH:mm:ss:SSS-HH:mm",
+                                                        "outputFormat": "ISO8601"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "secondDate": "now",
+                                        "operator": "lte",
+                                        "positiveCondition": "true",
+                                        "negativeCondition": "false"
+                                    }
+                                },
+                                "false"
+                            ]
+                        }
+                    },
+                    "SIS_Status": {
+                        "type": "lookup",
+                        "attributes": {
+                            "input": {
+                                "type": "firstValid",
+                                "attributes": {
+                                    "values": [
+                                        {
+                                            "type": "accountAttribute",
+                                            "attributes": {
+                                                "sourceName": "Advisors - SIS Feed",
+                                                "attributeName": "STATUS"
+                                            }
+                                        },
+                                        "null"
+                                    ]
+                                }
+                            },
+                            "table": {
+                                "Active": "active",
+                                "Inactive": "terminated",
+                                "null": "null",
+                                "default": "UnhandledValue"
+                            }
+                        }
+                    },
+                    "value": "$SIS_Status"
+                }
+            },
+            "SNOW_value": {
+                "type": "static",
+                "attributes": {
+                    "Comment_text": {
+                        "type": "static",
+                        "attributes": {
+                            "comment1": "While there is a status attribute on the ServiceNowApi record it was primarily used for inital SailPoint go-live and is not populated or maintained normally for new or updated records. Thus we must rely solely on the date fields on these records.",
+                            "comment2": "We don't directly derive the enddate value here as it's more consistent to just use the endDateWithTime transform which handles the details.",
+                            "comment3": "Like some other sources we primarily determine if the identity base LCS should be terminated or active, and then do checks for pre-hire, suspended, or delted overrides in the final <value> code for the transform.",
+                            "comment4": "The SNOW_enddate attribute below is not used, but temporarily retained.",
+                            "value": ""
+                        }
+                    },
+                    "varTerminated": {
+                        "type": "firstValid",
+                        "attributes": {
+                            "values": [
+                                {
+                                    "type": "dateCompare",
+                                    "attributes": {
+                                        "firstDate": {
+                                            "type": "dateFormat",
+                                            "attributes": {
+                                                "input": {
+                                                    "type": "reference",
+                                                    "attributes": {
+                                                        "id": "EndDateWithTime"
+                                                    }
+                                                },
+                                                "inputFormat": "yyyy-MM-dd'T'-HH:mm:ss:SSS-HH:mm",
+                                                "outputFormat": "ISO8601"
+                                            }
+                                        },
+                                        "secondDate": "now",
+                                        "operator": "lte",
+                                        "positiveCondition": "true",
+                                        "negativeCondition": "false"
+                                    }
+                                },
+                                "false"
+                            ]
+                        }
+                    },
+                    "SNOW_enddate": {
+                        "type": "firstValid",
+                        "attributes": {
+                            "values": [
+                                {
+                                    "type": "accountAttribute",
+                                    "attributes": {
+                                        "sourceName": "ServiceNowAPI",
+                                        "attributeName": "endDate"
+                                    }
+                                },
+                                "unassigned"
+                            ]
+                        }
+                    },
+                    "value": "#if($varTerminated == 'true')terminated#{else}active#end"
+                }
+            },
+            "safe_oldvalue": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        "$oldValue",
+                        "null"
+                    ]
+                }
+            },
+            "value": "#if($bestSource == 'use_SFAuth')#set($finalValue = $SFAuth_value)#elseif($bestSource == 'use_SFNonAuth')#set($finalValue = $SFNonAuth_value)#elseif($bestSource == 'use_SAPECC')#set($finalValue = $SAP_value)#elseif($bestSource == 'use_SIS')#set($finalValue = $SIS_value)#elseif($bestSource == 'use_ServiceNow')#set($finalValue = $SNOW_value)#{else}#set($finalValue = $exceptionText)#{end}#if($finalValue == 'active' && $var_LOA_Override == 'true')#set($finalValue = 'suspended')#elseif($finalValue == 'active' && $varPrehireOverride_futureStartDate == 'true')#set($finalValue = 'prehire')#elseif($finalValue == 'terminated' && $var_AfterEndDatePlus21Days == 'true' && ($!safe_oldvalue == 'terminated' || $!safe_oldvalue == 'deleted' || $!safe_oldvalue == 'null'))#set($finalValue = 'deleted')#{else}#end$finalValue"
+        },
+        "internal": false
+    }
+}

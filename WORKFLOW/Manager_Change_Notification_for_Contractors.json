@@ -1,0 +1,171 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "WORKFLOW",
+        "id": "c608cecd-cd32-4070-a0d4-9dcc0bdbbea1",
+        "name": "Manager Change Notification for Contractors"
+    },
+    "object": {
+        "id": "c608cecd-cd32-4070-a0d4-9dcc0bdbbea1",
+        "name": "Manager Change Notification for Contractors",
+        "description": "This workflow sends an email notification to the new manager of a Contractor, in an event of manager change.",
+        "created": "2025-06-25T13:54:37.895192449Z",
+        "modified": "2025-06-25T13:54:37.895192449Z",
+        "modifiedBy": {
+            "type": "IDENTITY",
+            "id": "8854446c0c0c4b5bb87ca482a91b0ef3",
+            "name": "Rahul.Majumder"
+        },
+        "definition": {
+            "start": "Compare Strings 1",
+            "steps": {
+                "Compare Strings": {
+                    "choiceList": [
+                        {
+                            "comparator": "StringMatches",
+                            "nextStep": "Get Identity 1",
+                            "variableA.$": "$.defineVariable.userType",
+                            "variableB.$": "$.getIdentity.attributes.userType"
+                        }
+                    ],
+                    "defaultStep": "End Step - Success",
+                    "displayName": "",
+                    "type": "choice"
+                },
+                "Compare Strings 1": {
+                    "choiceList": [
+                        {
+                            "comparator": "StringEquals",
+                            "nextStep": "End Step - Success",
+                            "variableA.$": "$.trigger.changes[?(@.attribute=='managerFullName')].oldValue",
+                            "variableB": "None"
+                        }
+                    ],
+                    "defaultStep": "Get Identity",
+                    "displayName": "",
+                    "type": "choice"
+                },
+                "Compare Strings 2": {
+                    "choiceList": [
+                        {
+                            "comparator": "StringContains",
+                            "nextStep": "Send Email",
+                            "variableA.$": "$.defineVariable.newManagerLCS",
+                            "variableB.$": "$.getIdentity1.attributes.cloudLifecycleState"
+                        }
+                    ],
+                    "defaultStep": "Send Email 1",
+                    "displayName": "",
+                    "type": "choice"
+                },
+                "Define Variable": {
+                    "attributes": {
+                        "id": "sp:define-variable",
+                        "variables": [
+                            {
+                                "description": "",
+                                "name": "userType",
+                                "transforms": [],
+                                "variableA": "Contractor"
+                            },
+                            {
+                                "description": "",
+                                "name": "newManagerLCS",
+                                "transforms": [],
+                                "variableA": "active,prehire"
+                            }
+                        ]
+                    },
+                    "displayName": "",
+                    "nextStep": "Compare Strings",
+                    "type": "Mutation"
+                },
+                "End Step - Success": {
+                    "displayName": "",
+                    "type": "success"
+                },
+                "Get Identity": {
+                    "actionId": "sp:get-identity",
+                    "attributes": {
+                        "id.$": "$.trigger.identity.id"
+                    },
+                    "displayName": "",
+                    "nextStep": "Define Variable",
+                    "type": "action",
+                    "versionNumber": 2
+                },
+                "Get Identity 1": {
+                    "actionId": "sp:get-identity",
+                    "attributes": {
+                        "id.$": "$.getIdentity.managerRef.id"
+                    },
+                    "description": "Get Manager Identity Information",
+                    "displayName": "",
+                    "nextStep": "Compare Strings 2",
+                    "type": "action",
+                    "versionNumber": 2
+                },
+                "Send Email": {
+                    "actionId": "sp:send-email",
+                    "attributes": {
+                        "body": "<p>Dear ${managerFirstName},<br><br></p>\n<p class=\"MsoNormal\">You have been assigned as the Manager for the following user:</p>\n<p class=\"MsoNormal\"><strong>Display Name:&nbsp;</strong>${displayName}<br><strong>sAMAccountName</strong>: ${AccountName}<br><strong>UPN</strong>: ${UPN}<br><br>This transfer was triggered by the offboarding of the previously assigned manager, ${oldManagerName}, or by a SNAP Request approved by ${oldManagerName}.&nbsp;</p>\n<p class=\"MsoNormal\"><br>If you wish to update the manager for this user to a different person, please follow the instructions in the link below to submit a SNAP request.<br><br></p>\n<p class=\"MsoNormal\"><strong><a href=\"https://can01.safelinks.protection.outlook.com/?url=https%3A%2F%2Figmfinancial.service-now.com%2Fsnap%3Fid%3Dkb_article_view%26sysparm_article%3DKB0015599&amp;data=05%7C02%7CJyoti.Gupta%40IGMFinancial.com%7Ca730246b12074bd17ba408dcbe354c5c%7Cdc411c631f524491bb51c4d215a1de23%7C0%7C0%7C638594383320646865%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C&amp;sdata=zPvA%2Fa9eFkPr%2BACi1tOHF%2B1pyzbPr5IYK7i9Af5iSyE%3D&amp;reserved=0\" target=\"_blank\" rel=\"noopener noreferrer\">IGM -SNAP-How to Update Employee or Contractor User Account</a></strong></p>\n<p class=\"MsoNormal\"><br>This is a system-generated email. Please do not respond to this email.</p>\n<p>Bonjour ${managerFirstName},<br><br></p>\n<p class=\"MsoNormal\">On vous a désigné(e) comme gestionnaire de l’utilisateur suivant :</p>\n<p class=\"MsoNormal\"><strong>Nom affiché &nbsp;</strong>: ${displayName}<br><strong>Nom d’utilisateur</strong>: ${AccountName}<br><strong>UPN</strong>: ${UPN}<br><br>\nCe transfert a été déclenché par le départ de l’ancien(ne) gestionnaire assigné(e), ${oldManagerName}, ou fait suite à une demande SNAP approuvée par ${oldManagerName}.&nbsp;</p>\n<p class=\"MsoNormal\"><br>Si vous souhaitez faire un changement de gestionnaire pour cet utilisateur, veuillez soumettre une demande SNAP en suivant les instructions accessibles par le lien ci-dessous.<br><br></p>\n<p class=\"MsoNormal\"><strong><a href=\"https://igmfinancial.service-now.com/kb_view.do?sysparm_article=KB0016562\" target=\"_blank\" rel=\"noopener noreferrer\">Portail SNAP d’IGM – Procédure de mise à jour du compte d’utilisateur d’un(e) employé(e) ou d’un(e) employé(e) contractuel(le)</a></strong></p>\n<p class=\"MsoNormal\"><br>Ce courriel a été produit par le système. Veuillez ne pas y répondre.</p>",
+                        "context": {
+                            "AccountName.$": "$.getIdentity.attributes.samaccountname",
+                            "UPN.$": "$.getIdentity.attributes.upn",
+                            "displayName.$": "$.getIdentity.attributes.displayName",
+                            "managerFirstName.$": "$.getIdentity1.attributes.firstname",
+                            "oldManagerName.$": "$.trigger.changes[?(@.attribute=='managerFullName')].oldValue"
+                        },
+                        "from": null,
+                        "recipientEmailList.$": "$.getIdentity1.attributes.email",
+                        "subject": "Change of Manager for User/Changement de gestionnaire pour utilisateur: ${displayName}"
+                    },
+                    "description": "Send email to manager's manager.",
+                    "displayName": "",
+                    "nextStep": "End Step - Success",
+                    "type": "action",
+                    "versionNumber": 2
+                },
+                "Send Email 1": {
+                    "actionId": "sp:send-email",
+                    "attributes": {
+                        "body": "<p>Dear Recepient,</p>\n<p>The automated Manager assignment logic in SailPoint has failed for the following Contractor Identity:</p>\n<p>Display Name: ${displayName}<br>sAMAccountName: ${AccountName}<br>UPN: ${UPN}</p>\n<p class=\"MsoNormal\"><span style=\"mso-fareast-language: EN-US;\">The Manager assigned in the ServiceNowAPI source record and this Manager&rsquo;s Manager are both Terminated/Deleted/Suspended.</span></p>\n<p class=\"MsoNormal\"><span style=\"mso-fareast-language: EN-US;\">&nbsp;</span><span style=\"mso-fareast-language: EN-US;\">Action Required: Open an Incident and follow up with the Contractor to identify their current Manager and confirm this with the Manager before updating the ServiceNowAPI source to reflect this change.</span></p>\n<p>This is a system-generated email. Please do not respond to this email.</p>",
+                        "context": {
+                            "AccountName.$": "$.getIdentity.attributes.samaccountname",
+                            "UPN.$": "$.getIdentity.attributes.upn",
+                            "displayName.$": "$.getIdentity.attributes.displayName",
+                            "managerFirstName.$": "$.getIdentity1.attributes.firstname",
+                            "oldManagerName.$": "$.trigger.changes[?(@.attribute=='managerFullName')].oldValue"
+                        },
+                        "recipientEmailList": [
+                            "iamops@igmfinancial.com"
+                        ],
+                        "subject": "Action Required - Update Manager for Contractor Identity:  ${displayName}"
+                    },
+                    "displayName": "",
+                    "nextStep": "End Step - Success",
+                    "type": "action",
+                    "versionNumber": 2
+                }
+            }
+        },
+        "enabled": false,
+        "creator": {
+            "type": "IDENTITY",
+            "id": "8854446c0c0c4b5bb87ca482a91b0ef3",
+            "name": "Rahul.Majumder"
+        },
+        "owner": {
+            "type": "IDENTITY",
+            "id": "8854446c0c0c4b5bb87ca482a91b0ef3",
+            "name": "Rahul.Majumder"
+        },
+        "trigger": {
+            "type": "EVENT",
+            "attributes": {
+                "filter.$": "$.changes[?(@.attribute == \"managerFullName\")]",
+                "id": "idn:identity-attributes-changed"
+            }
+        }
+    }
+}

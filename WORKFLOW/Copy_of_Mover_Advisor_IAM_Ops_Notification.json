@@ -1,0 +1,133 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "WORKFLOW",
+        "id": "081398c9-2c88-4774-bd3b-4af39d7e831e",
+        "name": "Copy of Mover Advisor IAM Ops Notification"
+    },
+    "object": {
+        "id": "081398c9-2c88-4774-bd3b-4af39d7e831e",
+        "name": "Copy of Mover Advisor IAM Ops Notification",
+        "description": "Joiner Advisor IAM Ops Notification",
+        "created": "2025-06-25T08:48:49.83277174Z",
+        "modified": "2025-06-25T11:53:56.199263439Z",
+        "modifiedBy": {
+            "type": "IDENTITY",
+            "id": "f5df644192e744eab79a35025c29a227",
+            "name": "Jyoti.Gupta"
+        },
+        "definition": {
+            "start": "Get Identity",
+            "steps": {
+                "Compare Strings": {
+                    "choiceList": [
+                        {
+                            "comparator": "StringEquals",
+                            "nextStep": "success",
+                            "variableA.$": "$.getIdentity.attributes.cloudLifecycleState",
+                            "variableB": "Terminated"
+                        }
+                    ],
+                    "defaultStep": "Compare Strings 1",
+                    "description": "Check if identity was terminated. Since termination changes subscription indicatior as well",
+                    "type": "choice"
+                },
+                "Compare Strings 1": {
+                    "choiceList": [
+                        {
+                            "comparator": "StringEquals",
+                            "nextStep": "Send Email 1",
+                            "variableA.$": "$.getIdentity.attributes.userType",
+                            "variableB": "Advisor"
+                        }
+                    ],
+                    "defaultStep": "success",
+                    "description": "Check if identity is an Advisor",
+                    "type": "choice"
+                },
+                "Get Identity": {
+                    "actionId": "sp:get-identity",
+                    "attributes": {
+                        "id.$": "$.trigger.identity.id"
+                    },
+                    "description": "Get Identity Information",
+                    "nextStep": "Compare Strings",
+                    "type": "action",
+                    "versionNumber": 2
+                },
+                "Send Email 1": {
+                    "actionId": "sp:send-email",
+                    "attributes": {
+                        "body": "IAM Ops,<br>\n<br>\nChanges have been made to an Advisor identity. Please reference the details below to provision and deprovision appropriate access for this event.<br>\n<br>\nEvent Type: MOVER<br>\nShort Description: MOVER - ${userType} - ${sAMAccountName}<br>\nName: ${firstName} ${lastName}<br>\nUser Type: ${userType}<br>\nStart Date: ${startDate}<br>\nLanguage: ${language}<br>\nManager: ${manager}<br>\nCompany: ${company}<br>\nWork Location: ${street}, ${city}, ${postalCode}, ${country}<br>\n<br>\n<br>\nChanges (If dollar sign and curly brackets appears, there was no change to the attribute) :<br><br>\nFirst Name Old Value:  ${oldFirst}<br>   \nFirst Name New Value:  ${newFirst}<br><br>\nLast Name Old Value:  ${oldLast}<br>   \nLastName New Value:  ${newLast}<br><br>\nDepartment Old Value:  ${oldDep}<br>   \nDepartment New Value:  ${newDep}<br><br>\nSubscription Indicator Old Value:  ${oldSub}<br>\nSubscription Indicator New Value:  ${newSub}<br><br>\nTitle Old Value:  ${oldTitle}<br>\nTitle New Value:  ${newTitle}<br><br>\nRep Relationships Old Value:  ${oldRep}<br>\nRep Relationships New Value:  ${newRep}<br><br>\nRGOFNAME Old Value:  ${oldRgofName}<br> \nRGOFNAME New Value:  ${newRgofName}<br><br> \nRGOFNO Old Value:  ${oldRgofno}<br>\nRGOFNO New Value:  ${newRgofno}<br><br>\nLanguage Old Value:  ${oldLanguage}<br>\nLanguage New Value:  ${newLanguage}<br><br>\n<br>\nThis is a system-generated email. Please do not respond to this email.",
+                        "context": {
+                            "city.$": "$.getIdentity.attributes.city",
+                            "company.$": "$.getIdentity.attributes.company",
+                            "country.$": "$.getIdentity.attributes.country",
+                            "firstName.$": "$.getIdentity.attributes.firstname",
+                            "language.$": "$.getIdentity.attributes.language",
+                            "lastName.$": "$.getIdentity.attributes.lastname",
+                            "manager.$": "$.getIdentity.managerRef.name",
+                            "newDep.$": "$.trigger.changes[?(@.attribute=='department')].newValue",
+                            "newFirst.$": "$.trigger.changes[?(@.attribute=='firstname')].newValue",
+                            "newLanguage.$": "$.trigger.changes[?(@.attribute=='language')].newValue",
+                            "newLast.$": "$.trigger.changes[?(@.attribute=='lastname')].newValue",
+                            "newRep.$": "$.trigger.changes[?(@.attribute=='repRelationships')].newValue",
+                            "newRgofName.$": "$.trigger.changes[?(@.attribute=='rgofname')].newValue",
+                            "newRgofno.$": "$.trigger.changes[?(@.attribute=='rgofno')].newValue",
+                            "newSub.$": "$.trigger.changes[?(@.attribute=='subscriptionIndicator')].newValue",
+                            "newTitle.$": "$.trigger.changes[?(@.attribute=='title')].newValue",
+                            "oldDep.$": "$.trigger.changes[?(@.attribute=='department')].oldValue",
+                            "oldFirst.$": "$.trigger.changes[?(@.attribute=='firstname')].oldValue",
+                            "oldLanguage.$": "$.trigger.changes[?(@.attribute=='language')].oldValue",
+                            "oldLast.$": "$.trigger.changes[?(@.attribute=='lastname')].oldValue",
+                            "oldRep.$": "$.trigger.changes[?(@.attribute=='repRelationships')].oldValue",
+                            "oldRgofName.$": "$.trigger.changes[?(@.attribute=='rgofname')].oldValue",
+                            "oldRgofno.$": "$.trigger.changes[?(@.attribute=='rgofno')].oldValue",
+                            "oldSub.$": "$.trigger.changes[?(@.attribute=='subscriptionIndicator')].oldValue",
+                            "oldTitle.$": "$.trigger.changes[?(@.attribute=='title')].oldValue",
+                            "postalCode.$": "$.getIdentity.attributes.postalCode",
+                            "sAMAccountName.$": "$.getIdentity.attributes.samaccountname",
+                            "startDate.$": "$.getIdentity.attributes.startDate",
+                            "street.$": "$.getIdentity.attributes.street",
+                            "userType.$": "$.getIdentity.attributes.userType"
+                        },
+                        "from": null,
+                        "recipientEmailList": [
+                            "iamops@igmfinancial.com",
+                            "igmfinancial@service-now.com"
+                        ],
+                        "replyTo": null,
+                        "subject": "Mover - Advisor - ${firstName} ${lastName}"
+                    },
+                    "description": "Advisor mover event notification for IAM Ops team",
+                    "nextStep": "success",
+                    "type": "action",
+                    "versionNumber": 2
+                },
+                "success": {
+                    "description": null,
+                    "type": "success"
+                }
+            }
+        },
+        "enabled": false,
+        "creator": {
+            "type": "IDENTITY",
+            "id": "f5df644192e744eab79a35025c29a227",
+            "name": "Jyoti.Gupta"
+        },
+        "owner": {
+            "type": "IDENTITY",
+            "id": "f5df644192e744eab79a35025c29a227",
+            "name": "Jyoti.Gupta"
+        },
+        "trigger": {
+            "type": "EVENT",
+            "attributes": {
+                "description": "Need to check if department, subscription indicator, or job title changed",
+                "filter.$": "$.changes[?(@.attribute == \"department\" || @.attribute == \"subscriptionIndicator\" || @.attribute == \"title\" || @.attribute == \"firstname\" || @.attribute == \"lastname\" || @.attribute == \"repRelationships\" || @.attribute == \"rgofname\" || @.attribute == \"rgofno\" || @.attribute == \"language\")]",
+                "id": "idn:identity-attributes-changed"
+            }
+        }
+    }
+}

@@ -1,0 +1,49 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "ACCESS_PROFILE",
+        "id": "eb47dbfe85e0478fbfe37b4f2ccf91ae",
+        "name": "SecureShare - User"
+    },
+    "object": {
+        "id": "eb47dbfe85e0478fbfe37b4f2ccf91ae",
+        "name": "SecureShare - User",
+        "description": "This access is to grant user role in SecureShare.",
+        "created": "2025-12-01T14:57:54.81242Z",
+        "modified": "2025-12-04T20:40:36.227339Z",
+        "enabled": true,
+        "owner": {
+            "type": "IDENTITY",
+            "id": "67bdaa99b6e94d25be4e38e34ccba2d7",
+            "name": "Gupta, Jyoti"
+        },
+        "source": {
+            "id": "4b7cb9d5c14b475c94ebb3e9fd00e474",
+            "type": "SOURCE",
+            "name": "Kiteworks"
+        },
+        "entitlements": [
+            {
+                "id": "b71eaf7f0d753ab4b3d39a1d8d0c6597",
+                "type": "ENTITLEMENT",
+                "name": "End User"
+            }
+        ],
+        "requestable": true,
+        "accessRequestConfig": {
+            "commentsRequired": false,
+            "denialCommentsRequired": false,
+            "approvalSchemes": [],
+            "reauthorizationRequired": false,
+            "requireEndDate": false,
+            "maxPermittedAccessDuration": null
+        },
+        "revocationRequestConfig": {
+            "approvalSchemes": []
+        },
+        "segments": [],
+        "provisioningCriteria": null,
+        "additionalOwners": null,
+        "segmentRefs": []
+    }
+}

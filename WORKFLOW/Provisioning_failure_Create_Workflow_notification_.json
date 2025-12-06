@@ -1,0 +1,74 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "WORKFLOW",
+        "id": "02b2e8ba-af44-4307-b4cb-308fdb017485",
+        "name": "Provisioning failure Create Workflow notification "
+    },
+    "object": {
+        "id": "02b2e8ba-af44-4307-b4cb-308fdb017485",
+        "name": "Provisioning failure Create Workflow notification ",
+        "description": "Provisioning failure Create notification",
+        "created": "2025-07-31T12:48:24.909879438Z",
+        "modified": "2025-09-24T09:32:05.02917469Z",
+        "modifiedBy": {
+            "type": "IDENTITY",
+            "id": "8854446c0c0c4b5bb87ca482a91b0ef3",
+            "name": "Rahul.Majumder"
+        },
+        "definition": {
+            "start": "Get Identity",
+            "steps": {
+                "End Step - Success": {
+                    "actionId": "sp:operator-success",
+                    "displayName": "",
+                    "type": "success"
+                },
+                "Get Identity": {
+                    "actionId": "sp:get-identity",
+                    "attributes": {
+                        "id.$": "$.trigger.recipient.id"
+                    },
+                    "displayName": "",
+                    "nextStep": "Send Email",
+                    "type": "action",
+                    "versionNumber": 2
+                },
+                "Send Email": {
+                    "actionId": "sp:send-email",
+                    "attributes": {
+                        "body": "<p>IAM Ops,</p>\n<p>Please reference the details below regarding SailPoint Create Account Provisioning failure.</p>\n<p>Event Type: CREATE</p>\n<p>Description: SailPoint Create Account Provisioning Failure:- {{$.getIdentity.attributes.userType}} - {{$.getIdentity.attributes.samaccountname}}</p>\n<p>Display Name: {{$.getIdentity.attributes.displayName}}<br>SAMAccounName: {{$.getIdentity.attributes.samaccountname}}<br>User Type: {{$.getIdentity.attributes.userType}}<br>Start Date: {{$.getIdentity.attributes.startDate}}<br>Language: {{$.getIdentity.attributes.language}}<br>Manager: {{$.getIdentity.managerRef.name}}<br>Company: {{$.getIdentity.attributes.company}}<br>Work Location: {{$.getIdentity.attributes.street}}, {{$.getIdentity.attributes.city}}, {{$.getIdentity.attributes.postalCode}}, {{$.getIdentity.attributes.country}}</p>\n<p><br>Error: {{$.trigger.errors}}</p>\n<p>SailPoint Event Details: {{$.trigger.accountRequests}}</p>\n<p><br>This is a system-generated email. Please do not respond to this email.</p>",
+                        "context": {},
+                        "from": "IAMGovernance@igmfinancial.com",
+                        "recipientEmailList": [
+                            "igmfinancialtest@service-now.com"
+                        ],
+                        "subject": "SailPoint Create Account Provisioning Failure: {{$.getIdentity.attributes.displayName}}"
+                    },
+                    "displayName": "",
+                    "nextStep": "End Step - Success",
+                    "type": "action",
+                    "versionNumber": 2
+                }
+            }
+        },
+        "enabled": false,
+        "creator": {
+            "type": "IDENTITY",
+            "id": "8854446c0c0c4b5bb87ca482a91b0ef3",
+            "name": "Rahul.Majumder"
+        },
+        "owner": {
+            "type": "IDENTITY",
+            "id": "8854446c0c0c4b5bb87ca482a91b0ef3",
+            "name": "Rahul.Majumder"
+        },
+        "trigger": {
+            "type": "EVENT",
+            "attributes": {
+                "filter.$": "$.accountRequests[?(@.provisioningResult == 'failed' && @.accountOperation == 'Create')]",
+                "id": "idn:post-provisioning"
+            }
+        }
+    }
+}

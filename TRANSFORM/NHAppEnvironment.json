@@ -1,0 +1,26 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "ce3f88a9-68ee-4ae7-88fa-288a247644d9",
+        "name": "NHAppEnvironment"
+    },
+    "object": {
+        "id": "ce3f88a9-68ee-4ae7-88fa-288a247644d9",
+        "name": "NHAppEnvironment",
+        "type": "firstValid",
+        "attributes": {
+            "values": [
+                {
+                    "type": "accountAttribute",
+                    "attributes": {
+                        "sourceName": "ServiceNow Non-Human Accounts",
+                        "attributeName": "environment"
+                    }
+                },
+                "Not Available"
+            ]
+        },
+        "internal": false
+    }
+}

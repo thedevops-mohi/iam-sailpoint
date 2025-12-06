@@ -1,0 +1,115 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "ROLE",
+        "id": "03d82c5d22ba499988e32f81990c50d3",
+        "name": "IG Employees in QC"
+    },
+    "object": {
+        "id": "03d82c5d22ba499988e32f81990c50d3",
+        "name": "IG Employees in QC",
+        "created": "2023-11-10T14:08:19.682946Z",
+        "modified": "2025-12-01T02:54:46.664406Z",
+        "description": "HR email distribution list for all IG Employees (excluding contractors)who have have province as QC.",
+        "owner": {
+            "type": "IDENTITY",
+            "id": "f5df644192e744eab79a35025c29a227",
+            "name": "Jyoti Gupta"
+        },
+        "entitlements": [
+            {
+                "sourceId": "a4dc7c1f-64fc-44fe-9e77-8339d4915993",
+                "sourceName": "Active Directory",
+                "id": "1db4e442-11cd-3d3d-8c7e-b25f9e49f25f",
+                "type": "ENTITLEMENT",
+                "name": "IG Employees QC"
+            }
+        ],
+        "accessProfiles": [],
+        "membership": {
+            "type": "STANDARD",
+            "criteria": {
+                "operation": "AND",
+                "key": null,
+                "values": null,
+                "stringValue": null,
+                "children": [
+                    {
+                        "operation": "EQUALS",
+                        "key": {
+                            "type": "IDENTITY",
+                            "property": "attribute.company",
+                            "sourceId": null
+                        },
+                        "values": [
+                            "Investors Group"
+                        ],
+                        "stringValue": null,
+                        "children": null
+                    },
+                    {
+                        "operation": "EQUALS",
+                        "key": {
+                            "type": "IDENTITY",
+                            "property": "attribute.provinceState",
+                            "sourceId": null
+                        },
+                        "values": [
+                            "QC"
+                        ],
+                        "stringValue": null,
+                        "children": null
+                    },
+                    {
+                        "operation": "EQUALS",
+                        "key": {
+                            "type": "IDENTITY",
+                            "property": "attribute.userType",
+                            "sourceId": null
+                        },
+                        "values": [
+                            "Employee",
+                            "Dual Role"
+                        ],
+                        "stringValue": null,
+                        "children": null
+                    },
+                    {
+                        "operation": "EQUALS",
+                        "key": {
+                            "type": "IDENTITY",
+                            "property": "attribute.cloudLifecycleState",
+                            "sourceId": null
+                        },
+                        "values": [
+                            "Active"
+                        ],
+                        "stringValue": null,
+                        "children": null
+                    }
+                ]
+            },
+            "identities": null
+        },
+        "legacyMembershipInfo": null,
+        "enabled": true,
+        "requestable": false,
+        "accessRequestConfig": {
+            "commentsRequired": null,
+            "denialCommentsRequired": null,
+            "approvalSchemes": [],
+            "reauthorizationRequired": false,
+            "requireEndDate": false,
+            "maxPermittedAccessDuration": null
+        },
+        "revocationRequestConfig": {
+            "approvalSchemes": []
+        },
+        "segments": [],
+        "dimensional": false,
+        "dimensionRefs": null,
+        "additionalOwners": null,
+        "segmentRefs": [],
+        "dimensions": []
+    }
+}

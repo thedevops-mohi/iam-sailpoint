@@ -1,0 +1,103 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "6b6450fd-dbea-4afe-a76a-847cb836e740",
+        "name": "Street"
+    },
+    "object": {
+        "id": "6b6450fd-dbea-4afe-a76a-847cb836e740",
+        "name": "Street",
+        "type": "static",
+        "attributes": {
+            "value": "#if($bestSource == 'use_SFAuth')#set($finalValue = $SFAuth_value)#elseif($bestSource == 'use_SFNonAuth')#set($finalValue = $SFNonAuth_value)#elseif($bestSource == 'use_SAPECC')#set($finalValue = $SAP_value)#elseif($bestSource == 'use_SIS')#set($finalValue = $SIS_value)#elseif($bestSource.compareToIgnoreCase('use_servicenow') == 0)#set($finalValue = $SNOW_value)#{else}#set($finalValue = $exceptionText)#end#if($finalValue != 'null')$finalValue#end",
+            "SAP_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "Employees SAP ECC",
+                                "attributeName": "STRAS"
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "SFAuth_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "SuccessFactors-Auth",
+                                "attributeName": "WorkAddrLine1",
+                                "accountSortAttribute": "StartDate_EmpInfo",
+                                "accountSortDescending": true,
+                                "accountReturnFirstLink": true
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "SFNonAuth_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "SuccessFactors - NonAuthoritative",
+                                "attributeName": "WorkAddrLine1",
+                                "accountSortAttribute": "StartDate_EmpInfo",
+                                "accountSortDescending": true,
+                                "accountReturnFirstLink": true
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "SIS_value": {
+                "type": "static",
+                "attributes": {
+                    "value": "null"
+                }
+            },
+            "SNOW_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "ServiceNowAPI",
+                                "attributeName": "street"
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "TransformDesrcription": {
+                "type": "static",
+                "value": "Populate This transform is for population fo the street attribute. It should use full word language descriptors."
+            },
+            "bestSource": {
+                "type": "reference",
+                "attributes": {
+                    "id": "BestSource"
+                }
+            },
+            "exceptionText": {
+                "type": "static",
+                "value": "error:undetermined:transform:Street"
+            }
+        },
+        "internal": false
+    }
+}

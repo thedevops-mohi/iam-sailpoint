@@ -1,0 +1,94 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "70793551-b546-4733-835b-6c29241cc7f5",
+        "name": "SubscriptionIndicator"
+    },
+    "object": {
+        "id": "70793551-b546-4733-835b-6c29241cc7f5",
+        "name": "SubscriptionIndicator",
+        "type": "static",
+        "attributes": {
+            "TransformDesrcription": {
+                "type": "static",
+                "value": "Used to Populate the subscription indicator for advisory persons, which determines email address and software licencing."
+            },
+            "exceptionText": {
+                "type": "static",
+                "value": "error:undetermined:transform:SubscriptionIndicator"
+            },
+            "bestSource": {
+                "type": "reference",
+                "attributes": {
+                    "id": "BestSource"
+                }
+            },
+            "SFAuth_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "SuccessFactors-Auth",
+                                "attributeName": "SubscriptionIndicator",
+                                "accountSortAttribute": "StartDate_EmpInfo",
+                                "accountSortDescending": true,
+                                "accountReturnFirstLink": true
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "SFNonAuth_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "SuccessFactors - NonAuthoritative",
+                                "attributeName": "SubscriptionIndicator",
+                                "accountSortAttribute": "StartDate_EmpInfo",
+                                "accountSortDescending": true,
+                                "accountReturnFirstLink": true
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "SAP_value": {
+                "type": "static",
+                "attributes": {
+                    "value": "null"
+                }
+            },
+            "SIS_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "Advisors - SIS Feed",
+                                "attributeName": "SUBT-IND"
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "SNOW_value": {
+                "type": "static",
+                "attributes": {
+                    "value": "null"
+                }
+            },
+            "value": "#if($bestSource == 'use_SFAuth')#set($finalValue = $SFAuth_value)#elseif($bestSource == 'use_SFNonAuth')#set($finalValue = $SFNonAuth_value)#elseif($bestSource == 'use_SAPECC')#set($finalValue = $SAP_value)#elseif($bestSource == 'use_SIS')#set($finalValue = $SIS_value)#elseif($bestSource.compareToIgnoreCase('use_servicenow') == 0)#set($finalValue = $SNOW_value)#{else}#set($finalValue = $exceptionText)#end#if($finalValue != 'null')$finalValue#end"
+        },
+        "internal": false
+    }
+}

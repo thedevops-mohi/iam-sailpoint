@@ -1,0 +1,127 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "464e71b1-adb0-4d2e-bd95-7a4d9ec96008",
+        "name": "CountryTwoLetter"
+    },
+    "object": {
+        "id": "464e71b1-adb0-4d2e-bd95-7a4d9ec96008",
+        "name": "CountryTwoLetter",
+        "type": "static",
+        "attributes": {
+            "value": "#if($bestSource == 'use_SFAuth')#set($finalValue = $SFAuth_value)#elseif($bestSource == 'use_SFNonAuth')#set($finalValue = $SFNonAuth_value)#elseif($bestSource == 'use_SAPECC')#set($finalValue = $SAP_value)#elseif($bestSource == 'use_SIS')#set($finalValue = $SIS_value)#elseif($bestSource.compareToIgnoreCase('use_servicenow') == 0)#set($finalValue = $SNOW_value)#{else}#set($finalValue = $exceptionText)#end#if($finalValue != 'null')$finalValue#end",
+            "SAP_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "Employees SAP ECC",
+                                "attributeName": "LAND1"
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "SFAuth_value": {
+                "type": "lookup",
+                "attributes": {
+                    "input": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "sourceName": "SuccessFactors-Auth",
+                            "attributeName": "Country",
+                            "accountSortAttribute": "StartDate_EmpInfo",
+                            "accountSortDescending": true,
+                            "accountReturnFirstLink": true
+                        }
+                    },
+                    "table": {
+                        "Canada": "CA",
+                        "China": "CN",
+                        "Hong Kong SAR": "HK",
+                        "Hong Kong": "HK",
+                        "IRELAND": "IE",
+                        "Ireland": "IE",
+                        "United States": "US",
+                        "India": "IN",
+                        "United Kingdom": "GB",
+                        "default": "null"
+                    }
+                }
+            },
+            "SFNonAuth_value": {
+                "type": "lookup",
+                "attributes": {
+                    "input": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "sourceName": "SuccessFactors - NonAuthoritative",
+                            "attributeName": "Country",
+                            "accountSortAttribute": "StartDate_EmpInfo",
+                            "accountSortDescending": true,
+                            "accountReturnFirstLink": true
+                        }
+                    },
+                    "table": {
+                        "Canada": "CA",
+                        "China": "CN",
+                        "Hong Kong SAR": "HK",
+                        "Hong Kong": "HK",
+                        "IRELAND": "IE",
+                        "Ireland": "IE",
+                        "United States": "US",
+                        "India": "IN",
+                        "United Kingdom": "GB",
+                        "default": "null"
+                    }
+                }
+            },
+            "SIS_value": {
+                "type": "static",
+                "attributes": {
+                    "value": "CA"
+                }
+            },
+            "SNOW_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "ServiceNowAPI",
+                                "attributeName": "country"
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "TransformDesrcription": {
+                "type": "static",
+                "attributes": {
+                    "Change_202505??": "Jyoti Gupta- Update to use bestSource/SourceOfTruth mapping approach.",
+                    "Change_20250623": "Scottt Walker - Bugfix -SFNonAuth unhandled case failures. Add GB and IN",
+                    "value": "This transform is for population of the countryTwoLetter."
+                }
+            },
+            "bestSource": {
+                "type": "reference",
+                "attributes": {
+                    "id": "BestSource"
+                }
+            },
+            "exceptionText": {
+                "type": "static",
+                "attributes": {
+                    "value": "transform:CountryTwoLetter:unhandled_case"
+                }
+            }
+        },
+        "internal": false
+    }
+}

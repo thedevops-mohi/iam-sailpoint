@@ -1,0 +1,54 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "b7e33386-42e2-4acc-8102-b201342939b4",
+        "name": "sAMAccountName_InitialLoadTemp"
+    },
+    "object": {
+        "id": "b7e33386-42e2-4acc-8102-b201342939b4",
+        "name": "sAMAccountName_InitialLoadTemp",
+        "type": "firstValid",
+        "attributes": {
+            "values": [
+                {
+                    "type": "accountAttribute",
+                    "attributes": {
+                        "sourceName": "Active Directory",
+                        "attributeName": "sAMAccountName"
+                    }
+                },
+                {
+                    "type": "accountAttribute",
+                    "attributes": {
+                        "sourceName": "Advisors - SIS Feed",
+                        "attributeName": "LAN-ID"
+                    }
+                },
+                {
+                    "type": "accountAttribute",
+                    "attributes": {
+                        "sourceName": "Employees SAP ECC",
+                        "attributeName": "USRID"
+                    }
+                },
+                {
+                    "type": "accountAttribute",
+                    "attributes": {
+                        "sourceName": "ServiceNowAPI",
+                        "attributeName": "sAMAccountName"
+                    }
+                },
+                {
+                    "type": "accountAttribute",
+                    "attributes": {
+                        "sourceName": "unconn_PersonID_xref",
+                        "attributeName": "userID"
+                    }
+                },
+                "$oldValue"
+            ]
+        },
+        "internal": false
+    }
+}

@@ -1,0 +1,112 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "TRANSFORM",
+        "id": "a46f50e1-9c74-4363-9f0b-181a69366cf2",
+        "name": "ProvinceState"
+    },
+    "object": {
+        "id": "a46f50e1-9c74-4363-9f0b-181a69366cf2",
+        "name": "ProvinceState",
+        "type": "static",
+        "attributes": {
+            "value": "#if($bestSource == 'use_SFAuth')#set($finalValue = $SFAuth_value)#elseif($bestSource == 'use_SFNonAuth')#set($finalValue = $SFNonAuth_value)#elseif($bestSource == 'use_SAPECC')#set($finalValue = $SAP_value)#elseif($bestSource == 'use_SIS')#set($finalValue = $SIS_value)#elseif($bestSource.compareToIgnoreCase('use_servicenow') == 0)#set($finalValue = $SNOW_value)#{else}#set($finalValue = $exceptionText)#end#if($finalValue != 'null')$finalValue#end",
+            "SAP_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "Employees SAP ECC",
+                                "attributeName": "STATE"
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "SFAuth_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "SuccessFactors-Auth",
+                                "attributeName": "WorkProv",
+                                "accountSortAttribute": "Termination Date",
+                                "accountSortDescending": true,
+                                "accountReturnFirstLink": true
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "SFNonAuth_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "SuccessFactors - NonAuthoritative",
+                                "attributeName": "WorkProv",
+                                "accountSortAttribute": "Termination Date",
+                                "accountSortDescending": true,
+                                "accountReturnFirstLink": true
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "SIS_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "Advisors - SIS Feed",
+                                "attributeName": "PROVINCE"
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "SNOW_value": {
+                "type": "firstValid",
+                "attributes": {
+                    "values": [
+                        {
+                            "type": "accountAttribute",
+                            "attributes": {
+                                "sourceName": "ServiceNowAPI",
+                                "attributeName": "provState"
+                            }
+                        },
+                        "null"
+                    ]
+                }
+            },
+            "TransformDesrcription": {
+                "type": "static",
+                "value": "Used to populate the provinceState attribute."
+            },
+            "bestSource": {
+                "type": "reference",
+                "attributes": {
+                    "id": "BestSource"
+                }
+            },
+            "exceptionText": {
+                "type": "static",
+                "value": "error:undetermined:transform:ProvinceState"
+            }
+        },
+        "internal": false
+    }
+}
