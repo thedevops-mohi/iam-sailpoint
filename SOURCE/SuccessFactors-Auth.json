@@ -27,12 +27,12 @@
         },
         "beforeProvisioningRule": null,
         "features": [
-            "PASSWORD",
-            "SYNC_PROVISIONING",
-            "SEARCH",
             "MANAGER_LOOKUP",
+            "SYNC_PROVISIONING",
+            "ENABLE",
+            "PASSWORD",
             "PROVISIONING",
-            "ENABLE"
+            "SEARCH"
         ],
         "schemas": [
             {

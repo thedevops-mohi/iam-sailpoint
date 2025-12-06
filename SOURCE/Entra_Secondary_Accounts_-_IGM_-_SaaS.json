@@ -24,12 +24,12 @@
         "beforeProvisioningRule": null,
         "features": [
             "AI_AGENT_AGGREGATION",
+            "ENABLE",
+            "PROVISIONING",
             "AUTHENTICATE",
             "APPLICATION_DISCOVERY",
-            "PROVISIONING",
-            "PASSWORD",
             "DELETE",
-            "ENABLE"
+            "PASSWORD"
         ],
         "schemas": [
             {
