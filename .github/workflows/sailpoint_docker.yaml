@@ -1,0 +1,63 @@
+name: SailPoint Export
+
+on:
+  workflow_dispatch:
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      # Retrieve secrets from Vault
+      - name: Retrieve Secret
+        id: secretdata
+        uses: hashicorp/vault-action@v2.5.0
+        with:
+          method: approle
+          roleId: ${{ secrets.role_id }}
+          secretId: ${{ secrets.secret_id }}
+          url: "https://mdeey.cloud:8200"
+          secrets: |
+            mdeey/data/app/test sail_base_url | sail_base_url ;
+            mdeey/data/app/test sail_client_id | sail_client_id ;
+            mdeey/data/app/test sail_client_secret | sail_client_secret
+
+      # Build Docker image
+      - name: Build Docker Image
+        run: |
+          docker build -t sailpoint-export .
+
+      # Run Python script *inside Docker* with secrets injected at runtime
+      - name: Run SailPoint export script (Docker)
+        env:
+          SAIL_BASE_URL: ${{ steps.secretdata.outputs.sail_base_url }}
+          SAIL_CLIENT_ID: ${{ steps.secretdata.outputs.sail_client_id }}
+          SAIL_CLIENT_SECRET: ${{ steps.secretdata.outputs.sail_client_secret }}
+        run: |
+          docker run \
+            -e SAIL_BASE_URL="$SAIL_BASE_URL" \
+            -e SAIL_CLIENT_ID="$SAIL_CLIENT_ID" \
+            -e SAIL_CLIENT_SECRET="$SAIL_CLIENT_SECRET" \
+            sailpoint-export
+
+      # Commit & push changes
+      - name: Commit & Push changes
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          author_name: "Automation Bot"
+          author_email: "automation@mdeey.com"
+          message: "Automated SailPoint Backup - $(date +'%Y-%m-%d %H:%M:%S')"
+          branch: "main"
+          directory: "."
+          rebase: true
+          force: true
