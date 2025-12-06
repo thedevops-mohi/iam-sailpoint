@@ -1,4 +1,4 @@
-name: SailPoint Export
+name: SailPoint Export Docker
 
 on:
   workflow_dispatch:
