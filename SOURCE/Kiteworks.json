@@ -23,12 +23,12 @@
         "managerCorrelationRule": null,
         "beforeProvisioningRule": null,
         "features": [
-            "AUTHENTICATE",
-            "PROVISIONING",
-            "PASSWORD",
+            "UNLOCK",
             "ENABLE",
+            "PROVISIONING",
+            "AUTHENTICATE",
             "DELETE",
-            "UNLOCK"
+            "PASSWORD"
         ],
         "schemas": [
             {
@@ -213,10 +213,11 @@
         "connectorAttributes": {
             "healthCheckTimeout": 30,
             "supportsDeltaAgg": "true",
-            "custom_refreshtoken": "bJ0JxaPLX4kumxgdEmzcGgG5gguBSvggNSN3k32h",
-            "lastAggregationDate_group": "2025-11-20T22:01:48Z",
+            "custom_refreshtoken": "p7tBizTvV76OxnLUu7w5X5z7QknV2fyyhplIqLPQ",
+            "lastAggregationDate_group": "2025-12-06T03:02:05Z",
             "deltaAggregationEnabled": false,
             "throwProvBeforeRuleException": true,
+            "secret": "z4pk~qeiyYvsnbx",
             "connectionType": "direct",
             "enableHasMore": false,
             "client_id": "22a7136f-fbb5-5578-83ae-e67eee78eddf",
@@ -231,7 +232,6 @@
                     "pagingInitialOffset": 0,
                     "sequenceNumberForEndpoint": "1",
                     "uniqueNameForEndPoint": "Aggregate Accounts",
-                    "afterRule": "CustomAuthAfterOperationRule",
                     "rootPath": "$.Resources",
                     "body": {
                         "bodyFormat": "raw"
@@ -254,11 +254,10 @@
                     "pagingSize": 50,
                     "curlEnabled": false,
                     "header": {
-                        "Authorization": "Bearer $application.accesstoken$",
+                        "Authorization": "Bearer $application.custom_accesstoken$",
                         "Content-Type": "application/json"
                     },
-                    "operationType": "Account Aggregation",
-                    "beforeRule": "CustomAuthBeforeOperationRule"
+                    "operationType": "Account Aggregation"
                 },
                 {
                     "httpMethodType": "GET",
@@ -279,7 +278,7 @@
                     "pagingSize": 50,
                     "curlEnabled": false,
                     "header": {
-                        "Authorization": "Bearer $application.accesstoken$",
+                        "Authorization": "Bearer $application.custom_accesstoken$",
                         "Content-Type": "application/json"
                     },
                     "operationType": "Test Connection"
@@ -306,7 +305,7 @@
                     "pagingSize": 50,
                     "curlEnabled": false,
                     "header": {
-                        "Authorization": "Bearer $application.accesstoken$",
+                        "Authorization": "Bearer $application.custom_accesstoken$",
                         "X-Accellion-Version": "28",
                         "Content-Type": "application/json"
                     },
@@ -340,7 +339,7 @@
                     "pagingSize": 50,
                     "curlEnabled": false,
                     "header": {
-                        "Authorization": "Bearer $application.accesstoken$",
+                        "Authorization": "Bearer $application.custom_accesstoken$",
                         "Content-Type": "application/json"
                     },
                     "operationType": "Create Account"
@@ -354,7 +353,7 @@
                     "uniqueNameForEndPoint": "Add Entitlement - Roles",
                     "curlEnabled": false,
                     "header": {
-                        "Authorization": "Bearer $application.accesstoken$",
+                        "Authorization": "Bearer $application.custom_accesstoken$",
                         "Content-Type": "application/json"
                     },
                     "operationType": "Add Entitlement-roles",
@@ -372,7 +371,7 @@
                     "uniqueNameForEndPoint": "Disable Account",
                     "curlEnabled": false,
                     "header": {
-                        "Authorizaton": "Bearer $application.accesstoken$",
+                        "Authorizaton": "Bearer $application.custom_accesstoken$",
                         "Content-Type": "application/json"
                     },
                     "operationType": "Disable Account",
@@ -406,7 +405,7 @@
                     "pagingSize": 50,
                     "curlEnabled": false,
                     "header": {
-                        "Authorization": "Bearer $application.accesstoken$",
+                        "Authorization": "Bearer $application.custom_accesstoken$",
                         "X-Accellion-Version": "28",
                         "Content-Type": "application/json"
                     },
@@ -421,7 +420,7 @@
                     "uniqueNameForEndPoint": "Enable Account",
                     "curlEnabled": false,
                     "header": {
-                        "Authorization": "Bearer $application.accesstoken$",
+                        "Authorization": "Bearer $application.custom_accesstoken$",
                         "Content-Type": "application/json"
                     },
                     "operationType": "Enable Account",
@@ -442,7 +441,7 @@
                     "uniqueNameForEndPoint": "Delete Account",
                     "curlEnabled": false,
                     "header": {
-                        "Authorization": "Bearer $application.accesstoken$",
+                        "Authorization": "Bearer $application.custom_accesstoken$",
                         "Content-Type": "application/json"
                     },
                     "operationType": "Delete Account",
@@ -462,7 +461,7 @@
                     "uniqueNameForEndPoint": "Remove Entitlement",
                     "curlEnabled": false,
                     "header": {
-                        "Authorization": "Bearer $application.accesstoken$",
+                        "Authorization": "Bearer $application.custom_accesstoken$",
                         "Content-Type": "application/json"
                     },
                     "operationType": "Remove Entitlement-roles",
@@ -472,37 +471,65 @@
                     "responseCode": [
                         "2**"
                     ]
+                },
+                {
+                    "httpMethodType": "GET",
+                    "pagingInitialOffset": 0,
+                    "sequenceNumberForEndpoint": "11",
+                    "uniqueNameForEndPoint": "Custom Authentication",
+                    "afterRule": "CustomAuthAfterOperationRule",
+                    "rootPath": "$.*",
+                    "body": {
+                        "jsonBody": "{\n            \"schemas\":[\n                    \"urn:ietf:params:scim:schemas:core:2.0:User\",\n                    \"urn:ietf:params:scim:api:messages:2.0:Error\"\n              ],\n            \"userName\": \"$plan.emails$\",\n            \"displayName\": \"$plan.displayName$\",\n            \"notify\": false,\n            \"userMustChange\": false,\n            \"userType\": \"standard\",\n            \"emails\": [\n                {\n                    \"value\": \"$plan.emails$\"\n                }\n            ],\n            \"roles\": [\n                {\n                    \"value\": \"$plan.roles$\"\n                }\n            ]\n}",
+                        "bodyFormat": "raw"
+                    },
+                    "customAuthUrl": "https://secureshare.igmservices.com/rest/scim/users",
+                    "responseCode": [
+                        "2**"
+                    ],
+                    "resMappingObj": {
+                        "id": "id"
+                    },
+                    "contextUrl": "/rest/scim/users",
+                    "pagingSize": 50,
+                    "curlEnabled": false,
+                    "header": {
+                        "Content-Type": "application/json"
+                    },
+                    "operationType": "Custom Authentication",
+                    "beforeRule": "CustomAuthBeforeOperationRule"
                 }
             ],
             "recommendationStatus": "ERROR",
             "partitionAggregationEnabled": false,
             "throwBeforeAfterRuleException": false,
-            "hasFullAggregationCompleted": true,
             "token_url": "https://secureshare.igmservices.com/oauth/token",
             "possibleHttpErrors": {},
             "sourceConnected": true,
             "createAccountWithEntReq": false,
             "throwProvAfterRuleException": true,
             "disableCookies": false,
-            "lastAggregationDate_account": "2025-12-03T23:36:02Z",
+            "lastAggregationDate_account": "2025-12-06T02:46:23Z",
             "deleteThresholdPercentage": 10,
             "fixedPlanMultivaluedAttribute": "true",
             "version": "v2",
-            "lastAggregationDate_roles": "2025-11-20T22:01:50Z",
+            "lastAggregationDate_roles": "2025-12-06T03:02:07Z",
             "labels": [
                 "standard"
             ],
-            "cloudCacheUpdate": 1764807090589,
+            "cloudCacheUpdate": 1765041039821,
             "templateApplication": "Web Services Template",
-            "encrypted": "accesstoken,refresh_token,oauth_token_info,client_secret,private_key,private_key_password,clientCertificate,clientKeySpec,resourceOwnerPassword,custom_auth_token_info",
+            "encrypted": "accesstoken,refresh_token,oauth_token_info,private_key,private_key_password,clientCertificate,clientKeySpec,resourceOwnerPassword,custom_auth_token_info,password",
             "authenticationMethod": "No Auth",
             "httpCookieSpecsStandard": "true",
-            "healthy": false,
+            "healthy": true,
             "cloudDisplayName": "Kiteworks",
             "connectorName": "Web Services",
+            "custom_accesstoken": "PVYDPblx35ISaysNEI14emulZH7zXEKWBg0IicSN",
             "updateAttrWithChangePassword": false,
-            "since": "2025-12-04T00:11:30.579Z",
-            "status": "SOURCE_STATE_FAILURE_SOURCE"
+            "since": "2025-12-06T17:10:39.804Z",
+            "status": "SOURCE_STATE_HEALTHY",
+            "username": "scim-test@igmfinancial.com"
         },
         "crossTenantConnectorAttributes": {
             "connectionParameters": [
@@ -511,7 +538,6 @@
                     "pagingInitialOffset": 0,
                     "sequenceNumberForEndpoint": "1",
                     "uniqueNameForEndPoint": "Aggregate Accounts",
-                    "afterRule": "CustomAuthAfterOperationRule",
                     "rootPath": "$.Resources",
                     "body": {
                         "bodyFormat": "raw"
@@ -534,11 +560,10 @@
                     "pagingSize": 50,
                     "curlEnabled": false,
                     "header": {
-                        "Authorization": "Bearer $application.accesstoken$",
+                        "Authorization": "Bearer $application.custom_accesstoken$",
                         "Content-Type": "application/json"
                     },
-                    "operationType": "Account Aggregation",
-                    "beforeRule": "CustomAuthBeforeOperationRule"
+                    "operationType": "Account Aggregation"
                 },
                 {
                     "httpMethodType": "GET",
@@ -559,7 +584,7 @@
                     "pagingSize": 50,
                     "curlEnabled": false,
                     "header": {
-                        "Authorization": "Bearer $application.accesstoken$",
+                        "Authorization": "Bearer $application.custom_accesstoken$",
                         "Content-Type": "application/json"
                     },
                     "operationType": "Test Connection"
@@ -586,7 +611,7 @@
                     "pagingSize": 50,
                     "curlEnabled": false,
                     "header": {
-                        "Authorization": "Bearer $application.accesstoken$",
+                        "Authorization": "Bearer $application.custom_accesstoken$",
                         "X-Accellion-Version": "28",
                         "Content-Type": "application/json"
                     },
@@ -620,7 +645,7 @@
                     "pagingSize": 50,
                     "curlEnabled": false,
                     "header": {
-                        "Authorization": "Bearer $application.accesstoken$",
+                        "Authorization": "Bearer $application.custom_accesstoken$",
                         "Content-Type": "application/json"
                     },
                     "operationType": "Create Account"
@@ -634,7 +659,7 @@
                     "uniqueNameForEndPoint": "Add Entitlement - Roles",
                     "curlEnabled": false,
                     "header": {
-                        "Authorization": "Bearer $application.accesstoken$",
+                        "Authorization": "Bearer $application.custom_accesstoken$",
                         "Content-Type": "application/json"
                     },
                     "operationType": "Add Entitlement-roles",
@@ -652,7 +677,7 @@
                     "uniqueNameForEndPoint": "Disable Account",
                     "curlEnabled": false,
                     "header": {
-                        "Authorizaton": "Bearer $application.accesstoken$",
+                        "Authorizaton": "Bearer $application.custom_accesstoken$",
                         "Content-Type": "application/json"
                     },
                     "operationType": "Disable Account",
@@ -686,7 +711,7 @@
                     "pagingSize": 50,
                     "curlEnabled": false,
                     "header": {
-                        "Authorization": "Bearer $application.accesstoken$",
+                        "Authorization": "Bearer $application.custom_accesstoken$",
                         "X-Accellion-Version": "28",
                         "Content-Type": "application/json"
                     },
@@ -701,7 +726,7 @@
                     "uniqueNameForEndPoint": "Enable Account",
                     "curlEnabled": false,
                     "header": {
-                        "Authorization": "Bearer $application.accesstoken$",
+                        "Authorization": "Bearer $application.custom_accesstoken$",
                         "Content-Type": "application/json"
                     },
                     "operationType": "Enable Account",
@@ -722,7 +747,7 @@
                     "uniqueNameForEndPoint": "Delete Account",
                     "curlEnabled": false,
                     "header": {
-                        "Authorization": "Bearer $application.accesstoken$",
+                        "Authorization": "Bearer $application.custom_accesstoken$",
                         "Content-Type": "application/json"
                     },
                     "operationType": "Delete Account",
@@ -742,7 +767,7 @@
                     "uniqueNameForEndPoint": "Remove Entitlement",
                     "curlEnabled": false,
                     "header": {
-                        "Authorization": "Bearer $application.accesstoken$",
+                        "Authorization": "Bearer $application.custom_accesstoken$",
                         "Content-Type": "application/json"
                     },
                     "operationType": "Remove Entitlement-roles",
@@ -752,6 +777,33 @@
                     "responseCode": [
                         "2**"
                     ]
+                },
+                {
+                    "httpMethodType": "GET",
+                    "pagingInitialOffset": 0,
+                    "sequenceNumberForEndpoint": "11",
+                    "uniqueNameForEndPoint": "Custom Authentication",
+                    "afterRule": "CustomAuthAfterOperationRule",
+                    "rootPath": "$.*",
+                    "body": {
+                        "jsonBody": "{\n            \"schemas\":[\n                    \"urn:ietf:params:scim:schemas:core:2.0:User\",\n                    \"urn:ietf:params:scim:api:messages:2.0:Error\"\n              ],\n            \"userName\": \"$plan.emails$\",\n            \"displayName\": \"$plan.displayName$\",\n            \"notify\": false,\n            \"userMustChange\": false,\n            \"userType\": \"standard\",\n            \"emails\": [\n                {\n                    \"value\": \"$plan.emails$\"\n                }\n            ],\n            \"roles\": [\n                {\n                    \"value\": \"$plan.roles$\"\n                }\n            ]\n}",
+                        "bodyFormat": "raw"
+                    },
+                    "customAuthUrl": "https://secureshare.igmservices.com/rest/scim/users",
+                    "responseCode": [
+                        "2**"
+                    ],
+                    "resMappingObj": {
+                        "id": "id"
+                    },
+                    "contextUrl": "/rest/scim/users",
+                    "pagingSize": 50,
+                    "curlEnabled": false,
+                    "header": {
+                        "Content-Type": "application/json"
+                    },
+                    "operationType": "Custom Authentication",
+                    "beforeRule": "CustomAuthBeforeOperationRule"
                 }
             ]
         },

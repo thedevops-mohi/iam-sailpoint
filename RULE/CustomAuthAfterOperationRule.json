@@ -38,12 +38,12 @@
     },
     "source_code": {
         "version": "1.0",
-        "script": "import java.util.HashMap;\nimport java.util.Map;\n\nMap updatedMapInfo = new HashMap();\nMap transientMap = (Map) application.getAttributeValue(\"transientValues\");\nif( transientMap != null ){\n    log.error(\"Kiteworks: TransientMap\");\n    String newRefreshToken = (String) transientMap.get(\"custom_refreshtoken\");\n    Map connectorStateMap = new HashMap();\n    connectorStateMap.put(\"custom_refreshtoken\",newRefreshToken);\n    updatedInfoMap.put(\"connectorStateMap\",connectorStateMap);\n    log.error(\"Kiteworks: Setting refresh token \" + newRefreshToken);\n}\nlog.error(\"Kiteworks: After rule.\");\nreturn updatedInfoMap;"
+        "script": "import java.util.HashMap;\nimport java.util.Map;\n\nlog.error(\"Kiteworks: Enter rule.\");\nMap updatedMapInfo = new HashMap();\nMap transientValues = (Map) application.getAttributeValue(\"transientValues\");\nif (transientValues == null) {\n    transientValues = new HashMap();\n}\n\nString newRefreshToken = (String) transientValues.get(\"custom_refreshtoken\");\nString newAccessToken = (String) transientValues.get(\"custom_accesstoken\");\n\nMap connectorStateMap = new HashMap();\nconnectorStateMap.put(\"custom_refreshtoken\",newRefreshToken);\nconnectorStateMap.put(\"custom_accesstoken\", newAccessToken);\nupdatedMapInfo.put(\"connectorStateMap\",connectorStateMap);\nlog.error(\"Kiteworks: Setting refresh token \" + newRefreshToken);\n\nlog.error(\"Kiteworks: After rule.\");\nreturn updatedMapInfo;"
     },
     "attributes": {
         "sourceVersion": "1.0"
     },
     "id": "813d1dd869da42259391eb23de3a4fdb",
     "created": "2025-12-02T23:54:26.966Z",
-    "modified": "2025-12-04T03:47:23.363Z"
+    "modified": "2025-12-05T23:02:53.582Z"
 }

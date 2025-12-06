@@ -10,7 +10,7 @@
         "name": "SecureShare - User",
         "description": "This access is to grant user role in SecureShare.",
         "created": "2025-12-01T14:57:54.81242Z",
-        "modified": "2025-12-02T20:17:11.302603Z",
+        "modified": "2025-12-04T20:40:36.227339Z",
         "enabled": true,
         "owner": {
             "type": "IDENTITY",
@@ -32,17 +32,8 @@
         "requestable": true,
         "accessRequestConfig": {
             "commentsRequired": false,
-            "denialCommentsRequired": true,
-            "approvalSchemes": [
-                {
-                    "approverType": "MANAGER",
-                    "approverId": null
-                },
-                {
-                    "approverType": "OWNER",
-                    "approverId": null
-                }
-            ],
+            "denialCommentsRequired": false,
+            "approvalSchemes": [],
             "reauthorizationRequired": false,
             "requireEndDate": false,
             "maxPermittedAccessDuration": null

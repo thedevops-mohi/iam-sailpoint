@@ -23,8 +23,8 @@
         "managerCorrelationRule": null,
         "beforeProvisioningRule": null,
         "features": [
-            "MANAGER_LOOKUP",
             "SYNC_PROVISIONING",
+            "MANAGER_LOOKUP",
             "ENABLE",
             "SEARCH",
             "PROVISIONING",
