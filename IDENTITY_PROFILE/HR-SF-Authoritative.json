@@ -1,0 +1,1145 @@
+{
+    "version": 1,
+    "var_self": {
+        "type": "IDENTITY_PROFILE",
+        "id": "d69598f0f03d44ffbd2e662bfd71e89b",
+        "name": "HR-SF-Authoritative"
+    },
+    "object": {
+        "description": "This source contains HR person records which we do want to use for onboarding purposes- and create identities directly from.",
+        "owner": {
+            "type": "IDENTITY",
+            "id": "f5df644192e744eab79a35025c29a227",
+            "name": "Jyoti Gupta"
+        },
+        "priority": 30,
+        "authoritativeSource": {
+            "type": "SOURCE",
+            "id": "6d226e38a8d64527838d3d727eb66e23",
+            "name": "SuccessFactors-Auth"
+        },
+        "identityRefreshRequired": false,
+        "identityCount": 4368,
+        "identityAttributeConfig": {
+            "enabled": true,
+            "attributeTransforms": [
+                {
+                    "identityAttributeName": "uid",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "SailPointUserName",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "Username",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "email",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "WorkEmail",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "lastname",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "LastName",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "LastName",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "firstname",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "FirstName",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "FirstName",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "adAccountExpiry",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "ADAccountExpiry",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "adCompany",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "ADCompany",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "adDepartmentNumber",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "DepartmentNumber",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "adDisabled",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "ADDisabled",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "adDn",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "sourceName": "Active Directory",
+                            "attributeName": "distinguishedName",
+                            "sourceId": "a4dc7c1f64fc44fe9e778339d4915993"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "adManagerDn",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "ADManagerDN",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "advisorId",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "AdvisorID",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "AdvisorID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "advisoryRole",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "AdvisoryRole",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "city",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "City",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "company",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "Company",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "contractorType",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "ContractorType",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "costCenter",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "CostCenterID",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "costCenterDescription",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "CostCenterDescription",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "costCenterId",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "CostCenterID",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "country",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "Country",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "countryThreeDigit",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "CountryThreeDigit",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "countryTwoLetter",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "CountryTwoLetter",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "dealernum",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "DealerNum",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "department",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "Department",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "displayName",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "DisplayName",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "displayTitle",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "DispTitle",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "division",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "Division",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "dualRoleEmail",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "Email_DualRole",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "dualRoleSamaccountname",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "sAMAccountName_DualRole",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "emailDomain",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "EmailDomain",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "employeeId",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "PersonIdExternal",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "identificationNumber",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "EmployeeNumber",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "employeeType",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "EmployeeType",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "endDate",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "EndDate",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "endDateAcf2",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "EndDateACF2",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "endDateWithTime",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "EndDateWithTime",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "fullName",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "FullName",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "jobCode",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "JobCode",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "language",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "Language",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "lastNameBegins",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "LastNameBegins",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "cloudLifecycleState",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "LifecycleStateTWF",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "loaEndDate",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "LoaEndDate",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "loaStartDate",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "LoaStartDate",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "managerFullName",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "ManagerName",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "managerLanid",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "ManagerLanID",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "manager",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "ManagerName",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "middleName",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "MiddleName",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "officeName",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "OfficeName",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "personIdExternal",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "PersonIdExternal",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "Person ID External",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "personid",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "PersonId",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "postalCode",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "PostalCode",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "provinceState",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "ProvinceState",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "repRelationships",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "RepRelationships",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "rgofname",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "RegionOfficeName",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "rgofno",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "RegionOfficeNo",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "samaccountname",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "sAMAccountName",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "snapManagerName",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "SNAPManagerName",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "sourceoftruth",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "BestSource",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "startDate",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "StartDate",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "startDateWithTime",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "StartDateWithTime",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "state",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "ProvinceState",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "street",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "Street",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "subscriptionIndicator",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "SubscriptionIndicator",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "SubscriptionIndicator",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "title",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "DispTitle",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "upn",
+                    "transformDefinition": {
+                        "type": "accountAttribute",
+                        "attributes": {
+                            "sourceName": "Active Directory",
+                            "attributeName": "userPrincipalName",
+                            "sourceId": "a4dc7c1f64fc44fe9e778339d4915993"
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "userType",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "UserType",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "identityAttributeName": "workPhone",
+                    "transformDefinition": {
+                        "type": "reference",
+                        "attributes": {
+                            "id": "WorkPhone",
+                            "input": {
+                                "type": "accountAttribute",
+                                "attributes": {
+                                    "sourceName": "SuccessFactors-Auth",
+                                    "attributeName": "PersonID",
+                                    "sourceId": "6d226e38a8d64527838d3d727eb66e23"
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "identityExceptionReportReference": null,
+        "hasTimeBasedAttr": true,
+        "id": "d69598f0f03d44ffbd2e662bfd71e89b",
+        "name": "HR-SF-Authoritative",
+        "created": "2025-11-24T17:40:25.343Z",
+        "modified": "2025-11-28T20:54:03.827Z"
+    }
+}
