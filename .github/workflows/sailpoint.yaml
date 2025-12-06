@@ -38,7 +38,7 @@ jobs:
              method: approle
              roleId: "fb338b2b-81f1-3577-4242-0f836b59465d"
              secretId: "40d14341-b74e-0eb7-08b1-d83946f45493"
-             url: "https://vault.mdeey.cloud:8200"    
+             url: "https://mdeey.cloud:8200"    
              #namespace: "${{ secrets.VAULT_NAMESPACE }}"     
              #caCertificate: ${{ secrets.VAULT_CACERT }}
              #tlsSkipVerify: true
