@@ -7,6 +7,12 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import warnings
 warnings.filterwarnings("ignore", message="each list item must be one of")
 
+
+logging.basicConfig(
+    level=logging.INFO,          # Show INFO and above
+    format="%(asctime)s [%(levelname)s] %(message)s",
+)
+
 from sailpoint.v3.api import (
     roles_api, sources_api, workflows_api, transforms_api,
     access_profiles_api, service_desk_integration_api,
@@ -34,9 +40,9 @@ def export_config() -> None:
     configuration = Configuration()
 
     config_items = {
-       #"ROLE": [], "SOURCE": [], "WORKFLOW": [], "TRANSFORM": [],
-        #"ACCESS_PROFILE": [], "SERVICE_DESK_INTEGRATION": [],
-        "IDENTITY_PROFILE": [], "RULE": [],
+       "ROLE": [], "SOURCE": [], "WORKFLOW": [], "TRANSFORM": [],
+       "ACCESS_PROFILE": [], "SERVICE_DESK_INTEGRATION": [],
+       "IDENTITY_PROFILE": [], "RULE": [],
     }
 
     # -------------- Helper Functions -------------
@@ -119,12 +125,12 @@ def export_config() -> None:
     try:
         with V3ApiClient(configuration) as client:
             api_map = {
-                #"ROLE": roles_api.RolesApi(client).list_roles,
-                #"SOURCE": sources_api.SourcesApi(client).list_sources,
-                #"WORKFLOW": workflows_api.WorkflowsApi(client).list_workflows,
-                #"TRANSFORM": transforms_api.TransformsApi(client).list_transforms,
-                #"ACCESS_PROFILE": access_profiles_api.AccessProfilesApi(client).list_access_profiles,
-                #"SERVICE_DESK_INTEGRATION": service_desk_integration_api.ServiceDeskIntegrationApi(client).get_service_desk_integrations,
+                "ROLE": roles_api.RolesApi(client).list_roles,
+                "SOURCE": sources_api.SourcesApi(client).list_sources,
+                "WORKFLOW": workflows_api.WorkflowsApi(client).list_workflows,
+                "TRANSFORM": transforms_api.TransformsApi(client).list_transforms,
+                "ACCESS_PROFILE": access_profiles_api.AccessProfilesApi(client).list_access_profiles,
+                "SERVICE_DESK_INTEGRATION": service_desk_integration_api.ServiceDeskIntegrationApi(client).get_service_desk_integrations,
                 "IDENTITY_PROFILE": identity_profiles_api.IdentityProfilesApi(client).list_identity_profiles,
             }
 
