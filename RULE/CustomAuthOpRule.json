@@ -1,0 +1,44 @@
+{
+    "name": "CustomAuthOpRule",
+    "description": "This rule is used by the  Web Services connector before performing any operation like testconnection, aggregation, etc.",
+    "type": "WebServiceBeforeOperationRule",
+    "signature": {
+        "input": [
+            {
+                "name": "application",
+                "description": "The application whose data file is being processed.",
+                "type": null
+            },
+            {
+                "name": "requestEndPoint",
+                "description": "The current request information contain header, body, context url, method type, response attribute map,\n          successful response code\n        ",
+                "type": null
+            },
+            {
+                "name": "oldResponseMap",
+                "description": "earlier response object ",
+                "type": null
+            },
+            {
+                "name": "restClient",
+                "description": "REST Client Object",
+                "type": null
+            }
+        ],
+        "output": {
+            "name": "EndPoint",
+            "description": "Updated EndPoint Object",
+            "type": null
+        }
+    },
+    "source_code": {
+        "version": "1.0",
+        "script": "import javax.net.ssl.HttpsURLConnection;\nimport org.json.JSONException;\nimport org.json.JSONObject;\nimport org.json.simple.parser.ParseException;\nimport java.io.BufferedReader;\nimport java.io.IOException;\nimport java.io.InputStreamReader;\nimport java.io.PrintStream;\nimport java.io.StringWriter;\nimport java.net.URL;\nimport sailpoint.object.Application;\nimport sailpoint.tools.Util;\nimport java.util.HashMap;\nimport java.util.Map;\n//Method to get Access Token from Response String\npublic String getAccessTokenfromResponse(String stringToParse) throws ParseException, JSONException{\n\t\tString accessToken=null;\n\t\tif(Util.isNotNullOrEmpty(stringToParse)){\n\t\t\tJSONObject json = new JSONObject(stringToParse);\n\t\t     accessToken=(String) json.getJSONObject(\"data\").getJSONObject(\"createRefreshTokenAuthorization\").get(\"accessToken\");\n\t\t     log.debug(\"In getAccessTokenfromResponse Method\");\n\t\t}\n\t\treturn accessToken;\n}\n//Variable declaration for OAuth 2.0 to access new token\nMap headerMap = new HashMap();\nString tokenUrl = application.getAttributeValue(\"token_url\");\nString query=\"mutation CreateRefreshTokenAuthorization($input: CreateRefreshTokenAuthorizationInput!) {  createRefreshTokenAuthorization(input: $input) {  accessToken,refreshToken,expiresIn}}\";\nString variables =\"{\\\"input\\\": {\\\"refreshToken\\\": \\\"9egMk2PxSBQhf3evqslxnnNtz3MOZMWDudP7cvxe\\\"}}\";\nBufferedReader reader = null;\nHttpsURLConnection connection = null;\nString returnValue = \"\";\n\t\t\n//Create content string for connection to get Token\nString content = \"query=\" + query +  \"&variables=\" + variables;\n\t\ttry {\n\t\t        //Attempts to connect to target and pull new data\n\t\t        URL url = new URL(tokenUrl);\n\t\t        connection = (HttpsURLConnection) url.openConnection();\n\t\t        connection.setRequestMethod(\"POST\");\n\t\t        connection.setDoOutput(true);\n\t\t        connection.setRequestProperty(\"Content-Type\", \"application/x-www-form-urlencoded\");\n\t\t        connection.setRequestProperty(\"Accept\", \"application/json\");\n\t\t        PrintStream os = new PrintStream(connection.getOutputStream());\n\t\t        os.print(content);\n\t\t        os.close();\n\t\t        reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));\n\t\t        String line = null;\n\t\t        StringWriter out = new StringWriter(connection.getContentLength() > 0 ? connection.getContentLength() : 2048);\n\t\t        log.error(\"Kiteworks: Inside TRY after getting reading the connection details\");\n\t\t        while ((line = reader.readLine()) != null) {\n\t\t            out.append(line);\n\t\t        }\n\t\t        String response = out.toString();\n\t\t\t\tlog.error(\"Kiteworks: After giving response as output\");\n\t\t         returnValue=getAccessTokenfromResponse(response);\n\t\t       \n\t\t    } catch (Exception e) {\n\t\t       log.error(\"Error: \" + e.getMessage());\n\t\t    } finally {\n\t\t        if (reader != null) {\n\t\t            try {\n\t\t                reader.close();\n\t\t            } catch (IOException e) {\n\t\t            }\n\t\t        }\n\t\t        connection.disconnect();\n\t\t    }\n    //preface the token with \"bearer \"\n    String tokenNew = \"Bearer \"+ returnValue;\n    //Replace the Header to clear out Token information\n    headerMap.put(\"Accept\", \"application/json\");\n    headerMap.put(\"Content-Type\", \"application/json\");\n    headerMap.put(\"Authorization\", tokenNew);\n    //Set requestEndPoint with new header\n    requestEndPoint.setHeader(headerMap);\n\n    return requestEndPoint;"
+    },
+    "attributes": {
+        "sourceVersion": "1.0"
+    },
+    "id": "0ec258ec7d72407e93e99fc6aa110fb7",
+    "created": "2025-12-03T16:04:50.115Z",
+    "modified": "2025-12-03T16:29:33.276Z"
+}
